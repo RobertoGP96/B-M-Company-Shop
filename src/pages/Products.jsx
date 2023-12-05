@@ -1,6 +1,10 @@
+import CategoriesSideBar from "../components/CategoriesSideBar";
+
 function Products() {
     return ( 
-        <>Products</>
+        <>
+            <CategoriesSideBar/>
+        </>
      );
 }
 
