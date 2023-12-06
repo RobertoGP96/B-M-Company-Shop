@@ -1,36 +1,22 @@
 import CategorieSideBar from "../components/CategorieSideBar";
-import ProductCard from "../components/ProductCard";
 import NavBar from "../components/NavBar";
+import ProductsGrid from "../components/ProductsGrid";
+import './pagesStyles/products.css'
 
 function Products() {
     return ( 
-        <main style = {styles.productsPage}>
+        <main className = "products-page">
             <NavBar/>
-            <section style = {styles.contentContainer}>
-                <CategorieSideBar/>
-                <ProductCard 
-                    id={1} 
-                    precio={100}
-                    product_name={"zapatozapatozapatozapatozapatozapato"}
-                    product_img1={"https://bestore.pythonanywhere.com/media/productos_images/pc.jpg"}
-                    />
+            <section className = "content-container">
+                <div className = "categories-side-bar-container">
+                    <CategorieSideBar/>
+                </div>
+                <div className = "products-container">
+                    <ProductsGrid/>
+                </div>
             </section>
         </main>
      );
 }
 
 export default Products;
-
-const styles = {
-    productsPage:{
-        width:"100vw",
-        minHeight:"100vh",
-        backgroundColor:"rgb(249, 250, 252)",
-    },
-    contentContainer:{
-        width:"100%",
-        height:"100%",
-        display:"flex",
-        flexDirection:"row",
-    }
-}

@@ -19,7 +19,7 @@ function CategorieSideBar() {
     <section className = "categories-side-bar">
       <h2>Categorias</h2>
       {loading ? (
-        <div className="loader-container">
+        <div className="categories-loader-container">
           <Loader />
         </div>
       ) : (
