@@ -10,12 +10,12 @@
     border-right: 1px solid rgba(75, 74, 74, 0.099);
 }
 
-h1{
+.categories-side-bar h1{
     margin:0;
     margin-bottom: 10px;
 }
 
-ul{
+.categories-side-bar ul{
     list-style: none;
     padding: 0;
     margin: 0;
