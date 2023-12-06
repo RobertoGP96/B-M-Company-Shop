@@ -1,0 +1,22 @@
+.categories-loader-container{
+    width: 20px;
+    height: 20px;
+    margin:0 auto;
+}
+
+.categories-side-bar{
+    height: 100%;
+    width: 100%;
+    border-right: 1px solid rgba(75, 74, 74, 0.099);
+}
+
+h1{
+    margin:0;
+    margin-bottom: 10px;
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

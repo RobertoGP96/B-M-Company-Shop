@@ -1,0 +1,52 @@
+.products-grid{
+    width: auto;
+    height: 90%;
+    display:grid;
+    grid-template-columns: repeat(3, 260px);
+    gap:10px
+}
+
+.next-page-button-container{
+    text-align:center;
+}
+
+.next-page-button-container button{
+    border-radius:7px;
+    margin-left:5px;
+}
+
+.NotFoundMessage{
+    width:100%;
+    text-align:center;
+    margin-top: 100px;
+}
+.next-page-button{
+    margin-bottom: 2rem;
+}
+.button-scroll-top{
+    position:fixed;
+    bottom:2rem;
+    right:2rem;
+}
+
+.no-more-products{
+    border:1px solid;
+    text-align:center;
+    border-radius:10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.products-loader-container{
+    width: 300px;
+    height: 500px;
+    margin:0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.products-loader-container div{
+    width: 20px;
+    height: 20px;
+}
+
