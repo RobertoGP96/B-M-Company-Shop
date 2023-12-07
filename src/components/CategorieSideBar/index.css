@@ -20,3 +20,20 @@
     padding: 0;
     margin: 0;
 }
+
+.categories-side-bar li{
+    margin-top:10px;
+}
+.categories-side-bar li span{
+    cursor: pointer;
+    padding:5px;
+    border-radius: 5px;
+}
+
+.categories-side-bar li span:hover{
+    outline:1px solid;
+}
+
+.category-selected span{
+    outline:1px solid;
+}

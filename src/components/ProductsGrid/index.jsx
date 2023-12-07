@@ -71,7 +71,10 @@ export default function ProductsGrid() {
           nextLabel = {'Siguiente'}
           breakLabel = {"..."}
           marginPagesDisplayed = {1}
-          onPageChange={(page) => setFilter({name:"page", value:page.selected + 1})}
+          onPageChange={(page) => {
+            document.querySelector("body").scrollIntoView({top:0})
+            setFilter({name:"page", value:page.selected + 1})
+          }}
           disableInitialCallback = {true}
           initialPage={parseInt(getActiveFilter("page")) - 1}
         />    
