@@ -54,3 +54,60 @@
     height: 20px;
 }
 
+/*Paginator styles*/
+.paginator{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+    padding: 20px 5px;
+    margin-top: 40px;
+    gap:6px;
+    border-top: 1px solid rgba(178, 177, 177, 0.236);
+}
+.paginator a{
+    text-decoration:none;
+    color: black;
+}
+.paginator a:hover{
+    color: black;
+    background-color:rgb(232, 236, 239);
+}
+.page{
+    min-width: 32px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.page:hover{
+    background-color:rgb(232, 236, 239);
+    color: black;
+}
+.page-active{
+    background-color: rgb(232, 236, 239);
+    min-width: 32px;
+}
+.next-page-button{
+    margin-left: 180px;
+    cursor: pointer;
+    border-radius: 5px;
+    border:1px solid;
+    padding:5px
+}
+.next-page-button:hover{
+    background-color: rgb(65, 144, 149);
+}
+.previous-page-button{
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    border:1px solid;
+    padding:5px;
+    margin-right: 180px;
+}
+.previous-page-button:hover{
+    background-color: rgb(65, 144, 149);
+}
+
