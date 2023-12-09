@@ -1,9 +1,10 @@
 import './index.css'
 import SearchIcon from '../../assets/search-icon.svg'
 import { Dropdown } from 'primereact/dropdown';
-import {useContext, useState} from 'react'
+import {useContext, useEffect, useState} from 'react'
 import QueryFiltersContext from '../../context/filtersContext';
 import { getActiveFilter } from '../../utils/getActiveFilter';
+import {debounce} from "../../utils/debounce"
 
 const orderingValues = [
     {code: "", name : "Ordenar"},
@@ -25,25 +26,33 @@ function SearchProduct() {
         setOrdering(value)
     }
 
-    function handleSearch(e){
-        e.preventDefault()
-        setFilter({name: "search", value:searchingValue})
-    }
+    //search the product when the user ends writting on the search form
+    useEffect(() => {
+        let timeOut = setTimeout(() => setFilter({name: "search", value:searchingValue}), 500)
+        return () => clearTimeout(timeOut)
+    },[searchingValue])
+
     return ( 
         <section className = "search-product">
             <h2>Productos</h2>
-            <form onSubmit={(e) => handleSearch(e)}>
-                <img src = {SearchIcon}/>
-                <input placeholder='Buscar' onChange={(e) => setSearchingValue(e.target.value)} value = {searchingValue}/>
-            </form>
-            <Dropdown 
-                value={ordering} 
-                onChange={(e) => handleSetOrdering(e.value)} 
-                options={orderingValues} 
-                optionLabel="name" 
-                placeholder="Ordenar" 
-                className="w-full md:w-14rem order-button" 
-            />
+            <section className = "search-order-container">
+                <form onSubmit={(e) => e.preventDefault()}>
+                    <img src = {SearchIcon}/>
+                    <input 
+                        placeholder='Buscar' 
+                        onChange={(e) => setSearchingValue(e.target.value)} 
+                        value = {searchingValue}
+                        />
+                </form>
+                <Dropdown 
+                    value={ordering} 
+                    onChange={(e) => handleSetOrdering(e.value)} 
+                    options={orderingValues} 
+                    optionLabel="name" 
+                    placeholder="Ordenar" 
+                    className="w-full md:w-14rem order-button" 
+                />
+            </section>
         </section>
      );
 }

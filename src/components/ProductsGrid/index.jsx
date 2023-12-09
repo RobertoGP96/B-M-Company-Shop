@@ -6,6 +6,8 @@ import "./index.css";
 import QueryFiltersContext from "../../context/filtersContext";
 import ReactPaginate from 'react-paginate';
 import {getActiveFilter} from '../../utils/getActiveFilter'
+import RightArrow from '../../assets/chevron-right-24.svg'
+import LeftArrow from '../../assets/chevron-left-24.svg'
 
 
 export default function ProductsGrid() {
@@ -67,8 +69,8 @@ export default function ProductsGrid() {
           breakClassName = {'page'}
           pageCount = {Math.ceil(numOfProducts/9)}
           pageRangeDisplayed = {3}
-          previousLabel = {'Anterior'}
-          nextLabel = {'Siguiente'}
+          previousLabel = {<><img src = {LeftArrow}/><span>Anterior</span></>}
+          nextLabel = {<><span>Siguiente</span><img src = {RightArrow}/></>}
           breakLabel = {"..."}
           marginPagesDisplayed = {1}
           onPageChange={(page) => {
