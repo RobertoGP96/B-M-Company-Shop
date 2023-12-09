@@ -7,20 +7,13 @@ import './pagesStyles/products.css'
 
 function Products() {  
     return ( 
-        <main className = "products-page">
-            <NavBar/>
-            <section className = "content-container">
-                <div className = "categories-side-bar-container">
-                    <CategorieSideBar/>
-                </div>
-                <div className = "products-container">
-                    <SearchProduct/>
-                    <div className = "separator"></div>
-                    <ProductsGrid/>
-                </div>
-            </section>
-            <Footer/>
-        </main>
+        <section className = "products-page">
+            <header><NavBar/></header>
+            <aside><CategorieSideBar/></aside>
+            <search><SearchProduct/></search>
+            <main><ProductsGrid/></main>
+            <footer><Footer/></footer>
+        </section>
      );
 }
 

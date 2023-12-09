@@ -37,3 +37,23 @@
 .category-selected span{
     outline:1px solid;
 }
+
+@media (width < 800px) {
+    .categories-side-bar ul{
+        overflow-x: auto;
+        white-space: nowrap;
+        height:50px;
+        padding: 10px;
+    }
+    .categories-side-bar ul::-webkit-scrollbar{
+        display: none;
+    }
+    .categories-side-bar li{
+        width: auto;
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .categories-side-bar li span{
+        width: auto;
+    }
+}

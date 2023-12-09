@@ -32,18 +32,20 @@ function SearchProduct() {
     return ( 
         <section className = "search-product">
             <h2>Productos</h2>
-            <form onSubmit={(e) => handleSearch(e)}>
-                <img src = {SearchIcon}/>
-                <input placeholder='Buscar' onChange={(e) => setSearchingValue(e.target.value)} value = {searchingValue}/>
-            </form>
-            <Dropdown 
-                value={ordering} 
-                onChange={(e) => handleSetOrdering(e.value)} 
-                options={orderingValues} 
-                optionLabel="name" 
-                placeholder="Ordenar" 
-                className="w-full md:w-14rem order-button" 
-            />
+            <section className = "search-order-container">
+                <form onSubmit={(e) => handleSearch(e)}>
+                    <img src = {SearchIcon}/>
+                    <input placeholder='Buscar' onChange={(e) => setSearchingValue(e.target.value)} value = {searchingValue}/>
+                </form>
+                <Dropdown 
+                    value={ordering} 
+                    onChange={(e) => handleSetOrdering(e.value)} 
+                    options={orderingValues} 
+                    optionLabel="name" 
+                    placeholder="Ordenar" 
+                    className="w-full md:w-14rem order-button" 
+                />
+            </section>
         </section>
      );
 }
