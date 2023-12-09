@@ -1,5 +1,5 @@
 .products-grid{
-    width: 85%;
+    width: 100%;
     height: 100%;
     min-height: 300px;
     display:grid;
@@ -95,6 +95,12 @@
     background-color: rgb(65, 144, 149);
 }
 
+@media (width > 1300px){
+    .products-grid{
+        width: 80%;
+    }
+}
+
 /*Mobile*/
 @media (width < 800px){
     .next-page-button{
@@ -108,5 +114,9 @@
     }
     .previous-page-button span{
         display:none
+    }
+    .products-loader-container{
+        top: 70%;
+        left: 50%;
     }
 }
