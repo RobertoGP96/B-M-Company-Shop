@@ -6,18 +6,24 @@ import { useState } from 'react';
 import { Menu } from 'primereact/menu';
 import 'primeicons/primeicons.css';
 
+
 const items = [
     {
-        label: 'Home',
+        label: 'Inicio',
+        url:"/"
     },
     {
-        label: 'Store',
+        label: 'Tienda',
+        url:"/tienda"
+
     },
     {
-        label: 'Products',
+        label: 'Productos',
+        url:"/products"
     },
     {
-        label: 'Contact-us',
+        label: 'Contacto',
+        url:"/contact-us"
     }
 
 ];
@@ -77,7 +83,9 @@ function NavBar() {
                             </div>
                         </li>
                     </ul>
-                    <Sidebar visible={visible} onHide={()=>setVisible(false)} >
+                    <Sidebar className='sideBar' visible={visible} onHide={()=>setVisible(false)} 
+
+                    >
                         <h2 style={{display:"inline",position:"absolute",top:"0"}}>Menu</h2>
                         <Menu model={items} style={{border:"none",width:"100%"}} />
                     </Sidebar>

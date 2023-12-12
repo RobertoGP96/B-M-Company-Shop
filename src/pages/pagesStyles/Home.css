@@ -60,7 +60,9 @@
     gap: 10px;
  }
 
-   
+ .homeDescription-conteinerResponsive{
+   font-size: 11px;
+ }  
  .homeDescription-button{
     width: 120px;
     height: 30px;
