@@ -1,19 +1,28 @@
 .search-product{
-    width:100%;
+    width:80%;
     height:100px;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto;
+    align-content: end;
     justify-content: center;
-    align-items: flex-end;
     gap:20px;
     padding:10px;
     border-bottom: 1px solid rgba(211, 207, 207, 0.286);
+    margin: 0 auto;
 }
 
 .search-product h2{
     margin:0;
 }
 
+.search-order-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
 .search-product form{
     display:flex;
     flex-direction: row;
@@ -45,4 +54,25 @@
 .order-button span{
     color: black;
     font-weight: bold;
+}
+
+/*Mobile*/
+@media (width < 800px){
+    .search-product{
+        width: 100%;
+        gap: 5px;
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+    .search-product form{
+        gap:0;
+        width: 100%;
+    }
+    .search-product input{
+        width:80%;
+    }
+    .order-button span{
+        margin:0;
+        padding: 0;
+    }
 }
