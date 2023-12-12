@@ -1,11 +1,13 @@
 .products-grid{
-    width: auto;
-    height: 90%;
+    width: 85%;
+    height: 100%;
     min-height: 300px;
     display:grid;
-    grid-template-columns: repeat(3, 260px);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
     gap:10px;
     justify-content: center;
+    margin:0 auto;
+    padding:10px
 }
 
 .not-found-message{
@@ -15,7 +17,6 @@
     top:30%
 }
 
-
 .products-loader-container{
     width: 300px;
     height: 500px;
@@ -24,8 +25,9 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 50%;
-    top:20%
+    left: 55%;
+    top:50%;
+    transform:translate(-50%, -50%)
 }
 .products-loader-container div{
     width: 20px;
@@ -35,6 +37,7 @@
 /*Paginator styles*/
 .paginator{
     display: flex;
+    width: 100%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -68,29 +71,42 @@
     min-width: 32px;
 }
 .next-page-button{
-    margin-left: 180px;
     cursor: pointer;
     border-radius: 5px;
     border:1px solid;
-    padding:5px
+    padding:5px;
+    margin-left: 5vw;
+    display: flex;
+    align-items: center;
 }
 .next-page-button:hover{
     background-color: rgb(65, 144, 149);
 }
 .previous-page-button{
-    margin-right: 10px;
     cursor: pointer;
     border-radius: 5px;
     border:1px solid;
     padding:5px;
-    margin-right: 180px;
+    margin-right: 5vw;
+    display: flex;
+    align-items: center;
 }
 .previous-page-button:hover{
     background-color: rgb(65, 144, 149);
 }
 
-@media (max-width:1050px){
-    .products-grid{
-        grid-template-columns: repeat(2, 260px);
+/*Mobile*/
+@media (width < 800px){
+    .next-page-button{
+        margin:0
+    }
+    .next-page-button span{
+        display:none;
+    }
+    .previous-page-button{
+        margin:0
+    }
+    .previous-page-button span{
+        display:none
     }
 }
