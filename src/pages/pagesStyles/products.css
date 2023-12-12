@@ -21,6 +21,7 @@
 .categories-side-bar-container{
     width:20vw;
     height: 100vh;
+}
 .products-page header{
     grid-area: header;
 }
