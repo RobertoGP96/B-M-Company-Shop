@@ -11,6 +11,16 @@
         "footer footer footer footer footer";
 }
 
+.content-container{
+    padding-top: 50px;
+    width:100%;
+    height:100%,;
+    display:flex;
+    flex-direction:row;
+}
+.categories-side-bar-container{
+    width:20vw;
+    height: 100vh;
 .products-page header{
     grid-area: header;
 }
