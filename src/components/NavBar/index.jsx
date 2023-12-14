@@ -35,7 +35,7 @@ function NavBar() {
     const [visible, setVisible] = useState(false);
   
     return ( 
-        <nav className = "navbar">
+        <nav title='primaryNavigation' className = "navbar">
              { responsive? 
                 
                 <ul className="nav-BarConteiner">

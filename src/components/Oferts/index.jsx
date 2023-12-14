@@ -15,7 +15,7 @@ function Oferts(){
                 </div>
            
             </div>
-            
+            <hr style={{backgroundColor:"black"}}/>
             <div className="oferts">
                 <h3 style={{display:"inline",position:"absolute",top:"-41px",left:"0"}}>Últimos Añadidos</h3>
                 <div className="cardOferts-Conteiner" >
