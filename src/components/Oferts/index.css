@@ -13,13 +13,13 @@
     display: flex;
     flex-direction:column;
     gap: 50px;
-    padding: 30px 20px 20px 20px;
+    padding: 20px;
     position: relative;
 }
 
 .oferts{    
     width: 100%;
-    max-width: 1150px;
+    max-width: 1200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,5 +56,6 @@
     max-width: 900px;
     border-image: linear-gradient(to right,transparent, #000 , transparent ) 1 0.1;
     border-top: 1px solid black;
+   
    
 }
