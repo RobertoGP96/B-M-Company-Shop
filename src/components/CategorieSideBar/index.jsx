@@ -54,6 +54,11 @@ function CategorieSideBar(){
               <span>{category.nombre}</span>
             </li>
           ))}
+          <li
+              className = "ofers-category"
+            >
+              <span>Ofertas</span>
+            </li>
         </ul>
       )}
     </section>

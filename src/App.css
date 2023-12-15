@@ -2,3 +2,8 @@
   margin: 0 auto;  
   text-align: center;
 }
+
+@font-face {
+  font-family: "Noto-Sans";
+  src: url('./assets/fonts/NotoSans-Regular.woff2');
+}

@@ -34,7 +34,7 @@ function SearchProduct() {
 
     return ( 
         <section className = "search-product">
-            <h2>Productos</h2>
+            <h3>Productos</h3>
             <section className = "search-order-container">
                 <form onSubmit={(e) => e.preventDefault()}>
                     <img src = {SearchIcon}/>
