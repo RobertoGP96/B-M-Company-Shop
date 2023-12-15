@@ -5,8 +5,11 @@ import ProductCard from "../ProductCard";
 function Oferts(){
     return(
         <div className="ofertsConteiner">
+            <div className="dividerConteiner">
+                <h3 style={{display:"inline"}}>Ofertas</h3>
+                <hr className="divider"/>
+            </div>
             <div className="oferts">
-                <h3 style={{display:"inline",position:"absolute",top:"-41px",left:"0"}}>Ofertas</h3>
                 <div className="cardOferts-Conteiner" >
                     <ProductCard id={" "} precio={2} product_name={" "}/>
                     <ProductCard id={" "} precio={3} product_name={" "}/>
@@ -15,9 +18,12 @@ function Oferts(){
                 </div>
            
             </div>
-            <hr style={{backgroundColor:"black"}}/>
+            <div className="dividerConteiner">
+                <h3 style={{display:"inline"}}>Últimos Añadidos</h3>
+                <hr className="divider"/>
+            </div>
             <div className="oferts">
-                <h3 style={{display:"inline",position:"absolute",top:"-41px",left:"0"}}>Últimos Añadidos</h3>
+               
                 <div className="cardOferts-Conteiner" >
                     <ProductCard id={" "} precio={6} product_name={" "}/>
                     <ProductCard id={" "} precio={7} product_name={" "}/>

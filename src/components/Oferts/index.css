@@ -1,6 +1,11 @@
+@font-face {
+    font-family: "NotoSans";
+    src: url("../../fonts/NotoSans.ttf") format("truetype");
+  }
 
 .ofertsConteiner{
-    min-height: 100vh;
+    height: auto;
+    margin-top: 0px;
     background-color: rgb(252, 251, 251);
     color:black;
     align-items: center;
@@ -9,19 +14,17 @@
     flex-direction:column;
     gap: 50px;
     padding: 30px 20px 20px 20px;
-  
+    position: relative;
 }
 
 .oferts{    
     width: 100%;
+    max-width: 1150px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    border-top: 1px solid transparent;
-    border-image: linear-gradient(to right,transparent, #000 , transparent ) 1 0.1;
     font-family:  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding: 40px 0px 0px 0px ;
 }
 
 .cardOferts-Conteiner{
@@ -33,4 +36,25 @@
     align-items: center;
     justify-content: center;
     
+}
+
+
+.dividerConteiner{
+    width: 100%;
+    max-width: 1200px;
+    height: 20px;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    font-family: NotoSans;
+    
+}
+.divider{
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    border-image: linear-gradient(to right,transparent, #000 , transparent ) 1 0.1;
+    border-top: 1px solid black;
+   
 }
