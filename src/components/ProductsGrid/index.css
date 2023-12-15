@@ -1,7 +1,6 @@
 .products-grid{
     width: 100%;
     height: 100%;
-    min-height: 300px;
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
     gap:10px;
@@ -47,52 +46,57 @@
     gap:6px;
     border-top: 1px solid rgba(178, 177, 177, 0.236);
 }
+.paginator-invisible{
+    display:none;
+}
 .paginator a{
     text-decoration:none;
     color: black;
 }
 .paginator a:hover{
     color: black;
-    background-color:rgb(232, 236, 239);
 }
 .page{
     min-width: 32px;
     text-align: center;
     cursor: pointer;
-    border-radius: 5px;
 }
 
 .page:hover{
-    background-color:rgb(232, 236, 239);
     color: black;
+    border-radius: 4px;
+    border: 1px solid var(--Gray-400, #CED4DA);
+    background: var(--Gray-200, #E9ECEF);
 }
 .page-active{
-    background-color: rgb(232, 236, 239);
     min-width: 32px;
+    border-radius: 4px;
+    border: 1px solid var(--Gray-400, #CED4DA);
+    background: var(--Gray-200, #E9ECEF);
 }
 .next-page-button{
     cursor: pointer;
-    border-radius: 5px;
-    border:1px solid;
+    border-radius: 6px;
+    border: 1px solid var(--Gray-500, #ADB5BD);
     padding:5px;
     margin-left: 5vw;
     display: flex;
     align-items: center;
 }
 .next-page-button:hover{
-    background-color: rgb(65, 144, 149);
+    background: var(--Gray-200, #E9ECEF);
 }
 .previous-page-button{
     cursor: pointer;
-    border-radius: 5px;
-    border:1px solid;
+    border-radius: 6px;
+    border: 1px solid var(--Gray-500, #ADB5BD);
     padding:5px;
     margin-right: 5vw;
     display: flex;
     align-items: center;
 }
 .previous-page-button:hover{
-    background-color: rgb(65, 144, 149);
+    background: var(--Gray-200, #E9ECEF);
 }
 
 @media (width > 1300px){
@@ -106,14 +110,8 @@
     .next-page-button{
         margin:0
     }
-    .next-page-button span{
-        display:none;
-    }
     .previous-page-button{
         margin:0
-    }
-    .previous-page-button span{
-        display:none
     }
     .products-loader-container{
         top: 70%;

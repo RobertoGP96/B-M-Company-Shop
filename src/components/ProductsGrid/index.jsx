@@ -61,7 +61,7 @@ export default function ProductsGrid() {
           )}
         </div>
         <ReactPaginate
-          className = {"paginator"}
+          className = {products.length > 0?"paginator":"paginator-invisible"}
           activeClassName = {"page-active"}
           pageClassName = {"page"}
           nextLinkClassName = {"next-page-button"}
@@ -69,8 +69,8 @@ export default function ProductsGrid() {
           breakClassName = {'page'}
           pageCount = {Math.ceil(numOfProducts/9)}
           pageRangeDisplayed = {3}
-          previousLabel = {<><img src = {LeftArrow}/><span>Anterior</span></>}
-          nextLabel = {<><span>Siguiente</span><img src = {RightArrow}/></>}
+          previousLabel = {<img src = {LeftArrow}/>}
+          nextLabel = {<img src = {RightArrow}/>}
           breakLabel = {"..."}
           marginPagesDisplayed = {1}
           onPageChange={(page) => {

@@ -1,8 +1,7 @@
 .search-product{
     width:80%;
-    height:100px;
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 150px 1fr;
     grid-template-rows: auto;
     align-content: end;
     justify-content: center;
@@ -12,11 +11,17 @@
     margin: 0 auto;
 }
 
-.search-product h2{
-    margin:0;
+.search-product h3{
+    color: var(--Dark, #1E293B);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 137%;
+    letter-spacing: -0.8px;
 }
 
 .search-order-container{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -24,12 +29,20 @@
     gap:10px;
 }
 .search-product form{
+    width: 100%;
     display:flex;
     flex-direction: row;
     align-items: center;
     background-color: rgba(240, 241, 245);
     padding:5px;
-    gap:10px
+    gap:10px;
+    border-radius: 5px;
+    padding:10px;
+}
+
+.search-product form img{
+    opacity: 0.5;
+    width: 15px;
 }
    
 .search-product input{

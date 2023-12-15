@@ -28,6 +28,10 @@
     cursor: pointer;
     padding:5px;
     border-radius: 5px;
+    min-width: 100px;
+    display: inline-block;
+    color:rgba(30, 41, 59, 1);
+    font-weight: bold;
 }
 
 .categories-side-bar li span:hover{
@@ -36,6 +40,14 @@
 
 .category-selected span{
     outline:1px solid;
+}
+
+.ofers-category span{
+    background-color: rgba(30, 41, 59, 0.15);
+    color: rgba(66, 66, 66, 0.426);
+    font-weight: 500 !important;
+    font-size: 18px;
+    font-style: normal;
 }
 
 @media (width < 800px) {
