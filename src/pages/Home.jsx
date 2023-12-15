@@ -10,30 +10,34 @@ function Home() {
     const responsive = useWindowSize("max",800);
     const navigate = useNavigate();
     return ( 
-        <div className="homeConteiner">
+        <section className="homeConteiner">
             <NavBar/>
-            <div className="mainSeccion-cointer">
-            <div className="backgroundImage">
-                <h1>!Bienvenido a nuestra tienda en línea!</h1>
-                Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
-                y promociones y no dudes en ponerte en<br/>
-            contacto con nososotros si necesitas ayuda para encontar lo q buscas,<br/>
-            !Gracias por visitarnos!<br/>
-                
-            </div>
-              
-             <div className={responsive?"homeDescription-conteiner":"homeDescription-conteiner homeDescription-conteinerResponsive"}>
-               Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
-                    y promociones y no dudes en ponerte en<br/>
-                contacto con nososotros si necesitas ayuda para encontar lo q buscas,<br/>
-                !Gracias por visitarnos!<br/>
-                <button className="homeDescription-button" onClick={()=>navigate("/products")}>Ver productos</button>
-             </div>       
+            <section className="heroSection">
+                <article className={responsive?"backgroundImage":"backgroundImage responsive-font-14px"}>
+                    <summary>
+                        <h1>!Bienvenido a nuestra tienda en línea!</h1>
+                        Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
+                        y promociones y no dudes en ponerte en<br/>
+                        contacto con nososotros si necesitas ayuda para encontar lo q buscas,<br/>
+                        !Gracias por visitarnos!<br/> 
+                    </summary>
+                </article>        
+                <article className={responsive?"homeDescription-conteiner":"homeDescription-conteiner responsive-font-11px"}>
+                        <summary className="homeDescriptions-Conteiner">
+                            Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
+                            y promociones y no dudes en ponerte en<br/>
+                            contacto con nososotros si necesitas ayuda para encontar lo q buscas,<br/>
+                            !Gracias por visitarnos!<br/>
+                        </summary>
+                        <button className="homeDescription-button" onClick={()=>navigate("/products")}>Ver productos</button>
+                </article>       
            
-            </div>
-            <Oferts/>
+            </section>
+            <section className="mainContent">
+                 <Oferts/>
+            </section>
             <Footer/>
-        </div>
+        </section>
      );
 }
 

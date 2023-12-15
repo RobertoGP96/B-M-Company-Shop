@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { Sidebar } from 'primereact/sidebar';
 import { useState } from 'react';
 import { Menu } from 'primereact/menu';
+import { useRef } from 'react';
 import 'primeicons/primeicons.css';
+import { useLocation } from 'react-router-dom';
+
 
 
 const items = [
@@ -33,7 +36,16 @@ function NavBar() {
     const navigate = useNavigate()
     const responsive = useWindowSize("min",800)
     const [visible, setVisible] = useState(false);
-  
+    const refActive = useRef(null); 
+    const { pathname } = useLocation();
+    console.log(pathname)
+
+    const handleOnActive = () => {
+       if (refActive.current){
+        refActive.current.classList.toggle('navBar-itemConteiner active');
+       }
+    }
+    
     return ( 
         <nav title='primaryNavigation' className = "navbar">
              { responsive? 
@@ -41,31 +53,32 @@ function NavBar() {
                 <ul className="nav-BarConteiner">
                     <li className="navBar-itemConteiner-companyName" >
                     <div className="companyName-conteiner">
-                            <a className="companyName"href="/"><span >B & M Company</span></a>
-                        </div>
+                            <figure  ><img src='./src/assets/B & M image.png' width={127} height={45}  ></img></figure>
+                            <figure><img src='./src/assets/company image.png' width={91} height={41}  ></img></figure>
+                    </div>
                     </li>
-                    <li> 
-                        <div className="navBar-itemConteiner">
-                            <a className="navBar-item" href="/"><span className="icon"><i className="pi pi-home"></i></span><span className="title">Inicio</span>
+                    <li > 
+                        <div ref={refActive} onClick={()=>handleOnActive} className={pathname=="/"?"navBar-itemConteiner active":"navBar-itemConteiner"}>
+                            <a className="navBar-item"   href="/"><span className="icon"><img src='src\assets\home.svg' ></img></span><span className="title">Inicio</span>
                             </a>
                         </div>
                         
                     </li>
                     <li>
-                        <div className="navBar-itemConteiner">
-                                <a className="navBar-item" href="/store"><span className="icon"><i className="pi pi-shopping-bag"></i></span> <span
+                        <div ref={refActive}  className={pathname=="/store"?"navBar-itemConteiner active":"navBar-itemConteiner"} >
+                            <a className="navBar-item" href="/store"><span className="icon"><img src='src\assets\tiendaIcon.svg' ></img></span> <span
                                 className="title">Tienda</span></a>
                         </div>
                     </li>
                     <li>
-                        <div className="navBar-itemConteiner">
-                            <a className="navBar-item" href="/products"><span className="icon"><i className="pi pi-shopping-cart"></i></span> <span
+                        <div className={pathname=="/products"?"navBar-itemConteiner active":"navBar-itemConteiner"}>
+                            <a className="navBar-item" href="/products"><span className="icon"><img src='src\assets\productsIcon.svg' ></img></span> <span
                                 className="title">Productos</span></a>
                         </div>        
                     </li>
                     <li>
-                        <div className="navBar-itemConteiner">
-                            <a className="navBar-item" href="/contactus"><span className="icon"><i className="pi pi-user"></i></span> <span
+                        <div className={pathname=="/contactus"?"navBar-itemConteiner active":"navBar-itemConteiner"}>
+                            <a className="navBar-item" href="/contactus"><span className="icon"><img src='src\assets\contactusIcon.svg' ></img></span> <span
                                 className="title">Contacto</span></a>
                         </div>        
                     </li>
@@ -79,7 +92,8 @@ function NavBar() {
                     </li>
                         <li className="navBar-itemConteiner-companyName" >
                         <div className="companyName-conteiner">
-                                <a className="companyName"href="/home"><span >B & M Company</span></a>
+                        <figure><img src='./src/assets/B & M image.png' width={127} height={45}  ></img></figure>
+                            <figure><img src='./src/assets/company image.png' width={91} height={41}  ></img></figure>
                             </div>
                         </li>
                     </ul>
