@@ -54,7 +54,6 @@
     .categories-side-bar ul{
         overflow-x: auto;
         white-space: nowrap;
-        height:50px;
         padding: 10px;
     }
     .categories-side-bar ul::-webkit-scrollbar{
