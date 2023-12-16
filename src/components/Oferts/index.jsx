@@ -33,7 +33,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                             product_img1={products.product_img1}
                         />
                     ))   
-                    : <Loader/>
+                    : <div className = "loader-container"><Loader/></div>
                 }
                 <button 
 
@@ -58,7 +58,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                             key={index}
                         />
                     ))
-                    : <Loader/>   
+                    : <div className = "loader-container"><Loader/></div>   
                 }   
                 <button 
                     title={showAll2?"Ver menos":"Ver mas"}

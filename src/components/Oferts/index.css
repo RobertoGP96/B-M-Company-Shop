@@ -14,6 +14,7 @@
     flex-direction:column;
     gap: 50px;
     padding: 20px;
+    padding-top: 2.5rem;
     position: relative;
 }
 
@@ -38,7 +39,7 @@
     max-width: 1200px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     font-family:  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     gap: 50px; 
@@ -56,6 +57,9 @@
     align-items: center;
     font-family: NotoSans;
     
+}
+.dividerConteiner h3{
+    font-size: 0.98rem;
 }
 .divider{
     display: flex;
@@ -93,4 +97,15 @@
 
 .showAll-button:hover{
    color:rgb(2, 2, 2);
+}
+
+.loader-container{
+    width:30px;
+    height: 30px;
+}
+
+@media (width < 500px) {
+    .allOferts{
+        justify-content: center;
+    }
 }

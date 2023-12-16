@@ -9,7 +9,7 @@ function ProductCard({id, product_name, precio, product_img1}){
         </div>
         <div className = "name-and-price-container">
           <p className="product-card-name">{validateProductNameLength(product_name)}</p>
-          <p className="card-text price">${precio}</p>
+          <p className="card-text price">${precio.toFixed(2)}</p>
         </div>
        </div>
 
