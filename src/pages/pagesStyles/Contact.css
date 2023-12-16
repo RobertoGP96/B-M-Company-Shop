@@ -1,0 +1,34 @@
+@font-face {
+    font-family: "Noto Sans";
+    src: url("../../fonts/NotoSans.ttf") format("truetype");
+}
+
+.contact-container {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 60px;
+    font-family: Noto Sans;
+}
+
+.contact-section {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(79, 74, 74);
+}
+
+
+.contact-section i {
+    font-size: 2rem;
+    margin: 0.5rem;
+}
+
+.contact-section p {
+    font-size: 2rem;
+    margin: 0.5rem;
+}
