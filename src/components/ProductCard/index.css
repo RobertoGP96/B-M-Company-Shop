@@ -47,6 +47,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 5px;
+    gap:10px;
 }
 
 .product-card-name{
@@ -55,7 +56,10 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
-    line-height: 21.245px; /* 151.75% */
+    line-height: 21.245px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
 }
 
 .price{

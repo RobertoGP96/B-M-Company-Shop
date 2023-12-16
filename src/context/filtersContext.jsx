@@ -1,13 +1,15 @@
 import React, {useState} from 'react'
+import { useSearchParams } from 'react-router-dom';
+
 
 const QueryFiltersContext = React.createContext("")
 
 export function QueryFiltersContextProvider({children}){
-    const [queryFilters, setQueryFilters] = useState(new URLSearchParams(document.location.search).toString())
+    const [searchParams, setSearchParams] = useSearchParams();
 
     function setFilter({name, value}){
         /*Recive a filter name and its value, and includes it in the query params of the url*/
-        let params = new URLSearchParams(document.location.search)
+        let params = new URLSearchParams(searchParams)
         //if the given filter don't exist, it's added
         if(params.get(name) === null){
             params.append(name, value)
@@ -20,17 +22,25 @@ export function QueryFiltersContextProvider({children}){
         if(name !== "page" && params.get("page") !== null){
             params.set("page", 1)
         }
-        history.pushState(null, "", `?${params.toString()}`)
-        setQueryFilters(params.toString())
+        setSearchParams(params)
     }
 
     function removeAllFilters(){
         /*Remove all query params from the url*/
-        history.pushState(null, "", `?`)
-        setQueryFilters("")
+        setSearchParams({})
     }
 
-    return (<QueryFiltersContext.Provider value = {{queryFilters, setQueryFilters, setFilter, removeAllFilters}}>
+    function getActiveFilter(name){
+        /*get the active value in the url query params of the filter given*/
+        let params = new URLSearchParams(searchParams)
+        let filterValue = params.get(name)
+        if(filterValue === null){
+            return ""
+        }
+        return filterValue
+    }
+
+    return (<QueryFiltersContext.Provider value = {{searchParams, setSearchParams, setFilter, removeAllFilters, getActiveFilter}}>
         {children}
         </QueryFiltersContext.Provider>)
 }

@@ -5,7 +5,6 @@ import {getProducts} from '../../services/getProducts'
 import "./index.css";
 import QueryFiltersContext from "../../context/filtersContext";
 import ReactPaginate from 'react-paginate';
-import {getActiveFilter} from '../../utils/getActiveFilter'
 import RightArrow from '../../assets/chevron-right-24.svg'
 import LeftArrow from '../../assets/chevron-left-24.svg'
 
@@ -14,12 +13,12 @@ export default function ProductsGrid() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0)
-  const {queryFilters, setFilter} = useContext(QueryFiltersContext)
+  const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
 
   //get products of store
   useEffect(() => {
     setLoading(true);
-    getProducts(queryFilters)
+    getProducts(searchParams)
       .then((data) => {
         setProducts(data.results);
         setNumOfProducts(data.count)
@@ -29,7 +28,7 @@ export default function ProductsGrid() {
         setLoading(false);
         setNumOfProducts(0)
       });
-  }, [queryFilters]);
+  }, [searchParams]);
 
   return (
     <>
@@ -40,7 +39,7 @@ export default function ProductsGrid() {
             </div>
         </section>
       ) : 
-      <section>
+      <section className = "products-grid-and-paginator-container">
         <div className="products-grid">
           {products !== null && products !== undefined ? (
             <>
