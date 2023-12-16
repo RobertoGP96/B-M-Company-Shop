@@ -20,24 +20,30 @@
 .oferts{    
     width: 100%;
     max-width: 1200px;
+    max-height: 222px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     font-family:  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.cardOferts-Conteiner{
-    width: 100%;
-    display: flex;
     gap: 50px; 
     flex-flow: wrap-reverse;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    
+    overflow: hidden;
 }
 
+.allOferts{
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family:  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    gap: 50px; 
+    flex-flow: wrap-reverse;
+    flex-wrap: wrap;
+}
 
 .dividerConteiner{
     width: 100%;
@@ -55,7 +61,28 @@
     width: 100%;
     max-width: 900px;
     border-image: linear-gradient(to right,transparent, #000 , transparent ) 1 0.1;
-    border-top: 1px solid black;
-   
-   
+    border-top: 1px solid black; 
+}
+
+.showAll-button{
+    position:absolute;
+    right:20px;
+    top:198px;
+    color:rgb(32, 35, 223);
+    background-color: transparent;
+    border: none !important;
+    font-family:NotoSans;
+    font-size: small;
+    outline: none !important;
+    text-decoration: underline;
+}
+.button-active{
+    top:100%;
+}
+.button-active2{
+    top:99%;
+}
+
+.showAll-button:hover{
+    color: #a4ad79;
 }
