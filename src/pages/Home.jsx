@@ -48,7 +48,7 @@ function Home() {
                 style={{
                   margin: "0px",
                   paddingBottom: "20px",
-                  fontSize: "1.5rem",
+                  fontSize: "2rem",
                 }}
               >
                 ! Bienvenido a nuestra tienda en línea !
@@ -63,11 +63,14 @@ function Home() {
             }
           >
             <summary className="homeDescriptions-Conteiner">
-              Explora nuestro sitio web para descubrir nuestras ultimas ofertas
-              y promociones y no dudes en ponerte en
+              Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
               <br />
-              contacto con nososotros si necesitas ayuda para encontar lo q
-              buscas,
+              y promociones y no dudes en ponerte en
+              contacto con nososotros si 
+              <br />
+              necesitas ayuda 
+              para encontar lo q
+              buscas.
               <br />
               !Gracias por visitarnos!
               <br />
