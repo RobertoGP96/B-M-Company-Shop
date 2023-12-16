@@ -92,3 +92,9 @@
     width:30px;
     height: 30px;
 }
+
+@media (width < 500px) {
+    .allOferts{
+        justify-content: center;
+    }
+}
