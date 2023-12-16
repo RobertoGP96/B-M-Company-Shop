@@ -52,7 +52,7 @@ figure{
     align-items: center;
     justify-content: center;
     border:none;
-    background-color: transparent;
+    background-color: white;
 }
 
 .navBar-MenuButton:hover{
@@ -132,3 +132,4 @@ li  {
   .sideBar button:hover{
       background-color: rgb(172, 172, 172,0.2);   
   }
+
