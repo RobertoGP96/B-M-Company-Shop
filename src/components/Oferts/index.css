@@ -20,7 +20,7 @@
 .oferts{    
     width: 100%;
     max-width: 1200px;
-    max-height: 222px;
+    max-height: 245px;
     min-height: 222px;
     display: flex;
     align-items: center;
@@ -66,24 +66,31 @@
 }
 
 .showAll-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position:absolute;
     right:20px;
-    top:198px;
-    color:rgb(32, 35, 223);
+    border-radius: 50%;
+    width: 30px;
+    top:210px;
+    color: #9c9c9c;
+    
     background-color: transparent;
+    height: 30px;
     border: none !important;
     font-family:NotoSans;
     font-size: small;
+    text-align: start;
     outline: none !important;
-    text-decoration: underline;
 }
 .button-active{
-    top:100%;
+    top:101%;
 }
 .button-active2{
-    top:99%;
+    top:100%;
 }
 
 .showAll-button:hover{
-    color: #a4ad79;
+   color:rgb(2, 2, 2);
 }

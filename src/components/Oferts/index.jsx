@@ -3,6 +3,7 @@ import "./index.css"
 import ProductCard from "../ProductCard";
 import { useState } from "react";
 import Loader from "../Loader"
+import 'primeicons/primeicons.css';
 
 function Oferts({lastAded, recomendedProducts,load1,load2}){    
     const [showAll1,setShowAll1] = useState(false)
@@ -35,19 +36,19 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                     : <Loader/>
                 }
                 <button 
+
+                    title={showAll1?"Ver menos":"Ver mas"}
                     onClick = {handdleOnClickButton1} 
                     className={showAll1?"showAll-button button-active":"showAll-button"} 
                 >
-                    {
-                       showAll1?" Ver menos...":"Ver mas..."
-                    }
+                    <span><i className={showAll1?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.1rem' }}></i></span>
                 </button>                
             </article>
             <div className="dividerConteiner">
                 <h3 style={{display:"inline"}}>Últimos Añadidos</h3>
                 <hr className="divider"/>
             </div>
-            <article title="Últimos Añadidos" style={{paddingBottom:"10px"}} className={showAll2?"allOferts":"oferts"}>          
+            <article title="Últimos Añadidos" style={{marginBottom:"20px"}} className={showAll2?"allOferts":"oferts"}>          
                 { !load2?
                     lastAded.map((products,index)=>(
                         <ProductCard id={products.id} 
@@ -60,12 +61,11 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                     : <Loader/>   
                 }   
                 <button 
+                    title={showAll2?"Ver menos":"Ver mas"}
                     onClick = {handdleOnClickButton2} 
                     className={showAll2?"showAll-button button-active2":"showAll-button"}
                 >   
-                    {
-                       showAll2?" Ver menos...":"Ver mas..."
-                    }
+                   <span><i className={showAll2?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.1rem' }}></i></span>
                 </button>             
             </article>
         </section>
