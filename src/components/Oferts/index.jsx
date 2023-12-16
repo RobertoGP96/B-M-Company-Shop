@@ -32,7 +32,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                             product_img1={products.product_img1}
                         />
                     ))   
-                    : <Loader/>
+                    : <div className = "loader-container"><Loader/></div>
                 }
                 <button 
                     onClick = {handdleOnClickButton1} 
@@ -57,7 +57,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                             key={index}
                         />
                     ))
-                    : <Loader/>   
+                    : <div className = "loader-container"><Loader/></div>   
                 }   
                 <button 
                     onClick = {handdleOnClickButton2} 

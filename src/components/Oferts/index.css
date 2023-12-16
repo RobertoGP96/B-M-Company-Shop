@@ -38,7 +38,7 @@
     max-width: 1200px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     font-family:  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     gap: 50px; 
@@ -86,4 +86,15 @@
 
 .showAll-button:hover{
     color: #a4ad79;
+}
+
+.loader-container{
+    width:30px;
+    height: 30px;
+}
+
+@media (width < 500px) {
+    .allOferts{
+        justify-content: center;
+    }
 }
