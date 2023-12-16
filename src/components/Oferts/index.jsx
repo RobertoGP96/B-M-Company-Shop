@@ -41,7 +41,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                     onClick = {handdleOnClickButton1} 
                     className={showAll1?"showAll-button button-active":"showAll-button"} 
                 >
-                    <span><i className={showAll1?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.1rem' }}></i></span>
+                    <span><i className={showAll1?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.3rem' }}></i></span>
                 </button>                
             </article>
             <div className="dividerConteiner">
@@ -65,7 +65,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                     onClick = {handdleOnClickButton2} 
                     className={showAll2?"showAll-button button-active2":"showAll-button"}
                 >   
-                   <span><i className={showAll2?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.1rem' }}></i></span>
+                   <span><i className={showAll2?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.3rem' }}></i></span>
                 </button>             
             </article>
         </section>

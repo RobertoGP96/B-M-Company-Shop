@@ -74,17 +74,15 @@
     align-items: center;
     justify-content: center;
     position:absolute;
-    right:20px;
+    right:50%;
     border-radius: 50%;
     width: 30px;
-    top:210px;
-    color: #9c9c9c;
-    
+    top:220px;
+    color: #000000;
     background-color: transparent;
     height: 30px;
     border: none !important;
     font-family:NotoSans;
-    font-size: small;
     text-align: start;
     outline: none !important;
 }
@@ -96,7 +94,7 @@
 }
 
 .showAll-button:hover{
-   color:rgb(2, 2, 2);
+   color:rgb(111, 160, 216);
 }
 
 .loader-container{
