@@ -4,7 +4,6 @@ import { Dropdown } from 'primereact/dropdown';
 import {useContext, useEffect, useState} from 'react'
 import QueryFiltersContext from '../../context/filtersContext';
 import { getActiveFilter } from '../../utils/getActiveFilter';
-import {debounce} from "../../utils/debounce"
 
 const orderingValues = [
     {code: "", name : "Ordenar"},
@@ -18,6 +17,7 @@ const orderingValues = [
 
 function SearchProduct() {
     const [ordering, setOrdering] = useState(orderingValues.find(value => value.code === getActiveFilter("ordering")))
+    const [mounted, setMounted] = useState(false)
     const [searchingValue, setSearchingValue] = useState(getActiveFilter("search"))
     const {setFilter} = useContext(QueryFiltersContext)
 
@@ -28,8 +28,13 @@ function SearchProduct() {
 
     //search the product when the user ends writting on the search form
     useEffect(() => {
-        let timeOut = setTimeout(() => setFilter({name: "search", value:searchingValue}), 500)
-        return () => clearTimeout(timeOut)
+        if(mounted){
+            let timeOut = setTimeout(() => setFilter({name: "search", value:searchingValue}), 500)
+            return () => clearTimeout(timeOut)
+        }
+        else{
+            setMounted(true)
+        }
     },[searchingValue])
 
     return ( 

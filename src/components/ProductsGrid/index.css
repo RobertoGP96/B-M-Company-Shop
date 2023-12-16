@@ -114,7 +114,11 @@
         margin:0
     }
     .products-loader-container{
-        top: 75%;
+        top: 78%;
         left: 50%;
+    }
+    .not-found-message{
+        top:75%;
+        left: 30%;
     }
 }
