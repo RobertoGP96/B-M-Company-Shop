@@ -14,32 +14,31 @@ import StoreIcon from "../../assets/tiendaIcon.svg"
 import ProductsIcon from "../../assets/productsIcon.svg"
 import ContactIcon from "../../assets/contactusIcon.svg"
 
-const items = [
-  {
-    label: "Inicio",
-    url: "/",
-  },
-  {
-    label: "Tienda",
-    url: "/tienda",
-  },
-  {
-    label: "Productos",
-    url: "/products",
-  },
-  {
-    label: "Contacto",
-    url: "/contact-us",
-  },
-];
-
 function NavBar() {
   const navigate = useNavigate();
   const responsive = useWindowSize("min", 800);
   const [visible, setVisible] = useState(false);
   const refActive = useRef(null);
   const { pathname } = useLocation();
-  console.log(pathname);
+
+  const items = [
+    {
+      label: "Inicio",
+      command: () => navigate("/")
+    },
+    {
+      label: "Tienda",
+      command: () => navigate("/store")
+    },
+    {
+      label: "Productos",
+      command: () => navigate("/products")
+    },
+    {
+      label: "Contacto",
+      command: () => navigate("/contactus")
+    },
+  ];
 
   const handleOnActive = () => {
     if (refActive.current) {
