@@ -14,6 +14,7 @@
     flex-direction:column;
     gap: 50px;
     padding: 20px;
+    padding-top: 2.5rem;
     position: relative;
 }
 
@@ -56,6 +57,9 @@
     align-items: center;
     font-family: NotoSans;
     
+}
+.dividerConteiner h3{
+    font-size: 0.98rem;
 }
 .divider{
     display: flex;
