@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import ProductsGrid from "../components/ProductsGrid";
 import SearchProduct from "../components/SearchProduct";
 import Footer from "../components/Footer";
-import "./pagesStyles/store.css";
+import './pagesStyles/Store.css'
 
 function Store() {  
     return ( 
