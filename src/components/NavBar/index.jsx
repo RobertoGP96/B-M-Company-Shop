@@ -167,14 +167,14 @@ function NavBar() {
               <div className="companyName-conteiner">
                 <figure>
                   <img
-                    src="./src/assets/B & M image.png"
+                    src={LogoImage}
                     width={127}
                     height={45}
                   ></img>
                 </figure>
                 <figure>
                   <img
-                    src="./src/assets/company image.png"
+                    src={CompanyImage}
                     width={91}
                     height={41}
                   ></img>

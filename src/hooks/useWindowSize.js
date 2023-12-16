@@ -1,30 +1,29 @@
 
-import React from "react";
+import { useEffect, useState } from "react";
 
 
 export default function useWindowSize(minOrMax,value) {
   const isSSR = typeof window !== "undefined";
-  const [windowSize, setWindowSize] = React.useState({
-    width: isSSR ? 1200 : window.innerWidth,
-    height: isSSR ? 800 : window.innerHeight,
-  });
+  const [matches, setMatches] = useState(
+    isSSR ? false : window.matchMedia(`(${minOrMax}-width: ${value}px)`).matches
+  );
 
-  function changeWindowSize() {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  function handleMediaQueryChange(event) {
+    setMatches(event.matches);
   }
 
-  React.useEffect(() => {
-    window.addEventListener("resize", changeWindowSize);
-    window.addEventListener("load", changeWindowSize);
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(`(${minOrMax}-width: ${value}px)`);
+
+    handleMediaQueryChange(mediaQueryList);
+
+    const mediaQueryListener = (event) => handleMediaQueryChange(event);
+    mediaQueryList.addEventListener("change", mediaQueryListener);
 
     return () => {
-      window.removeEventListener("resize", changeWindowSize);
-      window.removeEventListener("load", changeWindowSize);
+      mediaQueryList.removeEventListener("change", mediaQueryListener);
     };
-  }, []);
+  }, [minOrMax, value]);
 
-   if (minOrMax="min")
-    return value < windowSize.width
-  else 
-    return value > windowSize.width
+  return matches;
 }

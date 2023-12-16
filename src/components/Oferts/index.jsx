@@ -18,15 +18,17 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
     }
 
     return(
-        <section title="Seccion de ofertas" className="ofertsConteiner">
-            <div className="dividerConteiner">
+        <section title="Seccion de ofertas" className="oferts-conteiner">
+            <div className="divider-conteiner">
                 <h3 style={{display:"inline"}}>Ofertas Recomendadas</h3>
                 <hr className="divider"/>
             </div>
-            <article title="Productos Recomendados" className={showAll1?"allOferts":"oferts"}>
+            <article title="Productos Recomendados" className={showAll1?"all-oferts":"oferts"}>
                 { !load1 ?
                     recomendedProducts.map((products,index)=>(
-                        <ProductCard id={products.id} 
+                        <ProductCard 
+                            className={"item"}
+                             id={products.id} 
                             precio={products.precio} 
                             product_name={products.product_name}
                             key={index}
@@ -44,11 +46,11 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                     <span><i className={showAll1?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.3rem' }}></i></span>
                 </button>                
             </article>
-            <div className="dividerConteiner">
+            <div className="divider-conteiner">
                 <h3 style={{display:"inline"}}>Últimos Añadidos</h3>
                 <hr className="divider"/>
             </div>
-            <article title="Últimos Añadidos" style={{marginBottom:"20px"}} className={showAll2?"allOferts":"oferts"}>          
+            <article title="Últimos Añadidos" style={{marginBottom:"20px"}} className={showAll2?"all-oferts":"oferts"}>          
                 { !load2?
                     lastAded.map((products,index)=>(
                         <ProductCard id={products.id} 
