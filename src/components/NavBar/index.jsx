@@ -7,6 +7,12 @@ import { Menu } from "primereact/menu";
 import { useRef } from "react";
 import "primeicons/primeicons.css";
 import { useLocation } from "react-router-dom";
+import LogoImage from "../../assets/B & M image.png"
+import CompanyImage from "../../assets/company image.png"
+import HomeIcon from "../../assets/home.svg"
+import StoreIcon from "../../assets/tiendaIcon.svg"
+import ProductsIcon from "../../assets/productsIcon.svg"
+import ContactIcon from "../../assets/contactusIcon.svg"
 
 const items = [
   {
@@ -47,20 +53,24 @@ function NavBar() {
         <ul className="nav-BarConteiner">
           <li className="navBar-itemConteiner-companyName">
             <div className="companyName-conteiner">
-              <figure>
-                <img
-                  src="./src/assets/B & M image.png"
-                  width={127}
-                  height={45}
-                ></img>
-              </figure>
-              <figure>
-                <img
-                  src="./src/assets/company image.png"
-                  width={91}
-                  height={41}
-                ></img>
-              </figure>
+              <Link to = "/">
+                <figure>
+                  <img
+                    src={LogoImage}
+                    width={127}
+                    height={45}
+                  ></img>
+                </figure>
+              </Link>
+              <Link to = "/">
+                <figure>
+                  <img
+                    src={CompanyImage}
+                    width={91}
+                    height={41}
+                  ></img>
+                </figure>
+              </Link>
             </div>
           </li>
           <li>
@@ -76,7 +86,7 @@ function NavBar() {
               <Link to = "/">
                 <a className="navBar-item">
                   <span className="icon">
-                    <img src="src\assets\home.svg"></img>
+                    <img src={HomeIcon}></img>
                   </span>
                   <span className="title">Inicio</span>
                 </a>
@@ -95,7 +105,7 @@ function NavBar() {
                 <Link to = "/store">
                     <a className="navBar-item">
                         <span className="icon">
-                        <img src="src\assets\tiendaIcon.svg"></img>
+                        <img src={StoreIcon}></img>
                         </span>{" "}
                         <span className="title">Tienda</span>
                     </a>
@@ -113,7 +123,7 @@ function NavBar() {
                 <Link to = "/products">
                     <a className="navBar-item">
                         <span className="icon">
-                        <img src="src\assets\productsIcon.svg"></img>
+                        <img src={ProductsIcon}></img>
                         </span>{" "}
                         <span className="title">Productos</span>
                     </a>
@@ -131,7 +141,7 @@ function NavBar() {
                 <Link to = "/contactus">
                     <a className="navBar-item">
                         <span className="icon">
-                        <img src="src\assets\contactusIcon.svg"></img>
+                        <img src={ContactIcon}></img>
                         </span>{" "}
                         <span className="title">Contacto</span>
                     </a>
