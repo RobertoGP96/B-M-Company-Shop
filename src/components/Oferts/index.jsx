@@ -2,8 +2,9 @@ import React from "react";
 import "./index.css"
 import ProductCard from "../ProductCard";
 import { useState } from "react";
+import Loader from "../Loader"
 
-function Oferts({lastAded, recomendedProducts}){    
+function Oferts({lastAded, recomendedProducts,load1,load2}){    
     const [showAll1,setShowAll1] = useState(false)
     const [showAll2,setShowAll2] = useState(false)
 
@@ -22,7 +23,7 @@ function Oferts({lastAded, recomendedProducts}){
                 <hr className="divider"/>
             </div>
             <article title="Productos Recomendados" className={showAll1?"allOferts":"oferts"}>
-                {
+                { !load1 ?
                     recomendedProducts.map((products,index)=>(
                         <ProductCard id={products.id} 
                             precio={products.precio} 
@@ -31,6 +32,7 @@ function Oferts({lastAded, recomendedProducts}){
                             product_img1={products.product_img1}
                         />
                     ))   
+                    : <Loader/>
                 }
                 <button 
                     onClick = {handdleOnClickButton1} 
@@ -46,7 +48,7 @@ function Oferts({lastAded, recomendedProducts}){
                 <hr className="divider"/>
             </div>
             <article title="Últimos Añadidos" style={{paddingBottom:"10px"}} className={showAll2?"allOferts":"oferts"}>          
-                {
+                { !load2?
                     lastAded.map((products,index)=>(
                         <ProductCard id={products.id} 
                             precio={products.precio} 
@@ -54,7 +56,8 @@ function Oferts({lastAded, recomendedProducts}){
                             product_img1={products.product_img1}
                             key={index}
                         />
-                    ))   
+                    ))
+                    : <Loader/>   
                 }   
                 <button 
                     onClick = {handdleOnClickButton2} 
