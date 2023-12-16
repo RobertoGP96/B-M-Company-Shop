@@ -87,12 +87,20 @@ li  {
     position:relative ;
     text-decoration: none;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     border-radius: 3px;  
     padding: 4px;
     max-height: 35.5px;
   }
- 
+  .navBar-itemConteiner span{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .navBar-itemConteiner:hover{
     background-color: rgb(31, 31, 31);
     
@@ -113,9 +121,6 @@ li  {
      flex-direction: row;
      gap:10px;
      font-size: 15px; 
-  }
-  .icon{
-    padding-top: 5px;
   }
 
 
