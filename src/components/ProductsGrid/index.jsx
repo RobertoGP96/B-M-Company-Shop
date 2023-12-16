@@ -40,7 +40,7 @@ export default function ProductsGrid() {
             </div>
         </section>
       ) : 
-      <section>
+      <section className = "products-grid-and-paginator-container">
         <div className="products-grid">
           {products !== null && products !== undefined ? (
             <>
