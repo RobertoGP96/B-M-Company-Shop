@@ -37,8 +37,8 @@ function Home() {
           <article
             className={
               responsive
-                ? "backgroundImage"
-                : "backgroundImage responsive-font-14px"
+                ? "backgroundImage responsive-font-14px"
+                : "backgroundImage "
             }
           >
             <summary>
@@ -62,8 +62,8 @@ function Home() {
           <article
             className={
               responsive
-                ? "homeDescription-conteiner"
-                : "homeDescription-conteiner responsive-font-11px"
+                ? "homeDescription-conteiner responsive-font-11px"
+                : "homeDescription-conteiner "
             }
           >
             <summary className="homeDescriptions-Conteiner">
@@ -75,7 +75,7 @@ function Home() {
               necesitas ayuda 
               para encontar lo q
               buscas.
-              <br />
+           
               !Gracias por visitarnos!
               <br />
               <button

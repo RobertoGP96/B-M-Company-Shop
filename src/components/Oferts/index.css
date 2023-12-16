@@ -3,7 +3,7 @@
     src: url("../../fonts/NotoSans.ttf") format("truetype");
   }
 
-.ofertsConteiner{
+.oferts-conteiner{
     height: auto;
     margin-top: 0px;
     background-color: rgb(252, 251, 251);
@@ -34,12 +34,12 @@
     overflow: hidden;
 }
 
-.allOferts{
+.all-oferts{
     width: 100%;
     max-width: 1200px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     position: relative;
     font-family:  'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     gap: 50px; 
@@ -47,7 +47,7 @@
     flex-wrap: wrap;
 }
 
-.dividerConteiner{
+.divider-conteiner{
     width: 100%;
     max-width: 1200px;
     height: 20px;
@@ -58,9 +58,11 @@
     font-family: NotoSans;
     
 }
-.dividerConteiner h3{
+
+.divider-conteiner h3{
     font-size: 0.98rem;
 }
+
 .divider{
     display: flex;
     width: 100%;
@@ -103,7 +105,7 @@
 }
 
 @media (width < 590px) {
-    .allOferts{
+    .all-oferts{
         justify-content: center;
     }
 }
