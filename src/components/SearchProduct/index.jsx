@@ -3,7 +3,6 @@ import SearchIcon from '../../assets/search-icon.svg'
 import { Dropdown } from 'primereact/dropdown';
 import {useContext, useEffect, useState} from 'react'
 import QueryFiltersContext from '../../context/filtersContext';
-import { getActiveFilter } from '../../utils/getActiveFilter';
 
 const orderingValues = [
     {code: "", name : "Ordenar"},
@@ -16,10 +15,10 @@ const orderingValues = [
 ]
 
 function SearchProduct() {
+    const {setFilter, getActiveFilter} = useContext(QueryFiltersContext)
     const [ordering, setOrdering] = useState(orderingValues.find(value => value.code === getActiveFilter("ordering")))
     const [mounted, setMounted] = useState(false)
     const [searchingValue, setSearchingValue] = useState(getActiveFilter("search"))
-    const {setFilter} = useContext(QueryFiltersContext)
 
     function handleSetOrdering(value){
         setFilter({name: "ordering", value:value.code})

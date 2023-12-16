@@ -20,12 +20,10 @@ function Home() {
     setLoading1(true);
     setLoading2(true);
     getLastProducts().then((products) => {
-      console.log(products.results);
       setLastAded(products.results);
       setLoading1(false);
     });
     getRecommendedProducts().then((products) => {
-      console.log(products.results);
       setRecomendedProducts(products.results);
       setLoading2(false);
     });

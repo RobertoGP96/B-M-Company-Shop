@@ -3,13 +3,12 @@ import { getCategories } from "../../services/getCategories";
 import Loader from "../Loader";
 import "./index.css";
 import QueryFilterContext from "../../context/filtersContext";
-import {getActiveFilter} from '../../utils/getActiveFilter'
 
 function CategorieSideBar(){
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { setFilter } = useContext(QueryFilterContext);
+  const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
 
   useEffect(() => {
     setLoading(true);
