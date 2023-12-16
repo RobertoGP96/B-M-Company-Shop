@@ -82,7 +82,7 @@ function Home() {
               <br />
               <button
                 className="homeDescription-button"
-                onClick={() => navigate("/products")}
+                onClick={() => navigate("/store")}
               >
                 Ver productos
               </button>
