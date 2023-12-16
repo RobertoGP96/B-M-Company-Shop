@@ -8,20 +8,27 @@ import { useEffect,useState } from "react";
 import getLastProducts from "../services/getLastProducts";
 import getRecommendedProducts from "../services/getRecommendedProducts";
 
+
 function Home() {
     const responsive = useWindowSize("max",800);
     const navigate = useNavigate();
     const [lastAded,setLastAded] = useState([])
     const [recomendedProducts,setRecomendedProducts] = useState([])
+    const  [loading1,setLoading1] = useState(false);
+    const  [loading2,setLoading2] = useState(false);
 
     useEffect(() => {
+        setLoading1(true);
+        setLoading2(true);
         getLastProducts().then((products) =>{
             console.log(products.results);
-            setLastAded(products.results)
+            setLastAded(products.results);
+            setLoading1(false);
         })
         getRecommendedProducts().then((products) =>{
             console.log(products.results);
             setRecomendedProducts(products.results)
+            setLoading2(false);
         })
 
     },[])
@@ -51,7 +58,12 @@ function Home() {
            
             </section>
             <section className="mainContent">
-                 <Oferts recomendedProducts={recomendedProducts} lastAded={lastAded}/>
+                <Oferts 
+                    load1 = {loading1} 
+                    load2 = {loading2}
+                    recomendedProducts ={recomendedProducts} 
+                    lastAded = {lastAded}
+                />
             </section>
             <Footer/>
         </section>

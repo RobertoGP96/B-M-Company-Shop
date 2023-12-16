@@ -21,6 +21,7 @@
     width: 100%;
     max-width: 1200px;
     max-height: 222px;
+    min-height: 222px;
     display: flex;
     align-items: center;
     justify-content: center;
