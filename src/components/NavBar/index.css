@@ -90,8 +90,8 @@ li  {
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    border-radius: 3px;  
-    padding: 4px;
+    border-radius: 5px;  
+    padding: 4px 8px;
     max-height: 35.5px;
   }
   .navBar-itemConteiner span{
@@ -107,8 +107,7 @@ li  {
  }
 
 .active{
-    background-color: rgba(68, 67, 67, 0.808);
-    
+    background-color: rgb(31, 31, 31);
 }
  
   .navBar-item{
