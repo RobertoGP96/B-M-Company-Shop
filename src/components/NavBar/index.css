@@ -69,20 +69,6 @@ li  {
     
  }
  
-
- 
- .companyName{
-     text-decoration: none;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-     font-size: x-large;
-     color: aliceblue;
-     
- }
-
-.companyName:hover{
-    color: aliceblue;
-}
- 
   .navBar-itemConteiner {
     position:relative ;
     text-decoration: none;
@@ -99,10 +85,12 @@ li  {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
   }
 
+
   .navBar-itemConteiner:hover{
-    background-color: rgb(31, 31, 31);
+    background-color: rgb(70, 70, 70,0.5);
     
  }
 
