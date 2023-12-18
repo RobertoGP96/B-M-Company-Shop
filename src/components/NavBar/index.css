@@ -107,7 +107,7 @@ li  {
  }
 
 .active{
-    background-color: rgba(31, 31, 31, 0.723);
+    background-color: rgba(68, 67, 67, 0.808);
     
 }
  
@@ -121,7 +121,7 @@ li  {
      flex-direction: row;
      gap:10px;
      font-size: 15px; 
-     background-color: #000;
+     background-color: #00000000;
   }
 
 
