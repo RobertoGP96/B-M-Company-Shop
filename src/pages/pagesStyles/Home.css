@@ -9,7 +9,7 @@
 }
 .heroSection{
    width: 100%;
-   height: 50%;
+   height: 60%;
    
  }
 
@@ -18,7 +18,7 @@
    z-index: 0;
     background-color: rgb(12, 12, 12);
     width: 100%;
-    height:60%;
+    height:70%;
     display: flex;
     flex-direction: column;
     color: #FFFBFB;
@@ -54,7 +54,7 @@
  .homeDescription-conteiner{
    display: flex;
    flex-direction: column;
-   height: 40%;
+   height: 30%;
    background-color: rgb(5, 5, 5);
    text-align: center;
     align-items: center;
@@ -89,4 +89,7 @@
     color:white;
     margin-top: 0.5rem;
     background-color: black;
+ }
+ summary p {
+  text-wrap: balance;
  }

@@ -51,11 +51,12 @@ function Home() {
               >
                 ! Bienvenido a nuestra tienda en línea !
               </h1>
+              <p>
               En B&M company, nos enorgullece ofrecer una amplia selección de 
-              <br/>
               productos de alta calidad a precios asequibles. 
               <br/>
               Tenemos todo lo que necesitas para satisfacer tus necesidades.  
+              </p>
 
             </summary>
           </article>
