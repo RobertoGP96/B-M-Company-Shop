@@ -30,57 +30,49 @@ function Home() {
   }, []);
 
   return (
-    <section className="homeConteiner">
+    <section className="home-container">
       <NavBar />
       
-        <section className="heroSection">
+        <section className="hero-section">
           <article
             className={
               responsive
-                ? "backgroundImage responsive-font-14px"
-                : "backgroundImage "
+                ? "background-image responsive-font-14px"
+                : "background-image "
             }
           >
             <summary>
-              <h1
-                style={{
-                  margin: "0px",
-                  paddingBottom: "20px",
-                  fontSize: "2rem",
-                }}
-              >
+              <h1>
                 ! Bienvenido a nuestra tienda en línea !
               </h1>
               <p>
-              En B&M company, nos enorgullece ofrecer una amplia selección de 
-              productos de alta calidad a precios asequibles. 
-              <br/>
-              Tenemos todo lo que necesitas para satisfacer tus necesidades.  
+                En B&M company, nos enorgullece ofrecer una amplia selección de 
+                productos de alta calidad a precios asequibles. 
+                <br/>
+                Tenemos todo lo que necesitas para satisfacer tus necesidades.  
               </p>
-
             </summary>
           </article>
           <article
             className={
               responsive
-                ? "homeDescription-conteiner responsive-font-11px"
-                : "homeDescription-conteiner "
+                ? "home-description-container responsive-font-11px"
+                : "home-description-container"
             }
           >
-            <summary className="homeDescriptions-Conteiner">
-              Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
-              <br />
-              y promociones y no dudes en ponerte en
-              contacto con nososotros si 
-              <br />
-              necesitas ayuda 
-              para encontar lo q
-              buscas.
-           
-              !Gracias por visitarnos!
-              <br />
+            <summary className="home-descriptions-container">
+              <p>
+                Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
+                y promociones y no dudes en ponerte en
+                contacto con nososotros si 
+                <br />
+                necesitas ayuda 
+                para encontar lo q
+                buscas.
+                !Gracias por visitarnos!
+              </p>
               <button
-                className="homeDescription-button"
+                className="home-description-button"
                 onClick={() => navigate("/store")}
               >
                 Ver productos
@@ -88,7 +80,7 @@ function Home() {
             </summary>
           </article>
         </section>
-        <section className="mainContent">
+        <section className="main-content">
           <Oferts
             load1={loading1}
             load2={loading2}
