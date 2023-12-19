@@ -5,11 +5,11 @@
 
 .home-container{
    width: 100%;
-   height: 100vh;
 }
+
 .hero-section{
    width: 100%;
-   height: 60%;
+   height: 75vh;
    
  }
 
@@ -101,3 +101,11 @@
   padding-bottom:20px;
   font-size: 2rem
  }
+
+.main-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  
+}

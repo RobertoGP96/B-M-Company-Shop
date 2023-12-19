@@ -31,8 +31,6 @@ function Home() {
 
   return (
     <section className="home-container">
-      <NavBar />
-      
         <section className="hero-section">
           <article
             className={
@@ -88,8 +86,6 @@ function Home() {
             lastAded={lastAded}
           />
         </section>
-      
-      <Footer />
     </section>
   );
 }

@@ -8,11 +8,9 @@ import './pagesStyles/Store.css'
 function Store() {  
     return ( 
         <section className = "store-page">
-            <header><NavBar/></header>
             <aside><CategorieSideBar/></aside>
             <search><SearchProduct/></search>
             <main><ProductsGrid/></main>
-            <footer><Footer/></footer>
         </section>
      );
 }

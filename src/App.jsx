@@ -8,21 +8,30 @@ import Page404 from './pages/Page404'
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import {QueryFiltersContextProvider} from './context/filtersContext.jsx'
+import NavBar from './components/NavBar/index.jsx'
+import Footer  from './components/Footer/index.jsx'
 
 function App() {
   return (
     <Router>
-      <PrimeReactProvider>
-      <QueryFiltersContextProvider>
-        <Routes>
-          <Route path = "/store" element = {<Store/>}/>
-          <Route path = "/contactus" element = {<Contact/>}/>
-          <Route path = "/products" element = {<Products/>}/>
-          <Route path = "/" element = {<Home/>}/>
-          <Route path = "*" element = {<Page404/>}/>
-        </Routes>
-      </QueryFiltersContextProvider>
-      </PrimeReactProvider>
+      <section title='main-section'>
+        <header><NavBar /></header>
+        <section title='content'>
+          <PrimeReactProvider>
+            <QueryFiltersContextProvider>
+              <Routes>
+                <Route path = "/store" element = {<Store/>}/>
+                <Route path = "/contactus" element = {<Contact/>}/>
+                <Route path = "/products" element = {<Products/>}/>
+                <Route path = "/" element = {<Home/>}/>
+                <Route path = "*" element = {<Page404/>}/>
+              </Routes>
+            </QueryFiltersContextProvider>
+          </PrimeReactProvider>
+        </section>
+        <footer><Footer/></footer>
+      </section>
+ 
     </Router>
   )
 }

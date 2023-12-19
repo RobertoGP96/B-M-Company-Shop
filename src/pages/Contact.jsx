@@ -9,14 +9,10 @@ function Contact() {
 
   return (
     <section className="contact-container">
-      <NavBar />
-      
         <section className="contact-section">
-        <i className="pi pi-spin pi-cog"></i>
-        <p>Próximamente...</p>
+          <i className="pi pi-spin pi-cog"></i>
+          <p>Próximamente...</p>
         </section>
-      
-      <Footer />
     </section>
   );
 }

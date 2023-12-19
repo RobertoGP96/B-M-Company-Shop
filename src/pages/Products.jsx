@@ -9,15 +9,12 @@ function Products() {
 
   return (
     <section className="products-container">
-      <NavBar />
         <section className="products-section">
         <i className="pi pi-spin pi-cog"></i>
         <p>Próximamente...</p>
         </section>
-      
-      <Footer />
     </section>
-  );
+    );
 }
 
 export default Products;
