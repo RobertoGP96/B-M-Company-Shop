@@ -9,7 +9,7 @@ import RightArrow from '../../assets/chevron-right-24.svg'
 import LeftArrow from '../../assets/chevron-left-24.svg'
 
 
-export default function ProductsGrid() {
+export default function ProductsGrid({activateProductdetails}) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0)
@@ -20,6 +20,7 @@ export default function ProductsGrid() {
     setLoading(true);
     getProducts(searchParams)
       .then((data) => {
+        console.log(data);
         setProducts(data.results);
         setNumOfProducts(data.count)
         setLoading(false);
@@ -45,7 +46,7 @@ export default function ProductsGrid() {
             <>
               {products.length > 0 ? (
                 products.map((product) => (
-                  <ProductCard key={product.id} {...product} />
+                  <ProductCard key={product.id} {...product}   onClick = {()=>activateProductdetails(product)} />
                 ))
               ) : (
                 <div className="not-found-message">

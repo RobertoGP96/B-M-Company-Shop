@@ -46,6 +46,7 @@ function SearchProduct() {
                         placeholder='Buscar' 
                         onChange={(e) => setSearchingValue(e.target.value)} 
                         value = {searchingValue}
+                        style={{color:"black"}}
                         />
                 </form>
                 <Dropdown 

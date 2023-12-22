@@ -1,12 +1,10 @@
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
-
+import { useState } from "react";
 import "./pagesStyles/products.css";
 import 'primeicons/primeicons.css';
 
 
 function Products() {
-
+  
   return (
     <section className="products-container">
         <section className="products-section">

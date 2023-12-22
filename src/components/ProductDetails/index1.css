@@ -1,0 +1,138 @@
+
+
+
+
+.close-button{
+    width: 37px;
+    height: 45px;
+    border-radius: 6px 0px 0px 6px;
+    background: #2D2D2D;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pi-chevron-right{
+    font-size: x-large;
+   
+}
+
+.closed{
+    opacity: 0;
+}
+
+.open{
+    opacity: 1;
+}
+
+.sidebar-2 {
+    backdrop-filter: blur(1.5px) ; 
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    z-index: 1 !important; 
+    position: relative;
+    
+}
+
+.details-container{
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+}
+
+.pictures-details{
+    width: 250px;
+    height: 180px;
+    border: 1px solid rgba(0, 0, 0, 0.33);
+    background: rgba(235, 235, 235, 0.38);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pictures-details img{
+    width: 100%;
+    height: 100%;
+    transition: 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    background-blend-mode: multiply;
+}
+
+
+
+.price-oferts-container{
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: center;
+    align-items: center;
+ 
+}
+.price-oferts-container h2{
+    margin-left: 100px;
+}
+.oferts-status{
+    width: 100px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #282828;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.oferts-status p{
+    font-size: large;
+}
+
+.name-description-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.product-name{
+color: #313131;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+line-height: 137%; /* 43.84px */
+letter-spacing: -0.8px;
+}
+
+.description{
+    margin-block:0px;
+display: inline;
+color: #313131;
+font-family: Noto Sans;
+font-style: normal;
+font-weight: 600;
+line-height: 137%;
+letter-spacing: -0.8px;
+}
+
+.product-description{
+    color: #000;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 137%; /* 32.88px */
+    letter-spacing: -0.8px;
+}
+
+

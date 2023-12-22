@@ -4,10 +4,13 @@ import ProductCard from "../ProductCard";
 import { useState } from "react";
 import Loader from "../Loader"
 import 'primeicons/primeicons.css';
+import ProductDetails from "../ProductDetails";
 
-function Oferts({lastAded, recomendedProducts,load1,load2}){    
+function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails}){    
     const [showAll1,setShowAll1] = useState(false)
     const [showAll2,setShowAll2] = useState(false)
+ 
+   
 
     const handdleOnClickButton1 = ()=>{
         setShowAll1(!showAll1)
@@ -36,6 +39,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                                 product_name={products.product_name}
                                 key={index}
                                 product_img1={products.product_img1}
+                                onClick = {()=>activateProductdetails(products)}
                             />
                         ))   
                         
@@ -68,6 +72,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                                 product_name={products.product_name}
                                 product_img1={products.product_img1}
                                 key={index}
+                                onClick = {()=>activateProductdetails(products)}
                             />
                         ))
                         : <div className = "loader-container"><Loader/></div>   
@@ -85,6 +90,8 @@ function Oferts({lastAded, recomendedProducts,load1,load2}){
                 </div>  
            
             </article>
+
+
         </section>
     )
 

@@ -1,8 +1,6 @@
-import NavBar from "../components/NavBar";
 import "./pagesStyles/Home.css";
 import useWindowSize from "../hooks/useWindowSize";
 import Oferts from "../components/Oferts";
-import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import getLastProducts from "../services/getLastProducts";

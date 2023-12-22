@@ -12,6 +12,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.header {
+  z-index: 1000;
+}
+
+.footer {
+  z-index: 1000;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -37,6 +45,7 @@ body {
   overflow-x: hidden;
   height: 100vh;
   width: 100vw;
+ background-color: #ffffff;
 }
 
 h1 {

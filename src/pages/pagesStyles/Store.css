@@ -29,6 +29,12 @@
     grid-area: footer;
 }
 
+
+
+
+
+
+
 @media (width < 800px) {
     .store-page{
         grid-template-areas: 

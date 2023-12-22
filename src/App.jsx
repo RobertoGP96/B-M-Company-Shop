@@ -10,6 +10,7 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import {QueryFiltersContextProvider} from './context/filtersContext.jsx'
 import NavBar from './components/NavBar/index.jsx'
 import Footer  from './components/Footer/index.jsx'
+import 'primeicons/primeicons.css';
 
 function App() {
   return (

@@ -3,6 +3,7 @@ import useWindowSize from "../../hooks/useWindowSize";
 import { useNavigate, Link } from "react-router-dom";
 import { Sidebar } from "primereact/sidebar";
 import { useState } from "react";
+import { useEffect } from "react";
 import { Menu } from "primereact/menu";
 import { useRef } from "react";
 import "primeicons/primeicons.css";
@@ -20,6 +21,15 @@ function NavBar() {
   const [visible, setVisible] = useState(false);
   const refActive = useRef(null);
   const { pathname } = useLocation();
+  
+  useEffect(() => {
+    if(document.body.style.overflow !== 'hidden'){
+      document.body.style.overflow = visible ? 'hidden' : 'auto';
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
+    }
+  }, [visible]);
 
   const items = [
     {
