@@ -17,7 +17,7 @@ function App() {
     <Router>
       <section title='main-section'>
         <header><NavBar /></header>
-        <section title='content'>
+        <section>
           <PrimeReactProvider>
             <QueryFiltersContextProvider>
               <Routes>
