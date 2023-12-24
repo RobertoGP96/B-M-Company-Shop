@@ -4,7 +4,7 @@ import Loader from "../Loader";
 import "./index.css";
 import QueryFilterContext from "../../context/filtersContext";
 
-function CategorieSideBar(){
+function CategorieSideBar() {
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ function CategorieSideBar(){
     getCategories().then((data) => {
       setCategories(data);
       setLoading(false);
-      setActiveCategory(getActiveFilter("categoria"))
+      setActiveCategory(getActiveFilter("categoria"));
     });
   }, []);
 
@@ -29,35 +29,33 @@ function CategorieSideBar(){
       ) : (
         <ul>
           <li
-              className = {activeCategory === ""?"category-selected":null}
-              onClick={() =>
-                {
-                setActiveCategory("")
-                setFilter({ name: "categoria", value: "" })
-                }
-              }
-            >
-              <span>Todas</span>
-            </li>
+            className={activeCategory === "" ? "category-selected" : null}
+            onClick={() => {
+              setActiveCategory("");
+              setFilter({ name: "categoria", value: "" });
+            }}
+          >
+            <span>Todas</span>
+          </li>
           {categories.map((category) => (
             <li
-              className = {parseInt(category.id) === parseInt(activeCategory)?"category-selected":null}
-              key={category.id}
-              onClick={() =>
-                {
-                setActiveCategory(category.id)
-                setFilter({ name: "categoria", value: category.id })
-                }
+              className={
+                parseInt(category.id) === parseInt(activeCategory)
+                  ? "category-selected"
+                  : null
               }
+              key={category.id}
+              onClick={() => {
+                setActiveCategory(category.id);
+                setFilter({ name: "categoria", value: category.id });
+              }}
             >
               <span>{category.nombre}</span>
             </li>
           ))}
-          <li
-              className = "ofers-category"
-            >
-              <span>Ofertas</span>
-            </li>
+          <li className="ofers-category">
+            <span>Ofertas</span>
+          </li>
         </ul>
       )}
     </section>

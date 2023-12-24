@@ -1,6 +1,7 @@
 
-
-
+.product-details-container{
+    display:none;
+}
 
 .close-button{
     width: 37px;

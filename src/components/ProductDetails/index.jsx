@@ -1,8 +1,6 @@
-import './index1.css';
+import './index.css';
 import { Sidebar } from "primereact/sidebar";
 import useWindowSize from '../../hooks/useWindowSize';
-
-
 
 const style = {
     backdropFilter: "blur(1px)",  
@@ -10,7 +8,6 @@ const style = {
     zIndex: "9 !important", 
     position: "relative",
 }
-
 
 function ProductDetails ({active,data,onHide}) {
     const responsive = useWindowSize("max",600)
