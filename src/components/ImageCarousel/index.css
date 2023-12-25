@@ -18,7 +18,7 @@
     justify-content: flex-start;
     align-items: center;
     white-space: nowrap;
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 .pictures-details img{
     width: 100%;

@@ -19,16 +19,19 @@ function ProductDetails ({active,data,onHide}) {
                     visible = {active}
                     onHide={() => {return}}
                     position='right' 
-                    style={{width:"450px"}}
+                    style={{width:responsive?"100%":"450px"}}
                     showCloseIcon = {false}
                     maskStyle={{color:"red"}}
                     maskClassName='sidebar-2'
                 >
-                    <button onClick={onHide} className={active?'close-button open':"close-button closed"} >
+                    <button onClick={onHide} className={responsive?active?'close-button-responsive open':"close-button-responsive closed":active?'close-button open':"close-button closed"} >
                         <i className='pi pi-chevron-right'></i>
                     </button>
                     <section className='details-container'>  
-                            <ImageCarousel images={[data.product_img1,data.product_img2,data.product_img3]}/>   
+                            <div className='carousel'>
+                                <ImageCarousel images={[data.product_img1,data.product_img2,data.product_img3]}/> 
+                            </div>
+
                             <div className='price-oferts-container'>
                                 <div className='oferts-status'>
                                     <p>En Oferta</p>
@@ -40,11 +43,11 @@ function ProductDetails ({active,data,onHide}) {
 
                             </div>
                             <div className='name-description-container'>
-                                <div>
+                                <div className='name-container'>
                                     <p className='description'>Nombre del producto</p>
                                     <p className='product-name'>{data.product_name}</p>
                                 </div>
-                                <div>
+                                <div className='product-description-container'>
                                     <p className='description'>Descripción</p>
                                     <p className='product-description'>{data.product_description}</p>
                                 </div>

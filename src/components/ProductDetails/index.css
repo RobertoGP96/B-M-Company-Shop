@@ -18,9 +18,23 @@
     justify-content: center;
 }
 
+.close-button-responsive{
+    width: 25px;
+    height: 60px;
+    border-radius: 0px 6px 6px 0px;
+    background: #2D2D2D;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .pi-chevron-right{
     font-size: x-large;
-   
 }
 
 .closed{
@@ -35,65 +49,28 @@
     backdrop-filter: blur(1.5px) ; 
     background-color: rgba(0, 0, 0, 0.1) !important;
     z-index: 1 !important; 
-    position: relative;
-    
+    position: relative;  
 }
 
 .details-container{
     padding-top: 40px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
     gap: 20px;
-
+    margin-left: 50px;
 }
 
-.pictures-details{
-    width: 250px;
-    height: 180px;
-    border: 1px solid rgba(0, 0, 0, 0.33);
-    background: rgba(235, 235, 235, 0.38);
+.carousel{
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    overflow-x: scroll;
-    white-space: nowrap
-}
-.pictures-details img{
-    width: 100%;
-    height: 100%;
-    min-width: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    object-fit: contain;
-    mix-blend-mode: multiply;
-    background-blend-mode: multiply;
-   
-}
-
-.selector{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.button-selected{
-    width: 8px;
-    height: 8px;
-    border-radius: 5px;
-    border: 1px solid #000;
-    cursor: pointer;
+    align-items: flex-start;
 }
 
 .price-oferts-container{
     display: flex;
     flex-direction: row;
     width: 300px;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 100px;
 }
@@ -131,6 +108,13 @@
     margin-block: 0;
 }
 
+.name-container{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .product-name{
 color: #000000;
 font-family: Noto Sans;
@@ -142,11 +126,11 @@ letter-spacing: -0.8px;
 .description{
     margin-block:0px;
     display: inline;
-    color: #9b9b9b;
-    font-size: 0.72rem;
-    font-weight: 800;
+    color: #202020;
+    font-size: 0.78rem;
     letter-spacing: -0.1px; 
     line-height: 21px;
+    font-family: Noto Sans;
     
 }
 
