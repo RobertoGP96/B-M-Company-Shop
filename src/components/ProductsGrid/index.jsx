@@ -20,7 +20,6 @@ export default function ProductsGrid({activateProductdetails}) {
     setLoading(true);
     getProducts(searchParams)
       .then((data) => {
-        console.log(data);
         setProducts(data.results);
         setNumOfProducts(data.count)
         setLoading(false);

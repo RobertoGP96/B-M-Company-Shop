@@ -33,12 +33,24 @@ function ProductDetails ({active,data,onHide}) {
                                 <div className='oferts-status'>
                                     <p>En Oferta</p>
                                 </div>
-                                <h2 className='price'>${data.precio}.00</h2>
+                                <div className='price-status'> 
+                                    <p className='description'>Precio</p>
+                                    <h2 className='price'>${data.precio}.00</h2>
+                                </div>
+
                             </div>
                             <div className='name-description-container'>
-                                <h2 className='product-name'>{data.product_name}</h2>
-                                <h3 className='description'>Descripción</h3>
-                                <p className='product-description'>{data.product_description}</p>
+                                <div>
+                                    <p className='description'>Nombre del producto</p>
+                                    <p className='product-name'>{data.product_name}</p>
+                                </div>
+                                <div>
+                                    <p className='description'>Descripción</p>
+                                    <p className='product-description'>{data.product_description}</p>
+                                </div>
+                                
+                              
+                                
                             </div>
                     </section>
                 </Sidebar>

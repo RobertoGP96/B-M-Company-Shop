@@ -95,10 +95,7 @@
     width: 300px;
     justify-content: center;
     align-items: center;
- 
-}
-.price-oferts-container h2{
-    margin-left: 100px;
+    gap: 100px;
 }
 .oferts-status{
     width: 100px;
@@ -111,6 +108,11 @@
     justify-content: center;
     color: #FFFFFF;
 }
+.price-status{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .oferts-status p{
     font-size: large;
@@ -122,26 +124,30 @@
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    gap: 20px;
+}
+
+.name-description-container p{
+    margin-block: 0;
 }
 
 .product-name{
-color: #313131;
+color: #000000;
 font-family: Noto Sans;
+font-weight: 300;
 font-style: normal;
-font-weight: 600;
-line-height: 137%; /* 43.84px */
 letter-spacing: -0.8px;
 }
 
 .description{
     margin-block:0px;
-display: inline;
-color: #313131;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 600;
-line-height: 137%;
-letter-spacing: -0.8px;
+    display: inline;
+    color: #9b9b9b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: -0.1px; 
+    line-height: 21px;
+    
 }
 
 .product-description{
@@ -149,7 +155,6 @@ letter-spacing: -0.8px;
     font-family: Noto Sans;
     font-style: normal;
     font-weight: 300;
-    line-height: 137%; /* 32.88px */
     letter-spacing: -0.8px;
 }
 
