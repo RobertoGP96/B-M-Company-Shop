@@ -1,6 +1,7 @@
 import './index.css';
 import { Sidebar } from "primereact/sidebar";
 import useWindowSize from '../../hooks/useWindowSize';
+import ImageCarousel from '../ImageCarousel';
 
 const style = {
     backdropFilter: "blur(1px)",  
@@ -27,16 +28,7 @@ function ProductDetails ({active,data,onHide}) {
                         <i className='pi pi-chevron-right'></i>
                     </button>
                     <section className='details-container'>  
-                            <div className='pictures-details'>
-                                <img src={data.product_img1} alt={data.product_name}/>
-                                <img src={data.product_img2} alt={data.product_name}/>
-                                <img src={data.product_img3} alt={data.product_name}/>
-                            </div>
-                            <div className='selector'>
-                                <div className='button-selected'></div>
-                                <div className='button-selected'></div>
-                                <div className='button-selected'></div>
-                            </div>
+                            <ImageCarousel images={[data.product_img1,data.product_img2,data.product_img3]}/>   
                             <div className='price-oferts-container'>
                                 <div className='oferts-status'>
                                     <p>En Oferta</p>
