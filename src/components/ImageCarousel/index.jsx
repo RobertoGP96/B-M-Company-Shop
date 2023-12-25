@@ -40,11 +40,7 @@ const ImageCarousel = ({images}) => {
             <div
                 className= {currentImage==index?'button-selected active-button-carousel':"button-selected"}
                 key={index}
-                onClick={() => {
-                    goToImage(index)
-                    setCurrentImage(index)
-                  }
-                }
+                onClick={() => goToImage(index)}
             ></div>
             ))
         }
