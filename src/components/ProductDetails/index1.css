@@ -44,7 +44,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
 
 }
 
@@ -54,22 +54,39 @@
     border: 1px solid rgba(0, 0, 0, 0.33);
     background: rgba(235, 235, 235, 0.38);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    overflow: hidden;
+    overflow-x: scroll;
 }
 .pictures-details img{
     width: 100%;
     height: 100%;
-    transition: 0.2s ease-in-out;
+    min-width: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
     object-fit: contain;
     mix-blend-mode: multiply;
     background-blend-mode: multiply;
+   
 }
 
+.selector{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
 
+.button-selected{
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
 
 .price-oferts-container{
     display: flex;

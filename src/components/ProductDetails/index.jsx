@@ -32,6 +32,13 @@ function ProductDetails ({active,data,onHide}) {
                     <section className='details-container'>  
                             <div className='pictures-details'>
                                 <img src={data.product_img1} alt={data.product_name}/>
+                                <img src={data.product_img2} alt={data.product_name}/>
+                                <img src={data.product_img3} alt={data.product_name}/>
+                            </div>
+                            <div className='selector'>
+                                <div className='button-selected'></div>
+                                <div className='button-selected'></div>
+                                <div className='button-selected'></div>
                             </div>
                             <div className='price-oferts-container'>
                                 <div className='oferts-status'>
