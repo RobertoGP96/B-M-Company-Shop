@@ -70,12 +70,15 @@
 }
 
 /*Mobile*/
-@media (width < 800px){
+@media (width < 830px){
     .search-product{
         width: 100%;
         gap: 5px;
         grid-template-columns: 1fr;
         flex-direction: column;
+    }
+    .search-product h3{
+        display: none;
     }
     .search-product form{
         gap:0;
