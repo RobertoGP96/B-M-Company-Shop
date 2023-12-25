@@ -45,7 +45,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
 
 }
 
@@ -55,22 +55,39 @@
     border: 1px solid rgba(0, 0, 0, 0.33);
     background: rgba(235, 235, 235, 0.38);
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    overflow-x: scroll;
+    white-space: nowrap
 }
 .pictures-details img{
     width: 100%;
     height: 100%;
-    transition: 0.2s ease-in-out;
+    min-width: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
     object-fit: contain;
     mix-blend-mode: multiply;
     background-blend-mode: multiply;
+   
 }
 
+.selector{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
 
+.button-selected{
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
 
 .price-oferts-container{
     display: flex;
@@ -78,10 +95,7 @@
     width: 300px;
     justify-content: center;
     align-items: center;
- 
-}
-.price-oferts-container h2{
-    margin-left: 100px;
+    gap: 100px;
 }
 .oferts-status{
     width: 100px;
@@ -94,6 +108,11 @@
     justify-content: center;
     color: #FFFFFF;
 }
+.price-status{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .oferts-status p{
     font-size: large;
@@ -105,26 +124,30 @@
     width: 100%;
     padding-left: 10px;
     padding-right: 10px;
+    gap: 20px;
+}
+
+.name-description-container p{
+    margin-block: 0;
 }
 
 .product-name{
-color: #313131;
+color: #000000;
 font-family: Noto Sans;
+font-weight: 300;
 font-style: normal;
-font-weight: 600;
-line-height: 137%; /* 43.84px */
 letter-spacing: -0.8px;
 }
 
 .description{
     margin-block:0px;
-display: inline;
-color: #313131;
-font-family: Noto Sans;
-font-style: normal;
-font-weight: 600;
-line-height: 137%;
-letter-spacing: -0.8px;
+    display: inline;
+    color: #9b9b9b;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: -0.1px; 
+    line-height: 21px;
+    
 }
 
 .product-description{
@@ -132,7 +155,6 @@ letter-spacing: -0.8px;
     font-family: Noto Sans;
     font-style: normal;
     font-weight: 300;
-    line-height: 137%; /* 32.88px */
     letter-spacing: -0.8px;
 }
 
