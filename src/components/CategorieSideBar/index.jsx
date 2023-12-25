@@ -53,7 +53,7 @@ function CategorieSideBar() {
             onClick={() => setShowModal(true)}
             className="show-categories-modal-button"
           >
-            {getActiveCategoryName()}
+            <span>{getActiveCategoryName()}</span>
             <img src={CategoryIcon} />
           </button>
           <Dialog

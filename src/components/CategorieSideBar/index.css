@@ -24,6 +24,12 @@
     gap:5px;
     border:1px solid;
 }
+.show-categories-modal-button span{
+    width:100px;
+    height: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .show-categories-modal-button img{
     width: 20px;
