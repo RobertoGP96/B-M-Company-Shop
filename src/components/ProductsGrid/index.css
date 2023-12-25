@@ -113,7 +113,7 @@
 }
 
 /*Mobile*/
-@media (width < 800px){
+@media (width < 830px){
     .next-page-button{
         margin:0
     }
@@ -121,7 +121,7 @@
         margin:0
     }
     .products-loader-container{
-        top: 78%;
+        top: 50%;
         left: 50%;
     }
     .not-found-message{

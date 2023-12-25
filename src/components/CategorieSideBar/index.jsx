@@ -1,14 +1,18 @@
 import { useState, useEffect, useContext } from "react";
 import { getCategories } from "../../services/getCategories";
-import Loader from "../Loader";
-import "./index.css";
 import QueryFilterContext from "../../context/filtersContext";
+import CategoriesList from "./CategoriesList";
+import { Dialog } from "primereact/dialog";
+import CategoryIcon from "../../assets/category-icon.svg";
+import "./index.css";
 
 function CategorieSideBar() {
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -19,46 +23,70 @@ function CategorieSideBar() {
     });
   }, []);
 
+  //effect to capture the window's width
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
+  function handleSetActiveCategory(category) {
+    setActiveCategory(category);
+    setShowModal(false);
+  }
+
+  function getActiveCategoryName(){
+    const matchedCategory = categories.find(category => category.id == getActiveFilter("categoria"));
+    return matchedCategory !== undefined && matchedCategory !== null ? matchedCategory.nombre : "Categorias"
+  }
+
   return (
-    <section className="categories-side-bar">
-      <h2>Categorias</h2>
-      {loading ? (
-        <div className="categories-loader-container">
-          <Loader />
-        </div>
-      ) : (
-        <ul>
-          <li
-            className={activeCategory === "" ? "category-selected" : null}
-            onClick={() => {
-              setActiveCategory("");
-              setFilter({ name: "categoria", value: "" });
-            }}
+    <>
+      {windowWidth < 830 ? (
+        <section className="mobile-mode-categories-container">
+          <h3 className="h3-title">Productos</h3>
+          <button
+            onClick={() => setShowModal(true)}
+            className="show-categories-modal-button"
           >
-            <span>Todas</span>
-          </li>
-          {categories.map((category) => (
-            <li
-              className={
-                parseInt(category.id) === parseInt(activeCategory)
-                  ? "category-selected"
-                  : null
-              }
-              key={category.id}
-              onClick={() => {
-                setActiveCategory(category.id);
-                setFilter({ name: "categoria", value: category.id });
-              }}
+            <span>{getActiveCategoryName()}</span>
+            <img src={CategoryIcon} />
+          </button>
+          <Dialog
+            contentClassName="categories-mobile-modal-content"
+            visible={showModal}
+            position="top"
+            showHeader={false}
+          >
+            <button
+              className="modal-close-button"
+              onClick={() => setShowModal(false)}
             >
-              <span>{category.nombre}</span>
-            </li>
-          ))}
-          <li className="ofers-category">
-            <span>Ofertas</span>
-          </li>
-        </ul>
+              X
+            </button>
+            <CategoriesList
+              categories={categories}
+              loading={loading}
+              setActiveCategory={handleSetActiveCategory}
+              setFilter={setFilter}
+              activeCategory={activeCategory}
+            />
+          </Dialog>
+        </section>
+      ) : (
+        <CategoriesList
+          categories={categories}
+          loading={loading}
+          setActiveCategory={handleSetActiveCategory}
+          setFilter={setFilter}
+          activeCategory={activeCategory}
+        />
       )}
-    </section>
+    </>
   );
 }
 

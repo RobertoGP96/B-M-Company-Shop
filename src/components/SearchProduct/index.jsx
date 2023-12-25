@@ -6,12 +6,12 @@ import QueryFiltersContext from '../../context/filtersContext';
 
 const orderingValues = [
     {code: "", name : "Ordenar"},
-    {code: "precio", name : "Menor Precio"},
-    {code: "-precio", name : "Mayor Precio"},
-    {code: "-updated_at", name : "Mas recientes"},
-    {code: "updated_at", name : "Menos recientes"},
-    {code: "product_name", name : "Alfabeticamente [A-Z]"},
-    {code: "-product_name", name : "Alfabeticamente [Z-A]"},
+    {code: "precio", name : "+ Precio"},
+    {code: "-precio", name : "- Precio"},
+    {code: "-updated_at", name : "Recientes"},
+    {code: "updated_at", name : "Antiguos"},
+    {code: "product_name", name : "[A-Z]"},
+    {code: "-product_name", name : "[Z-A]"},
 ]
 
 function SearchProduct() {
