@@ -58,12 +58,12 @@ figure{
 .navBar-MenuButton:hover{
     outline: 1px solid #ffffff;
 }
-a:hover{
+.navbar a:hover{
     
     color: aliceblue !important;
 }
 
-li  {
+.navbar li  {
     text-decoration: none;
     cursor:pointer;
     
@@ -124,5 +124,9 @@ li  {
   }
   .sideBar button:hover{
       background-color: rgb(172, 172, 172,0.2);   
+  }
+
+  .icon i{
+    color: white!important;
   }
 
