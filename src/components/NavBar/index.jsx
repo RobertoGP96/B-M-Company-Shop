@@ -34,19 +34,31 @@ function NavBar() {
   const items = [
     {
       label: "Inicio",
-      command: () => navigate("/")
+      command: () => {
+        navigate("/")
+        setVisible(false)
+      }
     },
     {
       label: "Tienda",
-      command: () => navigate("/store")
+      command: () => {
+        navigate("/store")
+        setVisible(false)
+      }
     },
     {
       label: "Productos",
-      command: () => navigate("/products")
+      command: () => {
+        navigate("/products")
+        setVisible(false)
+      }
     },
     {
       label: "Contacto",
-      command: () => navigate("/contactus")
+      command: () => {
+        navigate("/contactus")
+        setVisible(false)
+      }
     },
   ];
 
@@ -93,12 +105,12 @@ function NavBar() {
               }
             >
               <Link to = "/">
-                <a className="navBar-item">
+                <div className="navBar-item">
                   <span className="icon">
                     <img src={HomeIcon}></img>
                   </span>
                   <span className="title">Inicio</span>
-                </a>
+                </div>
               </Link>
             </div>
           </li>
@@ -112,12 +124,12 @@ function NavBar() {
               }
             >
                 <Link to = "/store">
-                    <a className="navBar-item">
+                    <div className="navBar-item">
                         <span className="icon">
                         <img src={StoreIcon}></img>
                         </span>{" "}
                         <span className="title">Tienda</span>
-                    </a>
+                    </div>
                 </Link>
             </div>
           </li>
@@ -130,12 +142,12 @@ function NavBar() {
               }
             >
                 <Link to = "/products">
-                    <a className="navBar-item">
+                    <div className="navBar-item">
                         <span className="icon">
                         <img src={ProductsIcon}></img>
                         </span>{" "}
                         <span className="title">Productos</span>
-                    </a>
+                    </div>
                 </Link>
             </div>
           </li>
@@ -148,12 +160,12 @@ function NavBar() {
               }
             >
                 <Link to = "/contactus">
-                    <a className="navBar-item">
+                    <div className="navBar-item">
                         <span className="icon">
                         <img src={ContactIcon}></img>
                         </span>{" "}
                         <span className="title">Contacto</span>
-                    </a>
+                    </div>
                 </Link>
             </div>
           </li>
