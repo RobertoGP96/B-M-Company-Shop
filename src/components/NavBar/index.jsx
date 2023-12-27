@@ -34,19 +34,31 @@ function NavBar() {
   const items = [
     {
       label: "Inicio",
-      command: () => navigate("/")
+      command: () => {
+        navigate("/")
+        setVisible(false)
+      }
     },
     {
       label: "Tienda",
-      command: () => navigate("/store")
+      command: () => {
+        navigate("/store")
+        setVisible(false)
+      }
     },
     {
       label: "Productos",
-      command: () => navigate("/products")
+      command: () => {
+        navigate("/products")
+        setVisible(false)
+      }
     },
     {
       label: "Contacto",
-      command: () => navigate("/contactus")
+      command: () => {
+        navigate("/contactus")
+        setVisible(false)
+      }
     },
   ];
 
