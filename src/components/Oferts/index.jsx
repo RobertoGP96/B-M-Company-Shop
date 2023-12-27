@@ -5,10 +5,12 @@ import { useState } from "react";
 import Loader from "../Loader"
 import 'primeicons/primeicons.css';
 import ProductDetails from "../ProductDetails";
+import { useNavigate } from "react-router-dom";
 
 function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails}){    
     const [showAll1,setShowAll1] = useState(false)
     const [showAll2,setShowAll2] = useState(false)
+    const navigate = useNavigate();
  
    
 
@@ -39,6 +41,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                                 product_name={products.product_name}
                                 key={index}
                                 product_img1={products.product_img1}
+                                onClick={()=>navigate(`/store?search=${products.product_name}`)}
                             />
                         ))   
                         
@@ -71,6 +74,7 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                                 product_name={products.product_name}
                                 product_img1={products.product_img1}
                                 key={index}
+                                onClick={()=>navigate(`/store?search=${products.product_name}`)}
                             />
                         ))
                         : <div className = "loader-container"><Loader/></div>   

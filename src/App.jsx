@@ -5,6 +5,7 @@ import Store from './pages/Store'
 import Products from './pages/Products'
 import Home from './pages/Home'
 import Page404 from './pages/Page404'
+import MagnamentMenu from './pages/MagnamentMenu.jsx'
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import {QueryFiltersContextProvider} from './context/filtersContext.jsx'
@@ -23,7 +24,7 @@ function App() {
               <Routes>
                 <Route path = "/store" element = {<Store/>}/>
                 <Route path = "/contactus" element = {<Contact/>}/>
-                <Route path = "/products" element = {<Products/>}/>
+                <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "*" element = {<Page404/>}/>
               </Routes>

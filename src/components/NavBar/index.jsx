@@ -47,9 +47,9 @@ function NavBar() {
       }
     },
     {
-      label: "Productos",
+      label: "Gestionar",
       command: () => {
-        navigate("/products")
+        navigate("/magnament-menu")
         setVisible(false)
       }
     },
@@ -136,17 +136,17 @@ function NavBar() {
           <li>
             <div
               className={
-                pathname == "/products"
+                pathname == "/magnament-menu"
                   ? "navBar-itemConteiner active"
                   : "navBar-itemConteiner"
               }
             >
-                <Link to = "/products">
+                <Link to = "/magnament-menu">
                     <div className="navBar-item">
                         <span className="icon">
                         <img src={ProductsIcon}></img>
                         </span>{" "}
-                        <span className="title">Productos</span>
+                        <span className="title">Gestionar</span>
                     </div>
                 </Link>
             </div>
