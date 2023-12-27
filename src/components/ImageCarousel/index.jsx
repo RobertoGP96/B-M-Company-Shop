@@ -1,8 +1,9 @@
 import React, { useState,useRef } from 'react';
 import './index.css';
+import useWindowSize from '../../hooks/useWindowSize';
 
 const ImageCarousel = ({images}) => {
-
+  const responsive = useWindowSize("max",600)
   const [currentImage, setCurrentImage] = useState(0);
   const carouselRef = useRef(null);
 
@@ -25,7 +26,7 @@ const ImageCarousel = ({images}) => {
 
   return (
     <div className='carousel-container'>
-      <div ref={carouselRef} className='pictures-details' onScroll={handleScroll}>
+      <div ref={carouselRef} className={responsive?'pictures-details add-scroll-x':"pictures-details"} onScroll={handleScroll}>
         {
             images.map((image, index) =>
                 <img src = {image} key = {index} alt = {`img ${index}`}

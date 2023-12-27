@@ -20,6 +20,10 @@
     white-space: nowrap;
     overflow-x: hidden;
 }
+
+.add-scroll-x{
+    overflow-x: auto;
+}
 .pictures-details img{
     width: 100%;
     height: 100%;

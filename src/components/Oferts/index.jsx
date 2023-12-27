@@ -39,7 +39,6 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                                 product_name={products.product_name}
                                 key={index}
                                 product_img1={products.product_img1}
-                                onClick = {()=>activateProductdetails(products)}
                             />
                         ))   
                         
@@ -72,7 +71,6 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                                 product_name={products.product_name}
                                 product_img1={products.product_img1}
                                 key={index}
-                                onClick = {()=>activateProductdetails(products)}
                             />
                         ))
                         : <div className = "loader-container"><Loader/></div>   

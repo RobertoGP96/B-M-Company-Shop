@@ -50,10 +50,7 @@ function ProductDetails ({active,data,onHide}) {
                                 <div className='product-description-container'>
                                     <p className='description'>Descripción</p>
                                     <p className='product-description'>{data.product_description}</p>
-                                </div>
-                                
-                              
-                                
+                                </div>  
                             </div>
                     </section>
                 </Sidebar>
