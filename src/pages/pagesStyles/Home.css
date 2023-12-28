@@ -65,6 +65,7 @@
     line-height: normal;
     letter-spacing: -0.5px;
     gap: 10px;
+    padding-bottom: 1.1rem;
  }
 
  .responsive-font-11px{
@@ -106,6 +107,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  /*width: 100vw;*/
   
 }
