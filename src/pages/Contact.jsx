@@ -1,6 +1,6 @@
 import "./pagesStyles/Contact.css";
 import "primeicons/primeicons.css";
-import Logo from "/B&Mc-logo.svg";
+import Logo from "../assets/B&MCshop-logo.svg";
 
 function Contact() {
   return (
@@ -48,18 +48,30 @@ function Contact() {
             </span>
             <span>
               <i className="pi pi-map-marker"></i>
+              <p>
+               Ubicación
+              </p>
             </span>
           </div>
           <div className="social-info">
             <h4>Redes Sociales:</h4>
             <span>
               <i className="pi pi-facebook"></i>
+              <p>
+               Facebook
+               </p>
             </span>
             <span>
               <i className="pi pi-whatsapp"></i>
+              <p>
+              Whatsapp 
+              </p>
             </span>
             <span>
               <i className="pi pi-telegram"></i>
+              <p>
+               Telegram
+               </p>
             </span>
           </div>
         </article>

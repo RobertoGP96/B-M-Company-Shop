@@ -13,7 +13,7 @@
   justify-content: center;
   background-image: url(../img/homebackground.png);
   gap: 0;
-
+  
   padding: 5rem 0;
 }
 
@@ -44,6 +44,9 @@
   align-items: start;
   gap: 0.8rem;
   flex-wrap: wrap;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+
   padding-bottom: 1rem;
 }
 .social-contact-into div {
@@ -118,7 +121,7 @@
 }
 .social-contact-into div span p{
     margin: 0;
-    font-size: 0.8rem;
+    font-size: 0.65rem;
 }
 
 .social-contact-into div span i{
@@ -129,6 +132,5 @@ footer {
     background-color: black !important;
     border-image: linear-gradient(to right,transparent, #f3f3f3 , transparent ) 1 0.1 !important;
     border-color: white !important;
-    color: white !important;
 
 }
