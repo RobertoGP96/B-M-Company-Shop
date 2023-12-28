@@ -26,6 +26,7 @@ function App() {
                 <Route path = "/store" element = {<Store/>}/>
                 <Route path = "/contactus" element = {<Contact/>}/>
                 <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
+                <Route path = "/magnament/products" element = {<Products/>}/>
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "*" element = {<Page404/>}/>
                 <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
