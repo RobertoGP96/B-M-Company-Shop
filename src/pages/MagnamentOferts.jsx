@@ -78,7 +78,7 @@ function MagnamentOferts(){
             >
             <DataTable 
                 className="data-table-oferts"
-                value={""} 
+                value={dataOferts} 
                 stripedRows 
                 paginator rows={5} 
                 rowsPerPageOptions={[5, 10, 25, 50]} 
@@ -87,6 +87,7 @@ function MagnamentOferts(){
                 selectionMode={rowClick ? null : 'checkbox'}
                 size="small"
                 scrollable
+                
             >
                 <Column selectionMode="multiple"  headerStyle={{ width: '3rem' }} ></Column>
                 <Column field="name" header="Nombre"></Column>
