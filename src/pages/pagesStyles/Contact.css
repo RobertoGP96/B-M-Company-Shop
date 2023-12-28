@@ -11,7 +11,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url(../img/homebackground.png);
   gap: 0;
   
   padding: 5rem 0;
@@ -129,8 +128,12 @@
 }
 
 footer {
-    background-color: black !important;
+    background-color: rgba(0, 0, 0, 0) !important;
     border-image: linear-gradient(to right,transparent, #f3f3f3 , transparent ) 1 0.1 !important;
     border-color: white !important;
+    color: white !important;
+}
 
+.root-pane{
+    background-image: url(../img/homebackground.png) !important;
 }
