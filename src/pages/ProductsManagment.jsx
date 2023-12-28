@@ -10,9 +10,9 @@ function ProductsManagment() {
   return (
     <section className="products-managment-page">
       <section className = 'back-button-title-container'>
-        <div className = "products-managment-go-back-button" onClick={() => history.back()}>
+        <button className = "products-managment-go-back-button" onClick={() => history.back()}>
           <img src = {BackArrow}/>
-        </div>
+        </button>
         <h3>Gestión de Productos</h3>
       </section>
       <ProductsManagmentFiltersBar/>

@@ -10,24 +10,29 @@
 }
 
 .back-button-title-container{
-    width: 95%;
+    width: 90%;
     height: auto;
     display: flex;
     flex-direction: row;
     gap:20px;
     align-items: center;
     padding: 10px;
+    padding-left: 0;
+    margin: 0 auto
 }
 
 .products-managment-go-back-button{
-    width: 30px;
-    height: 26px;
+    width: 26px;
+    height: 30px;
     background-color: rgba(84, 84, 84, 1);
-    border-radius: 2px;
+    border-radius: 5px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.products-managment-go-back-button img{
+    width:18px
 }
 
 .back-button-title-container h3{
@@ -41,4 +46,10 @@
     font-variant: small-caps;
     letter-spacing: -0.8px;
     margin:0;
+}
+
+@media (width < 750px) {
+    .back-button-title-container h3{
+        font-size: 25px;
+    }
 }
