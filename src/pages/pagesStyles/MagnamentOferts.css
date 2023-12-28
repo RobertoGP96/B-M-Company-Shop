@@ -1,0 +1,71 @@
+
+
+.magnament-oferts-container{
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-oferts-container{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    gap:20px;
+    flex-wrap: wrap;
+}
+
+.search-oferts-form{
+    display: flex;
+    width: 500px;
+    height: 30px;
+    align-items: center;
+    border-radius: 4px;
+    border: 2px solid rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.95);
+    padding-left: 4px;
+}
+
+.search-oferts-form input{
+    border: none;
+    outline: none;
+    width: 100%;
+}
+.search-oferts-form img{
+    display: flex;
+    width: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.search-oferts-container button{
+    color: aliceblue;
+    border-radius: 6px;
+    background: #545454;
+    font-family: Noto Sans;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: small;
+    line-height: 137%;
+    font-variant: small-caps;
+    letter-spacing: -0.5px;
+    justify-content: center;
+    gap: 5px;
+}
+
+.table-oferts-container{
+    width: 800px;
+
+}
+
+.data-table-oferts{
+    font-family: Noto Sans;
+    letter-spacing: -0.5px;
+    line-height: 137%;
+    font-variant: small-caps;
+}
+
