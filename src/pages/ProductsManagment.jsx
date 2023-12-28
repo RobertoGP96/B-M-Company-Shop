@@ -1,10 +1,10 @@
 import { useState } from "react";
-import "./pagesStyles/products.css";
+import "./pagesStyles/ProductsManagment.css";
 import 'primeicons/primeicons.css';
 import LogoByM from "/B&Mc-logo.svg"
 
 
-function Products() {
+function ProductsManagment() {
   
   return (
     <section className="products-container">
@@ -16,4 +16,4 @@ function Products() {
     );
 }
 
-export default Products;
+export default ProductsManagment;
