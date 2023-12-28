@@ -12,6 +12,7 @@ import {QueryFiltersContextProvider} from './context/filtersContext.jsx'
 import NavBar from './components/NavBar/index.jsx'
 import Footer  from './components/Footer/index.jsx'
 import 'primeicons/primeicons.css';
+import MagnamentOferts from './pages/MagnamentOferts.jsx'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
                 <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "*" element = {<Page404/>}/>
+                <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
               </Routes>
             </QueryFiltersContextProvider>
           </PrimeReactProvider>

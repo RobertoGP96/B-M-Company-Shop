@@ -28,12 +28,12 @@ a:hover {
 }
 
 .main-section{
-  width: 100%;
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50px 1fr 60px;
   font-family: Noto Sans;
+ 
 }
 
 body {
