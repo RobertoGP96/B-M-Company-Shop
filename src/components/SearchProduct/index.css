@@ -28,32 +28,6 @@
     justify-content: center;
     gap:10px;
 }
-.search-product form{
-    width: 100%;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: rgba(240, 241, 245);
-    padding:5px;
-    gap:10px;
-    border-radius: 5px;
-    padding:10px;
-}
-
-.search-product form img{
-    opacity: 0.5;
-    width: 15px;
-}
-   
-.search-product input{
-    border:0;
-    width: 300px;
-    background-color: transparent;
-}
-
-.search-product input:focus{
-    outline:0;
-}
 
 .order-button{
     height: 30px;
@@ -79,13 +53,6 @@
     }
     .search-product h3{
         display: none;
-    }
-    .search-product form{
-        gap:0;
-        width: 100%;
-    }
-    .search-product input{
-        width:80%;
     }
     .order-button span{
         margin:0;
