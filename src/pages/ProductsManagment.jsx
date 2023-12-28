@@ -1,17 +1,21 @@
 import { useState } from "react";
 import "./pagesStyles/ProductsManagment.css";
 import 'primeicons/primeicons.css';
-import LogoByM from "/B&Mc-logo.svg"
+import BackArrow from '../assets/products-managment-back-icon.svg'
+import ProductsManagmentFiltersBar from "../components/ProductsManagmentComponents/ProductsManagmentFiltersBar";
 
 
 function ProductsManagment() {
   
   return (
-    <section className="products-container">
-        <section className="products-section">
-        <i className="pi pi-spin pi-cog"></i>
-        <p>Próximamente...</p>
-        </section>
+    <section className="products-managment-page">
+      <section className = 'back-button-title-container'>
+        <div className = "products-managment-go-back-button" onClick={() => history.back()}>
+          <img src = {BackArrow}/>
+        </div>
+        <h3>Gestión de Productos</h3>
+      </section>
+      <ProductsManagmentFiltersBar/>
     </section>
     );
 }

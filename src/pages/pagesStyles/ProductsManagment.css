@@ -3,30 +3,42 @@
     src: url("../../fonts/NotoSans.ttf") format("truetype");
 }
 
-.products-container {
-    width: 100%;
+.products-managment-page{
     min-height: 100vh;
-    font-family: Noto Sans;
+    background-color: #fff;
+    position: relative;
 }
 
-.products-section {
-    background-color: white;
-    width: 100%;
-    height: 100vh;
+.back-button-title-container{
+    width: 95%;
+    height: auto;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    gap:20px;
     align-items: center;
-
-    color: rgb(79, 74, 74);
+    padding: 10px;
 }
 
-
-.products-section i {
-    font-size: 2rem;
-    margin: 0.5rem;
+.products-managment-go-back-button{
+    width: 30px;
+    height: 26px;
+    background-color: rgba(84, 84, 84, 1);
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.products-section p {
-    font-size: 2rem;
-    margin: 0.5rem;
+.back-button-title-container h3{
+    color: #464646;
+    text-align: center;
+    font-family: 'Noto Sans';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 137%; /* 54.8px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+    margin:0;
 }
