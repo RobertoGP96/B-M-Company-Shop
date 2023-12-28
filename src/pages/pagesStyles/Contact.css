@@ -12,7 +12,6 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  
   padding: 5rem 0;
 }
 
@@ -135,5 +134,5 @@ footer {
 }
 
 .root-pane{
-    background-image: url(../img/homebackground.png) !important;
+    background-image: url(../../assets/homebackground.png) !important;
 }
