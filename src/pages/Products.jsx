@@ -1,7 +1,5 @@
-import { useState } from "react";
 import "./pagesStyles/products.css";
 import 'primeicons/primeicons.css';
-import LogoByM from "/B&Mc-logo.svg"
 
 
 function Products() {
