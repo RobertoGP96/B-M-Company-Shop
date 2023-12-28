@@ -1,0 +1,13 @@
+.products-managment-filters-bar{
+    display: grid;
+}
+
+.search-container{
+    width: 40%;
+}
+
+.search-container form{
+    border: 1px solid;
+    height: 30px;
+    background-color: #fff;
+}

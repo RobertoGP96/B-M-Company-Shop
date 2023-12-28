@@ -1,6 +1,10 @@
+import './index.css'
+import Search from '../../Search';
 function ProductsManagmentFiltersBar() {
     return ( 
-        <section>filters</section>
+        <section className = "products-managment-filters-bar">
+            <div className = "search-container"><Search/></div>
+        </section>
      );
 }
 
