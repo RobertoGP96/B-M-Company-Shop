@@ -29,7 +29,6 @@ function App() {
                 <Route path = "/magnament/products" element = {<Products/>}/>
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "*" element = {<Page404/>}/>
-                <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
               </Routes>
             </QueryFiltersContextProvider>
           </PrimeReactProvider>
