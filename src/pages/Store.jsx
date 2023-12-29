@@ -1,6 +1,7 @@
 import CategorieSideBar from "../components/CategorieSideBar";
 import ProductsGrid from "../components/ProductsGrid";
-import SearchProduct from "../components/SearchProduct";
+import Search from '../components/Search';
+import OrderingProducts from '../components/OrderingProducts'
 import './pagesStyles/Store.css'
 import ProductDetails from "../components/ProductDetails";
 import { useState,useEffect } from "react";
@@ -25,7 +26,15 @@ function Store() {
     return ( 
         <section className = {"store-page"}>
             <aside><CategorieSideBar/></aside>
-            <search><SearchProduct/></search>
+            <search>
+                <section className = "search-product">
+                    <h3>Productos</h3>
+                    <section className = "search-order-container">
+                        <Search/>
+                        <OrderingProducts/>
+                    </section>
+                </section>
+            </search>
             <main><ProductsGrid  activateProductdetails={handleOnactivateProductdetails}/></main>
             <ProductDetails active={activeProductDetails} onHide={()=>setActiveProductDetails(false)} data={data}/> 
         </section>
