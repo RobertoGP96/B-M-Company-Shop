@@ -13,6 +13,7 @@ import NavBar from './components/NavBar/index.jsx'
 import Footer  from './components/Footer/index.jsx'
 import 'primeicons/primeicons.css';
 import MagnamentOferts from './pages/MagnamentOferts.jsx'
+import Login from './pages/Login.jsx'
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "*" element = {<Page404/>}/>
                 <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
+                <Route path = "/login" element = {<Login/>}/>
               </Routes>
             </QueryFiltersContextProvider>
           </PrimeReactProvider>
