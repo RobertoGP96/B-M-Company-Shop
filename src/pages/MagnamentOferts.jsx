@@ -35,9 +35,9 @@ const acciones = () => {
 
     return(
         <div className="acctions-oferts-table-container">
-            <button className="oferts-actions-table-button"></button>
-            <button className="oferts-actions-table-button"></button>
-            <button className="oferts-actions-table-button"></button>
+            <button className="oferts-actions-table-button"><i className="pi pi-eye icon-oferts-table"></i></button>
+            <button className="oferts-actions-table-button"><i className="pi pi-pencil icon-oferts-table"></i></button>
+            <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
         </div>
     )
 }
@@ -73,29 +73,28 @@ function MagnamentOferts(){
                 </button>
             </search>
             {/* Tabla de ofertas */}
-            <section  className="table-oferts-container" 
-
-            >
-            <DataTable 
-                className="data-table-oferts"
-                value={dataOferts} 
-                stripedRows 
-                paginator rows={5} 
-                rowsPerPageOptions={[5, 10, 25, 50]} 
-                tableStyle={{ minWidth: '20rem' }}
-                checked={rowClick}
-                selectionMode={rowClick ? null : 'checkbox'}
-                size="small"
-                scrollable
-                
-            >
-                <Column selectionMode="multiple"  headerStyle={{ width: '3rem' }} ></Column>
-                <Column field="name" header="Nombre"></Column>
-                <Column field="description" header="Descripcion"></Column>
-                <Column field="product_count" header="Cant. Producto"></Column>
-                <Column field="descuento" header="Descuento"></Column>
-                <Column field="acciones" header="Acciones" ></Column>
-            </DataTable>
+            <section  className="table-oferts-container">
+                <DataTable 
+                    className="data-table-oferts"
+                    value={dataOferts} 
+                    stripedRows 
+                    paginator rows={5} 
+                    rowsPerPageOptions={[5, 10, 25, 50]}
+                    tableStyle={{ minWidth: '50rem' }}
+                    checked={rowClick}
+                    selectionMode={rowClick ? null : 'checkbox'}
+                    size="small"
+                    scrollable 
+                   
+                    
+                >
+                    <Column className={"column-oferts-field"} selectionMode="multiple"  headerStyle={{ width: '3rem' }} ></Column>
+                    <Column className={"column-oferts-field"} field="name" header="Nombre"></Column>
+                    <Column className={"column-oferts-field"} field="description" header="Descripcion"></Column>
+                    <Column className={"column-oferts-field"} field="product_count" header="Cant. Producto"></Column>
+                    <Column className={"column-oferts-field"} field="descuento" header="Descuento"></Column>
+                    <Column className={"column-oferts-field"} field="acciones" header="Acciones" body={acciones} ></Column>
+                </DataTable>
             </section>
             
         </section>
