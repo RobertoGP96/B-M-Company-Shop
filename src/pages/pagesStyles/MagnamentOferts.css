@@ -28,6 +28,7 @@
 }
 
 .search-oferts-form input{
+    display: flex;
     border: none;
     outline: none;
     width: 100%;
@@ -57,15 +58,28 @@
     gap: 5px;
 }
 
-.table-oferts-container{
-    width: 800px;
-
-}
 
 .data-table-oferts{
     font-family: Noto Sans;
     letter-spacing: -0.5px;
     line-height: 137%;
     font-variant: small-caps;
+}
+
+.oferts-actions-table-button{
+    background-color: transparent;
+    width: 5px;
+}
+
+.icon-oferts-table{
+    color: #686868;
+    font-size: small;
+    align-self: center;
+}
+
+.column-oferts-field{
+    max-width: 250px;
+    max-height: 40px;
+    
 }
 
