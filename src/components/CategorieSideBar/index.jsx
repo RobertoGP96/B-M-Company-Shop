@@ -6,7 +6,7 @@ import { Dialog } from "primereact/dialog";
 import CategoryIcon from "../../assets/category-icon.svg";
 import "./index.css";
 
-function CategorieSideBar() {
+function CategorieSideBar(mobileMode = false) {
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ function CategorieSideBar() {
 
   return (
     <>
-      {windowWidth < 830 ? (
+      {windowWidth < 830 || mobileMode? (
         <section className="mobile-mode-categories-container">
           <h3 className="h3-title">Productos</h3>
           <button
