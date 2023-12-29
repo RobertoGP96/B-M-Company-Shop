@@ -7,6 +7,7 @@ import './index.css'
 
 function FiltersModal() {
     const [showModal, setShowModal] = useState(false)
+    
     return ( 
         <section>
             <button className = "products-managment-filters-bar-button" onClick={() => setShowModal(true)}>
@@ -16,7 +17,7 @@ function FiltersModal() {
             <Dialog contentClassName="categories-mobile-modal-content products-managment-filters-modal" visible = {showModal}  position="top" showHeader={false} >
                 <button className = "close-modal-button" onClick={() => setShowModal(false)}>X</button>
                 <OrderingProducts/>
-                <CategorieSideBar mobileMode={true}/>
+                <CategorieSideBar forceMobileMode={true}/>
             </Dialog>
         </section>
      );

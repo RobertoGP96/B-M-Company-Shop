@@ -1,17 +1,18 @@
-import { useState, useEffect, useContext } from "react";
+import React from "react";
+import { useState, useEffect, useContext, Suspense } from "react";
 import { getCategories } from "../../services/getCategories";
 import QueryFilterContext from "../../context/filtersContext";
+import CategoryIcon from "../../assets/category-icon.svg";
 import CategoriesList from "./CategoriesList";
 import { Dialog } from "primereact/dialog";
-import CategoryIcon from "../../assets/category-icon.svg";
 import "./index.css";
 
-function CategorieSideBar(mobileMode = false) {
+function CategorieSideBar(forceMobileMode = false) {
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [mobileMode, setMobileMode] = useState(window.innerWidth > 830 && forceMobileMode === false?false:true);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -25,13 +26,20 @@ function CategorieSideBar(mobileMode = false) {
 
   //effect to capture the window's width
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    if(forceMobileMode === false){
+      const handleResize = () => {
+        if(window.innerWidth <= 830 && !mobileMode){
+          setMobileMode(true);
+        }
+        if(window.innerWidth > 830 && mobileMode){
+          setMobileMode(false);
+        }
+      };
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
   });
 
   function handleSetActiveCategory(category) {
@@ -46,7 +54,7 @@ function CategorieSideBar(mobileMode = false) {
 
   return (
     <>
-      {windowWidth < 830 || mobileMode? (
+      {forceMobileMode === true || mobileMode === true? (
         <section className="mobile-mode-categories-container">
           <h3 className="h3-title">Productos</h3>
           <button
@@ -56,35 +64,35 @@ function CategorieSideBar(mobileMode = false) {
             <span>{getActiveCategoryName()}</span>
             <img src={CategoryIcon} />
           </button>
-          <Dialog
-            contentClassName="categories-mobile-modal-content"
-            visible={showModal}
-            position="top"
-            showHeader={false}
-          >
-            <button
-              className="modal-close-button"
-              onClick={() => setShowModal(false)}
+            <Dialog
+              contentClassName="categories-mobile-modal-content"
+              visible={showModal}
+              position="top"
+              showHeader={false}
             >
-              X
-            </button>
-            <CategoriesList
-              categories={categories}
-              loading={loading}
-              setActiveCategory={handleSetActiveCategory}
-              setFilter={setFilter}
-              activeCategory={activeCategory}
-            />
-          </Dialog>
+              <button
+                className="modal-close-button"
+                onClick={() => setShowModal(false)}
+              >
+                X
+              </button>
+                <CategoriesList
+                  categories={categories}
+                  loading={loading}
+                  setActiveCategory={handleSetActiveCategory}
+                  setFilter={setFilter}
+                  activeCategory={activeCategory}
+                />
+            </Dialog>
         </section>
-      ) : (
-        <CategoriesList
-          categories={categories}
-          loading={loading}
-          setActiveCategory={handleSetActiveCategory}
-          setFilter={setFilter}
-          activeCategory={activeCategory}
-        />
+      ) :(
+          <CategoriesList
+            categories={categories}
+            loading={loading}
+            setActiveCategory={handleSetActiveCategory}
+            setFilter={setFilter}
+            activeCategory={activeCategory}
+          />
       )}
     </>
   );
