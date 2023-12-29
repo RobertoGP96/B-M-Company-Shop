@@ -1,17 +1,24 @@
 import "./pagesStyles/Login.css";
 import 'primeicons/primeicons.css';
+import Logo from "../assets/B&MCshop-logo.svg"
 
 
-function Products() {
+function Login() {
   
   return (
-    <section className="products-container">
-        <section className="products-section">
-        <i className="pi pi-spin pi-cog"></i>
-        <p>Próximamente...</p>
+    <section className="login-container">
+        <section className="login-section">
+          <div className="">
+            <img src={Logo} alt="" />
+          </div>
+          <form action="">
+            <input type="text" placeholder="Usuario" />
+            <input type="text"  placeholder="Contraseña" />
+            <button type="submit">Iniciar Sesión</button>
+          </form>
         </section>
     </section>
     );
 }
 
-export default Products;
+export default Login;
