@@ -1,0 +1,12 @@
+.products-managment-list-table-container{
+    width: 90%;
+    margin: 0 auto;
+    margin-top:20px;
+}
+
+.table-product-field-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
+}
