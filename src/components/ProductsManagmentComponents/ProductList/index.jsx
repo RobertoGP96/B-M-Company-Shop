@@ -30,7 +30,6 @@ function ProductList({
       <DataTable
         value={products}
         tableStyle={{ minWidth: "50rem" }}
-        stripedRows
         selectionMode={"checkbox"}
         selection={selectedProducts}
         onSelectionChange={(e) => setSelectedProducts(e.value)}
