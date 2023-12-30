@@ -9,7 +9,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-::-webkit-scrollbar {
+body::-webkit-scrollbar {
   display: none;
 }
 

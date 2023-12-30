@@ -1,6 +1,7 @@
 
 
 .magnament-oferts-container{
+    padding-top: 20px;
     height: 100vh;
     background-color: white;
     display: flex;
@@ -8,17 +9,41 @@
     align-items: center;
 }
 
+.magnament-oferts-container header{
+    display: flex;
+    width: 100%;
+    max-width: 1020px;
+    padding: 10px;
+    align-items: left;
+}
+
+.magnament-oferts-container h1{
+    margin-block: 0px;
+    color: #464646;
+   
+    font-family: Noto Sans;
+    font-size: 30px;
+    font-style: normal;
+    line-height: 137%; 
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+    display: flex;
+  
+
+}
+
 .search-oferts-container{
     display: flex;
+    margin-top: 10px;
     align-items: center;
-    height: 60px;
-    gap:20px;
+    justify-content: center;
+    gap:10px;
     flex-wrap: wrap;
 }
 
 .search-oferts-form{
     display: flex;
-    width: 500px;
+    width: 680px;
     height: 30px;
     align-items: center;
     border-radius: 4px;
@@ -58,28 +83,50 @@
     gap: 5px;
 }
 
+.table-oferts-container{
+    display: flex;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    overflow-x: scroll;
+    min-width: 10px;
+}
+
+.responsive-oferts-1000px{
+    max-width: 750px;
+}
+
+.responsive-oferts-800px{
+    max-width: 450px;
+}
+
+.responsive-oferts-600px{
+    max-width: 320px;
+}
 
 .data-table-oferts{
     font-family: Noto Sans;
     letter-spacing: -0.5px;
     line-height: 137%;
-    font-variant: small-caps;
+    min-width: 1000px;   
+    font-size: small;
 }
 
 .oferts-actions-table-button{
     background-color: transparent;
-    width: 5px;
+    padding: 4px;
 }
 
 .icon-oferts-table{
     color: #686868;
-    font-size: small;
+    font-size: 1rem;
     align-self: center;
+}
+.icon-oferts-table:hover{
+    color: #8cccf1;
 }
 
 .column-oferts-field{
     max-width: 250px;
-    max-height: 40px;
-    
+    max-height: 40px;  
 }
 
