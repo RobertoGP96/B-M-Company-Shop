@@ -5,8 +5,9 @@ import DeactiveStatusIcon from "../../../assets/deactive-status-icon.svg";
 import BoxIcon from "../../../assets/box-icon.svg";
 import ActionButtons from "./ActionButtons";
 import "./index.css";
+import Paginator from "../../Paginator";
 
-function ProductList({ products }) {
+function ProductList({ products, numOfProducts, setFilter, getActiveFilter }) {
   return (
     <section className="products-managment-list-table-container">
       <DataTable value={products} tableStyle={{ minWidth: "50rem" }}>
@@ -43,6 +44,12 @@ function ProductList({ products }) {
         ></Column>
         <Column header="Acciones" body = {(product) => {return <ActionButtons product={product}/>}}></Column>
       </DataTable>
+      <Paginator 
+          numOfProducts={numOfProducts}
+          setFilter={setFilter}
+          getActiveFilter={getActiveFilter}
+          products={products}
+          />
     </section>
   );
 }
