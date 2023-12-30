@@ -10,3 +10,21 @@
     align-items: center;
     gap:10px;
 }
+
+.products-managment-list-loader-container{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top:50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    backdrop-filter: blur(1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.products-managment-list-loader-container div{
+    width: 30px;
+    height: 30px;
+}

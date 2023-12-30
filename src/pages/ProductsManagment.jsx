@@ -37,7 +37,13 @@ function ProductsManagment() {
         <h3>Gestión de Productos</h3>
       </section>
       <ProductsManagmentFiltersBar/>
-      <ProductList products={products} numOfProducts = {numOfProducts} setFilter={setFilter} getActiveFilter={getActiveFilter}/>
+      <ProductList 
+        products={products} 
+        numOfProducts = {numOfProducts} 
+        setFilter={setFilter} 
+        getActiveFilter={getActiveFilter}
+        loading={loading}
+        />
     </section>
     );
 }

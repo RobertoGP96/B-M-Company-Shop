@@ -6,17 +6,31 @@ import BoxIcon from "../../../assets/box-icon.svg";
 import ActionButtons from "./ActionButtons";
 import "./index.css";
 import Paginator from "../../Paginator";
+import Loader from "../../Loader";
 
-function ProductList({ products, numOfProducts, setFilter, getActiveFilter }) {
+function ProductList({
+  products,
+  numOfProducts,
+  setFilter,
+  getActiveFilter,
+  loading,
+}) {
   return (
     <section className="products-managment-list-table-container">
+      {loading ? (
+        <section className="products-managment-list-loader-container">
+            <div>
+                <Loader />
+            </div>
+        </section>
+      ) : null}
       <DataTable value={products} tableStyle={{ minWidth: "50rem" }}>
         <Column
           field="product_name"
           header="Nombre"
           body={(product) => {
             return (
-              <div className = "table-product-field-container">
+              <div className="table-product-field-container">
                 <img src={BoxIcon} />
                 <span>{product.product_name}</span>
               </div>
@@ -42,14 +56,19 @@ function ProductList({ products, numOfProducts, setFilter, getActiveFilter }) {
             return `$${product.precio}`;
           }}
         ></Column>
-        <Column header="Acciones" body = {(product) => {return <ActionButtons product={product}/>}}></Column>
+        <Column
+          header="Acciones"
+          body={(product) => {
+            return <ActionButtons product={product} />;
+          }}
+        ></Column>
       </DataTable>
-      <Paginator 
-          numOfProducts={numOfProducts}
-          setFilter={setFilter}
-          getActiveFilter={getActiveFilter}
-          products={products}
-          />
+      <Paginator
+        numOfProducts={numOfProducts}
+        setFilter={setFilter}
+        getActiveFilter={getActiveFilter}
+        products={products}
+      />
     </section>
   );
 }
