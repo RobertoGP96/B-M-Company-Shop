@@ -12,6 +12,7 @@ function ProductsManagment() {
   const [numOfProducts, setNumOfProducts] = useState(0)
   const [loading, setLoading] = useState(false)
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   //get products 
   useEffect(() => {
@@ -43,6 +44,8 @@ function ProductsManagment() {
         setFilter={setFilter} 
         getActiveFilter={getActiveFilter}
         loading={loading}
+        selectedProducts={selectedProducts}
+        setSelectedProducts={setSelectedProducts}
         />
     </section>
     );

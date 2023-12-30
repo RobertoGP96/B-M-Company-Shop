@@ -7,6 +7,7 @@ import ActionButtons from "./ActionButtons";
 import "./index.css";
 import Paginator from "../../Paginator";
 import Loader from "../../Loader";
+import { useState } from "react";
 
 function ProductList({
   products,
@@ -14,17 +15,31 @@ function ProductList({
   setFilter,
   getActiveFilter,
   loading,
+  selectedProducts,
+  setSelectedProducts
 }) {
   return (
     <section className="products-managment-list-table-container">
       {loading ? (
         <section className="products-managment-list-loader-container">
-            <div>
-                <Loader />
-            </div>
+          <div>
+            <Loader />
+          </div>
         </section>
       ) : null}
-      <DataTable value={products} tableStyle={{ minWidth: "50rem" }}>
+      <DataTable
+        value={products}
+        tableStyle={{ minWidth: "50rem" }}
+        stripedRows
+        selectionMode={"checkbox"}
+        selection={selectedProducts}
+        onSelectionChange={(e) => setSelectedProducts(e.value)}
+        dataKey="id"
+      >
+        <Column
+          selectionMode="multiple"
+          headerStyle={{ width: "3rem" }}
+        ></Column>
         <Column
           field="product_name"
           header="Nombre"
@@ -34,6 +49,18 @@ function ProductList({
                 <img src={BoxIcon} />
                 <span>{product.product_name}</span>
               </div>
+            );
+          }}
+        ></Column>
+        <Column
+          field="product_img1"
+          header="Imagen 1"
+          body={(product) => {
+            return (
+              <img
+                className="data-table-product-image"
+                src={product.product_img1}
+              />
             );
           }}
         ></Column>
