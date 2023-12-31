@@ -1,17 +1,22 @@
-import {URL_PRODUCTS_OF_SELLER} from "../settings"
+import {URL_MANAGE_PRODUCTS} from "../../settings"
 
-export function deleteProducts({products, token}){
+export function deleteProducts({products, token = ""}){
     return(
-        fetch(URL_PRODUCTS_OF_SELLER,{
+        fetch(URL_MANAGE_PRODUCTS,{
             method: 'DELETE',
             headers: {
-                Authorization: `Token ${token}`,
+                //Authorization: `Token ${token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({products_to_delete:products})
         })
         .then(response => {
-            return response
+            if(response.status == 200){
+                return response
+            }
+            else{
+                throw new Error("Error al eliminar el producto")
+            }
         })
     )
 }

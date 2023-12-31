@@ -13,6 +13,7 @@ function ProductsManagment() {
   const [loading, setLoading] = useState(false)
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [updateProducts, setUpdateProducts] = useState(false)
 
   //get products 
   useEffect(() => {
@@ -27,7 +28,7 @@ function ProductsManagment() {
         setLoading(false);
         setNumOfProducts(0)
       });
-  }, [searchParams]);
+  }, [searchParams, updateProducts]);
 
   return (
     <section className="products-managment-page">
@@ -44,8 +45,10 @@ function ProductsManagment() {
         setFilter={setFilter} 
         getActiveFilter={getActiveFilter}
         loading={loading}
+        setLoading={setLoading}
         selectedProducts={selectedProducts}
         setSelectedProducts={setSelectedProducts}
+        setUpdateProducts = {setUpdateProducts}
         />
     </section>
     );

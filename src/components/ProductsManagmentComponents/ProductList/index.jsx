@@ -15,8 +15,10 @@ function ProductList({
   setFilter,
   getActiveFilter,
   loading,
+  setLoading,
   selectedProducts,
-  setSelectedProducts
+  setSelectedProducts,
+  setUpdateProducts
 }) {
   return (
     <section className="products-managment-list-table-container">
@@ -85,7 +87,7 @@ function ProductList({
         <Column
           header="Acciones"
           body={(product) => {
-            return <ActionButtons product={product} />;
+            return <ActionButtons product={product} setLoading={setLoading} setUpdateProducts = {setUpdateProducts}/>;
           }}
         ></Column>
       </DataTable>
