@@ -16,7 +16,8 @@ function ProductList({
   getActiveFilter,
   loading,
   selectedProducts,
-  setSelectedProducts
+  setSelectedProducts,
+  handleDeleteProduct,
 }) {
   return (
     <section className="products-managment-list-table-container">
@@ -85,7 +86,10 @@ function ProductList({
         <Column
           header="Acciones"
           body={(product) => {
-            return <ActionButtons product={product} />;
+            return <ActionButtons 
+                product={product} 
+                handleDeleteProduct={handleDeleteProduct}
+                />;
           }}
         ></Column>
       </DataTable>

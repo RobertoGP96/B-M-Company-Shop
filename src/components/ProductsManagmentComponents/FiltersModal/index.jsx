@@ -10,12 +10,12 @@ function FiltersModal() {
     
     return ( 
         <section>
-            <button className = "products-managment-filters-bar-button" onClick={() => setShowModal(true)}>
+            <button className = "products-managment-filters-bar-button btn-general-styles" onClick={() => setShowModal(true)}>
                 <img src = {FilterIcon}/>
                 <span>Filtros</span>
             </button>
             <Dialog contentClassName="categories-mobile-modal-content products-managment-filters-modal" visible = {showModal}  position="top" showHeader={false} >
-                <button className = "close-modal-button" onClick={() => setShowModal(false)}>X</button>
+                <button className = "close-modal-button btn-general-styles" onClick={() => setShowModal(false)}>X</button>
                 <OrderingProducts/>
                 <CategorieSideBar forceMobileMode={true}/>
             </Dialog>
