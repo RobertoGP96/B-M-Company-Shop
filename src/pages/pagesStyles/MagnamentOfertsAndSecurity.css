@@ -7,20 +7,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    max-width: 2000px;
+
 }
 
 .magnament-oferts-container header{
     display: flex;
-    width: 100%;
-    max-width: 1020px;
-    padding: 10px;
+    width: 90%;
+    max-width: 2000px;
+    padding: 10px 0px;
     align-items: left;
 }
 
 .magnament-oferts-container h1{
     margin-block: 0px;
     color: #464646;
-   
     font-family: Noto Sans;
     font-size: 30px;
     font-style: normal;
@@ -33,17 +35,23 @@
 }
 
 .search-oferts-container{
-    display: flex;
+    width: 90%;
+    margin: 15px auto;
     margin-top: 10px;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap:10px;
+
+}
+
+.-wrap600px{
     flex-wrap: wrap;
 }
 
 .search-oferts-form{
     display: flex;
-    width: 680px;
+    width: 100%;
     height: 30px;
     align-items: center;
     border-radius: 4px;
@@ -84,30 +92,29 @@
 }
 
 .table-oferts-container{
-    display: flex;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    width: 90%;
+    margin: 20px auto;
     overflow-x: scroll;
-    min-width: 10px;
+
 }
 
 .responsive-oferts-1000px{
-    max-width: 750px;
+    max-width: 800px;
 }
 
 .responsive-oferts-800px{
-    max-width: 450px;
+    max-width: 600px;
 }
 
 .responsive-oferts-600px{
-    max-width: 320px;
+    max-width: 350px;
 }
 
 .data-table-oferts{
     font-family: Noto Sans;
     letter-spacing: -0.5px;
     line-height: 137%;
-    min-width: 1000px;   
+    min-width: 1100px;   
     font-size: small;
 }
 
@@ -130,3 +137,7 @@
     max-height: 40px;  
 }
 
+.name-template-container{
+    display: flex;
+    gap: 8px;
+}

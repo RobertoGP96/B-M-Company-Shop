@@ -48,16 +48,17 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                         : <div className = "loader-container"><Loader/></div>
                     }
                 </div>
-
-                <div className="button-container">
-                    <button 
-                        title={showAll1?"Ver menos":"Ver mas"}
-                        onClick = {handdleOnClickButton1} 
-                        className={showAll1?"showAll-button button-active":"showAll-button"} 
-                     >
-                        <i className={showAll1?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.3rem' }}></i>
-                    </button>     
-                </div>     
+                {   !load1 ?
+                    <div className="button-container">
+                        <button 
+                            title={showAll1?"Ver menos":"Ver mas"}
+                            onClick = {handdleOnClickButton1} 
+                            className={showAll1?"showAll-button button-active":"showAll-button"} 
+                        >
+                            <i className={showAll1?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.3rem' }}></i>
+                        </button>     
+                    </div> : undefined
+                }    
             </article>
 
             <div className="divider-conteiner">
@@ -65,9 +66,11 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                 <hr className="divider"/>
             </div>
 
-            <article title="Últimos Añadidos" >     
+            <article title="Últimos Añadidos" >    
+            
                 <div className={showAll2?"oferts expanded":"oferts"} >
-                    { !load2?
+                { !load2?
+                    
                         lastAded.map((products,index)=>(
                             <ProductCard id={products.id} 
                                 precio={products.precio} 
@@ -77,10 +80,13 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                                 onClick={()=>navigate(`/store?search=${products.product_name}`)}
                             />
                         ))
-                        : <div className = "loader-container"><Loader/></div>   
-                    }
+                    :<div className = "loader-container"><Loader/></div> 
+                }    
                 </div>
-
+               
+            
+            {
+                !load2?
                 <div className="button-container">
                      <button 
                         title={showAll2?"Ver menos":"Ver mas"}
@@ -89,7 +95,10 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                     >   
                         <i className={showAll2?"pi pi-chevron-up":"pi pi-chevron-down"} style={{ fontSize: '1.2rem' }}></i>
                     </button>  
-                </div>  
+                </div> 
+                :undefined
+            }
+     
            
             </article>
 

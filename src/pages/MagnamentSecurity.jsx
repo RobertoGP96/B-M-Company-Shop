@@ -19,36 +19,44 @@ const headerTableStyle={
     letterSpacing: "-0.8px",
 }
 
-const dataOferts = [
+const dataSecurity = [
+
       {
-        name: "Abrigos por navidad",
-        description:"Buenos abrigos, fabricados con tela especial",
-        product_count:"25",
-        descuento: "22%", 
+        name: "Frank",
+        email:"asdkas@gmail.com",
+        phone:"+1541561351",
+
       },
       {
-        name: "Vetas de palayeras",
-        description:"las mejores palayeras para disfrutar del verano",
-        product_count:"35",
-        descuento: "15%",
+        name: "Lachy",
+        email:"aksdkl@gmail.com",
+        phone:"+15421612552",
+
+      },
+      
+      {
+        name: "Trolbert",
+        email:"njbibjk@gmail.com",
+        phone:"+154216125",
+
       },
       {
-        name: "Lo mejor de la cocina ",
-        description:"Utencilios de cocina especiales para mejorar la calidad",
-        product_count:"50",
-        descuento: "12%",
-      }
+        name: "Raul",
+        email:"nkjsa@gmail.com",
+        phone:"+154216125",
+      }, 
 
 ]
 
 const nameTamplate = (data) => {
     return (
         <div className="name-template-container">
-            <i className="pi pi-tag"></i>
+            <i className="pi pi-user"></i>
             <span>{data.name}</span>
         </div>
     );
 };
+
 
 
 const acciones = () => {
@@ -62,18 +70,16 @@ const acciones = () => {
     )
 }
   
-
-
-function MagnamentOferts(){
+function MagnamentSecurity(){
     const [selectedProducts, setSelectedProducts] = useState(null);
     const responsive = useWindowSize("max",600)
 
     return(
         <section className="magnament-oferts-container">
             {/* Titulo de la pagina*/}
-            <header><h1>Gestión de Ofertas</h1></header>
+            <header><h1>Gestión de Seguridad</h1></header>
             {/* Seccion de la barra de busqueda */}
-            <search  title="Sección de búsqueda" className={responsive?"search-oferts-container -wrap600px":"search-oferts-container"}>
+            <search  title="Sección de búsqueda" className={responsive?"search-oferts-container -wrap600px":"search-oferts-container "}>
                 <form onSubmit={(event) => event.preventDefault()} className="search-oferts-form">
                     <img src = {SearchIcon} width={"16px"}/>
                     <input 
@@ -97,10 +103,10 @@ function MagnamentOferts(){
                 </button>
             </search>
             {/* Tabla de ofertas */}
-            <section  className={"table-oferts-container"}>
+            <section className="table-oferts-container">
                 <DataTable 
                     className="data-table-oferts"
-                    value={dataOferts} 
+                    value={dataSecurity} 
                     stripedRows 
                     paginator rows={5} 
                     rowsPerPageOptions={[5, 10, 25, 50]}
@@ -110,13 +116,13 @@ function MagnamentOferts(){
                     size="small"
                     scrollable = {true}
                     onSelectionChange={(e) => setSelectedProducts(e.value)}
-                    selection={selectedProducts} 
+                    selection={selectedProducts}
+                    
                 >
                     <Column className={"column-oferts-field"} selectionMode="multiple"  headerStyle={{ width: '3rem',backgroundColor:"#545454",borderRadius: "0px 0px 0px 5px" }} ></Column>
-                    <Column className={"column-oferts-field"} body={nameTamplate} header="Nombre" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"} field="description" header="Descripcion" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"} field="product_count" header="Cant. Producto" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"} field="descuento" header="Descuento" headerStyle={headerTableStyle}></Column>
+                    <Column className={"column-oferts-field"}  body={nameTamplate} header="Nombre" headerStyle={headerTableStyle}></Column>
+                    <Column className={"column-oferts-field"} field="email" header="Correo" headerStyle={headerTableStyle}></Column>
+                    <Column className={"column-oferts-field"} field="phone" header="Teléfono" headerStyle={headerTableStyle}></Column>
                     <Column className={"column-oferts-field"}  field="acciones" header="Acciones" body={acciones} 
                     headerStyle={{borderRadius: "0px 0px 5px 0px", 
                                     backgroundColor:"#545454",
@@ -136,4 +142,4 @@ function MagnamentOferts(){
 }
 
 
-export default MagnamentOferts;
+export default MagnamentSecurity;
