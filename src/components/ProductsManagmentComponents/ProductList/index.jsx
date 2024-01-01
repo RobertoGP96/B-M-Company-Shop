@@ -18,7 +18,9 @@ function ProductList({
   setLoading,
   selectedProducts,
   setSelectedProducts,
-  setUpdateProducts
+  setUpdateProducts,
+  showError,
+  showSuccess
 }) {
   return (
     <section className="products-managment-list-table-container">
@@ -87,7 +89,13 @@ function ProductList({
         <Column
           header="Acciones"
           body={(product) => {
-            return <ActionButtons product={product} setLoading={setLoading} setUpdateProducts = {setUpdateProducts}/>;
+            return <ActionButtons 
+                product={product} 
+                setLoading={setLoading} 
+                setUpdateProducts = {setUpdateProducts}
+                showError={showError}
+                showSuccess={showSuccess}
+                />;
           }}
         ></Column>
       </DataTable>

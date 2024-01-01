@@ -30,7 +30,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: rgba(84, 84, 84, 1);
+    background-color: rgba(84, 84, 84, 1)!important;
     color: #fff;
     gap:10px;
 }

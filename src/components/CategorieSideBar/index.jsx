@@ -42,7 +42,7 @@ function CategorieSideBar({forceMobileMode = false}) {
           <h3 className="h3-title">Productos</h3>
           <button
             onClick={() => setShowModal(true)}
-            className="show-categories-modal-button"
+            className="show-categories-modal-button btn-general-styles"
           >
             <span>{getActiveCategoryName()}</span>
             <img src={CategoryIcon} />
@@ -54,7 +54,7 @@ function CategorieSideBar({forceMobileMode = false}) {
               showHeader={false}
             >
               <button
-                className="modal-close-button"
+                className="modal-close-button btn-general-styles"
                 onClick={() => setShowModal(false)}
               >
                 X

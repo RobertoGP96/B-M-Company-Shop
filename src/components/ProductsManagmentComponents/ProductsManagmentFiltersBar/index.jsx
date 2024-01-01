@@ -29,13 +29,13 @@ function ProductsManagmentFiltersBar() {
         <FiltersModal/>
       </div>
       <div className = "add-product-button-container">
-        <button className = "products-managment-filters-bar-button">
+        <button className = "products-managment-filters-bar-button btn-general-styles">
             <img src = {AddProductIcon}/>
             <span>Agregar</span>
         </button>
       </div>
       <div className = "remove-product-button-container">
-        <button className = "products-managment-filters-bar-button">
+        <button className = "products-managment-filters-bar-button btn-general-styles">
             <img src = {RemoveProductIcon}/>
             <span>Eliminar</span>
         </button>

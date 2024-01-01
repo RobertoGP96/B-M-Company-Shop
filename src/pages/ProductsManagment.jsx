@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import "./pagesStyles/ProductsManagment.css";
 import 'primeicons/primeicons.css';
 import BackArrow from '../assets/products-managment-back-icon.svg'
@@ -6,6 +6,7 @@ import ProductsManagmentFiltersBar from "../components/ProductsManagmentComponen
 import ProductList from "../components/ProductsManagmentComponents/ProductList";
 import {getProducts} from '../services/getProducts'
 import QueryFiltersContext from "../context/filtersContext";
+import { Toast } from 'primereact/toast';
 
 function ProductsManagment() {
   const [products, setProducts] = useState([])
@@ -13,7 +14,17 @@ function ProductsManagment() {
   const [loading, setLoading] = useState(false)
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [updateProducts, setUpdateProducts] = useState(false)
+  const [updateProducts, setUpdateProducts] = useState(false) //state to mark when to re-fetch the products 
+  const toast = useRef(null);
+
+  const showSuccess = () => {
+    toast.current.show({severity:'success', summary: 'Éxito', detail:'Operación Exitosa', life: 100000});
+  }
+
+  const showError = () => {
+      toast.current.show({severity:'error', summary: 'Error', detail:'Fallo en la Operación', life: 3000});
+  }
+
 
   //get products 
   useEffect(() => {
@@ -32,8 +43,9 @@ function ProductsManagment() {
 
   return (
     <section className="products-managment-page">
+      <Toast ref={toast} position="bottom-center"/>
       <section className = 'back-button-title-container'>
-        <button className = "products-managment-go-back-button" onClick={() => history.back()}>
+        <button className = "products-managment-go-back-button btn-general-styles" onClick={() => history.back()}>
           <img src = {BackArrow}/>
         </button>
         <h3>Gestión de Productos</h3>
@@ -49,6 +61,8 @@ function ProductsManagment() {
         selectedProducts={selectedProducts}
         setSelectedProducts={setSelectedProducts}
         setUpdateProducts = {setUpdateProducts}
+        showError={showError}
+        showSuccess={showSuccess}
         />
     </section>
     );
