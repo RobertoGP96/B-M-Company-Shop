@@ -16,7 +16,8 @@ function ProductsManagment() {
     products,
     loading,
     numOfProducts,
-    handleDeleteProduct
+    handleDeleteProduct,
+    handleDeleteMultipleProducts
   } = useManageProducts({ searchParams: searchParams, toastRef: toast });
   const [selectedProducts, setSelectedProducts] = useState([]);
 
@@ -32,7 +33,10 @@ function ProductsManagment() {
         </button>
         <h3>Gestión de Productos</h3>
       </section>
-      <ProductsManagmentFiltersBar />
+      <ProductsManagmentFiltersBar 
+        handleDeleteMultipleProducts = {handleDeleteMultipleProducts}
+        selectedProducts={selectedProducts}
+        />
       <ProductList
         products={products}
         numOfProducts={numOfProducts}

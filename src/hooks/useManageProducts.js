@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getProducts } from "../services/getProducts";
-import {deleteProducts} from '../services/ManageProducts/deleteProducts'
+import { deleteProducts } from "../services/ManageProducts/deleteProducts";
 
 export function useManageProducts({ searchParams, toastRef }) {
   const [products, setProducts] = useState([]);
@@ -8,7 +8,12 @@ export function useManageProducts({ searchParams, toastRef }) {
   const [numOfProducts, setNumOfProducts] = useState(0);
   const [updateProducts, setUpdateProducts] = useState(false); //state to mark when to re-fetch the products
 
-  const showToast = ({severity = "success", summary = "Éxito", detail = "Operación Exitosa", life = 3000}) => {
+  const showToast = ({
+    severity = "success",
+    summary = "Éxito",
+    detail = "Operación Exitosa",
+    life = 3000,
+  }) => {
     toastRef.current.show({
       severity: severity,
       summary: summary,
@@ -33,18 +38,59 @@ export function useManageProducts({ searchParams, toastRef }) {
   }, [searchParams, updateProducts]);
 
   //delete one product by its id
-  function handleDeleteProduct(productId){
-    setLoading(true)
-    deleteProducts({products:[productId]})
-    .then(res => {
-        setUpdateProducts(prev => !prev)
-        showToast({severity: "success", summary: "Éxito", detail: "Operación Exitosa"})
-    })
-    .catch(err => {
-        setLoading(false)
-        showToast({severity: "error", summary: "Error", detail: "Fallo en la Operación"})
-    }) 
-}
+  function handleDeleteProduct(productId) {
+    setLoading(true);
+    deleteProducts({ products: [productId] })
+      .then((res) => {
+        setUpdateProducts((prev) => !prev);
+        showToast({
+          severity: "success",
+          summary: "Éxito",
+          detail: "Operación Exitosa",
+        });
+      })
+      .catch((err) => {
+        setLoading(false);
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Fallo en la Operación",
+        });
+      });
+    }  
+
+    //delete multiple products by a list of ids
+    function handleDeleteMultipleProducts(products) {
+        if(products.length > 0) {
+            //create a list only with the ids
+            const productsId = products.map(product => product.id)
+            setLoading(true);
+            deleteProducts({ products: productsId })
+              .then((res) => {
+                setUpdateProducts((prev) => !prev);
+                showToast({
+                  severity: "success",
+                  summary: "Éxito",
+                  detail: "Operación Exitosa",
+                });
+              })
+              .catch((err) => {
+                setLoading(false);
+                showToast({
+                  severity: "error",
+                  summary: "Error",
+                  detail: "Fallo en la Operación",
+                });
+              });
+        }
+        else{
+            showToast({
+                severity: "error",
+                summary: "Error",
+                detail: "Debes seleccionar algun producto",
+            })
+        }
+    }
 
   return {
     products,
@@ -54,6 +100,7 @@ export function useManageProducts({ searchParams, toastRef }) {
     updateProducts,
     setUpdateProducts,
     showToast,
-    handleDeleteProduct
+    handleDeleteProduct,
+    handleDeleteMultipleProducts
   };
 }

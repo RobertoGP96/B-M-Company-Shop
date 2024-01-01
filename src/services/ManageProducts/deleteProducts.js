@@ -11,6 +11,7 @@ export function deleteProducts({products, token = ""}){
             body: JSON.stringify({products_to_delete:products})
         })
         .then(response => {
+            console.log(response);
             if(response.status == 200){
                 return response
             }
