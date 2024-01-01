@@ -2,25 +2,12 @@ import './index.css'
 import TrashIcon from '../../../../assets/trash-icon.svg'
 import EyeIcon from '../../../../assets/eye-icon.svg'
 import EditIcon from '../../../../assets/edit-icon.svg'
-import {deleteProducts} from '../../../../services/ManageProducts/deleteProducts'
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { useState } from 'react'
 
-function ActionButtons({product, setLoading, setUpdateProducts, showError, showSuccess}) {
+function ActionButtons({product, handleDeleteProduct}) {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false)
 
-    function handleDeleteProduct(){
-        setLoading(true)
-        deleteProducts({products:[product.id]})
-        .then(res => {
-            setUpdateProducts(prev => !prev)
-            showSuccess()
-        })
-        .catch(err => {
-            setLoading(false)
-            showError()
-        }) 
-    }
     return ( 
         <section className = "action-buttons-container">
             <ConfirmDialog 
@@ -32,7 +19,7 @@ function ActionButtons({product, setLoading, setUpdateProducts, showError, showS
                 message="Deseas continuar con la operación?" 
                 header="Confirmación" 
                 icon="pi pi-exclamation-triangle" 
-                accept={handleDeleteProduct} 
+                accept={() => handleDeleteProduct(product.id)} 
                 />
             <button className = "btn-general-styles"><img src = {EditIcon}/></button>
             <button className = "btn-general-styles"><img src = {EyeIcon}/></button>

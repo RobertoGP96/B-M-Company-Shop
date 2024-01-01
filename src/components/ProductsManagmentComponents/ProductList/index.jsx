@@ -15,12 +15,9 @@ function ProductList({
   setFilter,
   getActiveFilter,
   loading,
-  setLoading,
   selectedProducts,
   setSelectedProducts,
-  setUpdateProducts,
-  showError,
-  showSuccess
+  handleDeleteProduct,
 }) {
   return (
     <section className="products-managment-list-table-container">
@@ -91,10 +88,7 @@ function ProductList({
           body={(product) => {
             return <ActionButtons 
                 product={product} 
-                setLoading={setLoading} 
-                setUpdateProducts = {setUpdateProducts}
-                showError={showError}
-                showSuccess={showSuccess}
+                handleDeleteProduct={handleDeleteProduct}
                 />;
           }}
         ></Column>
