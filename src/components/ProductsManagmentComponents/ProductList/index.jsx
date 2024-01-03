@@ -7,6 +7,7 @@ import ActionButtons from "./ActionButtons";
 import "./index.css";
 import Paginator from "../../Paginator";
 import Loader from "../../Loader";
+import BlockIcon from '../../../assets/block-icon.svg'
 
 function ProductList({
   products,
@@ -51,24 +52,22 @@ function ProductList({
             );
           }}
         ></Column>
-        <Column
-          field="product_img1"
-          header="Imagen 1"
+        <Column 
+          field="categoria_full_info.nombre" 
+          header="Categoría"
           body={(product) => {
-            return (
-              <img
-                className="data-table-product-image"
-                src={product.product_img1}
-              />
+            return product.categoria == '' || product.categoria == null ? (
+              <img src = {BlockIcon}/>
+            ) : (
+              product.categoria_full_info.nombre
             );
           }}
-        ></Column>
-        <Column field="categoria_full_info.nombre" header="Categoría "></Column>
+          ></Column>
         <Column
           field="is_active"
           header="Estado"
           body={(product) => {
-            return product.is_active ? (
+            return product.is_active == true? (
               <img src={ActiveStatusIcon} />
             ) : (
               <img src={DeactiveStatusIcon} />

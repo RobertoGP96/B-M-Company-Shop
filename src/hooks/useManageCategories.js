@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getCategories } from "../services/getCategories";
 import { deleteCategories } from "../services/ManageCategories/deleteCategories";
 
-export function useManageCategories({toastRef }) {
+export function useManageCategories({toastRef, setUpdateProducts}) {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
@@ -40,6 +40,7 @@ export function useManageCategories({toastRef }) {
     deleteCategories({ categories: [categoryId] })
       .then((res) => {
         setUpdateCategories((prev) => !prev);
+        setUpdateProducts((prev) => !prev)
         showToast({
           severity: "success",
           summary: "Éxito",
@@ -65,6 +66,7 @@ export function useManageCategories({toastRef }) {
             deleteCategories({ categories: categoriesId })
               .then((res) => {
                 setUpdateCategories((prev) => !prev);
+                setUpdateProducts((prev) => !prev)
                 showToast({
                   severity: "success",
                   summary: "Éxito",

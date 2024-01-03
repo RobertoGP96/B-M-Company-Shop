@@ -17,7 +17,8 @@ function ProductsManagment() {
     loading,
     numOfProducts,
     handleDeleteProduct,
-    handleDeleteMultipleProducts
+    handleDeleteMultipleProducts,
+    setUpdateProducts
   } = useManageProducts({ searchParams: searchParams, toastRef: toast });
   const [selectedProducts, setSelectedProducts] = useState([]);
 
@@ -37,6 +38,7 @@ function ProductsManagment() {
         handleDeleteMultipleProducts = {handleDeleteMultipleProducts}
         selectedProducts={selectedProducts}
         toastRef={toast}
+        setUpdateProducts={setUpdateProducts}
         />
       <ProductList
         products={products}

@@ -11,7 +11,7 @@ import { ConfirmDialog } from 'primereact/confirmdialog';
 import { useState } from "react";
 import "./index.css";
 
-function CategoriesManagmentModal({ show, setShow, toastRef }) {
+function CategoriesManagmentModal({ show, setShow, toastRef, setUpdateProducts }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const {
@@ -19,7 +19,7 @@ function CategoriesManagmentModal({ show, setShow, toastRef }) {
     loading,
     handleDeleteCategory,
     handleDeleteMultipleCategories,
-  } = useManageCategories({ toastRef: toastRef });
+  } = useManageCategories({ toastRef: toastRef, setUpdateProducts: setUpdateProducts });
 
   return (
     <Dialog

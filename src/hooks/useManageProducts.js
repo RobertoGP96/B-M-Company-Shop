@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProducts } from "../services/getProducts";
+import { getProductsToManage } from "../services/ManageProducts/getProductsToManage";
 import { deleteProducts } from "../services/ManageProducts/deleteProducts";
 
 export function useManageProducts({ searchParams, toastRef }) {
@@ -25,7 +25,7 @@ export function useManageProducts({ searchParams, toastRef }) {
   //get products
   useEffect(() => {
     setLoading(true);
-    getProducts(searchParams)
+    getProductsToManage(searchParams)
       .then((data) => {
         setProducts(data.results);
         setNumOfProducts(data.count);
