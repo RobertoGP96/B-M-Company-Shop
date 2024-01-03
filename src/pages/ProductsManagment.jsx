@@ -36,6 +36,7 @@ function ProductsManagment() {
       <ProductsManagmentFiltersBar 
         handleDeleteMultipleProducts = {handleDeleteMultipleProducts}
         selectedProducts={selectedProducts}
+        toastRef={toast}
         />
       <ProductList
         products={products}

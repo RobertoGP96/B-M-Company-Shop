@@ -7,7 +7,6 @@ import ActionButtons from "./ActionButtons";
 import "./index.css";
 import Paginator from "../../Paginator";
 import Loader from "../../Loader";
-import { useState } from "react";
 
 function ProductList({
   products,
@@ -87,8 +86,8 @@ function ProductList({
           header="Acciones"
           body={(product) => {
             return <ActionButtons 
-                product={product} 
-                handleDeleteProduct={handleDeleteProduct}
+                item={product} 
+                handleDelete={handleDeleteProduct}
                 />;
           }}
         ></Column>
