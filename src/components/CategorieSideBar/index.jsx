@@ -19,7 +19,7 @@ function CategorieSideBar({forceMobileMode = false}) {
   useEffect(() => {
     setLoading(true);
     getCategories().then((data) => {
-      setCategories(data);
+      setCategories(data.results);
       setLoading(false);
       setActiveCategory(getActiveFilter("categoria"));
     });

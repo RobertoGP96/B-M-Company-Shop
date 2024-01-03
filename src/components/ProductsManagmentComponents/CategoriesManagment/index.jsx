@@ -1,15 +1,28 @@
-import TagIcon from '../../../assets/tag-icon.svg'
-import './index.css'
+import TagIcon from "../../../assets/tag-icon.svg";
+import "./index.css";
+import { useState } from "react";
+import React from "react";
+import CategoriesManagmentModal from "./CategoriesManagmentModal";
 
-function CategoriesManagment() {
-    return ( 
-        <section>
-            <button className = "products-managment-filters-bar-button btn-general-styles">
-                <img src = {TagIcon}/>
-                <span>Categorias</span>
-            </button>
-        </section>
-     );
+function CategoriesManagment({ toastRef, setUpdateProducts }) {
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <section>
+      <button
+        className="products-managment-filters-bar-button btn-general-styles"
+        onClick={() => setShowModal(true)}
+      >
+        <img src={TagIcon} />
+        <span>Categorias</span>
+      </button>
+      <CategoriesManagmentModal
+        show={showModal}
+        setShow={setShowModal}
+        toastRef={toastRef}
+        setUpdateProducts={setUpdateProducts}
+      />
+    </section>
+  );
 }
 
 export default CategoriesManagment;

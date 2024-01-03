@@ -5,7 +5,7 @@ import EditIcon from '../../../../assets/edit-icon.svg'
 import { ConfirmDialog } from 'primereact/confirmdialog';
 import { useState } from 'react'
 
-function ActionButtons({product, handleDeleteProduct}) {
+function ActionButtons({item, handleDelete}) {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false)
 
     return ( 
@@ -19,7 +19,7 @@ function ActionButtons({product, handleDeleteProduct}) {
                 message="Deseas continuar con la operación?" 
                 header="Confirmación" 
                 icon="pi pi-exclamation-triangle" 
-                accept={() => handleDeleteProduct(product.id)} 
+                accept={() => handleDelete(item.id)} 
                 />
             <button className = "btn-general-styles"><img src = {EditIcon}/></button>
             <button className = "btn-general-styles"><img src = {EyeIcon}/></button>

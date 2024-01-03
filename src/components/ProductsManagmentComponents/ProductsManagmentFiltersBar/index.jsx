@@ -9,7 +9,7 @@ import AddProductIcon from '../../../assets/add-product-icon.svg';
 import RemoveProductIcon from '../../../assets/remove-product-icon.svg';
 import { ConfirmDialog } from 'primereact/confirmdialog';
 
-function ProductsManagmentFiltersBar({selectedProducts, handleDeleteMultipleProducts}) {
+function ProductsManagmentFiltersBar({selectedProducts, handleDeleteMultipleProducts, toastRef, setUpdateProducts}) {
   const [listViewType, setListViewType] = useState(true);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false)
   return (
@@ -29,7 +29,7 @@ function ProductsManagmentFiltersBar({selectedProducts, handleDeleteMultipleProd
         <Search />
       </div>
       <div className="categories-managment-button-container">
-        <CategoriesManagment />
+        <CategoriesManagment toastRef={toastRef} setUpdateProducts={setUpdateProducts}/>
       </div>
       <div className="view-toggle-container">
         <span>Vista:</span>

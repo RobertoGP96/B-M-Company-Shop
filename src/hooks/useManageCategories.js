@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { getProductsToManage } from "../services/ManageProducts/getProductsToManage";
-import { deleteProducts } from "../services/ManageProducts/deleteProducts";
+import { getCategories } from "../services/getCategories";
+import { deleteCategories } from "../services/ManageCategories/deleteCategories";
 
-export function useManageProducts({ searchParams, toastRef }) {
-  const [products, setProducts] = useState([]);
+export function useManageCategories({toastRef, setUpdateProducts}) {
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [numOfProducts, setNumOfProducts] = useState(0);
-  const [updateProducts, setUpdateProducts] = useState(false); //state to mark when to re-fetch the products
+  const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
 
   const showToast = ({
     severity = "success",
@@ -22,27 +21,26 @@ export function useManageProducts({ searchParams, toastRef }) {
     });
   };
 
-  //get products
+  //get Categories
   useEffect(() => {
     setLoading(true);
-    getProductsToManage(searchParams)
+    getCategories()
       .then((data) => {
-        setProducts(data.results);
-        setNumOfProducts(data.count);
+        setCategories(data.results);
         setLoading(false);
       })
       .catch(() => {
         setLoading(false);
-        setNumOfProducts(0);
       });
-  }, [searchParams, updateProducts]);
+  }, [updateCategories]);
 
   //delete one product by its id
-  function handleDeleteProduct(productId) {
+  function handleDeleteCategory(categoryId) {
     setLoading(true);
-    deleteProducts({ products: [productId] })
+    deleteCategories({ categories: [categoryId] })
       .then((res) => {
-        setUpdateProducts((prev) => !prev);
+        setUpdateCategories((prev) => !prev);
+        setUpdateProducts((prev) => !prev)
         showToast({
           severity: "success",
           summary: "Éxito",
@@ -59,15 +57,16 @@ export function useManageProducts({ searchParams, toastRef }) {
       });
     }  
 
-    //delete multiple products by a list of ids
-    function handleDeleteMultipleProducts(products) {
-        if(products.length > 0) {
+    //delete multiple Categories by a list of ids
+    function handleDeleteMultipleCategories(categories) {
+        if(categories.length > 0) {
             //create a list only with the ids
-            const productsId = products.map(product => product.id)
+            const categoriesId = categories.map(category => category.id)
             setLoading(true);
-            deleteProducts({ products: productsId })
+            deleteCategories({ categories: categoriesId })
               .then((res) => {
-                setUpdateProducts((prev) => !prev);
+                setUpdateCategories((prev) => !prev);
+                setUpdateProducts((prev) => !prev)
                 showToast({
                   severity: "success",
                   summary: "Éxito",
@@ -93,14 +92,13 @@ export function useManageProducts({ searchParams, toastRef }) {
     }
 
   return {
-    products,
+    categories,
     loading,
     setLoading,
-    numOfProducts,
-    updateProducts,
-    setUpdateProducts,
+    updateCategories,
+    setUpdateCategories,
     showToast,
-    handleDeleteProduct,
-    handleDeleteMultipleProducts
+    handleDeleteCategory,
+    handleDeleteMultipleCategories
   };
 }
