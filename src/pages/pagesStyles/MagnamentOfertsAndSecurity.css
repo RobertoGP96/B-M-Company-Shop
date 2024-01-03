@@ -91,6 +91,10 @@
     gap: 5px;
 }
 
+.search-oferts-container button:hover{
+    background: #353535;
+}
+
 .table-oferts-container{
     width: 90%;
     margin: 20px auto;

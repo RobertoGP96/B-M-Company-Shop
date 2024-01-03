@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import useWindowSize from "../hooks/useWindowSize";
+import InfoUser from "../components/InfoUser"
 
 
 const headerTableStyle={
@@ -19,7 +20,7 @@ const headerTableStyle={
     letterSpacing: "-0.8px",
 }
 
-const dataSecurity = [
+const data = [
 
       {
         name: "Frank",
@@ -59,23 +60,51 @@ const nameTamplate = (data) => {
 
 
 
-const acciones = () => {
 
-    return(
-        <div className="acctions-oferts-table-container">
-            <button className="oferts-actions-table-button"><i className="pi pi-pencil icon-oferts-table"></i></button>
-            <button className="oferts-actions-table-button"><i className="pi pi-eye icon-oferts-table"></i></button>
-            <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
-        </div>
-    )
-}
   
 function MagnamentSecurity(){
+    const [dataSecurity,setDataSecurity] = useState(data)
     const [selectedProducts, setSelectedProducts] = useState(null);
     const responsive = useWindowSize("max",600)
+    const [infoDialogStatus,setInfoDialogStatus] = useState(false)
+    const [infoDialogEdit,setInfoDialogEdit] = useState(false)
+    const [rowData, setRowData] = useState({name: '', email: '', phone: '',password: ''})   
+
+    const acciones = (data) => {
+
+        return(
+            <div className="acctions-oferts-table-container">
+                <button className="oferts-actions-table-button"
+                    onClick={()=>{
+                        setRowData(data)
+                        handleOnClickEditButton()
+                    }}
+                >
+                    <i className="pi pi-pencil icon-oferts-table"></i>
+                    </button>
+                <button className="oferts-actions-table-button" 
+                    onClick={()=>{
+                        setRowData(data)
+                        handleOnClickInfoButton()
+                    }}
+                >
+                    <i className="pi pi-eye icon-oferts-table" ></i>
+                </button>
+                <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
+            </div>
+        )
+    }
+
+    const handleOnChangeRowData = (value) => {setRowData(value)}
+    const handleOnClickInfoButton = ()=>{setInfoDialogStatus(!infoDialogStatus)};
+    const handleOnClickEditButton = ()=>{setInfoDialogEdit(!infoDialogEdit)};
 
     return(
         <section className="magnament-oferts-container">
+            
+            <InfoUser editable={false} heaerTitle={"Información de usuario"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} setData={handleOnChangeRowData}/>
+            <InfoUser editable={true} heaerTitle={"Editar información de usuario"}data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
+            
             {/* Titulo de la pagina*/}
             <header><h1>Gestión de Seguridad</h1></header>
             {/* Seccion de la barra de busqueda */}
@@ -123,7 +152,7 @@ function MagnamentSecurity(){
                     <Column className={"column-oferts-field"}  body={nameTamplate} header="Nombre" headerStyle={headerTableStyle}></Column>
                     <Column className={"column-oferts-field"} field="email" header="Correo" headerStyle={headerTableStyle}></Column>
                     <Column className={"column-oferts-field"} field="phone" header="Teléfono" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"}  field="acciones" header="Acciones" body={acciones} 
+                    <Column className={"column-oferts-field"}   header="Acciones" body={acciones} 
                     headerStyle={{borderRadius: "0px 0px 5px 0px", 
                                     backgroundColor:"#545454",
                                     color: "#FFF",
