@@ -10,7 +10,8 @@ import { Toast } from "primereact/toast";
 
 function ProductsManagment() {
   const toast = useRef(null);
-  const { searchParams, setFilter, getActiveFilter } =
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
     useContext(QueryFiltersContext);
   const {
     products,
@@ -19,8 +20,7 @@ function ProductsManagment() {
     handleDeleteProduct,
     handleDeleteMultipleProducts,
     setUpdateProducts
-  } = useManageProducts({ searchParams: searchParams, toastRef: toast });
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  } = useManageProducts({ searchParams: searchParams, toastRef: toast, setSelectedProducts:selectedProducts });
 
   return (
     <section className="products-managment-page">
@@ -39,6 +39,7 @@ function ProductsManagment() {
         selectedProducts={selectedProducts}
         toastRef={toast}
         setUpdateProducts={setUpdateProducts}
+        removeAllFilters = {removeAllFilters}
         />
       <ProductList
         products={products}

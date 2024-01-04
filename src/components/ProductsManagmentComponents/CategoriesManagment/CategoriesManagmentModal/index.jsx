@@ -5,13 +5,19 @@ import Loader from "../../../Loader";
 import BoxIcon from "../../../../assets/box-icon.svg";
 import ActionButtons from "../../ProductList/ActionButtons";
 import { useManageCategories } from "../../../../hooks/useManageCategories";
-import AddProductIcon from '../../../../assets/add-product-icon.svg';
-import RemoveProductIcon from '../../../../assets/remove-product-icon.svg';
-import { ConfirmDialog } from 'primereact/confirmdialog';
+import AddProductIcon from "../../../../assets/add-product-icon.svg";
+import RemoveProductIcon from "../../../../assets/remove-product-icon.svg";
+import { ConfirmDialog } from "primereact/confirmdialog";
 import { useState } from "react";
 import "./index.css";
 
-function CategoriesManagmentModal({ show, setShow, toastRef, setUpdateProducts }) {
+function CategoriesManagmentModal({
+  show,
+  setShow,
+  toastRef,
+  setUpdateProducts,
+  removeAllFilters,
+}) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const {
@@ -19,7 +25,12 @@ function CategoriesManagmentModal({ show, setShow, toastRef, setUpdateProducts }
     loading,
     handleDeleteCategory,
     handleDeleteMultipleCategories,
-  } = useManageCategories({ toastRef: toastRef, setUpdateProducts: setUpdateProducts });
+  } = useManageCategories({
+    toastRef: toastRef,
+    setUpdateProducts: setUpdateProducts,
+    setSelectedCategories: setSelectedCategories,
+    removeAllFilters:removeAllFilters
+  });
 
   return (
     <Dialog
@@ -38,16 +49,16 @@ function CategoriesManagmentModal({ show, setShow, toastRef, setUpdateProducts }
           </section>
         ) : null}
         <section>
-          <ConfirmDialog 
-            visible={showConfirmDialog} 
-            onHide={() => setShowConfirmDialog(false)} 
-            acceptClassName='p-button-danger'
-            acceptLabel='Aceptar'
-            rejectLabel='Cancelar'
-            message="Deseas continuar con la operación?" 
-            header="Confirmación" 
-            icon="pi pi-exclamation-triangle" 
-            accept={() => handleDeleteMultipleCategories(selectedCategories)} 
+          <ConfirmDialog
+            visible={showConfirmDialog}
+            onHide={() => setShowConfirmDialog(false)}
+            acceptClassName="p-button-danger"
+            acceptLabel="Aceptar"
+            rejectLabel="Cancelar"
+            message="Deseas continuar con la operación?"
+            header="Confirmación"
+            icon="pi pi-exclamation-triangle"
+            accept={() => handleDeleteMultipleCategories(selectedCategories)}
           />
           <div className="buttons-add-delete-container">
             <div className="add-product-button-container">

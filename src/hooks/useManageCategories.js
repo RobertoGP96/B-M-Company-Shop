@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getCategories } from "../services/getCategories";
 import { deleteCategories } from "../services/ManageCategories/deleteCategories";
 
-export function useManageCategories({toastRef, setUpdateProducts}) {
+export function useManageCategories({toastRef, setUpdateProducts, setSelectedCategories, removeAllFilters}) {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
@@ -40,7 +40,7 @@ export function useManageCategories({toastRef, setUpdateProducts}) {
     deleteCategories({ categories: [categoryId] })
       .then((res) => {
         setUpdateCategories((prev) => !prev);
-        setUpdateProducts((prev) => !prev)
+        removeAllFIlters()
         showToast({
           severity: "success",
           summary: "Éxito",
@@ -66,7 +66,8 @@ export function useManageCategories({toastRef, setUpdateProducts}) {
             deleteCategories({ categories: categoriesId })
               .then((res) => {
                 setUpdateCategories((prev) => !prev);
-                setUpdateProducts((prev) => !prev)
+                removeAllFilters()
+                setSelectedCategories([])
                 showToast({
                   severity: "success",
                   summary: "Éxito",
@@ -86,7 +87,7 @@ export function useManageCategories({toastRef, setUpdateProducts}) {
             showToast({
                 severity: "error",
                 summary: "Error",
-                detail: "Debes seleccionar algun producto",
+                detail: "Debes seleccionar alguna categoria",
             })
         }
     }

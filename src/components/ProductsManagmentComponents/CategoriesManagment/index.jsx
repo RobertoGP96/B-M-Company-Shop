@@ -4,7 +4,7 @@ import { useState } from "react";
 import React from "react";
 import CategoriesManagmentModal from "./CategoriesManagmentModal";
 
-function CategoriesManagment({ toastRef, setUpdateProducts }) {
+function CategoriesManagment({ toastRef, setUpdateProducts, removeAllFilters }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <section>
@@ -20,6 +20,7 @@ function CategoriesManagment({ toastRef, setUpdateProducts }) {
         setShow={setShowModal}
         toastRef={toastRef}
         setUpdateProducts={setUpdateProducts}
+        removeAllFilters={removeAllFilters}
       />
     </section>
   );

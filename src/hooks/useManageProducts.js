@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getProductsToManage } from "../services/ManageProducts/getProductsToManage";
 import { deleteProducts } from "../services/ManageProducts/deleteProducts";
 
-export function useManageProducts({ searchParams, toastRef }) {
+export function useManageProducts({ searchParams, toastRef, setSelectedProducts }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0);
@@ -68,6 +68,7 @@ export function useManageProducts({ searchParams, toastRef }) {
             deleteProducts({ products: productsId })
               .then((res) => {
                 setUpdateProducts((prev) => !prev);
+                setSelectedProducts([])
                 showToast({
                   severity: "success",
                   summary: "Éxito",
