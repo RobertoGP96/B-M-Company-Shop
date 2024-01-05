@@ -126,6 +126,8 @@
     font-size: 1.1rem;
 }
 
+
+/*
 footer {
     background-color: rgba(0, 0, 0, 0) !important;
     border-image: linear-gradient(to right,transparent, #f3f3f3 , transparent ) 1 0.1 !important;
@@ -134,5 +136,5 @@ footer {
 }
 
 .root-pane{
-    background-image: url(../../assets/homebackground.webp) !important;
+    background-image: url(../../assets/homebackground.png) !important;
 }
