@@ -37,7 +37,7 @@ function InfoUser({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>Correo:</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input  defaultValue={infoData.email} type="text" onChange={(e)=>handleOnchange(e.target.value,"email")}/> 
+                               <input  defaultValue={infoData.email} type="email" onChange={(e)=>handleOnchange(e.target.value,"email")}/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">

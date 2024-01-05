@@ -4,8 +4,8 @@ import ProductCard from "../ProductCard";
 import { useState } from "react";
 import Loader from "../Loader"
 import 'primeicons/primeicons.css';
-import ProductDetails from "../ProductDetails";
 import { useNavigate } from "react-router-dom";
+import { Skeleton } from 'primereact/skeleton';
 
 function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails}){    
     const [showAll1,setShowAll1] = useState(false)
@@ -45,7 +45,12 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                             />
                         ))   
                         
-                        : <div className = "loader-container"><Loader/></div>
+                        :<>                    
+                            <Skeleton width="250px" height="200px"/>
+                            <Skeleton width="250px" height="200px"/>
+                            <Skeleton width="250px" height="200px"/>
+                            <Skeleton width="250px" height="200px"/>
+                        </>
                     }
                 </div>
                 {   !load1 ?
@@ -80,7 +85,13 @@ function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails
                                 onClick={()=>navigate(`/store?search=${products.product_name}`)}
                             />
                         ))
-                    :<div className = "loader-container"><Loader/></div> 
+                    :<>                    
+                        <Skeleton width="250px" height="200px"/>
+                        <Skeleton width="250px" height="200px"/>
+                        <Skeleton width="250px" height="200px"/>
+                        <Skeleton width="250px" height="200px"/>
+                    </>
+                    
                 }    
                 </div>
                
