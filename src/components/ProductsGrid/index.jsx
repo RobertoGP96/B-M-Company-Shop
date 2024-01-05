@@ -4,22 +4,18 @@ import { useState, useEffect, useContext } from "react";
 import {getProducts} from '../../services/getProducts'
 import "./index.css";
 import QueryFiltersContext from "../../context/filtersContext";
-import ReactPaginate from 'react-paginate';
-import {getActiveFilter} from '../../utils/getActiveFilter'
-import RightArrow from '../../assets/chevron-right-24.svg'
-import LeftArrow from '../../assets/chevron-left-24.svg'
+import Paginator from "../Paginator";
 
-
-export default function ProductsGrid() {
+export default function ProductsGrid({activateProductdetails}) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0)
-  const {queryFilters, setFilter} = useContext(QueryFiltersContext)
+  const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
 
   //get products of store
   useEffect(() => {
     setLoading(true);
-    getProducts(queryFilters)
+    getProducts(searchParams)
       .then((data) => {
         setProducts(data.results);
         setNumOfProducts(data.count)
@@ -29,7 +25,7 @@ export default function ProductsGrid() {
         setLoading(false);
         setNumOfProducts(0)
       });
-  }, [queryFilters]);
+  }, [searchParams]);
 
   return (
     <>
@@ -40,13 +36,13 @@ export default function ProductsGrid() {
             </div>
         </section>
       ) : 
-      <section>
+      <section className = "products-grid-and-paginator-container">
         <div className="products-grid">
           {products !== null && products !== undefined ? (
             <>
               {products.length > 0 ? (
                 products.map((product) => (
-                  <ProductCard key={product.id} {...product} />
+                  <ProductCard key={product.id} {...product}   onClick = {()=>activateProductdetails(product)} />
                 ))
               ) : (
                 <div className="not-found-message">
@@ -60,26 +56,12 @@ export default function ProductsGrid() {
             </div>
           )}
         </div>
-        <ReactPaginate
-          className = {products.length > 0?"paginator":"paginator-invisible"}
-          activeClassName = {"page-active"}
-          pageClassName = {"page"}
-          nextLinkClassName = {"next-page-button"}
-          previousLinkClassName = {"previous-page-button"}
-          breakClassName = {'page'}
-          pageCount = {Math.ceil(numOfProducts/9)}
-          pageRangeDisplayed = {3}
-          previousLabel = {<img src = {LeftArrow}/>}
-          nextLabel = {<img src = {RightArrow}/>}
-          breakLabel = {"..."}
-          marginPagesDisplayed = {1}
-          onPageChange={(page) => {
-            document.querySelector("body").scrollIntoView({top:0})
-            setFilter({name:"page", value:page.selected + 1})
-          }}
-          disableInitialCallback = {true}
-          initialPage={parseInt(getActiveFilter("page")) - 1}
-        />    
+        <Paginator 
+          numOfProducts={numOfProducts}
+          setFilter={setFilter}
+          getActiveFilter={getActiveFilter}
+          products={products}
+          />
       </section>
       }
     </>
