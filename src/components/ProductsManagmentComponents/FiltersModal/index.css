@@ -1,0 +1,30 @@
+.products-managment-filters-modal{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.products-managment-filters-modal .close-modal-button{
+    justify-self: end;
+    margin-right: -20px;
+}
+
+.products-managment-filters-modal h3{
+    display: none;
+}
+
+.products-managment-filters-modal .order-button{
+    border-radius: 8px;
+    border: 1px solid black;
+    width: 165px;
+    height: 40px;
+}
+
+.products-managment-filters-modal .mobile-mode-categories-container{
+    justify-content: center;
+}
+
+.products-managment-filters-modal .show-categories-modal-button{
+    background-color: white;
+    font-weight: 600;
+}

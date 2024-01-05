@@ -1,38 +1,29 @@
-import { useState, useEffect, useContext } from "react";
+import React from "react";
+import { useState, useEffect, useContext, Suspense } from "react";
 import { getCategories } from "../../services/getCategories";
 import QueryFilterContext from "../../context/filtersContext";
+import CategoryIcon from "../../assets/category-icon.svg";
 import CategoriesList from "./CategoriesList";
 import { Dialog } from "primereact/dialog";
-import CategoryIcon from "../../assets/category-icon.svg";
+import { useIsMobileMode } from "../../hooks/useIsMobileMode";
 import "./index.css";
 
-function CategorieSideBar() {
+function CategorieSideBar({forceMobileMode = false}) {
+  const {mobileMode} = useIsMobileMode({forceMobileMode:forceMobileMode})
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     getCategories().then((data) => {
-      setCategories(data);
+      setCategories(data.results);
       setLoading(false);
       setActiveCategory(getActiveFilter("categoria"));
     });
   }, []);
-
-  //effect to capture the window's width
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
 
   function handleSetActiveCategory(category) {
     setActiveCategory(category);
@@ -46,45 +37,45 @@ function CategorieSideBar() {
 
   return (
     <>
-      {windowWidth < 830 ? (
+      {forceMobileMode === true || mobileMode === true? (
         <section className="mobile-mode-categories-container">
           <h3 className="h3-title">Productos</h3>
           <button
             onClick={() => setShowModal(true)}
-            className="show-categories-modal-button"
+            className="show-categories-modal-button btn-general-styles"
           >
             <span>{getActiveCategoryName()}</span>
             <img src={CategoryIcon} />
           </button>
-          <Dialog
-            contentClassName="categories-mobile-modal-content"
-            visible={showModal}
-            position="top"
-            showHeader={false}
-          >
-            <button
-              className="modal-close-button"
-              onClick={() => setShowModal(false)}
+            <Dialog
+              contentClassName="categories-mobile-modal-content"
+              visible={showModal}
+              position="top"
+              showHeader={false}
             >
-              X
-            </button>
-            <CategoriesList
-              categories={categories}
-              loading={loading}
-              setActiveCategory={handleSetActiveCategory}
-              setFilter={setFilter}
-              activeCategory={activeCategory}
-            />
-          </Dialog>
+              <button
+                className="modal-close-button btn-general-styles"
+                onClick={() => setShowModal(false)}
+              >
+                X
+              </button>
+                <CategoriesList
+                  categories={categories}
+                  loading={loading}
+                  setActiveCategory={handleSetActiveCategory}
+                  setFilter={setFilter}
+                  activeCategory={activeCategory}
+                />
+            </Dialog>
         </section>
-      ) : (
-        <CategoriesList
-          categories={categories}
-          loading={loading}
-          setActiveCategory={handleSetActiveCategory}
-          setFilter={setFilter}
-          activeCategory={activeCategory}
-        />
+      ) :(
+          <CategoriesList
+            categories={categories}
+            loading={loading}
+            setActiveCategory={handleSetActiveCategory}
+            setFilter={setFilter}
+            activeCategory={activeCategory}
+          />
       )}
     </>
   );

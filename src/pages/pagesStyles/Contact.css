@@ -134,12 +134,7 @@ footer {
     border-color: white !important;
     color: white !important;
 }
-*/
 
-.contact-container{
-    width: 100% !important;
-    height: 100%;
-    background-image: url(../../assets/home-background.jpeg) !important;
-    max-width: 2000px ;
-    object-fit: cover;
+.root-pane{
+    background-image: url(../../assets/homebackground.png) !important;
 }
