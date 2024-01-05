@@ -139,3 +139,11 @@ footer {
     background-image: url(../../assets/homebackground.png) !important;
 }
 */
+
+.contact-container{
+  width: 100% !important;
+  height: 100%;
+  background-image: url(../../assets/home-background.jpeg) !important;
+  max-width: 2000px ;
+  object-fit: cover;
+}
