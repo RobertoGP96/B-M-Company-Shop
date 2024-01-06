@@ -127,6 +127,15 @@
 }
 
 
+.contact-container{
+  width: 100% !important;
+  height: 100%;
+  background-image: url(../../assets/homebackground.webp) !important;
+  object-fit: cover;
+  
+  background-position: center; 
+}
+
 /*
 footer {
     background-color: rgba(0, 0, 0, 0) !important;
