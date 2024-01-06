@@ -89,6 +89,7 @@
     letter-spacing: -0.5px;
     justify-content: center;
     gap: 5px;
+    border-style: none;
 }
 
 .search-oferts-container button:hover{
@@ -124,7 +125,8 @@
 
 .oferts-actions-table-button{
     background-color: transparent;
-    padding: 4px;
+    padding: 6px;
+    border: none;
 }
 
 .icon-oferts-table{
