@@ -17,18 +17,52 @@ function CategoriesManagmentModal({
 }) {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-  const [showCategoriesFormModal, setShowCategoriesFormModal] = useState(false);
+  const [categoryFormProperties, setCategoryFormProperties] = useState({
+    show:false,
+    initialValues:null,
+    disabled:false,
+    creatingMode:true
+  })
   const {
     categories,
     loading,
     handleDeleteCategory,
     handleDeleteMultipleCategories,
+    handleCreateCategory,
+    handleUpdateCategory
   } = useManageCategories({
     toastRef: toastRef,
     setUpdateProducts: setUpdateProducts,
     setSelectedCategories: setSelectedCategories,
     removeAllFilters: removeAllFilters,
+    setCategoryFormProperties:setCategoryFormProperties
   });
+
+  function processUpdateCategory({id, nombre}){
+    setCategoryFormProperties(prev => ({
+      ...prev,
+      show:true,
+      creatingMode:false,
+      initialValues:{
+        id:id,
+        name:nombre,
+      },
+      disabled:false
+    }))
+  }
+
+  function processDetailCategory({id, nombre}){
+    setCategoryFormProperties(prev => ({
+      ...prev,
+      show:true,
+      creatingMode:false,
+      initialValues:{
+        id:id,
+        name:nombre,
+      },
+      disabled:true
+    }))
+  }
 
   return (
     <Dialog
@@ -60,11 +94,13 @@ function CategoriesManagmentModal({
             accept={() => handleDeleteMultipleCategories(selectedCategories)}
           />
           <CategoriesForm
-            show={showCategoriesFormModal}
-            setShow={setShowCategoriesFormModal}
+            categoryFormProperties = {categoryFormProperties}
+            setCategoryFormProperties={setCategoryFormProperties}
+            handleCreateCategory = {handleCreateCategory}
+            handleUpdateCategory = {handleUpdateCategory}
           />
           <ButtonsAddAndDelete
-            setShowCategoriesFormModal={setShowCategoriesFormModal}
+            setCategoryFormProperties={setCategoryFormProperties}
             setShowConfirmDialog={setShowConfirmDialog}
           />
           <CategoriesDatatable
@@ -72,6 +108,8 @@ function CategoriesManagmentModal({
             selectedCategories={selectedCategories}
             setSelectedCategories={setSelectedCategories}
             handleDeleteCategory={handleDeleteCategory}
+            processUpdateCategory = {processUpdateCategory}
+            processDetailCategory = {processDetailCategory}
           />
         </section>
       </section>

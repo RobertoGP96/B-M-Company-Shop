@@ -3,7 +3,7 @@ import { Column } from "primereact/column";
 import BoxIcon from "../../../../assets/box-icon.svg";
 import ActionButtons from "../../ProductList/ActionButtons";
 
-function CategoriesDatatable({categories, selectedCategories, setSelectedCategories, handleDeleteCategory}) {
+function CategoriesDatatable({categories, selectedCategories, setSelectedCategories, handleDeleteCategory, processUpdateCategory, processDetailCategory}) {
     return ( 
         <DataTable
             value={categories}
@@ -44,6 +44,8 @@ function CategoriesDatatable({categories, selectedCategories, setSelectedCategor
                   <ActionButtons
                     item={category}
                     handleDelete={handleDeleteCategory}
+                    handleEdit={processUpdateCategory}
+                    handleDetil={processDetailCategory}
                   />
                 );
               }}
