@@ -40,7 +40,8 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
     deleteCategories({ categories: [categoryId] })
       .then((res) => {
         setUpdateCategories((prev) => !prev);
-        removeAllFIlters()
+        setSelectedCategories([])
+        removeAllFilters()
         showToast({
           severity: "success",
           summary: "Éxito",

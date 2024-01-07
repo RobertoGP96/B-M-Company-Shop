@@ -43,6 +43,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts 
     deleteProducts({ products: [productId] })
       .then((res) => {
         setUpdateProducts((prev) => !prev);
+        setSelectedProducts([])
         showToast({
           severity: "success",
           summary: "Éxito",
