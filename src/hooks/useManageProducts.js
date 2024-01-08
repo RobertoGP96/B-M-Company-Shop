@@ -77,6 +77,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts 
                 });
               })
               .catch((err) => {
+                console.log(err.message)
                 setLoading(false);
                 showToast({
                   severity: "error",

@@ -52,6 +52,8 @@ function CategorieSideBar({forceMobileMode = false}) {
               visible={showModal}
               position="top"
               showHeader={false}
+              draggable = {false}
+              resizable = {false}
             >
               <button
                 className="modal-close-button btn-general-styles"

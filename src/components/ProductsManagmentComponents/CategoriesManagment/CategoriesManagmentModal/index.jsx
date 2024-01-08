@@ -72,6 +72,7 @@ function CategoriesManagmentModal({
       onHide={() => setShow(false)}
       style={{ maxWidth: "100vw" }}
       draggable = {false}
+      resizable = {false}
     >
       <section className="categories-managment-modal-content-container">
         {loading ? (

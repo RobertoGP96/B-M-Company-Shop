@@ -23,6 +23,7 @@ function CategoriesForm({categoryFormProperties, setCategoryFormProperties, hand
       onHide={() => setCategoryFormProperties(prev => ({...prev, show:false}))}
       position="top"
       draggable={false}
+      resizable = {false}
       header={categoryFormProperties.creatingMode? "Crear Categoria" : "Editar Categoria"}
     >
       <form className = "categories-form" onSubmit={(e) => {categoryFormProperties.creatingMode == true?createCategory(e):updateCategory(e)}} encType="multipart/form-data">
