@@ -13,11 +13,25 @@ function ProductsManagment() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [productFormProperties, setProductFormProperties] = useState({
-    show:false,
-    initialValues:null,
-    disabled:false,
-    creatingMode:true
-  })
+    show: false,
+    initialValues: null,
+    disabled: false,
+    creatingMode: false,
+    initialValues: {
+      id:null,
+      product_name: "Pulover",
+      product_description: "asd",
+      about: "asd",
+      precio: 0,
+      categoria: null,
+      is_active: true,
+      in_stock: 0,
+      descuento: 0,
+      product_img1: null,
+      product_img2: null,
+      product_img3: null,
+    },
+  });
   const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
     useContext(QueryFiltersContext);
   const {
@@ -26,8 +40,16 @@ function ProductsManagment() {
     numOfProducts,
     handleDeleteProduct,
     handleDeleteMultipleProducts,
-    setUpdateProducts
-  } = useManageProducts({ searchParams: searchParams, toastRef: toast, setSelectedProducts:setSelectedProducts });
+    setUpdateProducts,
+    handleUpdateProduct,
+    handleCreateProduct
+  } = useManageProducts({
+    searchParams: searchParams,
+    toastRef: toast,
+    setSelectedProducts: setSelectedProducts,
+    setProductFormProperties: setProductFormProperties,
+    removeAllFilters:removeAllFilters
+  });
 
   return (
     <section className="products-managment-page">
@@ -41,14 +63,14 @@ function ProductsManagment() {
         </button>
         <h3>Gestión de Productos</h3>
       </section>
-      <ProductsManagmentFiltersBar 
-        handleDeleteMultipleProducts = {handleDeleteMultipleProducts}
+      <ProductsManagmentFiltersBar
+        handleDeleteMultipleProducts={handleDeleteMultipleProducts}
         selectedProducts={selectedProducts}
         toastRef={toast}
         setUpdateProducts={setUpdateProducts}
-        removeAllFilters = {removeAllFilters}
+        removeAllFilters={removeAllFilters}
         setProductFormProperties={setProductFormProperties}
-        />
+      />
       <ProductList
         products={products}
         numOfProducts={numOfProducts}
@@ -59,7 +81,12 @@ function ProductsManagment() {
         setSelectedProducts={setSelectedProducts}
         handleDeleteProduct={handleDeleteProduct}
       />
-      <ProductForm productFormProperties = {productFormProperties} setProductFormProperties={setProductFormProperties}/>
+      <ProductForm
+        productFormProperties={productFormProperties}
+        setProductFormProperties={setProductFormProperties}
+        handleCreateProduct = {handleCreateProduct}
+        handleUpdateProduct = {handleUpdateProduct}
+      />
     </section>
   );
 }

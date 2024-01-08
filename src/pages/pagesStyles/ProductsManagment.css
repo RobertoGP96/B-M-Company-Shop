@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Noto Sans";
-    src: url("../../fonts/NotoSans.ttf") format("truetype");
+    src: url("../../assets/fonts/NotoSans.ttf") format("truetype");
 }
 
 .products-managment-page{

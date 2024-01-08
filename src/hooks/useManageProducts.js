@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { getProductsToManage } from "../services/ManageProducts/getProductsToManage";
 import { deleteProducts } from "../services/ManageProducts/deleteProducts";
+import { createProduct } from "../services/ManageProducts/createProduct";
+import {updateProduct} from "../services/ManageProducts/updateProduct";
 
-export function useManageProducts({ searchParams, toastRef, setSelectedProducts }) {
+export function useManageProducts({ searchParams, toastRef, setSelectedProducts, setProductFormProperties, removeAllFilters }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0);
@@ -94,6 +96,90 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts 
             })
         }
     }
+    function handleCreateProduct(values){
+      if(productInfoValid(values)){
+        if(values.product_img2 == undefined || values.product_img2 == null){
+          values.delete(product_img2)
+        }
+        if(values.product_img3 == undefined|| values.product_img3 == null){
+          values.delete(product_img3)
+        }
+        createProduct(values)
+        .then(res => {
+          removeAllFilters()
+          setSelectedProducts([])
+          setProductFormProperties(prev => ({...prev, show:false}))
+          showToast({
+            severity: "success",
+            summary: "Éxito",
+            detail: "Operación Exitosa",
+          });
+        })
+        .catch(err => {
+          showToast({
+            severity: "error",
+            summary: "Error",
+            detail: err.message,
+        })
+        })
+      }
+    }
+
+    function handleUpdateProduct(values){
+      if(productInfoValid(values)){
+        if(values.product_img2 == undefined || values.product_img2 == null){
+          values.delete(product_img2)
+        }
+        if(values.product_img3 == undefined|| values.product_img3 == null){
+          values.delete(product_img3)
+        }
+        updateProduct(values)
+        .then(res => {
+          removeAllFilters()
+          setSelectedProducts([])
+          setProductFormProperties(prev => ({...prev, show:false}))
+          showToast({
+            severity: "success",
+            summary: "Éxito",
+            detail: "Operación Exitosa",
+          });
+        })
+        .catch(err => {
+          showToast({
+            severity: "error",
+            summary: "Error",
+            detail: err.message,
+        })
+        })
+      }
+    }
+
+    function productInfoValid(values){
+      if(values.product_name == "" || values.product_name == null || values.product_name == undefined){
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Debes ingresar un nombre válido",
+        })
+        return false
+      }
+      if(values.precio == "" || values.precio == null || values.precio == undefined){
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Debes ingresar un precio válido",
+        })
+        return false
+      }
+      if(values.product_img1 == "" || values.product_img1 == null || values.product_img1 == undefined){
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Debes ingresar al menos la primera imagen",
+        })
+        return false
+      }
+    }
 
   return {
     products,
@@ -104,6 +190,8 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts 
     setUpdateProducts,
     showToast,
     handleDeleteProduct,
-    handleDeleteMultipleProducts
+    handleDeleteMultipleProducts,
+    handleUpdateProduct,
+    handleCreateProduct
   };
 }

@@ -48,7 +48,7 @@ function CategoriesForm({categoryFormProperties, setCategoryFormProperties, hand
                 />
         </div>
         {categoryFormProperties.disabled == false?
-          <Button label="Submit" className="btn-general-styles"/>:null
+          <Button label="Enviar" className="btn-general-styles"/>:null
         }
       </form>
     </Dialog>
