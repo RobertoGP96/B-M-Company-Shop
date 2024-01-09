@@ -18,6 +18,8 @@ function ProductList({
   selectedProducts,
   setSelectedProducts,
   handleDeleteProduct,
+  processUpdateProduct,
+  processDetailProduct
 }) {
   return (
     <section className="products-managment-list-table-container">
@@ -87,6 +89,8 @@ function ProductList({
             return <ActionButtons 
                 item={product} 
                 handleDelete={handleDeleteProduct}
+                handleDetil={processDetailProduct}
+                handleEdit={processUpdateProduct}
                 />;
           }}
         ></Column>

@@ -8,6 +8,7 @@ import FiltersModal from "../FiltersModal";
 import AddProductIcon from "../../../assets/add-product-icon.svg";
 import RemoveProductIcon from "../../../assets/remove-product-icon.svg";
 import { ConfirmDialog } from "primereact/confirmdialog";
+import ProductForm from "../ProductForm";
 
 function ProductsManagmentFiltersBar({
   categories,
@@ -16,13 +17,17 @@ function ProductsManagmentFiltersBar({
   selectedCategories,
   setSelectedCategories,
   handleDeleteMultipleProducts,
+  resetProductFormProperties,
   setProductFormProperties,
   categoryFormProperties, 
   setCategoryFormProperties,
   handleCreateCategory,
   handleUpdateCategory,
   handleDeleteCategory,
-  handleDeleteMultipleCategories
+  handleDeleteMultipleCategories,
+  productFormProperties,
+  handleCreateProduct,
+  handleUpdateProduct,
 }) {
   const [listViewType, setListViewType] = useState(true);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -55,6 +60,13 @@ function ProductsManagmentFiltersBar({
           handleDeleteCategory = {handleDeleteCategory}
           handleDeleteMultipleCategories = {handleDeleteMultipleCategories}
           />
+        <ProductForm
+        productFormProperties={productFormProperties}
+        resetProductFormProperties={resetProductFormProperties}
+        handleCreateProduct = {handleCreateProduct}
+        handleUpdateProduct = {handleUpdateProduct}
+        categories={categories}
+      />  
       </div>
       <div className="view-toggle-container">
         <span>Vista:</span>

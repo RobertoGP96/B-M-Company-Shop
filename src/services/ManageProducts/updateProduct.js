@@ -8,9 +8,10 @@ export function updateProduct({id, values}){
     formData.append('precio', values.precio)
     formData.append('descuento', values.descuento)
     formData.append('in_stock', values.in_stock)
-    formData.append('categoria', values.categoria_id)
-    if(values.product_img1 !== undefined && values.product_img1 !== null){
-        formData.append('product_img1', values.product_img1)
+    formData.append('is_active', values.is_active)
+
+    if(values.categoria !== undefined && values.categoria !== null){
+        formData.append('categoria', values.categoria)
     }
     if(values.product_img2 !== undefined && values.product_img2 !== null){
         formData.append('product_img2', values.product_img2)
@@ -20,15 +21,20 @@ export function updateProduct({id, values}){
     }
        
     return(
-        fetch(`${URL_MANAGE_PRODUCTS}${id}`,{
+        fetch(`${URL_MANAGE_PRODUCTS}${id}/`,{
             method: 'PUT',
             headers: {
-                Authorization: `Token ${token}`,
+                //Authorization: `Token ${token}`,
             },
             body:formData
         })
         .then(response => {
-            return response
+            if(response.status == 200){
+                return response
+            }
+            else{
+                throw new Error("Errror al editar el producto")
+            }
         })
     )
 }

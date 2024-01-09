@@ -4,7 +4,7 @@ import { deleteProducts } from "../services/ManageProducts/deleteProducts";
 import { createProduct } from "../services/ManageProducts/createProduct";
 import {updateProduct} from "../services/ManageProducts/updateProduct";
 
-export function useManageProducts({ searchParams, toastRef, setSelectedProducts, setProductFormProperties, removeAllFilters }) {
+export function useManageProducts({ searchParams, toastRef, setSelectedProducts, resetProductFormProperties, removeAllFilters }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0);
@@ -38,6 +38,16 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
         setNumOfProducts(0);
       });
   }, [searchParams, updateProducts]);
+
+  //update the product's list when is necesary
+  function handleSetUpdateProducts(){
+    if(searchParams.size == 0){
+      setUpdateProducts(prev => !prev)
+    }
+    else{
+      removeAllFilters()
+    }
+  }
 
   //delete one product by its id
   function handleDeleteProduct(productId) {
@@ -79,7 +89,6 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
                 });
               })
               .catch((err) => {
-                console.log(err.message)
                 setLoading(false);
                 showToast({
                   severity: "error",
@@ -97,18 +106,12 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
         }
     }
     function handleCreateProduct({values}){
-      if(productInfoValid(values)){
-        if(values.product_img2 == undefined || values.product_img2 == null){
-          values.delete(product_img2)
-        }
-        if(values.product_img3 == undefined|| values.product_img3 == null){
-          values.delete(product_img3)
-        }
+      if(productInfoValid({values:values})){
         createProduct({values:values})
         .then(res => {
-          removeAllFilters()
+          handleSetUpdateProducts()
           setSelectedProducts([])
-          setProductFormProperties(prev => ({...prev, show:false}))
+          resetProductFormProperties()
           showToast({
             severity: "success",
             summary: "Éxito",
@@ -126,18 +129,12 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
     }
 
     function handleUpdateProduct({id, values}){
-      if(productInfoValid(values)){
-        if(values.product_img2 == undefined || values.product_img2 == null){
-          values.delete(product_img2)
-        }
-        if(values.product_img3 == undefined|| values.product_img3 == null){
-          values.delete(product_img3)
-        }
+      if(productInfoValid({values:values, creating:false})){
         updateProduct({id:id, values:values})
         .then(res => {
-          removeAllFilters()
+          handleSetUpdateProducts()
           setSelectedProducts([])
-          setProductFormProperties(prev => ({...prev, show:false}))
+          resetProductFormProperties()
           showToast({
             severity: "success",
             summary: "Éxito",
@@ -154,7 +151,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
       }
     }
 
-    function productInfoValid(values){
+    function productInfoValid({values, creating = true}){
       if(values.product_name == "" || values.product_name == null || values.product_name == undefined){
         showToast({
           severity: "error",
@@ -171,7 +168,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
         })
         return false
       }
-      if(values.product_img1 == "" || values.product_img1 == null || values.product_img1 == undefined){
+      if(creating == true && (values.product_img1 == "" || values.product_img1 == null || values.product_img1 == undefined)){
         showToast({
           severity: "error",
           summary: "Error",
@@ -179,6 +176,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
         })
         return false
       }
+      return true
     }
 
   return {

@@ -6,9 +6,9 @@ import ProductsManagmentFiltersBar from "../components/ProductsManagmentComponen
 import ProductList from "../components/ProductsManagmentComponents/ProductList";
 import QueryFiltersContext from "../context/filtersContext";
 import { useManageProducts } from "../hooks/useManageProducts";
-import ProductForm from "../components/ProductsManagmentComponents/ProductForm";
 import { Toast } from "primereact/toast";
 import { useManageCategories } from "../hooks/useManageCategories";
+import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
 
 function ProductsManagment() {
   const toast = useRef(null);
@@ -22,21 +22,8 @@ function ProductsManagment() {
     show: false,
     initialValues: null,
     disabled: false,
-    creatingMode: false,
-    initialValues: {
-      id:null,
-      product_name: "Pulover",
-      product_description: "asd",
-      about: "asd",
-      precio: 0,
-      categoria: null,
-      is_active: true,
-      in_stock: 0,
-      descuento: 0,
-      product_img1: null,
-      product_img2: null,
-      product_img3: null,
-    },
+    creatingMode: true,
+    initialValues: getInitialValues(),
   });
 
   //categories form properties state
@@ -46,6 +33,17 @@ function ProductsManagment() {
     disabled:false,
     creatingMode:true
   })
+
+  //function to reset the product Form Properties
+  function resetProductFormProperties(){
+    setProductFormProperties((prev) => ({
+      ...prev,
+      show: false,
+      creatingMode: true,
+      disabled: false,
+      initialValues: getInitialValues(),
+    }));
+  }
 
   //products managment hook
   const {
@@ -61,7 +59,7 @@ function ProductsManagment() {
     searchParams: searchParams,
     toastRef: toast,
     setSelectedProducts: setSelectedProducts,
-    setProductFormProperties: setProductFormProperties,
+    resetProductFormProperties: resetProductFormProperties,
     removeAllFilters:removeAllFilters
   });
 
@@ -80,6 +78,26 @@ function ProductsManagment() {
     removeAllFilters: removeAllFilters,
     setCategoryFormProperties:setCategoryFormProperties
   });
+
+  function processUpdateProduct(product) {
+    setProductFormProperties((prev) => ({
+      ...prev,
+      show: true,
+      creatingMode: false,
+      disabled: false,
+      initialValues: createProductInitialValues({product: product}),
+    }));
+  }
+
+  function processDetailProduct(product) {
+    setProductFormProperties((prev) => ({
+      ...prev,
+      show: true,
+      creatingMode: false,
+      disabled: true,
+      initialValues: createProductInitialValues({product: product}),
+    }));
+  }
 
   return (
     <section className="products-managment-page">
@@ -103,6 +121,7 @@ function ProductsManagment() {
         setUpdateProducts={setUpdateProducts}
         removeAllFilters={removeAllFilters}
         categoryFormProperties = {categoryFormProperties}
+        resetProductFormProperties={resetProductFormProperties}
         setProductFormProperties={setProductFormProperties}
         setSelectedCategories={setSelectedCategories}
         setCategoryFormProperties = {setCategoryFormProperties}
@@ -110,6 +129,9 @@ function ProductsManagment() {
         handleUpdateCategory = {handleUpdateCategory}
         handleDeleteCategory = {handleDeleteCategory}
         handleDeleteMultipleCategories={handleDeleteMultipleCategories}
+        productFormProperties={productFormProperties}
+        handleCreateProduct = {handleCreateProduct}
+        handleUpdateProduct = {handleUpdateProduct}
       />
       <ProductList
         products={products}
@@ -120,12 +142,8 @@ function ProductsManagment() {
         selectedProducts={selectedProducts}
         setSelectedProducts={setSelectedProducts}
         handleDeleteProduct={handleDeleteProduct}
-      />
-      <ProductForm
-        productFormProperties={productFormProperties}
-        setProductFormProperties={setProductFormProperties}
-        handleCreateProduct = {handleCreateProduct}
-        handleUpdateProduct = {handleUpdateProduct}
+        processDetailProduct = {processDetailProduct}
+        processUpdateProduct = {processUpdateProduct}
       />
     </section>
   );

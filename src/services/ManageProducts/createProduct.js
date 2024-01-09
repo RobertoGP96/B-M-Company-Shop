@@ -7,10 +7,10 @@ export function createProduct({values}){
     formData.append('about', values.about)
     formData.append('precio', values.precio)
     formData.append('descuento', values.descuento)
+    formData.append('is_active', values.is_active)
     formData.append('in_stock', values.in_stock)
-    formData.append('categoria', values.categoria_id)
-    if(values.product_img1 !== undefined && values.product_img1 !== null){
-        formData.append('product_img1', values.product_img1)
+    if(values.categoria !== undefined && values.categoria !== null){
+        formData.append('categoria', values.categoria)
     }
     if(values.product_img2 !== undefined && values.product_img2 !== null){
         formData.append('product_img2', values.product_img2)
@@ -28,7 +28,12 @@ export function createProduct({values}){
             body:formData
         })
         .then(response => {
-            return response
+            if(response.status == 201){
+                return response
+            }
+            else{
+                throw new Error("Error al crear el producto")
+            }
         })
     )
 }
