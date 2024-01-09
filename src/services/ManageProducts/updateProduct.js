@@ -2,17 +2,22 @@ import {URL_MANAGE_PRODUCTS} from "../../settings"
 
 export function updateProduct({id, values}){
     let formData = new FormData()
-    formData.append('product_name', info.name)
-    formData.append('user', username)
-    formData.append('product_description', info.description)
-    formData.append('about', info.about)
-    formData.append('precio', info.precio)
-    formData.append('descuento', info.descuento)
-    formData.append('in_stock', info.in_stock)
-    formData.append('categoria', info.categoria_id)
-    formData.append('product_img1', info.img1)
-    formData.append('product_img2', info.img2)
-    formData.append('product_img3', info.img3)
+    formData.append('product_name', values.product_name)
+    formData.append('product_description', values.product_description)
+    formData.append('about', values.about)
+    formData.append('precio', values.precio)
+    formData.append('descuento', values.descuento)
+    formData.append('in_stock', values.in_stock)
+    formData.append('categoria', values.categoria_id)
+    if(values.product_img1 !== undefined && values.product_img1 !== null){
+        formData.append('product_img1', values.product_img1)
+    }
+    if(values.product_img2 !== undefined && values.product_img2 !== null){
+        formData.append('product_img2', values.product_img2)
+    }
+    if(values.product_img3 !== undefined && values.product_img3 !== null){
+        formData.append('product_img3', values.product_img3)
+    }
        
     return(
         fetch(`${URL_MANAGE_PRODUCTS}${id}`,{

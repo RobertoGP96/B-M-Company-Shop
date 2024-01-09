@@ -6,24 +6,15 @@ import CategoryIcon from "../../assets/category-icon.svg";
 import CategoriesList from "./CategoriesList";
 import { Dialog } from "primereact/dialog";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
+import {useGetCategories} from "../../hooks/useGetCategories";
 import "./index.css";
 
 function CategorieSideBar({forceMobileMode = false}) {
   const {mobileMode} = useIsMobileMode({forceMobileMode:forceMobileMode})
-  const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
-  const [loading, setLoading] = useState(false);
   const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    getCategories().then((data) => {
-      setCategories(data);
-      setLoading(false);
-      setActiveCategory(getActiveFilter("categoria"));
-    });
-  }, []);
+  const {categories, loading} = useGetCategories({setActiveCategory:setActiveCategory, getActiveFilter:getActiveFilter})
 
   function handleSetActiveCategory(category) {
     setActiveCategory(category);

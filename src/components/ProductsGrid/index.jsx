@@ -1,31 +1,15 @@
 import Loader from "../Loader";
 import ProductCard from "../ProductCard";
-import { useState, useEffect, useContext } from "react";
-import {getProducts} from '../../services/getProducts'
+import { useState, useContext } from "react";
 import "./index.css";
 import QueryFiltersContext from "../../context/filtersContext";
 import Paginator from "../Paginator";
+import {useGetProducts} from '../../hooks/useGetProducts'
 
 export default function ProductsGrid({activateProductdetails}) {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0)
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
-
-  //get products of store
-  useEffect(() => {
-    setLoading(true);
-    getProducts(searchParams)
-      .then((data) => {
-        setProducts(data.results);
-        setNumOfProducts(data.count)
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-        setNumOfProducts(0)
-      });
-  }, [searchParams]);
+  const {products, loading} = useGetProducts({searchParams:searchParams, setNumOfProducts:setNumOfProducts})
 
   return (
     <>

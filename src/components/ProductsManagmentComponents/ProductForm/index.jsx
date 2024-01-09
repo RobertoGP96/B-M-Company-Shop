@@ -26,7 +26,7 @@ function ProductForm({ productFormProperties, setProductFormProperties, handleCr
       product_img2: e.target["img2"].files[0],
       product_img3: e.target["img3"].files[0]
     }
-    handleCreateProduct(values)
+    handleCreateProduct({values:values})
   }  
 
   function updateProduct(e){

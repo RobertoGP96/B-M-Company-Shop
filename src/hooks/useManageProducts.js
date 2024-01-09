@@ -96,7 +96,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
             })
         }
     }
-    function handleCreateProduct(values){
+    function handleCreateProduct({values}){
       if(productInfoValid(values)){
         if(values.product_img2 == undefined || values.product_img2 == null){
           values.delete(product_img2)
@@ -104,7 +104,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
         if(values.product_img3 == undefined|| values.product_img3 == null){
           values.delete(product_img3)
         }
-        createProduct(values)
+        createProduct({values:values})
         .then(res => {
           removeAllFilters()
           setSelectedProducts([])
@@ -125,7 +125,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
       }
     }
 
-    function handleUpdateProduct(values){
+    function handleUpdateProduct({id, values}){
       if(productInfoValid(values)){
         if(values.product_img2 == undefined || values.product_img2 == null){
           values.delete(product_img2)
@@ -133,7 +133,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
         if(values.product_img3 == undefined|| values.product_img3 == null){
           values.delete(product_img3)
         }
-        updateProduct(values)
+        updateProduct({id:id, values:values})
         .then(res => {
           removeAllFilters()
           setSelectedProducts([])
