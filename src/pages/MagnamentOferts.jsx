@@ -7,6 +7,11 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import useWindowSize from "../hooks/useWindowSize";
+import { getPromotions } from "../services/ManagePromotions/getPromotions"
+import { DataScroller } from 'primereact/datascroller';
+import PromotionItemTemplate from "../components/PromotionItemTemplate"
+        
+
 
 
 const headerTableStyle={
@@ -19,27 +24,7 @@ const headerTableStyle={
     letterSpacing: "-0.8px",
 }
 
-const dataOferts = [
-      {
-        name: "Abrigos por navidad",
-        description:"Buenos abrigos, fabricados con tela especial",
-        product_count:"25",
-        descuento: "22%", 
-      },
-      {
-        name: "Vetas de palayeras",
-        description:"las mejores palayeras para disfrutar del verano",
-        product_count:"35",
-        descuento: "15%",
-      },
-      {
-        name: "Lo mejor de la cocina ",
-        description:"Utencilios de cocina especiales para mejorar la calidad",
-        product_count:"50",
-        descuento: "12%",
-      }
 
-]
 
 const nameTamplate = (data) => {
     return (
@@ -66,7 +51,16 @@ const acciones = () => {
 
 function MagnamentOferts(){
     const [selectedProducts, setSelectedProducts] = useState(null);
+    const mobileView = useWindowSize("max",800)
+    const [dataOferts, setDataOferts] = useState(null);
     const responsive = useWindowSize("max",600)
+
+    useEffect(()=>{
+        getPromotions().then((result)=>{
+            console.log(result)
+            setDataOferts(result.results)
+        })
+    },[])
 
     return(
         <section className="magnament-oferts-container">
@@ -98,7 +92,7 @@ function MagnamentOferts(){
             </search>
             {/* Tabla de ofertas */}
             <section  className={"table-oferts-container"}>
-                <DataTable 
+               { !mobileView ?<DataTable 
                     className="data-table-oferts"
                     value={dataOferts} 
                     stripedRows 
@@ -111,23 +105,30 @@ function MagnamentOferts(){
                     scrollable = {true}
                     onSelectionChange={(e) => setSelectedProducts(e.value)}
                     selection={selectedProducts} 
-                >
-                    <Column className={"column-oferts-field"} selectionMode="multiple"  headerStyle={{ width: '3rem',backgroundColor:"#545454",borderRadius: "0px 0px 0px 5px" }} ></Column>
-                    <Column className={"column-oferts-field"} body={nameTamplate} header="Nombre" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"} field="description" header="Descripcion" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"} field="product_count" header="Cant. Producto" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"} field="descuento" header="Descuento" headerStyle={headerTableStyle}></Column>
-                    <Column className={"column-oferts-field"}  field="acciones" header="Acciones" body={acciones} 
-                    headerStyle={{borderRadius: "0px 0px 5px 0px", 
-                                    backgroundColor:"#545454",
-                                    color: "#FFF",
-                                    textAlign: "center",
-                                    fontFamily: "Noto Sans",
-                                    lineHeight: "137%",
-                                    fontVariant: "small-caps",
-                                    letterSpacing: "-0.8px",}}
-                    ></Column>
-                </DataTable>
+                     >
+                        <Column className={"column-oferts-field"} selectionMode="multiple"  headerStyle={{ width: '3rem',backgroundColor:"#545454",borderRadius: "0px 0px 0px 5px" }} ></Column>
+                        <Column className={"column-oferts-field"} body={nameTamplate} header="Nombre" headerStyle={headerTableStyle}></Column>
+                        <Column className={"column-oferts-field"} field="description" header="Descripcion" headerStyle={headerTableStyle}></Column>
+                        <Column className={"column-oferts-field"} field="cantidad_products" header="Cant. Producto" headerStyle={headerTableStyle}></Column>
+                        <Column className={"column-oferts-field"} field="discount_in_percent" header="Descuento" headerStyle={headerTableStyle}></Column>
+                        <Column className={"column-oferts-field"}  field="acciones" header="Acciones" body={acciones} 
+                        headerStyle={{borderRadius: "0px 0px 5px 0px", 
+                                        backgroundColor:"#545454",
+                                        color: "#FFF",
+                                        textAlign: "center",
+                                        fontFamily: "Noto Sans",
+                                        lineHeight: "137%",
+                                        fontVariant: "small-caps",
+                                        letterSpacing: "-0.8px",}}
+                        ></Column>
+                    </DataTable>:
+                    <DataScroller 
+                    value={dataOferts} 
+                    itemTemplate={PromotionItemTemplate} 
+                    rows={5} inline 
+                    scrollHeight="500px" 
+                    header="Scroll Down to Load More" />
+                }
             </section>
             
         </section>
