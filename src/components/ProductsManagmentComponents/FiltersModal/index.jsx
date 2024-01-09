@@ -5,7 +5,7 @@ import OrderingProducts from "../../OrderingProducts";
 import CategorieSideBar from "../../CategorieSideBar";
 import "./index.css";
 
-function FiltersModal() {
+function FiltersModal({categories, loadingCategories}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -32,7 +32,7 @@ function FiltersModal() {
           X
         </button>
         <OrderingProducts />
-        <CategorieSideBar forceMobileMode={true} />
+        <CategorieSideBar forceMobileMode={true} categories={categories} loading={loadingCategories}/>
       </Dialog>
     </section>
   );

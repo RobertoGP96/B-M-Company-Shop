@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { getCategories } from "../services/getCategories";
 
-export function useGetCategories({setActiveCategory, getActiveFilter}) {
+export function useGetCategories() {
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false);
 
@@ -12,7 +12,6 @@ export function useGetCategories({setActiveCategory, getActiveFilter}) {
         getCategories().then((data) => {
           setCategories(data);
           setLoading(false);
-          setActiveCategory(getActiveFilter("categoria"));
         });
       }, []);
 

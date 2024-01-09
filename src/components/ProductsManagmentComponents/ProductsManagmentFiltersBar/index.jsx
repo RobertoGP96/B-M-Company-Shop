@@ -1,6 +1,6 @@
 import "./index.css";
 import Search from "../../Search";
-import CategoriesManagment from "../CategoriesManagment";
+import CategoriesManagment from "../CategoriesManagment/index";
 import ViewToggleGrid from "../../../assets/view-toggle-grid.svg";
 import ViewToggleList from "../../../assets/view-toggle-list.svg";
 import { useState } from "react";
@@ -10,12 +10,19 @@ import RemoveProductIcon from "../../../assets/remove-product-icon.svg";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 function ProductsManagmentFiltersBar({
+  categories,
+  loadingCategories,
   selectedProducts,
+  selectedCategories,
+  setSelectedCategories,
   handleDeleteMultipleProducts,
-  toastRef,
-  setUpdateProducts,
-  removeAllFilters,
-  setProductFormProperties
+  setProductFormProperties,
+  categoryFormProperties, 
+  setCategoryFormProperties,
+  handleCreateCategory,
+  handleUpdateCategory,
+  handleDeleteCategory,
+  handleDeleteMultipleCategories
 }) {
   const [listViewType, setListViewType] = useState(true);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -36,11 +43,18 @@ function ProductsManagmentFiltersBar({
         <Search />
       </div>
       <div className="categories-managment-button-container">
-        <CategoriesManagment
-          toastRef={toastRef}
-          setUpdateProducts={setUpdateProducts}
-          removeAllFilters={removeAllFilters}
-        />
+        <CategoriesManagment 
+          loadingCategories={loadingCategories}
+          categories = {categories}
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+          categoryFormProperties = {categoryFormProperties}
+          setCategoryFormProperties = {setCategoryFormProperties}
+          handleCreateCategory = {handleCreateCategory}
+          handleUpdateCategory = {handleUpdateCategory}
+          handleDeleteCategory = {handleDeleteCategory}
+          handleDeleteMultipleCategories = {handleDeleteMultipleCategories}
+          />
       </div>
       <div className="view-toggle-container">
         <span>Vista:</span>
@@ -50,7 +64,8 @@ function ProductsManagmentFiltersBar({
         />
       </div>
       <div className="filters-modal-button-container">
-        <FiltersModal />
+        <FiltersModal 
+        categories = {categories} loadingCategories = {loadingCategories}/>
       </div>
       <div className="add-product-button-container">
         <button className="products-managment-filters-bar-button btn-general-styles" onClick={() => setProductFormProperties(prev => ({...prev,show:true}))}>

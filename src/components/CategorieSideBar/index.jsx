@@ -1,25 +1,27 @@
 import React from "react";
 import { useState, useEffect, useContext, Suspense } from "react";
-import { getCategories } from "../../services/getCategories";
 import QueryFilterContext from "../../context/filtersContext";
 import CategoryIcon from "../../assets/category-icon.svg";
 import CategoriesList from "./CategoriesList";
 import { Dialog } from "primereact/dialog";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
-import {useGetCategories} from "../../hooks/useGetCategories";
 import "./index.css";
 
-function CategorieSideBar({forceMobileMode = false}) {
+function CategorieSideBar({forceMobileMode = false, loading, categories}) {
   const {mobileMode} = useIsMobileMode({forceMobileMode:forceMobileMode})
+  const [showModal, setShowModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
   const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
-  const [showModal, setShowModal] = useState(false);
-  const {categories, loading} = useGetCategories({setActiveCategory:setActiveCategory, getActiveFilter:getActiveFilter})
 
   function handleSetActiveCategory(category) {
     setActiveCategory(category);
     setShowModal(false);
   }
+
+  //everytime the categories change, update the active category
+  useEffect(() => {
+    setActiveCategory(getActiveFilter("categoria"));
+  },[categories])
 
   function getActiveCategoryName(){
     const matchedCategory = categories.find(category => category.id == getActiveFilter("categoria"));

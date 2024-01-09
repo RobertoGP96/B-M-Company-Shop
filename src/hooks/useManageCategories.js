@@ -6,7 +6,7 @@ import { updateCategory } from "../services/ManageCategories/updateCategory";
 
 export function useManageCategories({toastRef, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingCategories, setLoading] = useState(false);
   const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
 
   const showToast = ({
@@ -149,7 +149,7 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
 
   return {
     categories,
-    loading,
+    loadingCategories,
     setLoading,
     updateCategories,
     setUpdateCategories,

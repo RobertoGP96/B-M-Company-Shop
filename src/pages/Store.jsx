@@ -5,10 +5,12 @@ import OrderingProducts from '../components/OrderingProducts'
 import './pagesStyles/Store.css'
 import ProductDetails from "../components/ProductDetails";
 import { useState,useEffect } from "react";
+import {useGetCategories} from "../hooks/useGetCategories";
 
 function Store() {  
     const [activeProductDetails, setActiveProductDetails] = useState(false);
     const [data,setdata] = useState([]);
+    const {categories, loading} = useGetCategories()
 
     useEffect(() => {
         if(document.body.style.overflow !== 'hidden'){
@@ -25,7 +27,7 @@ function Store() {
     }
     return ( 
         <section className = {"store-page"}>
-            <aside><CategorieSideBar/></aside>
+            <aside><CategorieSideBar loading={loading} categories={categories}/></aside>
             <search>
                 <section className = "search-product">
                     <h3>Productos</h3>

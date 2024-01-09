@@ -8,10 +8,16 @@ import QueryFiltersContext from "../context/filtersContext";
 import { useManageProducts } from "../hooks/useManageProducts";
 import ProductForm from "../components/ProductsManagmentComponents/ProductForm";
 import { Toast } from "primereact/toast";
+import { useManageCategories } from "../hooks/useManageCategories";
 
 function ProductsManagment() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
+  useContext(QueryFiltersContext);
+
+  //product form properties state
   const [productFormProperties, setProductFormProperties] = useState({
     show: false,
     initialValues: null,
@@ -32,8 +38,16 @@ function ProductsManagment() {
       product_img3: null,
     },
   });
-  const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
-    useContext(QueryFiltersContext);
+
+  //categories form properties state
+  const [categoryFormProperties, setCategoryFormProperties] = useState({
+    show:false,
+    initialValues:null,
+    disabled:false,
+    creatingMode:true
+  })
+
+  //products managment hook
   const {
     products,
     loading,
@@ -51,6 +65,22 @@ function ProductsManagment() {
     removeAllFilters:removeAllFilters
   });
 
+  //categories managment hook
+  const {
+    categories,
+    loadingCategories,
+    handleDeleteCategory,
+    handleDeleteMultipleCategories,
+    handleCreateCategory,
+    handleUpdateCategory
+  } = useManageCategories({
+    toastRef: toast,
+    setUpdateProducts: setUpdateProducts,
+    setSelectedCategories: setSelectedCategories,
+    removeAllFilters: removeAllFilters,
+    setCategoryFormProperties:setCategoryFormProperties
+  });
+
   return (
     <section className="products-managment-page">
       <Toast ref={toast} position="bottom-center" />
@@ -64,12 +94,22 @@ function ProductsManagment() {
         <h3>Gestión de Productos</h3>
       </section>
       <ProductsManagmentFiltersBar
+        loadingCategories={loadingCategories}
+        categories = {categories}
         handleDeleteMultipleProducts={handleDeleteMultipleProducts}
         selectedProducts={selectedProducts}
+        selectedCategories = {selectedCategories}
         toastRef={toast}
         setUpdateProducts={setUpdateProducts}
         removeAllFilters={removeAllFilters}
+        categoryFormProperties = {categoryFormProperties}
         setProductFormProperties={setProductFormProperties}
+        setSelectedCategories={setSelectedCategories}
+        setCategoryFormProperties = {setCategoryFormProperties}
+        handleCreateCategory = {handleCreateCategory}
+        handleUpdateCategory = {handleUpdateCategory}
+        handleDeleteCategory = {handleDeleteCategory}
+        handleDeleteMultipleCategories={handleDeleteMultipleCategories}
       />
       <ProductList
         products={products}
