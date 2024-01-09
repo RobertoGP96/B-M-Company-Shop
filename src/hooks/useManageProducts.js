@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { getProductsToManage } from "../services/ManageProducts/getProductsToManage";
 import { deleteProducts } from "../services/ManageProducts/deleteProducts";
+import { createProduct } from "../services/ManageProducts/createProduct";
+import {updateProduct} from "../services/ManageProducts/updateProduct";
 
-export function useManageProducts({ searchParams, toastRef, setSelectedProducts }) {
+export function useManageProducts({ searchParams, toastRef, setSelectedProducts, resetProductFormProperties, removeAllFilters }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0);
@@ -36,6 +38,16 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts 
         setNumOfProducts(0);
       });
   }, [searchParams, updateProducts]);
+
+  //update the product's list when is necesary
+  function handleSetUpdateProducts(){
+    if(searchParams.size == 0){
+      setUpdateProducts(prev => !prev)
+    }
+    else{
+      removeAllFilters()
+    }
+  }
 
   //delete one product by its id
   function handleDeleteProduct(productId) {
@@ -93,6 +105,79 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts 
             })
         }
     }
+    function handleCreateProduct({values}){
+      if(productInfoValid({values:values})){
+        createProduct({values:values})
+        .then(res => {
+          handleSetUpdateProducts()
+          setSelectedProducts([])
+          resetProductFormProperties()
+          showToast({
+            severity: "success",
+            summary: "Éxito",
+            detail: "Operación Exitosa",
+          });
+        })
+        .catch(err => {
+          showToast({
+            severity: "error",
+            summary: "Error",
+            detail: err.message,
+        })
+        })
+      }
+    }
+
+    function handleUpdateProduct({id, values}){
+      if(productInfoValid({values:values, creating:false})){
+        updateProduct({id:id, values:values})
+        .then(res => {
+          handleSetUpdateProducts()
+          setSelectedProducts([])
+          resetProductFormProperties()
+          showToast({
+            severity: "success",
+            summary: "Éxito",
+            detail: "Operación Exitosa",
+          });
+        })
+        .catch(err => {
+          showToast({
+            severity: "error",
+            summary: "Error",
+            detail: err.message,
+        })
+        })
+      }
+    }
+
+    function productInfoValid({values, creating = true}){
+      if(values.product_name == "" || values.product_name == null || values.product_name == undefined){
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Debes ingresar un nombre válido",
+        })
+        return false
+      }
+      if(values.precio == "" || values.precio == null || values.precio == undefined){
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Debes ingresar un precio válido",
+        })
+        return false
+      }
+      if(creating == true && (values.product_img1 == "" || values.product_img1 == null || values.product_img1 == undefined)){
+        showToast({
+          severity: "error",
+          summary: "Error",
+          detail: "Debes ingresar al menos la primera imagen",
+        })
+        return false
+      }
+      return true
+    }
 
   return {
     products,
@@ -103,6 +188,8 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts 
     setUpdateProducts,
     showToast,
     handleDeleteProduct,
-    handleDeleteMultipleProducts
+    handleDeleteMultipleProducts,
+    handleUpdateProduct,
+    handleCreateProduct
   };
 }

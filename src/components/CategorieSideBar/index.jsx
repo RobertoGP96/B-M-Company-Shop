@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect, useContext, Suspense } from "react";
-import { getCategories } from "../../services/getCategories";
 import QueryFilterContext from "../../context/filtersContext";
 import CategoryIcon from "../../assets/category-icon.svg";
 import CategoriesList from "./CategoriesList";
@@ -8,27 +7,21 @@ import { Dialog } from "primereact/dialog";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
 import "./index.css";
 
-function CategorieSideBar({forceMobileMode = false}) {
+function CategorieSideBar({forceMobileMode = false, loading, categories}) {
   const {mobileMode} = useIsMobileMode({forceMobileMode:forceMobileMode})
-  const [categories, setCategories] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
   const [showModal, setShowModal] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    getCategories().then((data) => {
-      setCategories(data);
-      setLoading(false);
-      setActiveCategory(getActiveFilter("categoria"));
-    });
-  }, []);
+  const [activeCategory, setActiveCategory] = useState(null);
+  const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
 
   function handleSetActiveCategory(category) {
     setActiveCategory(category);
     setShowModal(false);
   }
+
+  //everytime the categories change, update the active category
+  useEffect(() => {
+    setActiveCategory(getActiveFilter("categoria"));
+  },[categories])
 
   function getActiveCategoryName(){
     const matchedCategory = categories.find(category => category.id == getActiveFilter("categoria"));
@@ -52,6 +45,8 @@ function CategorieSideBar({forceMobileMode = false}) {
               visible={showModal}
               position="top"
               showHeader={false}
+              draggable = {false}
+              resizable = {false}
             >
               <button
                 className="modal-close-button btn-general-styles"

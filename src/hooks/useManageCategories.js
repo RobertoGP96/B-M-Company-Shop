@@ -6,7 +6,7 @@ import { updateCategory } from "../services/ManageCategories/updateCategory";
 
 export function useManageCategories({toastRef, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
   const [categories, setCategories] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingCategories, setLoading] = useState(false);
   const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
 
   const showToast = ({
@@ -36,14 +36,23 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
       });
   }, [updateCategories]);
 
+  //update the categories list when is necesary
+  function handleSetUpdateCategories(){
+    if(searchParams.size == 0){
+      setUpdateCategories(prev => !prev)
+    }
+    else{
+      removeAllFilters()
+    }
+  }
+
   //delete one product by its id
   function handleDeleteCategory(categoryId) {
     setLoading(true);
     deleteCategories({ categories: [categoryId] })
       .then((res) => {
-        setUpdateCategories((prev) => !prev);
+        handleSetUpdateCategories()
         setSelectedCategories([])
-        removeAllFilters()
         showToast({
           severity: "success",
           summary: "Éxito",
@@ -68,8 +77,7 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
             setLoading(true);
             deleteCategories({ categories: categoriesId })
               .then((res) => {
-                setUpdateCategories((prev) => !prev);
-                removeAllFilters()
+                handleSetUpdateCategories()
                 setSelectedCategories([])
                 showToast({
                   severity: "success",
@@ -149,7 +157,7 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
 
   return {
     categories,
-    loading,
+    loadingCategories,
     setLoading,
     updateCategories,
     setUpdateCategories,
