@@ -1,5 +1,4 @@
 
-
 import "./styles/infoPromotion.css";
 import React, { useState,useEffect } from "react";
 import { Dialog } from 'primereact/dialog';
@@ -7,8 +6,7 @@ import { updatePromotion } from "../../services/ManagePromotions/updatePromotion
 
 
 
-
-function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
+function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
     const [infoData,setInfoData] = useState({})
 
 
@@ -17,6 +15,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
     },[data])
 
     const handleOnchange = ( value,campo ) => {
+        
         var InfoDataCopy = {...infoData};
         InfoDataCopy[campo] = value;
        setInfoData(InfoDataCopy);
@@ -56,7 +55,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>Activado</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input defaultValue={infoData.active} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"active")}/> 
+                               <input defaultChecked={infoData.active} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"active")}/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">
@@ -64,7 +63,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>Es especial?</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input defaultValue={infoData.is_special} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"is_special")}/> 
+                               <input defaultChecked={infoData.is_special} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"is_special")}/> 
                             </div> 
                         </div>
                         </> }
@@ -75,7 +74,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>Nombre:</p>
                             </div>
                             <div  className="input-dialog-container">
-                               <input value={infoData.name} type="text" /> 
+                               <input value={infoData.name} type="text" readOnly/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">
@@ -83,7 +82,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>Descripción:</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input  value={infoData.description} type="text" /> 
+                               <input  value={infoData.description} type="text" readOnly/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">
@@ -91,7 +90,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>Descuento:</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input value={infoData.discount_in_percent} type="number" /> 
+                               <input value={infoData.discount_in_percent} type="number" readOnly/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">
@@ -99,7 +98,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>Activado:</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input value={infoData.active}  type="checkbox" /> 
+                               <input checked={infoData.active}  type="checkbox" readOnly/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">
@@ -107,7 +106,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                 <p>es especial?:</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input value={infoData.is_special}  type="checkbox" /> 
+                               <input checked={infoData.is_special}  type="checkbox" readOnly/> 
                             </div> 
                         </div>
                         </> }
@@ -124,19 +123,19 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,setData}){
                                                     discount_in_percent: infoData.discount_in_percent,
                                                     active: infoData.active,
                                                     is_special: infoData.is_special
-                                    }).then((result) => {
-                                        setData();
-                                        onHide();
+                                    }).then(() => {
+                                        onSave()
                                     });
-
+                                    
                                 }}
                             >
                                 Guardar
                             </button>
                             <button className="buttons-user-info" 
                                 onClick={()=>{
-                                    onHide()
-                                    setInfoData(data)
+                                    setInfoData(data);
+                                    onHide();
+                                    
                                 }}
                             >   
                                 Cancelar

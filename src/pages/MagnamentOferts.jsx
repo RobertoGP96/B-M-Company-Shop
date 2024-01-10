@@ -1,4 +1,5 @@
 import "./pagesStyles/MagnamentOfertsAndSecurity.css"
+import "./pagesStyles/PromotionItemTemplate.css"
 import FilterIcon from "../assets/oferts-magnament-filter.svg"
 import AddIcon from "../assets/oferts-magnament-add.svg"
 import DeleteIcon from"../assets/oferts-magnament-delete.svg"
@@ -9,10 +10,8 @@ import { Column } from 'primereact/column';
 import useWindowSize from "../hooks/useWindowSize";
 import { getPromotions } from "../services/ManagePromotions/getPromotions"
 import { DataScroller } from 'primereact/datascroller';
-import PromotionItemTemplate from "../components/PromotionItemTemplate"
-import InfoUserPromotion from "../components/InfoDialogComponent/infoPromotion"
+import InfoPromotion from "../components/InfoDialogComponent/infoPromotion"
         
-
 
 
 const headerTableStyle={
@@ -43,7 +42,7 @@ const nameTamplate = (data) => {
 function MagnamentOferts(){
     const [selectedProducts, setSelectedProducts] = useState(null);
     const mobileView = useWindowSize("max",800)
-    const [dataOferts, setDataOferts] = useState(null);
+    const [dataOferts, setDataOferts] = useState([]);
     const responsive = useWindowSize("max",600)
     const [infoDialogStatus,setInfoDialogStatus] = useState(false)
     const [infoDialogEdit,setInfoDialogEdit] = useState(false)
@@ -51,10 +50,9 @@ function MagnamentOferts(){
 
     useEffect(()=>{
         getPromotions().then((result)=>{
-            console.log(result)
             setDataOferts(result.results)
         })
-    },[])
+    },[rowData])
     
     const acciones = (data) => {
 
@@ -80,19 +78,66 @@ function MagnamentOferts(){
             </div>
         )
     }
-    const handleOnChangeRowData = () => {
-        getPromotions().then((result)=>{
-        setDataOferts(result.results)
-    })}
-    const handleOnClickInfoButton = ()=>{setInfoDialogStatus(!infoDialogStatus)};
-    const handleOnClickEditButton = ()=>{setInfoDialogEdit(!infoDialogEdit)};
+
+    
+function PromotionItemTemplate(data) {
+    return(
+        <section className="promotion-card-container">
+            <div className="img-promotion-card-section">
+                <div className="img-promotion-container">
+                    <img src={data.img} alt={data.name} />
+                    <p className="description-promotion-text">Descripción</p>
+                    <p className="description-promotion">{data.description}</p>
+                </div>
+            </div>
+            <div className="details-prmotion-card-section">
+                <p className="mame-promotion">{data.name}</p>   
+                <p className="total-products-promotion">{`Productos: ${data.cantidad_products}`}</p>
+                <div className="discount-promotion-container">
+                    <p className="price">{`-${data.discount_in_percent}%`}</p>
+                </div>
+            </div>
+            <div className="accion-promotion-card-section">
+                <button className="oferts-actions-table-button"
+                        onClick={()=>{
+                            setRowData(data);
+                            handleOnClickEditButton();
+                        }}
+                >
+                        <i className="pi pi-pencil icon-oferts-table"></i>
+                </button>
+                <button className="oferts-actions-table-button" 
+                    onClick={()=>{
+                        setRowData(data)
+                        handleOnClickInfoButton()
+                    }}
+                >
+                    <i className="pi pi-eye icon-oferts-table" ></i>
+                </button>
+                <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
+            </div>
+        </section>
+    )
+
+    }
+
+    
+    const handleOnChangeData = () => {
+        
+        getPromotions().then((promotions) => {
+            setDataOferts(promotions.results);
+            handleOnClickEditButton();
+        })
+    };
+    const handleOnClickInfoButton = () => {setInfoDialogStatus(!infoDialogStatus)};
+    const handleOnClickEditButton = () => {setInfoDialogEdit(!infoDialogEdit)};
 
 
     return(
         <section className="magnament-oferts-container">
 
-            <InfoUserPromotion editable={false} heaerTitle={"Información de promocion"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} setData={handleOnChangeRowData}/>
-            <InfoUserPromotion editable={true} heaerTitle={"Editar información de promocion"}data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
+            <InfoPromotion editable={false} heaerTitle={"Información de promocion"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} />
+            <InfoPromotion editable={true} onSave={handleOnChangeData} heaerTitle={"Editar información de promocion"}data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
           
 
             {/* Titulo de la pagina*/}

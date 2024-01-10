@@ -4,7 +4,7 @@ import React, { useState,useEffect } from "react";
 import { Dialog } from 'primereact/dialog';
 
 
-function InfoUserSecurity({visible,onHide,data,editable,heaerTitle,setData}){
+function InfoUserSecurity({visible,onHide,data,editable,heaerTitle,onHide2}){
     const [infoData,setInfoData] = useState({})
     
 
