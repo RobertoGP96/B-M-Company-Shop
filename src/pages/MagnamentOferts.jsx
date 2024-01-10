@@ -10,6 +10,7 @@ import useWindowSize from "../hooks/useWindowSize";
 import { getPromotions } from "../services/ManagePromotions/getPromotions"
 import { DataScroller } from 'primereact/datascroller';
 import PromotionItemTemplate from "../components/PromotionItemTemplate"
+import InfoUserPromotion from "../components/InfoDialogComponent/infoPromotion"
         
 
 
@@ -36,16 +37,6 @@ const nameTamplate = (data) => {
 };
 
 
-const acciones = () => {
-
-    return(
-        <div className="acctions-oferts-table-container">
-            <button className="oferts-actions-table-button"><i className="pi pi-pencil icon-oferts-table"></i></button>
-            <button className="oferts-actions-table-button"><i className="pi pi-eye icon-oferts-table"></i></button>
-            <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
-        </div>
-    )
-}
   
 
 
@@ -54,6 +45,9 @@ function MagnamentOferts(){
     const mobileView = useWindowSize("max",800)
     const [dataOferts, setDataOferts] = useState(null);
     const responsive = useWindowSize("max",600)
+    const [infoDialogStatus,setInfoDialogStatus] = useState(false)
+    const [infoDialogEdit,setInfoDialogEdit] = useState(false)
+    const [rowData, setRowData] = useState({})  
 
     useEffect(()=>{
         getPromotions().then((result)=>{
@@ -61,9 +55,46 @@ function MagnamentOferts(){
             setDataOferts(result.results)
         })
     },[])
+    
+    const acciones = (data) => {
+
+        return(
+            <div className="acctions-oferts-table-container">
+                <button className="oferts-actions-table-button"
+                        onClick={()=>{
+                            setRowData(data)
+                            handleOnClickEditButton()
+                        }}
+                >
+                        <i className="pi pi-pencil icon-oferts-table"></i>
+                </button>
+                <button className="oferts-actions-table-button" 
+                    onClick={()=>{
+                        setRowData(data)
+                        handleOnClickInfoButton()
+                    }}
+                >
+                    <i className="pi pi-eye icon-oferts-table" ></i>
+                </button>
+                <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
+            </div>
+        )
+    }
+    const handleOnChangeRowData = () => {
+        getPromotions().then((result)=>{
+        setDataOferts(result.results)
+    })}
+    const handleOnClickInfoButton = ()=>{setInfoDialogStatus(!infoDialogStatus)};
+    const handleOnClickEditButton = ()=>{setInfoDialogEdit(!infoDialogEdit)};
+
 
     return(
         <section className="magnament-oferts-container">
+
+            <InfoUserPromotion editable={false} heaerTitle={"Información de promocion"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} setData={handleOnChangeRowData}/>
+            <InfoUserPromotion editable={true} heaerTitle={"Editar información de promocion"}data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
+          
+
             {/* Titulo de la pagina*/}
             <header><h1>Gestión de Ofertas</h1></header>
             {/* Seccion de la barra de busqueda */}
@@ -94,6 +125,7 @@ function MagnamentOferts(){
             <section  className={"table-oferts-container"}>
                { !mobileView ?<DataTable 
                     className="data-table-oferts"
+                    
                     value={dataOferts} 
                     stripedRows 
                     paginator rows={5} 
@@ -127,7 +159,7 @@ function MagnamentOferts(){
                     itemTemplate={PromotionItemTemplate} 
                     rows={5} inline 
                     scrollHeight="500px" 
-                    header="Scroll Down to Load More" />
+                    header="Listado de Ofertas" />
                 }
             </section>
             

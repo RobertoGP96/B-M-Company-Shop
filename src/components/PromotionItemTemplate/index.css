@@ -6,20 +6,24 @@
     gap: 5px;
     font-size: small;
     line-height: normal;
+    font-family: Noto Sans;
+    padding: 5px;
 }
 
 
 .img-promotion-card-section{
     padding:10px; 
     width: 40%; 
+    margin: auto;
+    min-width: 150px;
+    text-align: left;
 }
 
 .img-promotion-container{
-    width: 100px;
-    height: 100px;
-    
-    
+    width: 100%;
+    min-width: 135px;
 }
+
 .img-promotion-container img{
     border-radius: 6px;
     width: 100%;
@@ -30,7 +34,37 @@
 
 .details-prmotion-card-section{
     width: 45%;
-    margin: auto;
+    text-align: left;
+    min-width: 110px;    
+}
+
+.mame-promotion{
+    font-size: large;
+    
+}
+
+.description-promotion{
+
+    margin-block: 0px;
+}
+.description-promotion-text{
+    font-size: xx-small;
+    margin-block: 0px;
+}
+
+.discount-promotion-container{
+    border-radius: 5px;
+    background-color: rgba(0, 95, 55, 0.7);
+    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 4px 0px rgba(2, 68, 27, 0.7);
+    
+}
+
+.discount-promotion-container p{
+    font-size: medium;
 }
 
 .accion-promotion-card-section{
@@ -45,5 +79,5 @@
 
 
 .accion-promotion-card-section button i{
-    font-size:x-large;
+    font-size:medium;
 }

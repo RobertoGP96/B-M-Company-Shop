@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import useWindowSize from "../hooks/useWindowSize";
-import InfoUser from "../components/InfoUser"
+import InfoUserSecurity from "../components/InfoDialogComponent/infoUserSecurity"
 
 
 const headerTableStyle={
@@ -68,7 +68,8 @@ function MagnamentSecurity(){
     const responsive = useWindowSize("max",600)
     const [infoDialogStatus,setInfoDialogStatus] = useState(false)
     const [infoDialogEdit,setInfoDialogEdit] = useState(false)
-    const [rowData, setRowData] = useState({name: '', email: '', phone: '',password: ''})   
+    const [rowData, setRowData] = useState({})   
+
 
     const acciones = (data) => {
 
@@ -102,8 +103,8 @@ function MagnamentSecurity(){
     return(
         <section className="magnament-oferts-container">
             
-            <InfoUser editable={false} heaerTitle={"Información de usuario"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} setData={handleOnChangeRowData}/>
-            <InfoUser editable={true} heaerTitle={"Editar información de usuario"}data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
+            <InfoUserSecurity editable={false} heaerTitle={"Información de usuario"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} setData={()=>{handleOnChangeRowData}}/>
+            <InfoUserSecurity editable={true} heaerTitle={"Editar información de usuario"}data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
             
             {/* Titulo de la pagina*/}
             <header><h1>Gestión de Seguridad</h1></header>

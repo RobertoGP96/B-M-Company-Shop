@@ -1,5 +1,7 @@
 
 
+
+
 .magnament-oferts-container{
     padding-top: 20px;
     height: 100vh;
@@ -90,6 +92,11 @@
     justify-content: center;
     gap: 5px;
     border-style: none;
+    border-top: 2px solid #545454 !important;
+    border-left: 2px solid #545454 !important;
+    border-right: 1px solid rgb(63, 63, 63) !important;
+    border-bottom: 1px solid rgb(44, 44, 44) !important;
+    box-shadow: 2px 2px 2px 0px rgba(48, 48, 48, 0.7);
 }
 
 .search-oferts-container button:hover{
