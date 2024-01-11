@@ -1,6 +1,6 @@
 @font-face {
    font-family: "NotoSans";
-   src: url("../../assets/fonts/NotoSans.ttf") format("truetype");
+   src: url("../../assets/fonts/NotoSans-Regular.woff2");
  }
 
 .home-container{
