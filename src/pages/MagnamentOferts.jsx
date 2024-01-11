@@ -13,6 +13,7 @@ import { DataScroller } from 'primereact/datascroller';
 import InfoPromotion from "../components/InfoDialogComponent/infoPromotion"
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
 import { deletePromotions } from "../services/ManagePromotions/deletePrmotion"
+import { Toast } from 'primereact/toast';
         
 
 
@@ -50,6 +51,7 @@ function MagnamentOferts(){
     const [infoDialogEdit,setInfoDialogEdit] = useState(false)
     const [infoDialogCreate,setInfoDialogCreate] = useState(false)
     const [rowData, setRowData] = useState({})  
+    const toast = useRef(null)
   
 
     useEffect(()=>{
@@ -57,7 +59,13 @@ function MagnamentOferts(){
             setDataOferts(result.results)
         })
     },[rowData])
-    
+
+
+    const show = () => {
+        toast.current.show({ severity: 'success', summary: '', detail:'Eliminación completada'} );
+    };   
+
+
     const acciones = (data) => {
 
         return(
@@ -79,7 +87,10 @@ function MagnamentOferts(){
                     <i className="pi pi-eye icon-oferts-table" ></i>
                 </button>
                 <button className="oferts-actions-table-button"
-                    onClick={confirm2}
+                    onClick={()=>{
+                        confirm2(data.id)
+
+                    }}
                 >
                     <i className="pi pi-trash icon-oferts-table"></i>
                 </button>
@@ -123,7 +134,10 @@ function PromotionItemTemplate(data) {
                     <i className="pi pi-eye icon-oferts-table" ></i>
                 </button>
                 <button className="oferts-actions-table-button"
-                    onClick={()=>confirm2(data.id)}
+                    onClick={()=>{
+                        confirm2(data.id)
+                        
+                    }}
                 >
                     <i className="pi pi-trash icon-oferts-table"></i>
                 </button>
@@ -139,8 +153,12 @@ function PromotionItemTemplate(data) {
             icon: 'pi pi-info-circle',
             acceptClassName: 'p-button-danger',
             accept:()=>{
-                    deletePromotions({promotions:[id]}).then((result)=>{
-                        console.log(result);
+                console.log(id)
+                    deletePromotions({promotions:[id]}).then(()=>{
+                        getPromotions().then((result)=>{
+                            setDataOferts(result.results)
+                            show();
+                        })
                     });
             },
             reject:()=>{},
@@ -160,6 +178,7 @@ function PromotionItemTemplate(data) {
 
     return(
         <section className="magnament-oferts-container">
+            <Toast ref={toast}/>
             <ConfirmDialog/>
             <InfoPromotion editable={false} heaerTitle={"Información de promocion"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} />
             <InfoPromotion accion={"update"}editable={true} onSave={handleOnChangeData} heaerTitle={"Editar información de promocion"} data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>

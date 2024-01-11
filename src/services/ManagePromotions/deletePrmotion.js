@@ -8,7 +8,7 @@ export function deletePromotions({promotions, token = ""}){
                 //Authorization: `Token ${token}`,
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({oferts_to_delete:promotions})
+            body: JSON.stringify({promotions_to_delete:promotions})
         })
         .then(response => {
             if(response.status == 200){
