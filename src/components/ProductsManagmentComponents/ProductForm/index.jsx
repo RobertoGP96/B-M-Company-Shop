@@ -7,7 +7,6 @@ import { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { useEffect } from "react";
 import "./index.css";
-import { getInitialValues } from "../../../utils/productInitialValues";
 
 function ProductForm({
   productFormProperties,
