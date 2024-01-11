@@ -29,7 +29,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave,accion}){
     },[data])
 
     const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Completado', detail: accion=="update"?'Datos actualizados':"Datos Añadidos"} );
+        toast.current.show({ severity: 'success', summary: '', detail: accion=="update"?'Datos actualizados':"Datos Añadidos"} );
     };   
 
     const handleOnchange = ( value,campo ) => {

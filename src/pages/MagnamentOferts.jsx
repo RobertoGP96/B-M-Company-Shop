@@ -11,6 +11,7 @@ import useWindowSize from "../hooks/useWindowSize";
 import { getPromotions } from "../services/ManagePromotions/getPromotions"
 import { DataScroller } from 'primereact/datascroller';
 import InfoPromotion from "../components/InfoDialogComponent/infoPromotion"
+import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
         
 
 
@@ -48,7 +49,7 @@ function MagnamentOferts(){
     const [infoDialogEdit,setInfoDialogEdit] = useState(false)
     const [infoDialogCreate,setInfoDialogCreate] = useState(false)
     const [rowData, setRowData] = useState({})  
-    const ds = useRef(null) 
+  
 
     useEffect(()=>{
         getPromotions().then((result)=>{
@@ -122,7 +123,16 @@ function PromotionItemTemplate(data) {
     )
 
     }
-
+    const confirm2 = () => {
+        confirmDialog({
+            message: 'Do you want to delete this record?',
+            header: 'Delete Confirmation',
+            icon: 'pi pi-info-circle',
+            acceptClassName: 'p-button-danger',
+            accept:()=>{},
+            reject:()=>{},
+        });
+    };
     
     const handleOnChangeData = () => {
         
@@ -137,7 +147,7 @@ function PromotionItemTemplate(data) {
 
     return(
         <section className="magnament-oferts-container">
-
+            <ConfirmDialog/>
             <InfoPromotion editable={false} heaerTitle={"Información de promocion"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} />
             <InfoPromotion accion={"update"}editable={true} onSave={handleOnChangeData} heaerTitle={"Editar información de promocion"} data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
             <InfoPromotion accion={"create"} editable={true} onSave={handleOnChangeData} heaerTitle={"Editar información de promocion"} data={{}} visible={infoDialogCreate} onHide={handleOnClickCreateButton}/>
@@ -164,7 +174,7 @@ function PromotionItemTemplate(data) {
                     <p>Agregar</p>
                 </button>
 
-                <button className="search-oferts-button">
+                <button className="search-oferts-button" onClick={confirm2}>
                     <img src={DeleteIcon} alt="delete" width={"13px"}/>
                     <p>Eliminar</p>
                 </button>
