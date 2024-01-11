@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Noto Sans";
-    src: url("../../fonts/NotoSans.ttf") format("truetype");
+    src: url("../../assets/fonts/NotoSans.ttf") format("truetype");
 }
 
 .products-managment-page{
@@ -24,7 +24,7 @@
 .products-managment-go-back-button{
     width: 26px;
     height: 30px;
-    background-color: rgba(84, 84, 84, 1);
+    background-color: rgba(84, 84, 84, 1)!important;
     border-radius: 5px;
     cursor: pointer;
     display: flex;

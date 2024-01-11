@@ -1,0 +1,29 @@
+.product-form{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-form-field{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.product-form-field input{
+    width: 100%;
+}
+
+.product-form button{
+    margin-top:10px;
+    background:rgba(84, 84, 84, 1);
+}
+
+.product-form-active-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap:10px;
+    align-items: center;
+    margin-top: 10px;
+}

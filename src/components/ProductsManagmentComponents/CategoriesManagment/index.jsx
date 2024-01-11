@@ -1,26 +1,113 @@
+import { Dialog } from "primereact/dialog";
+import Loader from "../../Loader";
+import { ConfirmDialog } from "primereact/confirmdialog";
+import { useState } from "react";
+import CategoriesForm from "./CategoriesForm";
+import CategoriesDatatable from "./CategoriesDatatable";
+import ButtonsAddAndDelete from "./ButtonsAddAndDelete";
 import TagIcon from "../../../assets/tag-icon.svg";
 import "./index.css";
-import { useState } from "react";
-import React from "react";
-import CategoriesManagmentModal from "./CategoriesManagmentModal";
 
-function CategoriesManagment({ toastRef, setUpdateProducts }) {
-  const [showModal, setShowModal] = useState(false);
+function CategoriesManagment({
+  loadingCategories,
+  categories,
+  selectedCategories,
+  setSelectedCategories,
+  categoryFormProperties,
+  setCategoryFormProperties,
+  handleCreateCategory,
+  handleUpdateCategory,
+  handleDeleteCategory,
+  handleDeleteMultipleCategories
+}) {
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const [show, setShow] = useState(false);
+
+  function processUpdateCategory({ id, nombre }) {
+    setCategoryFormProperties((prev) => ({
+      ...prev,
+      show: true,
+      creatingMode: false,
+      initialValues: {
+        id: id,
+        name: nombre,
+      },
+      disabled: false,
+    }));
+  }
+
+  function processDetailCategory({ id, nombre }) {
+    setCategoryFormProperties((prev) => ({
+      ...prev,
+      show: true,
+      creatingMode: false,
+      initialValues: {
+        id: id,
+        name: nombre,
+      },
+      disabled: true,
+    }));
+  }
+
   return (
     <section>
       <button
         className="products-managment-filters-bar-button btn-general-styles"
-        onClick={() => setShowModal(true)}
+        onClick={() => setShow(true)}
       >
         <img src={TagIcon} />
         <span>Categorias</span>
       </button>
-      <CategoriesManagmentModal
-        show={showModal}
-        setShow={setShowModal}
-        toastRef={toastRef}
-        setUpdateProducts={setUpdateProducts}
-      />
+      <Dialog
+        header={"Administracion de Categorías"}
+        visible={show}
+        position={"top"}
+        onHide={() => setShow(false)}
+        style={{ maxWidth: "100vw" }}
+        draggable={false}
+        resizable={false}
+      >
+        <section className="categories-managment-modal-content-container">
+          {loadingCategories ? (
+            <section className="categories-managment-list-loader-container">
+              <div>
+                <Loader />
+              </div>
+            </section>
+          ) : null}
+          <section>
+            <ConfirmDialog
+              visible={showConfirmDialog}
+              onHide={() => setShowConfirmDialog(false)}
+              acceptClassName="p-button-danger"
+              acceptLabel="Aceptar"
+              rejectLabel="Cancelar"
+              message="Deseas continuar con la operación?"
+              header="Confirmación"
+              icon="pi pi-exclamation-triangle"
+              accept={() => handleDeleteMultipleCategories(selectedCategories)}
+            />
+            <CategoriesForm
+              categoryFormProperties={categoryFormProperties}
+              setCategoryFormProperties={setCategoryFormProperties}
+              handleCreateCategory={handleCreateCategory}
+              handleUpdateCategory={handleUpdateCategory}
+            />
+            <ButtonsAddAndDelete
+              setCategoryFormProperties={setCategoryFormProperties}
+              setShowConfirmDialog={setShowConfirmDialog}
+            />
+            <CategoriesDatatable
+              categories={categories}
+              selectedCategories={selectedCategories}
+              setSelectedCategories={setSelectedCategories}
+              handleDeleteCategory={handleDeleteCategory}
+              processUpdateCategory={processUpdateCategory}
+              processDetailCategory={processDetailCategory}
+            />
+          </section>
+        </section>
+      </Dialog>
     </section>
   );
 }
