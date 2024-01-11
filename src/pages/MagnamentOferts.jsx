@@ -12,6 +12,7 @@ import { getPromotions } from "../services/ManagePromotions/getPromotions"
 import { DataScroller } from 'primereact/datascroller';
 import InfoPromotion from "../components/InfoDialogComponent/infoPromotion"
 import { ConfirmDialog, confirmDialog } from 'primereact/confirmdialog';
+import { deletePromotions } from "../services/ManagePromotions/deletePrmotion"
         
 
 
@@ -77,7 +78,11 @@ function MagnamentOferts(){
                 >
                     <i className="pi pi-eye icon-oferts-table" ></i>
                 </button>
-                <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
+                <button className="oferts-actions-table-button"
+                    onClick={confirm2}
+                >
+                    <i className="pi pi-trash icon-oferts-table"></i>
+                </button>
             </div>
         )
     }
@@ -117,19 +122,27 @@ function PromotionItemTemplate(data) {
                 >
                     <i className="pi pi-eye icon-oferts-table" ></i>
                 </button>
-                <button className="oferts-actions-table-button"><i className="pi pi-trash icon-oferts-table"></i></button>
+                <button className="oferts-actions-table-button"
+                    onClick={()=>confirm2(data.id)}
+                >
+                    <i className="pi pi-trash icon-oferts-table"></i>
+                </button>
             </div>
         </section>
     )
 
     }
-    const confirm2 = () => {
+    const confirm2 = (id) => {
         confirmDialog({
             message: 'Do you want to delete this record?',
             header: 'Delete Confirmation',
             icon: 'pi pi-info-circle',
             acceptClassName: 'p-button-danger',
-            accept:()=>{},
+            accept:()=>{
+                    deletePromotions({promotions:[id]}).then((result)=>{
+                        console.log(result);
+                    });
+            },
             reject:()=>{},
         });
     };
