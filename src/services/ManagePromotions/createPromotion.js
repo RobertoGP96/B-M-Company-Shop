@@ -2,7 +2,7 @@ import { URL_MANAGE_PROMOTIONS } from "../../settings"
 
 export function createPromotion({name,description,discount_in_percent,img,active,is_special}){
     let formData = new FormData();
-    formData.append('nombre', name);
+    formData.append('name', name);
     formData.append('description', description);
     formData.append('discount_in_percent', discount_in_percent);
     active !== undefined ?formData.append('active', active):false;
