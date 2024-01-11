@@ -8,8 +8,7 @@ import { Menu } from "primereact/menu";
 import { useRef } from "react";
 import "primeicons/primeicons.css";
 import { useLocation } from "react-router-dom";
-import LogoImage from "../../assets/B & M image.png"
-import CompanyImage from "../../assets/company image.png"
+import CompanyImage from "../../assets/B&MCshop-logo.svg"
 import HomeIcon from "../../assets/home.svg"
 import StoreIcon from "../../assets/tiendaIcon.svg"
 import ProductsIcon from "../../assets/productsIcon.svg"
@@ -77,18 +76,9 @@ function NavBar() {
               <Link to = "/">
                 <figure>
                   <img
-                    src={LogoImage}
+                    src={CompanyImage}
                     width={127}
                     height={45}
-                  ></img>
-                </figure>
-              </Link>
-              <Link to = "/">
-                <figure>
-                  <img
-                    src={CompanyImage}
-                    width={91}
-                    height={41}
                   ></img>
                 </figure>
               </Link>
@@ -189,16 +179,9 @@ function NavBar() {
               <div className="companyName-conteiner">
                 <figure>
                   <img
-                    src={LogoImage}
+                    src={CompanyImage}
                     width={127}
                     height={45}
-                  ></img>
-                </figure>
-                <figure>
-                  <img
-                    src={CompanyImage}
-                    width={91}
-                    height={41}
                   ></img>
                 </figure>
               </div>
