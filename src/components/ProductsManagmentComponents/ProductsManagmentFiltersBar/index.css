@@ -56,9 +56,9 @@
 }
 .view-toggle-container img{
     cursor: pointer;
-    width: 30px;
+    width: 40px;
     height: 30px;
-    margin-top:4px
+    margin-top:2px
 }
 .filters-modal-button-container{
     height: 35px;

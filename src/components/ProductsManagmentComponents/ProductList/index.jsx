@@ -4,16 +4,12 @@ import ActiveStatusIcon from "../../../assets/active-status-icon.svg";
 import DeactiveStatusIcon from "../../../assets/deactive-status-icon.svg";
 import BoxIcon from "../../../assets/box-icon.svg";
 import ActionButtons from "./ActionButtons";
-import "./index.css";
-import Paginator from "../../Paginator";
 import Loader from "../../Loader";
 import BlockIcon from '../../../assets/block-icon.svg'
+import "./index.css";
 
 function ProductList({
   products,
-  numOfProducts,
-  setFilter,
-  getActiveFilter,
   loading,
   selectedProducts,
   setSelectedProducts,
@@ -95,12 +91,6 @@ function ProductList({
           }}
         ></Column>
       </DataTable>
-      <Paginator
-        numOfProducts={numOfProducts}
-        setFilter={setFilter}
-        getActiveFilter={getActiveFilter}
-        products={products}
-      />
     </section>
   );
 }

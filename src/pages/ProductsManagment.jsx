@@ -1,19 +1,24 @@
-import { useState, useContext, useRef } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import "./pagesStyles/ProductsManagment.css";
 import "primeicons/primeicons.css";
 import BackArrow from "../assets/products-managment-back-icon.svg";
 import ProductsManagmentFiltersBar from "../components/ProductsManagmentComponents/ProductsManagmentFiltersBar";
 import ProductList from "../components/ProductsManagmentComponents/ProductList";
+import ProductsGrid from "../components/ProductsManagmentComponents/ProductsGrid";
 import QueryFiltersContext from "../context/filtersContext";
 import { useManageProducts } from "../hooks/useManageProducts";
+import Paginator from "../components/Paginator";
 import { Toast } from "primereact/toast";
 import { useManageCategories } from "../hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
+import { useIsMobileMode } from "../hooks/useIsMobileMode";
 
 function ProductsManagment() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [listView, setListView] = useState(true);
+  const {mobileMode} = useIsMobileMode({})
   const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
   useContext(QueryFiltersContext);
 
@@ -99,6 +104,16 @@ function ProductsManagment() {
     }));
   }
 
+  //effect to change the view type to grid or list depending of the mobileMode
+  useEffect(() => {
+    if(mobileMode){
+      setListView(false)
+    }
+    else{
+      setListView(true)
+    }
+  },[mobileMode])
+
   return (
     <section className="products-managment-page">
       <Toast ref={toast} position="bottom-center" />
@@ -113,6 +128,8 @@ function ProductsManagment() {
       </section>
       <ProductsManagmentFiltersBar
         loadingCategories={loadingCategories}
+        listView={listView}
+        setListView = {setListView}
         categories = {categories}
         handleDeleteMultipleProducts={handleDeleteMultipleProducts}
         selectedProducts={selectedProducts}
@@ -133,17 +150,31 @@ function ProductsManagment() {
         handleCreateProduct = {handleCreateProduct}
         handleUpdateProduct = {handleUpdateProduct}
       />
+      {listView?
       <ProductList
         products={products}
-        numOfProducts={numOfProducts}
-        setFilter={setFilter}
-        getActiveFilter={getActiveFilter}
         loading={loading}
         selectedProducts={selectedProducts}
         setSelectedProducts={setSelectedProducts}
         handleDeleteProduct={handleDeleteProduct}
         processDetailProduct = {processDetailProduct}
         processUpdateProduct = {processUpdateProduct}
+      />:
+      <ProductsGrid 
+        products={products}
+        loading={loading}
+        selectedProducts={selectedProducts}
+        setSelectedProducts={setSelectedProducts}
+        handleDeleteProduct={handleDeleteProduct}
+        processDetailProduct = {processDetailProduct}
+        processUpdateProduct = {processUpdateProduct}
+        />
+      }
+      <Paginator
+        numOfProducts={numOfProducts}
+        setFilter={setFilter}
+        getActiveFilter={getActiveFilter}
+        products={products}
       />
     </section>
   );
