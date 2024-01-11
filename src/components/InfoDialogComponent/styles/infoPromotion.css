@@ -2,7 +2,7 @@
 
 
 .info-dialog-promotion{
-    width: 380px;
+    width: 340px;
     height: 310px; 
 }
 
@@ -15,6 +15,7 @@
     padding:3px 8px;
     background-color: #545454;
     color: white;
+    font-variant: small-caps;
 }
 .info-dialog-promotion .p-dialog-title{
     font-size: 0.8rem;
@@ -60,7 +61,7 @@
     justify-content: left;
     border-radius: 5px;
     background: rgba(217, 217, 217, 0.16);  
-    width: 170px;   
+    width: 200px;   
 }
 
 .info-dialog-form input{

@@ -1,18 +1,36 @@
 
 import "./styles/infoPromotion.css";
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { Dialog } from 'primereact/dialog';
 import { updatePromotion } from "../../services/ManagePromotions/updatePromotion";
+import { createPromotion } from "../../services/ManagePromotions/createPromotion";
+import { Toast } from 'primereact/toast';
 
 
 
-function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
-    const [infoData,setInfoData] = useState({})
 
+function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave,accion}){
+    const [infoData,setInfoData] = useState(
+        {name:"",
+        description:"",
+        discount_in_percent:"",
+        active:false,
+        is_special:false,
+    })
+    const toast = useRef(null);
+
+                                
 
     useEffect(()=>{
-        setInfoData(data);
+        if (data!==null){
+            setInfoData(data);
+        }
+        
     },[data])
+
+    const show = () => {
+        toast.current.show({ severity: 'success', summary: 'Completado', detail: accion=="update"?'Datos actualizados':"Datos Añadidos"} );
+    };   
 
     const handleOnchange = ( value,campo ) => {
         console.log(value)
@@ -20,16 +38,23 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
         InfoDataCopy[campo] = value;
        setInfoData(InfoDataCopy);
     }
+    const handleOnChecked = (campo) => {
+        var InfoDataCopy = {...infoData};
+        InfoDataCopy[campo] = !InfoDataCopy[campo];
+       setInfoData(InfoDataCopy);
+    }
+
 
 
     return(
         <section className = "info-promotion-container">
+            <Toast ref={toast}/>
            <Dialog visible={visible} className="info-dialog-promotion" header={heaerTitle} onHide={()=>onHide()}>
                 <form onSubmit={(event)=>event.preventDefault()} className="info-dialog-form">
                      {  editable && <>
                         <div className="input-info-dialog">
                             <div className="p-dialog-container">
-                                <p>Nombre:</p>
+                                <p>Nombre</p>
                             </div>
                             <div  className="input-dialog-container">
                                <input defaultValue={infoData.name} type="text" onChange={(e)=>handleOnchange(e.target.value,"name")}/> 
@@ -37,7 +62,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                         </div>
                         <div className="input-info-dialog">
                             <div className="p-dialog-container" >
-                                <p>Descripción:</p>
+                                <p>Descripción</p>
                             </div>
                             <div className="input-dialog-container">
                                <input  defaultValue={infoData.description} type="text" onChange={(e)=>handleOnchange(e.target.value,"description")}/> 
@@ -45,7 +70,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                         </div>
                         <div className="input-info-dialog">
                             <div className="p-dialog-container" >
-                                <p>Descuento:</p>
+                                <p>Descuento</p>
                             </div>
                             <div className="input-dialog-container">
                                <input defaultValue={infoData.discount_in_percent} type="number" onChange={(e)=>handleOnchange(e.target.value,"discount_in_percent")}/> 
@@ -56,15 +81,15 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                                 <p>Activado</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input defaultChecked={Boolean(infoData.active)} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"active")}/> 
+                               <input checked={infoData.active} type="checkbox" onChange={()=>handleOnChecked("active")}/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">
                             <div className="p-dialog-container">
-                                <p>Es especial?</p>
+                                <p>Especial</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input defaultChecked={Boolean(infoData.is_special)} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"is_special")}/> 
+                               <input checked={infoData.is_special} type="checkbox" onChange={()=>handleOnChecked("is_special")}/> 
                             </div> 
                         </div>
                         </> }
@@ -80,7 +105,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                         </div>
                         <div className="input-info-dialog">
                             <div className="p-dialog-container">
-                                <p>Descripción:</p>
+                                <p>Descripción</p>
                             </div>
                             <div className="input-dialog-container">
                                <input  value={infoData.description} type="text" readOnly/> 
@@ -96,7 +121,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                         </div>
                         <div className="input-info-dialog">
                             <div className="p-dialog-container">
-                                <p>Activado:</p>
+                                <p>Activado</p>
                             </div>
                             <div className="input-dialog-container">
                                <input checked={infoData.active}  type="checkbox" readOnly/> 
@@ -104,7 +129,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                         </div>
                         <div className="input-info-dialog">
                             <div className="p-dialog-container">
-                                <p>es especial?:</p>
+                                <p>Especial</p>
                             </div>
                             <div className="input-dialog-container">
                                <input checked={infoData.is_special}  type="checkbox" readOnly/> 
@@ -118,19 +143,36 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                             <button className="buttons-user-info"
                                 onClick={()=>{
                                     console.log(infoData)
-                                    updatePromotion({id: infoData.id, 
-                                                    name: infoData.name,
-                                                    description:infoData.description,
-                                                    discount_in_percent: infoData.discount_in_percent,
-                                                    active: infoData.active,
-                                                    is_special: infoData.is_special
-                                    }).then(() => {
-                                        onSave()
-                                    });
+                                    if (accion=="update"){
+                                        updatePromotion({id: infoData.id, 
+                                                        name: infoData.name,
+                                                        description:infoData.description,
+                                                        discount_in_percent: infoData.discount_in_percent,
+                                                        active: infoData.active,
+                                                        is_special: infoData.is_special
+                                        }).then(() => {
+                                            onSave()
+                                            show()
+                                            onHide();
+                                        });
+                                    }
+                                    else{
+                                        createPromotion({name: infoData.name,
+                                                        description:infoData.description,
+                                                        discount_in_percent: infoData.discount_in_percent,
+                                                        active: infoData.active,
+                                                        is_special: infoData.is_special
+                                        }).then(() => {
+                                            onSave()
+                                            show()
+                                            onHide();
+                                        });
+                                    }
+
                                     
                                 }}
                             >
-                                Guardar
+                                {data ?"Guardar":"Aceptar"}
                             </button>
                             <button className="buttons-user-info" 
                                 onClick={()=>{

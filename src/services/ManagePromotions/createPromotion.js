@@ -5,8 +5,8 @@ export function createPromotion({name,description,discount_in_percent,img,active
     formData.append('nombre', name);
     formData.append('description', description);
     formData.append('discount_in_percent', discount_in_percent);
-    formData.append('active', active);
-    formData.append('is_special', is_special);
+    active !== undefined ?formData.append('active', active):false;
+    is_special !== undefined ?formData.append('is_special', is_special):false;
     img !== undefined ? formData.append('img', img):null
    
     return(

@@ -4,7 +4,7 @@ import FilterIcon from "../assets/oferts-magnament-filter.svg"
 import AddIcon from "../assets/oferts-magnament-add.svg"
 import DeleteIcon from"../assets/oferts-magnament-delete.svg"
 import SearchIcon from "../assets/search-icon.svg"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import useWindowSize from "../hooks/useWindowSize";
@@ -46,7 +46,9 @@ function MagnamentOferts(){
     const responsive = useWindowSize("max",600)
     const [infoDialogStatus,setInfoDialogStatus] = useState(false)
     const [infoDialogEdit,setInfoDialogEdit] = useState(false)
+    const [infoDialogCreate,setInfoDialogCreate] = useState(false)
     const [rowData, setRowData] = useState({})  
+    const ds = useRef(null) 
 
     useEffect(()=>{
         getPromotions().then((result)=>{
@@ -126,18 +128,19 @@ function PromotionItemTemplate(data) {
         
         getPromotions().then((promotions) => {
             setDataOferts(promotions.results);
-            handleOnClickEditButton();
         })
     };
     const handleOnClickInfoButton = () => {setInfoDialogStatus(!infoDialogStatus)};
     const handleOnClickEditButton = () => {setInfoDialogEdit(!infoDialogEdit)};
+    const handleOnClickCreateButton = () => {setInfoDialogCreate(!infoDialogCreate)};
 
 
     return(
         <section className="magnament-oferts-container">
 
             <InfoPromotion editable={false} heaerTitle={"Información de promocion"} data={rowData} visible={infoDialogStatus} onHide={handleOnClickInfoButton} />
-            <InfoPromotion editable={true} onSave={handleOnChangeData} heaerTitle={"Editar información de promocion"}data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
+            <InfoPromotion accion={"update"}editable={true} onSave={handleOnChangeData} heaerTitle={"Editar información de promocion"} data={rowData} visible={infoDialogEdit} onHide={handleOnClickEditButton}/>
+            <InfoPromotion accion={"create"} editable={true} onSave={handleOnChangeData} heaerTitle={"Editar información de promocion"} data={{}} visible={infoDialogCreate} onHide={handleOnClickCreateButton}/>
           
 
             {/* Titulo de la pagina*/}
@@ -156,7 +159,7 @@ function PromotionItemTemplate(data) {
                     <p>Filtros</p>
                 </button>
 
-                <button className="search-oferts-button">
+                <button className="search-oferts-button" onClick={handleOnClickCreateButton}>
                     <img src={AddIcon} alt="add" width={"13px"}/>
                     <p>Agregar</p>
                 </button>
@@ -202,9 +205,10 @@ function PromotionItemTemplate(data) {
                     <DataScroller 
                     value={dataOferts} 
                     itemTemplate={PromotionItemTemplate} 
-                    rows={5} inline 
-                    scrollHeight="500px" 
+                    rows={dataOferts.length}
+                    inline 
                     header="Listado de Ofertas" />
+                    
                 }
             </section>
             
