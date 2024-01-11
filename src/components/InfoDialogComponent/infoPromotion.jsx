@@ -15,11 +15,12 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
     },[data])
 
     const handleOnchange = ( value,campo ) => {
-        
+        console.log(value)
         var InfoDataCopy = {...infoData};
         InfoDataCopy[campo] = value;
        setInfoData(InfoDataCopy);
     }
+
 
     return(
         <section className = "info-promotion-container">
@@ -55,7 +56,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                                 <p>Activado</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input defaultChecked={infoData.active} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"active")}/> 
+                               <input defaultChecked={Boolean(infoData.active)} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"active")}/> 
                             </div> 
                         </div>
                         <div className="input-info-dialog">
@@ -63,7 +64,7 @@ function InfoPromotion({visible,onHide,data,editable,heaerTitle,onSave}){
                                 <p>Es especial?</p>
                             </div>
                             <div className="input-dialog-container">
-                               <input defaultChecked={infoData.is_special} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"is_special")}/> 
+                               <input defaultChecked={Boolean(infoData.is_special)} type="checkbox" onChange={(e)=>handleOnchange(e.target.value,"is_special")}/> 
                             </div> 
                         </div>
                         </> }
