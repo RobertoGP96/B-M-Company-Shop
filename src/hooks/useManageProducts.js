@@ -132,7 +132,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
       if(productInfoValid({values:values, creating:false})){
         updateProduct({id:id, values:values})
         .then(res => {
-          handleSetUpdateProducts()
+          setUpdateProducts(prev => !prev)
           setSelectedProducts([])
           resetProductFormProperties()
           showToast({

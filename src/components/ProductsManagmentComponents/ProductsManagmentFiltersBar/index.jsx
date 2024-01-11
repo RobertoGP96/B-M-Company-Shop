@@ -16,6 +16,8 @@ function ProductsManagmentFiltersBar({
   selectedProducts,
   selectedCategories,
   setSelectedCategories,
+  listView,
+  setListView,
   handleDeleteMultipleProducts,
   resetProductFormProperties,
   setProductFormProperties,
@@ -29,7 +31,6 @@ function ProductsManagmentFiltersBar({
   handleCreateProduct,
   handleUpdateProduct,
 }) {
-  const [listViewType, setListViewType] = useState(true);
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   return (
     <section className="products-managment-filters-bar">
@@ -71,8 +72,8 @@ function ProductsManagmentFiltersBar({
       <div className="view-toggle-container">
         <span>Vista:</span>
         <img
-          src={listViewType ? ViewToggleList : ViewToggleGrid}
-          onClick={() => setListViewType(!listViewType)}
+          src={listView ?ViewToggleGrid: ViewToggleList}
+          onClick={() => setListView(prev => !prev)}
         />
       </div>
       <div className="filters-modal-button-container">
