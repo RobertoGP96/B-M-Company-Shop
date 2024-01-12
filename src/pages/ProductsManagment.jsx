@@ -81,7 +81,8 @@ function ProductsManagment() {
     setUpdateProducts: setUpdateProducts,
     setSelectedCategories: setSelectedCategories,
     removeAllFilters: removeAllFilters,
-    setCategoryFormProperties:setCategoryFormProperties
+    setCategoryFormProperties:setCategoryFormProperties,
+    searchParams:searchParams
   });
 
   function processUpdateProduct(product) {

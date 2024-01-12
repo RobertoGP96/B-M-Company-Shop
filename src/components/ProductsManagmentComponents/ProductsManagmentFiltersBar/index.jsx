@@ -44,6 +44,7 @@ function ProductsManagmentFiltersBar({
         header="Confirmación"
         icon="pi pi-exclamation-triangle"
         accept={() => handleDeleteMultipleProducts(selectedProducts)}
+        style={{maxWidth:"90%"}}
       />
       <div className="search-container">
         <Search />

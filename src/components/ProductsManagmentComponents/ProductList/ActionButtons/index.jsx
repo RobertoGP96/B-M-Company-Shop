@@ -20,6 +20,9 @@ function ActionButtons({item, handleDelete, handleEdit = () => {}, handleDetil =
                 header="Confirmación" 
                 icon="pi pi-exclamation-triangle" 
                 accept={() => handleDelete(item.id)} 
+                draggable = {false}
+                resizable = {false}
+                style={{maxWidth:"90%"}}
                 />
             <button className = "btn-general-styles" onClick={() => handleEdit(item)}><img src = {EditIcon}/></button>
             <button className = "btn-general-styles" onClick={() => handleDetil(item)}><img src = {EyeIcon}/></button>
