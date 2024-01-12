@@ -26,7 +26,7 @@ function CategoriesManagment({
   const [show, setShow] = useState(false);
   const {mobileMode} = useIsMobileMode({forceMobileMode: false})
 
-  function processUpdateCategory({ id, nombre }) {
+  function processUpdateCategory({ id, nombre, img }) {
     setCategoryFormProperties((prev) => ({
       ...prev,
       show: true,
@@ -34,12 +34,13 @@ function CategoriesManagment({
       initialValues: {
         id: id,
         name: nombre,
+        img:img
       },
       disabled: false,
     }));
   }
 
-  function processDetailCategory({ id, nombre }) {
+  function processDetailCategory({ id, nombre, img }) {
     setCategoryFormProperties((prev) => ({
       ...prev,
       show: true,
@@ -47,6 +48,7 @@ function CategoriesManagment({
       initialValues: {
         id: id,
         name: nombre,
+        img:img
       },
       disabled: true,
     }));
@@ -96,6 +98,7 @@ function CategoriesManagment({
               setCategoryFormProperties={setCategoryFormProperties}
               handleCreateCategory={handleCreateCategory}
               handleUpdateCategory={handleUpdateCategory}
+              loading={loadingCategories}
             />
             <ButtonsAddAndDelete
               setCategoryFormProperties={setCategoryFormProperties}

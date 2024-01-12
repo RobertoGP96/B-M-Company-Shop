@@ -106,11 +106,13 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
         showToast({severity: "error", summary: "Error", detail: "Debes ingresar un nombre",})
       }
       else{
+        setLoading(true)
         createCategory({name:name, img:img})
         .then(res => {
           setUpdateCategories(prev => !prev)
           setSelectedCategories([])
           setCategoryFormProperties(prev => ({...prev, show:false}))
+          setLoading(false)
           showToast({
             severity: "success",
             summary: "Éxito",
@@ -118,6 +120,7 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
           });
         })
         .catch(err => {
+          setLoading(false)
           showToast({
             severity: "error",
             summary: "Error",
@@ -132,11 +135,13 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
         showToast({severity: "error", summary: "Error", detail: "Debes ingresar un nombre",})
       }
       else{
+        setLoading(true)
         updateCategory({id:id, name:name, img:img})
         .then(res => {
           setUpdateCategories(prev => !prev)
           setSelectedCategories([])
           setCategoryFormProperties(prev => ({...prev, show:false}))
+          setLoading(false)
           showToast({
             severity: "success",
             summary: "Éxito",
@@ -144,6 +149,7 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
           });
         })
         .catch(err => {
+          setLoading(false)
           showToast({
             severity: "error",
             summary: "Error",
