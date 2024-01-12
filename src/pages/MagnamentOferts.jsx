@@ -16,7 +16,7 @@ import { deletePromotions } from "../services/ManagePromotions/deletePrmotion"
 import { Toast } from 'primereact/toast';
         
 
-
+//Header Table styles 
 const headerTableStyle={
     backgroundColor:"#545454",
     color: "#FFF",
@@ -28,7 +28,7 @@ const headerTableStyle={
 }
 
 
-
+//Component to display ofert name in one of the table columns 
 const nameTamplate = (data) => {
     return (
         <div className="name-template-container">
@@ -39,9 +39,7 @@ const nameTamplate = (data) => {
 };
 
 
-  
-
-
+//Managment Ofert Component
 function MagnamentOferts(){
     const [selectedProducts, setSelectedProducts] = useState(null);
     const mobileView = useWindowSize("max",800)
@@ -53,21 +51,25 @@ function MagnamentOferts(){
     const [rowData, setRowData] = useState({})  
     const toast = useRef(null)
   
-
+    // Useeffect hook for getting ofert data from server  
     useEffect(()=>{
         getPromotions().then((result)=>{
+            console.log(result.results)
             setDataOferts(result.results)
         })
-    },[rowData])
+    },[])
 
-
+    //Function for show delete messange when ofert is deleted
     const show = () => {
-        toast.current.show({ severity: 'success', summary: '', detail:'Eliminación completada'} );
+        toast.current.show({ 
+            severity: 'success', 
+            summary: '', 
+            detail:'Eliminación completada'
+        });
     };   
 
-
+//component to display manage icons in one of the table columns
     const acciones = (data) => {
-
         return(
             <div className="acctions-oferts-table-container">
                 <button className="oferts-actions-table-button"
@@ -98,62 +100,61 @@ function MagnamentOferts(){
         )
     }
 
-    
-function PromotionItemTemplate(data) {
-    return(
-        <section className="promotion-card-container">
-            <div className="img-promotion-card-section">
-                <div className="img-promotion-container">
-                    <img src={data.img} alt={data.name} />
-                    <p className="description-promotion-text">Descripción</p>
-                    <p className="description-promotion">{data.description}</p>
+    //Component for display ofert data in mobile versions screens used in DataScroller component
+    function PromotionItemTemplate(data) {
+        return(
+            <section className="promotion-card-container">
+                <div className="img-promotion-card-section">
+                    <div className="img-promotion-container">
+                        <img src={data.img} alt={data.name} />
+                        <p className="description-promotion-text">Descripción</p>
+                        <p className="description-promotion">{data.description}</p>
+                    </div>
                 </div>
-            </div>
-            <div className="details-prmotion-card-section">
-                <p className="mame-promotion">{data.name}</p>   
-                <p className="total-products-promotion">{`Productos: ${data.cantidad_products}`}</p>
-                <div className="discount-promotion-container">
-                    <p className="price">{`-${data.discount_in_percent}%`}</p>
+                <div className="details-prmotion-card-section">
+                    <p className="mame-promotion">{data.name}</p>   
+                    <p className="total-products-promotion">{`Productos: ${data.cantidad_products}`}</p>
+                    <div className="discount-promotion-container">
+                        <p className="price">{`-${data.discount_in_percent}%`}</p>
+                    </div>
                 </div>
-            </div>
-            <div className="accion-promotion-card-section">
-                <button className="oferts-actions-table-button"
+                <div className="accion-promotion-card-section">
+                    <button className="oferts-actions-table-button"
+                            onClick={()=>{
+                                setRowData(data);
+                                handleOnClickEditButton();
+                            }}
+                    >
+                            <i className="pi pi-pencil icon-oferts-table"></i>
+                    </button>
+                    <button className="oferts-actions-table-button" 
                         onClick={()=>{
-                            setRowData(data);
-                            handleOnClickEditButton();
+                            setRowData(data)
+                            handleOnClickInfoButton()
                         }}
-                >
-                        <i className="pi pi-pencil icon-oferts-table"></i>
-                </button>
-                <button className="oferts-actions-table-button" 
-                    onClick={()=>{
-                        setRowData(data)
-                        handleOnClickInfoButton()
-                    }}
-                >
-                    <i className="pi pi-eye icon-oferts-table" ></i>
-                </button>
-                <button className="oferts-actions-table-button"
-                    onClick={()=>{
-                        confirm2(data.id)
-                        
-                    }}
-                >
-                    <i className="pi pi-trash icon-oferts-table"></i>
-                </button>
-            </div>
-        </section>
-    )
+                    >
+                        <i className="pi pi-eye icon-oferts-table" ></i>
+                    </button>
+                    <button className="oferts-actions-table-button"
+                        onClick={()=>{
+                            confirm2(data.id)
+                            
+                        }}
+                    >
+                        <i className="pi pi-trash icon-oferts-table"></i>
+                    </button>
+                </div>
+            </section>
+    )}
 
-    }
-    const confirm2 = (id) => {
+    const confirm2 = (id,position="left") => {
         confirmDialog({
             message: 'Do you want to delete this record?',
             header: 'Delete Confirmation',
             icon: 'pi pi-info-circle',
             acceptClassName: 'p-button-danger',
+            position,
             accept:()=>{
-                console.log(id)
                     deletePromotions({promotions:[id]}).then(()=>{
                         getPromotions().then((result)=>{
                             setDataOferts(result.results)
