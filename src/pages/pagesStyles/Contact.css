@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Noto Sans";
-  src: url("../../fonts/NotoSans.ttf") format("truetype");
+  src: url("../../assets/fonts/NotoSans-Regular.woff2");
 }
 
 .contact-container {
@@ -127,6 +127,15 @@
 }
 
 
+.contact-container{
+  width: 100% !important;
+  height: 100%;
+  background-image: url(../../assets/homebackground.webp) !important;
+  object-fit: cover;
+  
+  background-position: center; 
+}
+
 /*
 footer {
     background-color: rgba(0, 0, 0, 0) !important;
@@ -134,8 +143,8 @@ footer {
     border-color: white !important;
     color: white !important;
 }
-*/
 
-.contact-container{
-    background-image: url(../../assets/home-background.jpeg) !important;
+.root-pane{
+    background-image: url(../../assets/homebackground.png) !important;
 }
+*/

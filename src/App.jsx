@@ -2,7 +2,7 @@ import './App.css'
 import {HashRouter as Router, Route, Routes} from 'react-router-dom'
 import Contact from './pages/Contact'
 import Store from './pages/Store'
-import Products from './pages/Products'
+import ProductsManagment from './pages/ProductsManagment'
 import Home from './pages/Home'
 import Page404 from './pages/Page404'
 import MagnamentMenu from './pages/MagnamentMenu.jsx'
@@ -13,24 +13,26 @@ import NavBar from './components/NavBar/index.jsx'
 import Footer  from './components/Footer/index.jsx'
 import 'primeicons/primeicons.css';
 import MagnamentOferts from './pages/MagnamentOferts.jsx'
+import MagnamentSecurity from './pages/MagnamentSecurity.jsx'
 import Login from './pages/Login.jsx'
 
 function App() {
   return (
     <Router>
-      <section title='main-section'>
+      <section  title='main-section'>
         <header><NavBar /></header>
-        <section>
+        <section className="main-section-route">
           <PrimeReactProvider>
             <QueryFiltersContextProvider>
               <Routes>
                 <Route path = "/store" element = {<Store/>}/>
                 <Route path = "/contactus" element = {<Contact/>}/>
                 <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
-                <Route path = "/magnament/products" element = {<Products/>}/>
+                <Route path = "/magnament/products" element = {<ProductsManagment/>}/>
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "*" element = {<Page404/>}/>
                 <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
+                <Route path = "/magnament-security" element = {<MagnamentSecurity/>}/>
                 <Route path = "/login" element = {<Login/>}/>
               </Routes>
             </QueryFiltersContextProvider>

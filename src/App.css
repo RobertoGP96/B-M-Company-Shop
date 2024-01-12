@@ -3,6 +3,14 @@
   text-align: center;
 }
 
+.main-section-route{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
 @font-face {
   font-family: "Noto-Sans";
   src: url('./assets/fonts/NotoSans-Regular.woff2');

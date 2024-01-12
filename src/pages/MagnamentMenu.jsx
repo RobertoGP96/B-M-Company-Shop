@@ -23,10 +23,10 @@ function MagnamentMenu (){
                         <div title="oferts-section" className="magnament-menu-section" onClick={()=>navigate("/magnament-oferts")}>
                             <h4>Ofertas</h4>
                             <div className="icon-magnament-section">
-                                <img src={OfertsMagnament} alt="oferts" width="55px"/>   
+                                <img src={OfertsMagnament} alt="oferts" width="55px"/> 
                             </div>
                         </div>
-                        <div title="security-section" className="magnament-menu-section">
+                        <div title="security-section" className="magnament-menu-section" onClick={()=>navigate("/magnament-security")}>
                             <h4>Seguridad</h4>
                             <div className="icon-magnament-section">
                                 <img src={SecurityMagnament} alt="security" width="55px"/>
