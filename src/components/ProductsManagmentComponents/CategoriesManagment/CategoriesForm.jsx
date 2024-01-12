@@ -30,7 +30,7 @@ function CategoriesForm({
     <Dialog
       visible={categoryFormProperties.show}
       onHide={() =>
-        setCategoryFormProperties((prev) => ({ ...prev, show: false }))
+        setCategoryFormProperties((prev) => ({ ...prev, show: false, disabled:false, initialValues:{} }))
       }
       position="top"
       draggable={false}

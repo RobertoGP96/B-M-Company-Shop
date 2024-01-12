@@ -6,7 +6,7 @@ function ButtonsAddAndDelete({setShowConfirmDialog, setCategoryFormProperties}) 
         <div className="buttons-add-delete-container">
             <div className="add-product-button-container">
               <button
-                className="products-managment-filters-bar-button btn-general-styles"
+                className="products-managment-filters-bar-button btn-general-styles category-managment-buttons"
                 onClick={() => {
                   setCategoryFormProperties(prev => ({
                     ...prev,
@@ -21,7 +21,7 @@ function ButtonsAddAndDelete({setShowConfirmDialog, setCategoryFormProperties}) 
             </div>
             <div className="remove-product-button-container">
               <button
-                className="products-managment-filters-bar-button btn-general-styles"
+                className="products-managment-filters-bar-button btn-general-styles category-managment-buttons"
                 onClick={() => setShowConfirmDialog(true)}
               >
                 <img src={RemoveProductIcon} />

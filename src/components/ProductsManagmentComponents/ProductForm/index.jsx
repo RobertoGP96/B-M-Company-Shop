@@ -92,7 +92,7 @@ function ProductForm({
       }
       draggable={false}
       resizable={false}
-      style={{ minHeight: "95vh", width: "50vw" }}
+      style={{ minHeight: "95vh", minWidth: "50vw", maxWidth:"98vw"}}
     >
       <form
         className="product-form"

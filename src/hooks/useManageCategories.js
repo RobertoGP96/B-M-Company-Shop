@@ -4,7 +4,7 @@ import { deleteCategories } from "../services/ManageCategories/deleteCategories"
 import { createCategory } from "../services/ManageCategories/createCategory";
 import { updateCategory } from "../services/ManageCategories/updateCategory";
 
-export function useManageCategories({toastRef, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
+export function useManageCategories({toastRef, searchParams, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoading] = useState(false);
   const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
@@ -38,12 +38,10 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
 
   //update the categories list when is necesary
   function handleSetUpdateCategories(){
-    if(searchParams.size == 0){
-      setUpdateCategories(prev => !prev)
-    }
-    else{
+    if(searchParams.size > 0){
       removeAllFilters()
     }
+    setUpdateCategories(prev => !prev)
   }
 
   //delete one product by its id
