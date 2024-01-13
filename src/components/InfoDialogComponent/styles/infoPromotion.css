@@ -62,16 +62,38 @@
 
 .input-dialog-container{
     display: flex;
-   padding: 8px;
+    padding: 8px;
     height: 30px;
     align-items: center;
     justify-content: left;
     border-radius: 5px;
-    background: rgba(217, 217, 217, 0.16);  
+    background: rgba(51, 50, 50, 0.16);  
     width: 200px;   
+    transition: border 0.4s ease-in-out;
+    border: 1px solid rgb(51, 50, 50, 0.08);
+}
+.input-dialog-container:hover{
+    border: 1px solid rgb(64, 159, 223);
 }
 
 
+.textarea-description-promtion{
+    height: 80px !important;
+    max-height: 100px;
+}
+
+.input-dialog-container textarea{
+    width: 100%;
+    height: 80px;
+    background: transparent;
+    outline: none;
+    border: none;
+    font-family: Noto Sans;
+    max-height: 80px;
+    min-height: 80px;
+    min-width: 135px;
+    max-width: 135px;
+}
 
 .p-dialog-container{
     width: 150px;
@@ -85,9 +107,18 @@
 
 .button-promotion-container{
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
+    gap: 100px;
 }
+
+.button-promotion-container div{
+    padding: 9px;
+    border-top: 2px solid #545454;
+    border-left: 2px solid #545454;
+    cursor: default;
+}
+
 
 
 .buttons-user-info{
@@ -110,32 +141,101 @@
 }
 
 .with-img{
+    width: 100%;
     display: flex;
     flex-direction: column;
-    height: 140px !important;
     align-items: center;
     justify-content: center;
     display: flex;
     padding: none;
-     align-items: center;
-     border-radius: 5px;
-     background: transparent !important;  
+    align-items: center;
+    border-radius: 5px;
+    background: transparent !important;  
+   
     
 }
 
 .img-dialog-container{
     display: flex;
-    width: 200px;
-    height: 100px;
     padding: none;
     background-image: 100%;
+    height: 130px;
+    align-items: center;
+    justify-content: center;
 }
+
+.img-textfile-container{
+    font-size: small;
+    text-align: center;
+    display: flex;
+    width: 200px;
+    height: 130px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(134, 134, 134, 0.6);
+    border-radius: 6px;
+}
+
 .img-dialog-container img{
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
     
 }
+
+.image-file-icon{
+    gap:5px
+}
+
+.image-file-icon-container{
+    min-width: 35px;
+    height: 35px;
+    position: relative;
+    cursor: pointer;
+    border-radius: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border 0.20s ease-in-out;;
+    border: 2px solid rgba(134, 134, 134, 0.6);
+    box-shadow: 1px 1px 3px 0px rgba(134, 134, 134, 0.6);
+}
+
+.image-file-icon-container .pi-file-import{
+    font-size: x-large;
+    position: absolute;
+    z-index: 0;
+    color: rgb(136, 136, 136);
+}
+
+.image-file-icon-container::before{
+    background-color: transparent;
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.image-file-icon-container:hover{
+    border: 2px solid rgba(1, 192, 250);
+}   
+
+
+.image-file-icon input{
+    max-width: 35px;
+    max-height: 35px;
+    border: none;
+    border-style: none;
+    opacity: 0;
+    height: 50px;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 1;
+}
+
 
 .buttons-user-info:hover{
     background: #353535;

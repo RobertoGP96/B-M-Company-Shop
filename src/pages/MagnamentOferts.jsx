@@ -107,8 +107,6 @@ function MagnamentOferts(){
                 <div className="img-promotion-card-section">
                     <div className="img-promotion-container">
                         <img src={data.img} alt={data.name} />
-                        <p className="description-promotion-text">Descripción</p>
-                        <p className="description-promotion">{data.description}</p>
                     </div>
                 </div>
                 <div className="details-prmotion-card-section">
@@ -147,13 +145,12 @@ function MagnamentOferts(){
             </section>
     )}
 
-    const confirm2 = (id,position="left") => {
+    const confirm2 = (id) => {
         confirmDialog({
-            message: 'Do you want to delete this record?',
+            message: 'Esta seguro que desea eliminar esta promoción?',
             header: 'Delete Confirmation',
             icon: 'pi pi-info-circle',
             acceptClassName: 'p-button-danger',
-            position,
             accept:()=>{
                     deletePromotions({promotions:[id]}).then(()=>{
                         getPromotions().then((result)=>{
