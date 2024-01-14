@@ -6,6 +6,7 @@ import { Checkbox } from "primereact/checkbox";
 import { useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { useEffect } from "react";
+import {useImagePreview} from '../../../hooks/useImagePreview'
 import "./index.css";
 
 function ProductForm({
@@ -24,6 +25,7 @@ function ProductForm({
     name: "Categoría",
     code: null,
   });
+  const {imagesPreview, handleSetImagePreview} = useImagePreview({formProperties:productFormProperties, isProductForm:true})
 
   //effect to update the activeStatus and categorySelected
   useEffect(() => {
@@ -225,35 +227,56 @@ function ProductForm({
         {/*Img 1*/}
         <div className="product-form-field">
           <label htmlFor="img1">Imagen 1</label>
-          <InputText
-            id="img1"
-            aria-describedby="img1-help"
-            className=".p-inputtext-sm"
-            disabled={productFormProperties.disabled}
-            type="file"
-          />
+          <div className = 'product-image-field'>
+            <InputText
+              id="img1"
+              aria-describedby="img1-help"
+              className=".p-inputtext-sm"
+              disabled={productFormProperties.disabled}
+              type="file"
+              accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
+              onChange = {(e) => handleSetImagePreview({e:e, imgIndex:0})}
+            />
+            {imagesPreview[0]?
+            <img src ={imagesPreview[0]}/>
+            :null}
+          </div>
         </div>
         {/*Img 2*/}
         <div className="product-form-field">
           <label htmlFor="img2">Imagen 2</label>
-          <InputText
-            id="img2"
-            aria-describedby="img2-help"
-            className=".p-inputtext-sm"
-            disabled={productFormProperties.disabled}
-            type="file"
-          />
+          <div className = 'product-image-field'>
+            <InputText
+              id="img2"
+              aria-describedby="img2-help"
+              className=".p-inputtext-sm"
+              disabled={productFormProperties.disabled}
+              type="file"
+              accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
+              onChange = {(e) => handleSetImagePreview({e:e, imgIndex:1})}
+            />
+            {imagesPreview[1]?
+            <img src ={imagesPreview[1]}/>
+            :null}
+          </div>
         </div>
         {/*Img 3*/}
         <div className="product-form-field">
           <label htmlFor="img3">Imagen 3</label>
-          <InputText
-            id="img3"
-            aria-describedby="img3-help"
-            className=".p-inputtext-sm"
-            disabled={productFormProperties.disabled}
-            type="file"
-          />
+          <div className = 'product-image-field'>
+            <InputText
+              id="img3"
+              aria-describedby="img3-help"
+              className=".p-inputtext-sm"
+              disabled={productFormProperties.disabled}
+              type="file"
+              accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
+              onChange = {(e) => handleSetImagePreview({e:e, imgIndex:2})}
+            />
+            {imagesPreview[2]?
+            <img src ={imagesPreview[2]}/>
+            :null}
+          </div>
         </div>
         {/*Submit*/}
         {productFormProperties.disabled == false ? (
