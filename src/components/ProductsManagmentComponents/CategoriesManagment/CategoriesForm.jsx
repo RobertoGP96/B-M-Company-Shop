@@ -1,7 +1,7 @@
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import {useState, useEffect} from 'react'
+import { useImagePreview } from "../../../hooks/useImagePreview";
 
 function CategoriesForm({
   categoryFormProperties,
@@ -10,16 +10,7 @@ function CategoriesForm({
   handleUpdateCategory,
   loading
 }) {
-  const [imagePreview, setimagePreview] = useState(null)
-
-  //set the corresponding image preview 
-  useEffect(() =>{
-    if(categoryFormProperties.show == true){
-      categoryFormProperties.creatingMode == true?
-      setimagePreview(null):
-      setimagePreview(categoryFormProperties.initialValues.img)
-    }
-  },[categoryFormProperties.show])
+  const {imagesPreview, handleSetImagePreview} = useImagePreview({formProperties:categoryFormProperties, isProductForm:false})
 
   function createCategory(e) {
     e.preventDefault();
@@ -39,21 +30,10 @@ function CategoriesForm({
     });
   }
 
-  function handleSetImagePreview(e){
-    let files = e.target.files
-    if(files.length > 0){
-      setimagePreview(URL.createObjectURL(files[0]))
-    }
-    else{
-      setimagePreview(null)
-    }
-  }
-
   return (
     <Dialog
       visible={categoryFormProperties.show}
       onHide={() =>{
-        setimagePreview(null)
         setCategoryFormProperties((prev) => ({ ...prev, show: false, disabled:false, initialValues:{} }))
       }
       }
@@ -101,11 +81,11 @@ function CategoriesForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               disabled={categoryFormProperties.disabled}
-              onChange={(e) => handleSetImagePreview(e)}
+              onChange={(e) => handleSetImagePreview({e:e, imgIndex:0})}
             />
           </div>
-          {imagePreview?
-          <img src ={imagePreview}/>
+          {imagesPreview[0]?
+          <img src ={imagesPreview[0]}/>
           :null}
         </div>
         {categoryFormProperties.disabled == false ? (
