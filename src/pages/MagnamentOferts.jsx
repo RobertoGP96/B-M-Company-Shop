@@ -49,6 +49,7 @@ function MagnamentOferts() {
   const [infoDialogCreate, setInfoDialogCreate] = useState(false);
   const [rowData, setRowData] = useState({});
   const toast = useRef(null);
+  const [search,setSearch] = useState("")
   
   
 
@@ -286,7 +287,8 @@ function MagnamentOferts() {
           className="search-oferts-form"
         >
           <img src={SearchIcon} width={"16px"} />
-          <input placeholder="Buscar" />
+          <input placeholder="Buscar" type="search" value={search} 
+          onChange={(e)=>{setSearch(e.target.value)}}/>
         </form>
 
         <button className="search-oferts-button">
