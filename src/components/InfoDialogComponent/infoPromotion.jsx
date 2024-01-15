@@ -23,9 +23,11 @@ function InfoPromotion({
     discount_in_percent: "",
     active: false,
     is_special: false,
+    img:""
   });
   const toast = useRef(null);
   const [pageLoad,setPageLoad] = useState(false);
+  const [imgPreview,setImgPreview] = useState(infoData.img)
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -39,8 +41,9 @@ function InfoPromotion({
   useEffect(() => {
     if (data !== null) {
       setInfoData(data);
+      setImgPreview(data.img);
     }
-  }, [data]);
+  }, [data,visible?visible:undefined]);
 
   const show = () => {
     toast.current.show({
@@ -180,14 +183,17 @@ function InfoPromotion({
                     name="image"
                     type="file"
                     accept="image/*"
-                    onChange={(e) => handleOnchange(e.target.value, "img")}
+                    onChange={(e) =>{ 
+                      setImgPreview(URL.createObjectURL(e.target.files[0]));
+                      handleOnchange(e.target.value, "img")
+                    }}
                   />
                   <i className="pi pi-file-import"></i>
                 </div>
 
                 <div className="img-dialog-container">
                   {infoData.img ? (
-                    <Image src={infoData.img} />
+                    <Image src={imgPreview} />
                   ) : (
                     <div className="img-textfile-container">
                       <p>No hay ningún archivo(.jpg, .jpeg, .png, .svg, .webp) todavía.</p>
@@ -263,7 +269,10 @@ function InfoPromotion({
               <div
                 name="exit_button"
                 className="buttons-user-info"
-                onClick={()=>{onHide()}}
+                onClick={()=>{
+                  onHide()
+
+                }}
               >
                 Cancelar
               </div>

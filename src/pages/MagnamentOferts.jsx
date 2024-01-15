@@ -50,7 +50,7 @@ function MagnamentOferts() {
   const [rowData, setRowData] = useState({});
   const toast = useRef(null);
   const [search,setSearch] = useState("")
-  
+  const [mounted, setMounted] = useState(false)
   
 
   // Useeffect hook for getting ofert data from server
@@ -60,6 +60,19 @@ function MagnamentOferts() {
       setDataOferts(result.results);
     });
   }, []);
+
+  useEffect(() => {
+    if(mounted){
+        let timeOut = setTimeout(() => getPromotions(`search=${search}`).then((result)=>{
+            setDataOferts(result.results)
+        }), 350)  
+        return () => clearTimeout(timeOut)
+    }
+    else{
+        setMounted(true)
+    }
+},[search])
+
 
   //Function for show delete messange when ofert is deleted
   const show = (detail,severity) => {
@@ -287,7 +300,8 @@ function MagnamentOferts() {
           className="search-oferts-form"
         >
           <img src={SearchIcon} width={"16px"} />
-          <input placeholder="Buscar" type="search" value={search} 
+          <input placeholder="Buscar" type="search" 
+          value={search} 
           onChange={(e)=>{setSearch(e.target.value)}}/>
         </form>
 
