@@ -12,13 +12,15 @@ import {QueryFiltersContextProvider} from './context/filtersContext.jsx'
 import NavBar from './components/NavBar/index.jsx'
 import Footer  from './components/Footer/index.jsx'
 import 'primeicons/primeicons.css';
+import MagnamentOferts from './pages/MagnamentOferts.jsx'
+import MagnamentSecurity from './pages/MagnamentSecurity.jsx'
 
 function App() {
   return (
     <Router>
-      <section title='main-section'>
+      <section  title='main-section'>
         <header><NavBar /></header>
-        <section>
+        <section className="main-section-route">
           <PrimeReactProvider>
             <QueryFiltersContextProvider>
               <Routes>
@@ -28,6 +30,8 @@ function App() {
                 <Route path = "/magnament/products" element = {<ProductsManagment/>}/>
                 <Route path = "/" element = {<Home/>}/>
                 <Route path = "*" element = {<Page404/>}/>
+                <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
+                <Route path = "/magnament-security" element = {<MagnamentSecurity/>}/>
               </Routes>
             </QueryFiltersContextProvider>
           </PrimeReactProvider>
