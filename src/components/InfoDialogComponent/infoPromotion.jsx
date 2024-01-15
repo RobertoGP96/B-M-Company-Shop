@@ -249,15 +249,17 @@ function InfoPromotion({
             </>
           )}
 
-          {editable && (
+          
             <div className="button-promotion-container">
-              <button
-                name="submit_button"
-                className="buttons-user-info"
-                
-              >
-                {data ? "Guardar" : "Aceptar"}
-              </button>
+              {editable && (
+                <button
+                  name="submit_button"
+                  className="buttons-user-info"
+                  
+                >
+                  {data ? "Guardar" : "Aceptar"}
+                </button>
+              )}
               <div
                 name="exit_button"
                 className="buttons-user-info"
@@ -265,8 +267,9 @@ function InfoPromotion({
               >
                 Cancelar
               </div>
+
             </div>
-          )}
+          
         </form>
       </Dialog>
     </section>
