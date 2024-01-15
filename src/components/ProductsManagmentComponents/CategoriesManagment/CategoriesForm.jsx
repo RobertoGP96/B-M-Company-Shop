@@ -1,13 +1,17 @@
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import { useImagePreview } from "../../../hooks/useImagePreview";
 
 function CategoriesForm({
   categoryFormProperties,
   setCategoryFormProperties,
   handleCreateCategory,
   handleUpdateCategory,
+  loading
 }) {
+  const {imagesPreview, handleSetImagePreview} = useImagePreview({formProperties:categoryFormProperties, isProductForm:false})
+
   function createCategory(e) {
     e.preventDefault();
     let name = e.target["name"].value;
@@ -29,8 +33,9 @@ function CategoriesForm({
   return (
     <Dialog
       visible={categoryFormProperties.show}
-      onHide={() =>
-        setCategoryFormProperties((prev) => ({ ...prev, show: false }))
+      onHide={() =>{
+        setCategoryFormProperties((prev) => ({ ...prev, show: false, disabled:false, initialValues:{} }))
+      }
       }
       position="top"
       draggable={false}
@@ -66,19 +71,25 @@ function CategoriesForm({
             }
           />
         </div>
-        <div className="category-form-field">
-          <label htmlFor="image">Imagen</label>
-          <InputText
-            id="image"
-            aria-describedby="image-help"
-            className=".p-inputtext-sm"
-            type="file"
-            accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
-            disabled={categoryFormProperties.disabled}
-          />
+        <div className="category-form-field category-image-field">
+          <div className = "category-form-field">
+            <label htmlFor="image">Imagen</label>
+            <InputText
+              id="image"
+              aria-describedby="image-help"
+              className=".p-inputtext-sm"
+              type="file"
+              accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
+              disabled={categoryFormProperties.disabled}
+              onChange={(e) => handleSetImagePreview({e:e, imgIndex:0})}
+            />
+          </div>
+          {imagesPreview[0]?
+          <img src ={imagesPreview[0]}/>
+          :null}
         </div>
         {categoryFormProperties.disabled == false ? (
-          <Button label="Enviar" className="btn-general-styles" />
+          <Button label={loading?"Enviando ...":"Enviar"} className="btn-general-styles" />
         ) : null}
       </form>
     </Dialog>

@@ -27,3 +27,27 @@
     align-items: center;
     margin-top: 10px;
 }
+
+.product-image-field{
+    display: flex;
+    flex-direction: row;
+    gap:10px
+}
+
+.product-image-field img{
+    width:100px;
+    height: 70px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+@media (width < 500px) {
+    .product-image-field{
+        flex-direction: column;
+    }
+    .product-image-field img{
+        width: 100%;
+        height: auto;
+    }
+}
+

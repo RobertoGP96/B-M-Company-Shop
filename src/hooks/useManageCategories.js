@@ -4,7 +4,7 @@ import { deleteCategories } from "../services/ManageCategories/deleteCategories"
 import { createCategory } from "../services/ManageCategories/createCategory";
 import { updateCategory } from "../services/ManageCategories/updateCategory";
 
-export function useManageCategories({toastRef, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
+export function useManageCategories({toastRef, searchParams, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoading] = useState(false);
   const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
@@ -38,12 +38,10 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
 
   //update the categories list when is necesary
   function handleSetUpdateCategories(){
-    if(searchParams.size == 0){
-      setUpdateCategories(prev => !prev)
-    }
-    else{
+    if(searchParams.size > 0){
       removeAllFilters()
     }
+    setUpdateCategories(prev => !prev)
   }
 
   //delete one product by its id
@@ -108,11 +106,13 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
         showToast({severity: "error", summary: "Error", detail: "Debes ingresar un nombre",})
       }
       else{
+        setLoading(true)
         createCategory({name:name, img:img})
         .then(res => {
           setUpdateCategories(prev => !prev)
           setSelectedCategories([])
           setCategoryFormProperties(prev => ({...prev, show:false}))
+          setLoading(false)
           showToast({
             severity: "success",
             summary: "Éxito",
@@ -120,6 +120,7 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
           });
         })
         .catch(err => {
+          setLoading(false)
           showToast({
             severity: "error",
             summary: "Error",
@@ -134,11 +135,13 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
         showToast({severity: "error", summary: "Error", detail: "Debes ingresar un nombre",})
       }
       else{
+        setLoading(true)
         updateCategory({id:id, name:name, img:img})
         .then(res => {
           setUpdateCategories(prev => !prev)
           setSelectedCategories([])
           setCategoryFormProperties(prev => ({...prev, show:false}))
+          setLoading(false)
           showToast({
             severity: "success",
             summary: "Éxito",
@@ -146,6 +149,7 @@ export function useManageCategories({toastRef, setUpdateProducts, setSelectedCat
           });
         })
         .catch(err => {
+          setLoading(false)
           showToast({
             severity: "error",
             summary: "Error",
