@@ -33,6 +33,7 @@ function ProductList({
         selection={selectedProducts}
         onSelectionChange={(e) => setSelectedProducts(e.value)}
         dataKey="id"
+        size="small"
       >
         <Column
           selectionMode="multiple"
