@@ -1,12 +1,12 @@
 import "./styles/infoPromotion.css";
 import React, { useState, useEffect, useRef } from "react";
 import { Dialog } from "primereact/dialog";
-import { updatePromotion } from "../../services/ManagePromotions/updatePromotion";
-import { createPromotion } from "../../services/ManagePromotions/createPromotion";
+import { updatePromotion } from "../../../services/ManagePromotions/updatePromotion";
+import { createPromotion } from "../../../services/ManagePromotions/createPromotion";
 import { Toast } from "primereact/toast";
 import { Checkbox } from "primereact/checkbox";
 import { Image } from "primereact/image";
-import PageLoader from "../PageLoader";
+import PageLoader from "../../PageLoader";
 
 function InfoPromotion({
   visible,

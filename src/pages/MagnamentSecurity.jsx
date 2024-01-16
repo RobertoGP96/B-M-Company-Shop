@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import useWindowSize from "../hooks/useWindowSize";
-import InfoUserSecurity from "../components/InfoDialogComponent/infoUserSecurity"
+import InfoUserSecurity from "../components/OfertsManagmentComponents/InfoDialogComponent/infoUserSecurity"
 
 
 const headerTableStyle={

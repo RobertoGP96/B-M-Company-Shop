@@ -10,12 +10,14 @@ import { Column } from "primereact/column";
 import useWindowSize from "../hooks/useWindowSize";
 import { getPromotions } from "../services/ManagePromotions/getPromotions";
 import { DataScroller } from "primereact/datascroller";
-import InfoPromotion from "../components/InfoDialogComponent/infoPromotion";
+import InfoPromotion from "../components/OfertsManagmentComponents/InfoDialogComponent/infoPromotion";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { deletePromotions } from "../services/ManagePromotions/deletePrmotion";
 import { Toast } from "primereact/toast";
 import { Checkbox } from "primereact/checkbox";
-import PageLoader from "../components/PageLoader";
+import { useGetPromotions } from "../hooks/useGetPromotions";
+import { InputSwitch } from "primereact/inputswitch";
+import OfertsGrid from "../components/OfertsManagmentComponents/OfertsGrid";
 
 //Header Table styles
 const headerTableStyle = {
@@ -51,15 +53,11 @@ function MagnamentOferts() {
   const toast = useRef(null);
   const [search,setSearch] = useState("")
   const [mounted, setMounted] = useState(false)
+  const [viewMode,setViewMode] = useState("table")
   
 
   // Useeffect hook for getting ofert data from server
-  useEffect(() => {
-    getPromotions().then((result) => {
-      console.log(result.results);
-      setDataOferts(result.results);
-    });
-  }, []);
+  useGetPromotions({promotions:dataOferts,setPromotions:setDataOferts})
 
   useEffect(() => {
     if(mounted){
@@ -142,6 +140,13 @@ function MagnamentOferts() {
             copyOferts.push(data)
             setSelectedOferts(copyOferts);
         }
+    };
+
+    const handelOnChangeView = ()=>{
+      if(viewMode =="table")
+        setViewMode("grid")
+      else
+        setViewMode("table");
     };
 
 
@@ -304,11 +309,14 @@ function MagnamentOferts() {
           value={search} 
           onChange={(e)=>{setSearch(e.target.value)}}/>
         </form>
+        
+        <InputSwitch style={{minWidth:"50px"}} checked={viewMode=="table"}  onChange={handelOnChangeView}/>
 
         <button className="search-oferts-button">
           <img src={FilterIcon} alt="filter" width={"12px"} />
           <p>Filtros</p>
         </button>
+
 
         <button
           className="search-oferts-button"
@@ -332,7 +340,7 @@ function MagnamentOferts() {
       </search>
       {/* Tabla de ofertas */}
       <section className={"table-oferts-container"}>
-        {!mobileView ? (
+        {!mobileView && viewMode=="table"? (
           <DataTable
             className="data-table-oferts"
             value={dataOferts}
@@ -402,7 +410,18 @@ function MagnamentOferts() {
               }}
             ></Column>
           </DataTable>
-        ) : (
+        ) : viewMode=="grid"?
+          <OfertsGrid 
+            deleteConfirm={confirm2} 
+            handleOnChangeChecked={handleOnChangeChecked}
+            handleOnClickEditButton={handleOnClickEditButton}
+            handleOnClickInfoButton={handleOnClickInfoButton}
+            searchChecked={searchChecked}
+            setRowData={setRowData}
+            selectedOferts={selectedOferts}
+            oferts={dataOferts}
+          />
+        :(
           <DataScroller
             className="data-oferts-scroller"
             value={dataOferts}
