@@ -13,6 +13,7 @@ import ProductForm from "../ProductForm";
 function ProductsManagmentFiltersBar({
   categories,
   loadingCategories,
+  loadingProducts,
   selectedProducts,
   selectedCategories,
   setSelectedCategories,
@@ -30,6 +31,7 @@ function ProductsManagmentFiltersBar({
   productFormProperties,
   handleCreateProduct,
   handleUpdateProduct,
+  promotions
 }) {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   return (
@@ -68,6 +70,8 @@ function ProductsManagmentFiltersBar({
         handleCreateProduct = {handleCreateProduct}
         handleUpdateProduct = {handleUpdateProduct}
         categories={categories}
+        promotions = {promotions}
+        loading={loadingProducts}
       />  
       </div>
       <div className="view-toggle-container">
