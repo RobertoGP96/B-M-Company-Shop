@@ -6,7 +6,7 @@ import {updateProduct} from "../services/ManageProducts/updateProduct";
 
 export function useManageProducts({ searchParams, toastRef, setSelectedProducts, resetProductFormProperties, removeAllFilters }) {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingProducts, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0);
   const [updateProducts, setUpdateProducts] = useState(false); //state to mark when to re-fetch the products
 
@@ -181,7 +181,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
 
   return {
     products,
-    loading,
+    loadingProducts,
     setLoading,
     numOfProducts,
     updateProducts,
