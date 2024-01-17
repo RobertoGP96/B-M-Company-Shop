@@ -17,7 +17,7 @@ function ProductmanagmentCard({product, handleDeleteProduct, processDetailProduc
           </div>
           <div className="name-and-price-container">
             <p className="product-card-name">{product.product_name}</p>
-            <p className="card-text price">${product.precio}</p>
+            <p className="card-text price">${product.precio.toFixed(2)}</p>
           </div>
           <div className = "action-buttons-container">
             <ActionButtons

@@ -77,7 +77,7 @@ function ProductList({
           field="precio"
           header="Precio"
           body={(product) => {
-            return `$${product.precio}`;
+            return `$${product.precio.toFixed(2)}`;
           }}
         ></Column>
         <Column
