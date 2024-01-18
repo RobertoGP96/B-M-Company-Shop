@@ -54,10 +54,11 @@ function MagnamentOferts() {
   const [search,setSearch] = useState("")
   const [mounted, setMounted] = useState(false)
   const [viewMode,setViewMode] = useState("table")
+  const [numOfOferts, setNumOferts] = useState(0) 
   
 
   // Useeffect hook for getting ofert data from server
-  useGetPromotions({promotions:dataOferts,setPromotions:setDataOferts})
+  useGetPromotions({promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
 
   useEffect(() => {
     if(mounted){
@@ -110,6 +111,12 @@ function MagnamentOferts() {
           }}
         >
           <i className="pi pi-trash icon-oferts-table"></i>
+        </button>
+        <button
+            className="oferts-actions-table-button"
+
+            >
+            <i className="pi pi-plus icon-oferts-table"></i>
         </button>
       </div>
     );
@@ -197,6 +204,12 @@ function MagnamentOferts() {
           >
             <i className="pi pi-trash icon-oferts-table"></i>
           </button>
+          <button
+            className="oferts-actions-table-button"
+
+            >
+            <i className="pi pi-plus icon-oferts-table"></i>
+        </button>
         </div>
       </section>
     );
@@ -289,6 +302,12 @@ function MagnamentOferts() {
 
       {/* Titulo de la pagina*/}
       <header>
+        <button
+          className="products-managment-go-back-button btn-general-styles"
+          onClick={() => history.back()}
+        >
+          <i className="pi pi-arrow-left" ></i>
+        </button>
         <h1>Gestión de Ofertas</h1>
       </header>
       {/* Seccion de la barra de busqueda */}
@@ -310,7 +329,8 @@ function MagnamentOferts() {
           onChange={(e)=>{setSearch(e.target.value)}}/>
         </form>
         
-        <InputSwitch style={{minWidth:"50px"}} checked={viewMode=="table"}  onChange={handelOnChangeView}/>
+        <InputSwitch className="input-switch-oferts" style={{minWidth:"50px"}} checked={viewMode=="table"}  onChange={handelOnChangeView}>
+        </InputSwitch>
 
         <button className="search-oferts-button">
           <img src={FilterIcon} alt="filter" width={"12px"} />
@@ -339,8 +359,8 @@ function MagnamentOferts() {
         </button>
       </search>
       {/* Tabla de ofertas */}
-      <section className={"table-oferts-container"}>
-        {!mobileView && viewMode=="table"? (
+      <section className={viewMode=="table"?"table-oferts-container":"table-oferts-container not-overfllow-x"}>
+        {!mobileView && viewMode !=="grid"? (
           <DataTable
             className="data-table-oferts"
             value={dataOferts}
@@ -410,7 +430,7 @@ function MagnamentOferts() {
               }}
             ></Column>
           </DataTable>
-        ) : viewMode=="grid"?
+        ) : viewMode =="grid"?
           <OfertsGrid 
             deleteConfirm={confirm2} 
             handleOnChangeChecked={handleOnChangeChecked}
@@ -420,6 +440,7 @@ function MagnamentOferts() {
             setRowData={setRowData}
             selectedOferts={selectedOferts}
             oferts={dataOferts}
+            numOfOferts={numOfOferts}
           />
         :(
           <DataScroller

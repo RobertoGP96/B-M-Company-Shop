@@ -36,7 +36,7 @@
 
 .details-prmotion-card-section{
     display: flex;
-    width: 55%;
+    width: 35%;
     text-align: left;
     min-width: 150px;   
     flex-direction: column; 
@@ -73,7 +73,7 @@
 
 .accion-promotion-card-section{
     flex-direction: column;
-    width: 8%;
+    width: 20%;
     margin: auto ;
     background-color: rgba(187, 187, 187, 0.3);
     border-radius: 10px;

@@ -3,7 +3,6 @@
 
 
 .magnament-oferts-container{
-    padding-top: 20px;
     height: 100vh;
     background-color: white;
     display: flex;
@@ -28,7 +27,23 @@
     width: 90%;
     max-width: 2000px;
     padding: 10px 0px;
-    align-items: left;
+    align-items: center;
+    
+}
+.magnament-oferts-container header button{
+    border-top: 2px solid #545454 ;
+    border-left: 2px solid #545454 ;
+    border-right: 1px solid rgb(63, 63, 63) ;
+    border-bottom: 1px solid rgb(44, 44, 44) ;
+    box-shadow: 1px 1px 2px 0px rgba(48, 48, 48, 0.7);
+    
+}
+.magnament-oferts-container header button:hover{
+    background: #2e2e2e !important;
+}
+.magnament-oferts-container header i{
+    color: white;
+    
 }
 
 .magnament-oferts-container h1{
@@ -47,7 +62,7 @@
 
 .search-oferts-container{
     width: 90%;
-    margin: 15px auto;
+ 
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -112,11 +127,22 @@
     background: #353535;
 }
 
+.input-switch-oferts .p-inputswitch-slider{
+    background: #555555;
+}
+.input-switch-oferts .p-inputswitch.p-focus {
+    box-shadow: 0px 0px 4px 0px #353535 ;
+}
+
 .table-oferts-container{
     width: 90%;
     margin: 20px auto;
     overflow-x: scroll;
 
+}
+
+.not-overfllow-x{
+    overflow-x: hidden;
 }
 
 .responsive-oferts-1000px{

@@ -9,12 +9,12 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
         getPromotions(searchParams)
         .then((data) => {
             setPromotions(data.results);
-            //setNumOfPromotions(data.count);
+            setNumOfPromotions(data.count);
             setLoading(false);
         })
         .catch(() => {
             setLoading(false);
-            //setNumOfPromotions(0)
+            setNumOfPromotions(0)
         });
     }, [searchParams]);
 

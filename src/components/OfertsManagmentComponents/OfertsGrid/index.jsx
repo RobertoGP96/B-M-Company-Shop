@@ -15,12 +15,14 @@ export default function OfertsGrid({
   handleOnClickEditButton,
   deleteConfirm,
   oferts,
+  numOfOferts,
 }) {
-  const [numOfOferts, setNumOfOferts] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
+    useContext(QueryFiltersContext);
+
   return (
     <>
-      {loading ? (
+      {oferts === null ? (
         <section className="oferts-loader-container">
           <div>
             <Loader />
@@ -57,9 +59,9 @@ export default function OfertsGrid({
               </div>
             )}
           </div>
-
         </section>
       )}
+
     </>
   );
 }

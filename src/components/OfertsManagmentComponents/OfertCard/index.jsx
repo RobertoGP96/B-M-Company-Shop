@@ -24,7 +24,7 @@ function OfertCard({
         <div className="details-prmotion-card-section details-grid-prmotion">
           <p className="mame-promotion p-grid-card-promotion">{data.name}</p>
           <p className="total-products-promotion">{`Productos: ${data.cantidad_products}`}</p>
-      </div>
+        </div>
       </div>
       <div className="discount-promotion-container discount-grid-container">
               <p className="price">{`-${data.discount_in_percent}%`}</p>
@@ -55,6 +55,12 @@ function OfertCard({
           }}
         >
           <i className="pi pi-trash icon-oferts-table"></i>
+        </button>
+        <button
+          className="oferts-actions-table-button"
+
+        >
+          <i className="pi pi-plus icon-oferts-table"></i>
         </button>
       </div>
     </section>
