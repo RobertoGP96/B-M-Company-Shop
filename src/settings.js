@@ -8,5 +8,7 @@ export const URL_STORE_GET_CATEGORIES= `${BASE_URL}/store/categories/`
 export const URL_GET_PRODUCTS = `${BASE_URL}/store/products`
 export const URL_MANAGE_PRODUCTS = `${BASE_URL}/store/manage-products/`
 export const URL_MANAGE_CATEGORIES = `${BASE_URL}/store/manage-categories/`
-export const URL_MANAGE_PROMOTIONS = `${BASE_URL}/store/manage-promotions/`
+
+export const URL_GET_PROMOTIONS = `${BASE_URL}/store/promotions/`
+
 

@@ -33,6 +33,7 @@ function ProductList({
         selection={selectedProducts}
         onSelectionChange={(e) => setSelectedProducts(e.value)}
         dataKey="id"
+        size="small"
       >
         <Column
           selectionMode="multiple"
@@ -76,7 +77,7 @@ function ProductList({
           field="precio"
           header="Precio"
           body={(product) => {
-            return `$${product.precio}`;
+            return `$${product.precio.toFixed(2)}`;
           }}
         ></Column>
         <Column
