@@ -3,12 +3,14 @@ import { getPromotions } from "../services/ManagePromotions/getPromotions";
 
 export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions}) {
     const [loading, setLoading] = useState(false);
+    const [promotions, changePromotions] = useState([])
     //get promotions of store
     useEffect(() => {
         setLoading(true);
         getPromotions(searchParams)
         .then((data) => {
             setPromotions(data.results);
+            changePromotions(data.results);
             setNumOfPromotions(data.count);
             setLoading(false);
         })
@@ -17,6 +19,8 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
             setNumOfPromotions(0)
         });
     }, [searchParams]);
+
+    return({promotions,loading})
 
 }
 
