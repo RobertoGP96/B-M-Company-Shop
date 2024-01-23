@@ -81,30 +81,15 @@ function ProductForm({
         {/*description*/}
         <div className="product-form-field">
           <label htmlFor="description">Descripción</label>
-          <InputText
+          <InputTextarea
             id="description"
             aria-describedby="description-help"
-            className=".p-inputtext-sm"
-            disabled={productFormProperties.disabled}
-            defaultValue={
-              productFormProperties.creatingMode
-                ? ""
-                : productFormProperties.initialValues.product_description
-            }
-          />
-        </div>
-        {/*about*/}
-        <div className="product-form-field">
-          <label htmlFor="about">Acerca del producto</label>
-          <InputTextarea
-            id="about"
-            aria-describedby="about-help"
             style={{ maxWidth: "100%", minWidth: "100%" }}
             disabled={productFormProperties.disabled}
             defaultValue={
               productFormProperties.creatingMode
                 ? ""
-                : productFormProperties.initialValues.about
+                : productFormProperties.initialValues.product_description
             }
           />
         </div>

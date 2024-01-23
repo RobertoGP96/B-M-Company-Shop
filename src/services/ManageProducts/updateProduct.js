@@ -4,7 +4,6 @@ export function updateProduct({id, values}){
     let formData = new FormData()
     formData.append('product_name', values.product_name)
     formData.append('product_description', values.product_description)
-    formData.append('about', values.about)
     formData.append('precio', values.precio)
     formData.append('descuento', values.descuento)
     formData.append('in_stock', values.in_stock)
