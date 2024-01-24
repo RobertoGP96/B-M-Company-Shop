@@ -106,8 +106,8 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
         }
     }
     function handleCreateProduct({values}){
-      setLoading(true)
       if(productInfoValid({values:values})){
+        setLoading(true)
         createProduct({values:values})
         .then(res => {
           handleSetUpdateProducts()
@@ -130,12 +130,11 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
           setLoading(false)
         })
       }
-      setLoading(false)
     }
 
     function handleUpdateProduct({id, values}){
-      setLoading(true)
       if(productInfoValid({values:values, creating:false})){
+        setLoading(true)
         updateProduct({id:id, values:values})
         .then(res => {
           setUpdateProducts(prev => !prev)
@@ -158,7 +157,6 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
           setLoading(false)
         })
       }
-      setLoading(false)
     }
 
     function productInfoValid({values, creating = true}){

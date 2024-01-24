@@ -26,14 +26,14 @@ export function useManageProductForm({
     code: null,
   });
 
-  //effect to update the activeStatus and categorySelected
+  //effect to update the activeStatus, the categorySelected and the promotion
   useEffect(() => {
     //update if the product is active or not
     productFormProperties.creatingMode == false
       ? setChecked(productFormProperties.initialValues.is_active)
       : setChecked(true);
     //update the category and promotion of the product
-    if (productFormProperties.creatingMode == false) {
+    if (productFormProperties.creatingMode == false && productFormProperties.initialValues.category !== null && productFormProperties.initialValues.promotion !== null) {
       setCategorySelected(
         categoriesOptions.find(
           (category) =>
