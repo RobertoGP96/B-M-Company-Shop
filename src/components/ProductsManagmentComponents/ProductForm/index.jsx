@@ -9,6 +9,7 @@ import { useImagePreview } from "../../../hooks/useImagePreview";
 import AddIcon from '../../../assets/oferts-magnament-add.svg'
 import EditIcon from '../../../assets/edit-icon.svg'
 import DetailIcon from '../../../assets/eye-icon.svg'
+import ImagePlaceholder from '../../../assets/product_form_img_placeholder.png'
 import "./index.css";
 
 function ProductForm({
@@ -187,9 +188,11 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 0 })}
-              style ={imagesPreview[0]?{visibility:'hidden'}:null}
+              hidden = {true}
             />
-            {imagesPreview[0] ? <label htmlFor="img1"><img src={imagesPreview[0]} /></label> : null}
+            <label htmlFor="img1">
+              {imagesPreview[0] ? <img src={imagesPreview[0]} /> : <div className = "image-selector"><img src = {ImagePlaceholder}/></div>}
+            </label>
           </div>
           {/*Img 2*/}
           <div className="product-image-field">
@@ -201,9 +204,11 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 1 })}
-              style ={imagesPreview[1]?{visibility:'hidden'}:null}
+              hidden = {true}
             />
-            {imagesPreview[1] ? <label htmlFor="img2"><img src={imagesPreview[1]} /></label> : null}
+            <label htmlFor="img2">
+              {imagesPreview[1] ? <img src={imagesPreview[1]} /> : <div className = "image-selector"><img src = {ImagePlaceholder}/></div>}
+            </label>
           </div>
           {/*Img 3*/}
           <div className="product-image-field">
@@ -215,9 +220,13 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 2 })}
-              style ={imagesPreview[2]?{visibility:'hidden'}:null}
+              hidden = {true}
             />
-            {imagesPreview[2] ? <label htmlFor="img3"><img src={imagesPreview[2]} /></label> : null}
+            <label htmlFor="img3">
+              {imagesPreview[2] ? <img src={imagesPreview[2]} /> : <div className = "image-selector">
+                <img src = {ImagePlaceholder}/>
+                </div>}
+            </label>
           </div>
         </section>
         <hr/>
@@ -237,6 +246,7 @@ function ProductForm({
         </div>
         <section className = "product-form-action-buttons-container">
           {/*Submit*/}
+          {console.log(loading)}
           {productFormProperties.disabled == false ? (
             <Button label={loading == true?"Enviando...":"Enviar"} className="btn-general-styles"/>
           ) : null}

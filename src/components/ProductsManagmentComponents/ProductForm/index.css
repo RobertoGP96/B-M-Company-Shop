@@ -3,12 +3,22 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    font-family: Noto Sans;
 }
 
 .product-form-dialog-header{
     background-color:rgba(84, 84, 84, 1);
     color: #fff;
     height:20px;
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Noto Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; /* 15px */
+    font-variant: small-caps;
 }
 .product-form-dialog-header button{
     margin-top:-15px;
@@ -22,6 +32,7 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
+    align-items: center;
 }
 .product-form-dialog-title img{
     filter: brightness(0) saturate(100%) invert(1);
@@ -88,16 +99,25 @@
     height: 100%;
     border-radius: 5px;
 }
-.product-image-field input{
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
 .product-image-field img{
     width:100%;
     height: 100%;
     border-radius: 5px;
     object-fit: cover;
+    cursor: pointer;
+}
+.image-selector{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(128, 128, 128, 0.53);
+}
+.image-selector img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%!important;
 }
 
 .product-description-field{
@@ -109,6 +129,7 @@
     max-width: 280px;
     min-height: 100px;
     border: 1px solid gray;
+    background: rgba(234, 229, 229, 0.17);
 }
 
 .product-form-action-buttons-container{
@@ -152,10 +173,15 @@
         align-items: flex-start;
     }
     .product-form-field input{
-        max-width: 280px;
+        width: 100%;
     }
     .product-form-active-checkbox{
         gap:10px
+    }
+    .product-form-images-container{
+        grid-template-columns: repeat(1, 100%);
+        grid-template-rows: repeat(3, auto);
+        justify-content: flex-start;
     }
 }
 

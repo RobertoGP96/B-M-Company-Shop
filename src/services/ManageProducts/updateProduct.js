@@ -8,6 +8,7 @@ export function updateProduct({id, values}){
     formData.append('descuento', values.descuento)
     formData.append('in_stock', values.in_stock)
     formData.append('is_active', values.is_active)
+    formData.append('product_img1', values.product_img1)
 
     if(values.categoria !== undefined && values.categoria !== null){
         formData.append('categoria', values.categoria)
