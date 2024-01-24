@@ -18,8 +18,9 @@ function ProductList({
   processDetailProduct
 }) {
   return (
+    
     <section className="products-managment-list-table-container">
-      {loading ? (
+      {loading? (
         <section className="products-managment-list-loader-container">
           <div>
             <Loader />
