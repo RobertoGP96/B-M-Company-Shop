@@ -22,7 +22,7 @@ export function useManageProductForm({
     code: null,
   });
   const [promotionSelected, setPromotionSelected] = useState({
-    name: "Promoción",
+    name: "Oferta",
     code: null,
   });
 
@@ -48,7 +48,7 @@ export function useManageProductForm({
       );
     } else {
       setCategorySelected({ name: "Categoría", code: null });
-      setPromotionSelected({ name: "Promoción", code: null });
+      setPromotionSelected({ name: "Oferta", code: null });
     }
   }, [productFormProperties.initialValues]);
 
@@ -86,5 +86,6 @@ export function useManageProductForm({
     setPromotionSelected,
     promotionsOptions,
     activeStatusChecked,
+    setChecked
   };
 }
