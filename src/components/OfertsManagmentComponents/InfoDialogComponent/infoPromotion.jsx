@@ -6,7 +6,7 @@ import { createPromotion } from "../../../services/ManagePromotions/createPromot
 import { Toast } from "primereact/toast";
 import { Checkbox } from "primereact/checkbox";
 import { Image } from "primereact/image";
-import PageLoader from "../../PageLoader";
+import DataTableProducts from "../DataTableProducts";
 
 function InfoPromotion({
   visible,
@@ -16,6 +16,7 @@ function InfoPromotion({
   heaerTitle,
   onSave,
   accion,
+  setPageLoad,
 }) {
   const [infoData, setInfoData] = useState({
     name: "",
@@ -23,11 +24,10 @@ function InfoPromotion({
     discount_in_percent: "",
     active: false,
     is_special: false,
-    img:""
+    img: "",
   });
   const toast = useRef(null);
-  const [pageLoad,setPageLoad] = useState(false);
-  const [imgPreview,setImgPreview] = useState(infoData.img)
+  const [imgPreview, setImgPreview] = useState(infoData.img);
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -43,7 +43,7 @@ function InfoPromotion({
       setInfoData(data);
       setImgPreview(data.img);
     }
-  }, [data,visible?visible:undefined]);
+  }, [data, visible ? visible : undefined]);
 
   const show = () => {
     toast.current.show({
@@ -68,7 +68,6 @@ function InfoPromotion({
 
   return (
     <section className="info-promotion-container">
-      <PageLoader visible={pageLoad} onHide={()=>setPageLoad(false)}/>
       <Toast ref={toast} />
       <Dialog
         visible={visible}
@@ -95,7 +94,6 @@ function InfoPromotion({
                 show();
                 setPageLoad(false);
                 onHide();
-                
               });
             } else {
               createPromotion({
@@ -117,65 +115,7 @@ function InfoPromotion({
           encType="multipart/form-data"
         >
           {editable && (
-            <>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Nombre</p>
-                </div>
-                <div className="input-dialog-container">
-                  <input
-                    type="text"
-                    defaultValue={infoData.name}
-                    onChange={(e) => handleOnchange(e.target.value, "name")}
-                  />
-                </div>
-              </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Descripción</p>
-                </div>
-                <div className="input-dialog-container textarea-description-promtion">
-                  <textarea
-                    type="text"
-                    defaultValue={infoData.description}
-                    onChange={(e) =>
-                      handleOnchange(e.target.value, "description")
-                    }
-                  />
-                </div>
-              </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Descuento</p>
-                </div>
-                <div className="input-dialog-container">
-                  <input
-                    type="number"
-                    defaultValue={infoData.discount_in_percent}
-                    onChange={(e) =>
-                      handleOnchange(e.target.value, "discount_in_percent")
-                    }
-                  />
-                </div>
-              </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Activado</p>
-                </div>
-                <Checkbox
-                  checked={infoData.active}
-                  onChange={() => handleOnChecked("active")}
-                />
-              </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Especial</p>
-                </div>
-                <Checkbox
-                  checked={infoData.is_special}
-                  onChange={() => handleOnChecked("is_special")}
-                />
-              </div>
+            <div className="inputs-dialog-from-container">
               <div className="input-info-dialog image-file-icon">
                 <div className="image-file-icon-container">
                   <input
@@ -183,9 +123,9 @@ function InfoPromotion({
                     name="image"
                     type="file"
                     accept="image/*"
-                    onChange={(e) =>{ 
+                    onChange={(e) => {
                       setImgPreview(URL.createObjectURL(e.target.files[0]));
-                      handleOnchange(e.target.value, "img")
+                      handleOnchange(e.target.value, "img");
                     }}
                   />
                   <i className="pi pi-file-import"></i>
@@ -196,89 +136,138 @@ function InfoPromotion({
                     <Image src={imgPreview} />
                   ) : (
                     <div className="img-textfile-container">
-                      <p>No hay ningún archivo(.jpg, .jpeg, .png, .svg, .webp) todavía.</p>
+                      <p>
+                        No hay ningún archivo(.jpg, .jpeg, .png, .svg, .webp)
+                        todavía.
+                      </p>
                     </div>
                   )}
                 </div>
               </div>
-            </>
-          )}
-
-          {!editable && (
-            <>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Nombre:</p>
+              <div className=" input-info-dialogs-details">
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Nombre:</p>
+                  </div>
+                  <div className="input-dialog-container">
+                    <input
+                      type="text"
+                      defaultValue={infoData.name}
+                      onChange={(e) => handleOnchange(e.target.value, "name")}
+                      required
+                    />
+                  </div>
                 </div>
-                <div className="input-dialog-container">
-                  <input value={infoData.name} type="text" readOnly />
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Descuento:</p>
+                  </div>
+                  <div className="input-dialog-container discount-input">
+                    <input
+                      type="number"
+                      defaultValue={infoData.discount_in_percent}
+                      onChange={(e) =>
+                        handleOnchange(e.target.value, "discount_in_percent")
+                      }
+                      required
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Descripción</p>
-                </div>
-                <div className="input-dialog-container textarea-description-promtion">
-                  <textarea value={infoData.description} type="text" readOnly />
-                </div>
-              </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Descuento:</p>
-                </div>
-                <div className="input-dialog-container">
-                  <input
-                    value={infoData.discount_in_percent}
-                    type="number"
-                    readOnly
-                    suppressContentEditableWarning
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Visible:</p>
+                  </div>
+                  <Checkbox
+                    checked={infoData.active}
+                    onChange={() => handleOnChecked("active")}
                   />
                 </div>
               </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Activado</p>
-                </div>
-                <Checkbox checked={infoData.active} readOnly />
-              </div>
-              <div className="input-info-dialog">
-                <div className="p-dialog-container">
-                  <p>Especial</p>
-                </div>
-                <Checkbox checked={infoData.is_special} readOnly />
-              </div>
+            </div>
+          )}
+
+          {!editable && (
+            <div className="inputs-dialog-from-container">
               <div className="input-info-dialog">
                 <div className="img-dialog-container">
                   <Image zoomSrc={infoData.img} src={infoData.img} preview />
                 </div>
               </div>
-            </>
-          )}
+              <div className=" input-info-dialogs-details">
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Nombre:</p>
+                  </div>
+                  <div className="input-dialog-container">
+                    <input value={infoData.name} type="text" readOnly />
+                  </div>
+                </div>
 
-          
-            <div className="button-promotion-container">
-              {editable && (
-                <button
-                  name="submit_button"
-                  className="buttons-user-info"
-                  
-                >
-                  {data ? "Guardar" : "Aceptar"}
-                </button>
-              )}
-              <div
-                name="exit_button"
-                className="buttons-user-info"
-                onClick={()=>{
-                  onHide()
-
-                }}
-              >
-                Cancelar
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Descuento:</p>
+                  </div>
+                  <div className="input-dialog-container discount-input">
+                    <input
+                      value={infoData.discount_in_percent}
+                      type="number"
+                      readOnly
+                      suppressContentEditableWarning
+                    />
+                  </div>
+                </div>
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Visible:</p>
+                  </div>
+                  <Checkbox checked={infoData.active} readOnly />
+                </div>
               </div>
-
             </div>
-          
+          )}
+          <hr className="oferts-info-intrinsic" />
+          <p className="p-products-text-oferts">Productos:</p>
+          <div className="add-products-to-oferts-containers">
+            <div className="add-products-to-oferts-buttons-container">
+              {editable && (
+                <>
+                  <button
+                    className="add-products-to-oferts-buttons"
+                    onClick={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <i className="pi pi-plus" style={{ color: "white" }}></i>
+                  </button>
+                  <button
+                    className="add-products-to-oferts-buttons"
+                    onClick={(e) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <i className="pi pi-minus" style={{ color: "white" }}></i>
+                  </button>
+                </>
+              )}
+            </div>
+            <DataTableProducts OfertID={infoData.id} editable={editable} />
+          </div>
+          <div className="button-promotion-container">
+            {editable && (
+              <button name="submit_button" className="buttons-user-info">
+                {data ? "Guardar" : "Aceptar"}
+              </button>
+            )}
+            <div
+              name="exit_button"
+              className="buttons-user-info"
+              onClick={() => {
+                onHide();
+              }}
+            >
+              Cancelar
+            </div>
+          </div>
         </form>
       </Dialog>
     </section>

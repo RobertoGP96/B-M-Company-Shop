@@ -10,6 +10,7 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
         getPromotions(searchParams)
         .then((data) => {
             setPromotions(data.results);
+            console.log(data.results);
             changePromotions(data.results);
             setNumOfPromotions(data.count);
             setLoading(false);
@@ -20,7 +21,7 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
         });
     }, [searchParams]);
 
-    return({promotions,loading})
+    return({promotions,loading,setLoading})
 
 }
 

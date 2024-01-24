@@ -56,12 +56,7 @@ function OfertCard({
         >
           <i className="pi pi-trash icon-oferts-table"></i>
         </button>
-        <button
-          className="oferts-actions-table-button"
 
-        >
-          <i className="pi pi-plus icon-oferts-table"></i>
-        </button>
       </div>
     </section>
   );

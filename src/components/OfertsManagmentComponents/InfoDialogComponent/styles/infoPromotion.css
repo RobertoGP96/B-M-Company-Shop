@@ -2,13 +2,14 @@
 
 
 .info-dialog-promotion{
-    width: 340px;
+    width: 500px;
     height: 550px; 
 }
 
 .info-dialog-promotion .p-dialog-content{
  overflow: hidden;
  background-color: #FFFBFB;
+ padding: 5px;
 }
 
 .info-dialog-promotion .p-dialog-header{
@@ -16,6 +17,7 @@
     background-color: #545454;
     color: white;
     font-variant: small-caps;
+
 }
 .info-dialog-promotion .p-dialog-title{
     font-size: 0.8rem;
@@ -41,7 +43,12 @@
     padding:15px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 8px;
+}
+
+.inputs-dialog-from-container{
+    display: flex;
+    gap: 8px;
 }
 
 .input-info-dialog{
@@ -62,21 +69,29 @@
 
 .input-dialog-container{
     display: flex;
-    padding: 8px;
     height: 30px;
     align-items: center;
     justify-content: left;
     border-radius: 5px;
     background: rgba(51, 50, 50, 0.16);  
-    width: 200px;   
+    width: 150px !important;   
     transition: border 0.4s ease-in-out;
     border: 1px solid rgb(51, 50, 50, 0.08);
 }
+
+.input-info-dialogs-details{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .input-dialog-container:hover{
     border: 1px solid rgb(64, 159, 223);
 }
 
-
+.discount-input{
+    width: 100px !important;
+}
 .textarea-description-promtion{
     height: 80px !important;
     max-height: 100px;
@@ -95,22 +110,20 @@
     max-width: 135px;
 }
 
+
+
 .p-dialog-container{
-    width: 150px;
+    width: 100px !important;
 }
 
 .p-dialog-container p{
     margin-block: 0px;
     display: inline;
     font-size: 14px;
+    font-variant: small-caps;
 }
 
-.button-promotion-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-}
+
 
 .button-promotion-container div{
     padding: 9px;
@@ -118,8 +131,6 @@
     border-left: 2px solid #545454;
     cursor: default;
 }
-
-
 
 .buttons-user-info{
     color: aliceblue;
@@ -140,6 +151,63 @@
     box-shadow: 2px 2px 3px 0px rgba(48, 48, 48, 0.7);
 }
 
+.oferts-info-intrinsic{
+    width: 100%;
+    height: 1px;
+    border: 1px solid rgb(207, 207, 207)
+}
+
+.add-products-to-oferts-containers{
+    padding: 4px;
+    width: 455px;
+    height: 250px;
+    background: rgb(90, 87, 87,0.1);
+    border-radius: 5px;
+    margin: auto;
+    display: flex;
+    gap: 10px;
+   
+}
+
+.add-products-to-oferts-buttons-container{
+    width: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap:3px;
+   
+}
+
+.add-products-to-oferts-buttons{
+    width: 100%;
+    height: 30px;
+    background-color: #6e6e6e;
+    border-radius: 5px;
+    border: none;
+ 
+}
+
+
+
+.add-products-to-oferts-buttons:hover{
+    background-color: #555555;
+    cursor: pointer;
+}
+
+
+.button-promotion-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.p-products-text-oferts{
+    margin-block: 0px;
+    font-family: Noto Sans;
+    font-variant: small-caps;
+}
+
 .with-img{
     width: 100%;    
     display: flex;
@@ -157,13 +225,13 @@
     display: flex;
     padding: none;
     background-image: 100%;
-    height: 130px;
+    height: 120px;
     align-items: center;
     justify-content: center;
 }
 .img-dialog-container span img{
-    max-height: 130px;
-    width: 230px;
+    height: 120px;
+    width: 150px;
     object-fit: cover;
 }
 
@@ -238,6 +306,7 @@
     cursor: pointer;
     z-index: 1;
 }
+
 
 
 .buttons-user-info:hover{
