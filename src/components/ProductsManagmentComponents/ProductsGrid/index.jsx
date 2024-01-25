@@ -39,6 +39,7 @@ function ProductsGrid({
           processUpdateProduct={processUpdateProduct}
           processDetailProduct={processDetailProduct}
           selectedProducts = {selectedProducts}
+          handleCheckProduct={handleCheckProduct}
         />
       ))}
     </section>

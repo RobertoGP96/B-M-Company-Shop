@@ -6,10 +6,10 @@ import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
 import { useManageProductForm } from "../../../hooks/useManageProductForm";
 import { useImagePreview } from "../../../hooks/useImagePreview";
-import AddIcon from '../../../assets/oferts-magnament-add.svg'
-import EditIcon from '../../../assets/edit-icon.svg'
-import DetailIcon from '../../../assets/eye-icon.svg'
-import ImagePlaceholder from '../../../assets/product_form_img_placeholder.png'
+import AddIcon from "../../../assets/oferts-magnament-add.svg";
+import EditIcon from "../../../assets/edit-icon.svg";
+import DetailIcon from "../../../assets/eye-icon.svg";
+import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
 import "./index.css";
 
 function ProductForm({
@@ -19,7 +19,7 @@ function ProductForm({
   handleUpdateProduct,
   categories,
   promotions,
-  loading
+  loading,
 }) {
   const {
     categorySelected,
@@ -31,7 +31,7 @@ function ProductForm({
     activeStatusChecked,
     setChecked,
     updateProduct,
-    createProduct
+    createProduct,
   } = useManageProductForm({
     productFormProperties: productFormProperties,
     handleCreateProduct: handleCreateProduct,
@@ -47,11 +47,22 @@ function ProductForm({
     <Dialog
       position="right"
       header={
-        productFormProperties.creatingMode == true
-          ? <div className = "product-form-dialog-title"><img src = {AddIcon}/><span>Agregar Producto</span></div>
-          : productFormProperties.disabled
-          ? <div className = "product-form-dialog-title"><img src = {DetailIcon}/><span>Detalle de Producto</span></div>
-          : <div className = "product-form-dialog-title"><img src = {EditIcon}/><span>Editar Producto</span></div>
+        productFormProperties.creatingMode == true ? (
+          <div className="product-form-dialog-title">
+            <img src={AddIcon} />
+            <span>Agregar Producto</span>
+          </div>
+        ) : productFormProperties.disabled ? (
+          <div className="product-form-dialog-title">
+            <img src={DetailIcon} />
+            <span>Detalle de Producto</span>
+          </div>
+        ) : (
+          <div className="product-form-dialog-title">
+            <img src={EditIcon} />
+            <span>Editar Producto</span>
+          </div>
+        )
       }
       visible={productFormProperties.show}
       onHide={() => resetProductFormProperties()}
@@ -78,7 +89,7 @@ function ProductForm({
             aria-describedby="name-help"
             className=".p-inputtext-sm"
             disabled={productFormProperties.disabled}
-            style={{minWidth:"70%"}}
+            style={{ minWidth: "70%" }}
             defaultValue={
               productFormProperties.creatingMode
                 ? ""
@@ -130,12 +141,12 @@ function ProductForm({
             optionLabel="name"
             placeholder="Oferta"
             className="w-full md:w-14rem product-form-dropdown"
-            style={{minWidth:'150px'}}
+            style={{ minWidth: "150px" }}
           />
         </div>
         {/*active*/}
         <div className="product-form-active-checkbox">
-        <label htmlFor="active">Visible:</label>
+          <label htmlFor="active">Visible:</label>
           <Checkbox
             id="active"
             aria-describedby="active-help"
@@ -176,8 +187,8 @@ function ProductForm({
             }
           />
         </div>
-        <hr/>
-        <section className = "product-form-images-container">
+        <hr />
+        <section className="product-form-images-container">
           {/*Img 1*/}
           <div className="product-image-field">
             <InputText
@@ -188,10 +199,16 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 0 })}
-              hidden = {true}
+              hidden={true}
             />
             <label htmlFor="img1">
-              {imagesPreview[0] ? <img src={imagesPreview[0]} /> : <div className = "image-selector"><img src = {ImagePlaceholder}/></div>}
+              {imagesPreview[0] ? (
+                <img src={imagesPreview[0]} />
+              ) : (
+                <div className="image-selector">
+                  <img src={ImagePlaceholder} />
+                </div>
+              )}
             </label>
           </div>
           {/*Img 2*/}
@@ -204,10 +221,16 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 1 })}
-              hidden = {true}
+              hidden={true}
             />
             <label htmlFor="img2">
-              {imagesPreview[1] ? <img src={imagesPreview[1]} /> : <div className = "image-selector"><img src = {ImagePlaceholder}/></div>}
+              {imagesPreview[1] ? (
+                <img src={imagesPreview[1]} />
+              ) : (
+                <div className="image-selector">
+                  <img src={ImagePlaceholder} />
+                </div>
+              )}
             </label>
           </div>
           {/*Img 3*/}
@@ -220,16 +243,20 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 2 })}
-              hidden = {true}
+              hidden={true}
             />
             <label htmlFor="img3">
-              {imagesPreview[2] ? <img src={imagesPreview[2]} /> : <div className = "image-selector">
-                <img src = {ImagePlaceholder}/>
-                </div>}
+              {imagesPreview[2] ? (
+                <img src={imagesPreview[2]} />
+              ) : (
+                <div className="image-selector">
+                  <img src={ImagePlaceholder} />
+                </div>
+              )}
             </label>
           </div>
         </section>
-        <hr/>
+        <hr />
         {/*description*/}
         <div className="product-description-field">
           <label htmlFor="description">Descripción</label>
@@ -244,19 +271,23 @@ function ProductForm({
             }
           />
         </div>
-        <section className = "product-form-action-buttons-container">
+        <section className="product-form-action-buttons-container">
           {/*Submit*/}
-          {console.log(loading)}
           {productFormProperties.disabled == false ? (
-            <Button label={loading == true?"Enviando...":"Enviar"} className="btn-general-styles"/>
+            <Button
+              label={loading == true ? "Enviando..." : "Enviar"}
+              className="btn-general-styles"
+            />
           ) : null}
           {/*Cancel*/}
-          <Button 
-            label={productFormProperties.creatingMode == true?"Cancelar":"Cerrar"} 
-            className="btn-general-styles" 
-            type = "button"
+          <Button
+            label={
+              productFormProperties.creatingMode == true ? "Cancelar" : "Cerrar"
+            }
+            className="btn-general-styles"
+            type="button"
             onClick={() => resetProductFormProperties()}
-            />
+          />
         </section>
       </form>
     </Dialog>
