@@ -1,7 +1,7 @@
 import ActionButtons from "../ProductList/ActionButtons";
 import { Checkbox } from "primereact/checkbox";
 
-function ProductmanagmentCard({product, handleDeleteProduct, processDetailProduct, processUpdateProduct, selectedProducts}) {
+function ProductmanagmentCard({product, handleDeleteProduct, processDetailProduct, processUpdateProduct, selectedProducts, handleCheckProduct}) {
     return ( 
         <div
           className="product-managment-card"
