@@ -6,6 +6,10 @@ import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
 import { useManageProductForm } from "../../../hooks/useManageProductForm";
 import { useImagePreview } from "../../../hooks/useImagePreview";
+import AddIcon from "../../../assets/oferts-magnament-add.svg";
+import EditIcon from "../../../assets/edit-icon.svg";
+import DetailIcon from "../../../assets/eye-icon.svg";
+import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
 import "./index.css";
 
 function ProductForm({
@@ -15,7 +19,7 @@ function ProductForm({
   handleUpdateProduct,
   categories,
   promotions,
-  loading
+  loading,
 }) {
   const {
     categorySelected,
@@ -25,8 +29,9 @@ function ProductForm({
     setPromotionSelected,
     promotionsOptions,
     activeStatusChecked,
+    setChecked,
     updateProduct,
-    createProduct
+    createProduct,
   } = useManageProductForm({
     productFormProperties: productFormProperties,
     handleCreateProduct: handleCreateProduct,
@@ -42,17 +47,30 @@ function ProductForm({
     <Dialog
       position="right"
       header={
-        productFormProperties.creatingMode == true
-          ? "Agregar Producto"
-          : productFormProperties.disabled
-          ? "Detalle de Producto"
-          : "Editar Producto"
+        productFormProperties.creatingMode == true ? (
+          <div className="product-form-dialog-title">
+            <img src={AddIcon} />
+            <span>Agregar Producto</span>
+          </div>
+        ) : productFormProperties.disabled ? (
+          <div className="product-form-dialog-title">
+            <img src={DetailIcon} />
+            <span>Detalle de Producto</span>
+          </div>
+        ) : (
+          <div className="product-form-dialog-title">
+            <img src={EditIcon} />
+            <span>Editar Producto</span>
+          </div>
+        )
       }
       visible={productFormProperties.show}
       onHide={() => resetProductFormProperties()}
       draggable={false}
       resizable={false}
       style={{ minHeight: "95vh", minWidth: "50vw", maxWidth: "98vw" }}
+      headerClassName="product-form-dialog-header"
+      className="product-form-dialog"
     >
       <form
         className="product-form"
@@ -71,40 +89,11 @@ function ProductForm({
             aria-describedby="name-help"
             className=".p-inputtext-sm"
             disabled={productFormProperties.disabled}
+            style={{ minWidth: "70%" }}
             defaultValue={
               productFormProperties.creatingMode
                 ? ""
                 : productFormProperties.initialValues.product_name
-            }
-          />
-        </div>
-        {/*description*/}
-        <div className="product-form-field">
-          <label htmlFor="description">Descripción</label>
-          <InputText
-            id="description"
-            aria-describedby="description-help"
-            className=".p-inputtext-sm"
-            disabled={productFormProperties.disabled}
-            defaultValue={
-              productFormProperties.creatingMode
-                ? ""
-                : productFormProperties.initialValues.product_description
-            }
-          />
-        </div>
-        {/*about*/}
-        <div className="product-form-field">
-          <label htmlFor="about">Acerca del producto</label>
-          <InputTextarea
-            id="about"
-            aria-describedby="about-help"
-            style={{ maxWidth: "100%", minWidth: "100%" }}
-            disabled={productFormProperties.disabled}
-            defaultValue={
-              productFormProperties.creatingMode
-                ? ""
-                : productFormProperties.initialValues.about
             }
           />
         </div>
@@ -136,12 +125,12 @@ function ProductForm({
             options={categoriesOptions}
             optionLabel="name"
             placeholder="Categoría"
-            className="w-full md:w-14rem"
+            className="w-full md:w-14rem product-form-dropdown"
           />
         </div>
         {/*promotion*/}
         <div className="product-form-field">
-          <label htmlFor="promotion">Promoción</label>
+          <label htmlFor="promotion">Oferta</label>
           <Dropdown
             id="promotion"
             aria-describedby="promotion-help"
@@ -150,12 +139,14 @@ function ProductForm({
             onChange={(e) => setPromotionSelected(e.value)}
             options={promotionsOptions}
             optionLabel="name"
-            placeholder="Promoción"
-            className="w-full md:w-14rem"
+            placeholder="Oferta"
+            className="w-full md:w-14rem product-form-dropdown"
+            style={{ minWidth: "150px" }}
           />
         </div>
         {/*active*/}
         <div className="product-form-active-checkbox">
+          <label htmlFor="active">Visible:</label>
           <Checkbox
             id="active"
             aria-describedby="active-help"
@@ -163,7 +154,6 @@ function ProductForm({
             checked={activeStatusChecked}
             onChange={(e) => setChecked(e.checked)}
           />
-          <label htmlFor="active">Activo</label>
         </div>
         {/*stock*/}
         <div className="product-form-field">
@@ -197,9 +187,9 @@ function ProductForm({
             }
           />
         </div>
-        {/*Img 1*/}
-        <div className="product-form-field">
-          <label htmlFor="img1">Imagen 1</label>
+        <hr />
+        <section className="product-form-images-container">
+          {/*Img 1*/}
           <div className="product-image-field">
             <InputText
               id="img1"
@@ -209,13 +199,19 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 0 })}
+              hidden={true}
             />
-            {imagesPreview[0] ? <img src={imagesPreview[0]} /> : null}
+            <label htmlFor="img1">
+              {imagesPreview[0] ? (
+                <img src={imagesPreview[0]} />
+              ) : (
+                <div className="image-selector">
+                  <img src={ImagePlaceholder} />
+                </div>
+              )}
+            </label>
           </div>
-        </div>
-        {/*Img 2*/}
-        <div className="product-form-field">
-          <label htmlFor="img2">Imagen 2</label>
+          {/*Img 2*/}
           <div className="product-image-field">
             <InputText
               id="img2"
@@ -225,13 +221,19 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 1 })}
+              hidden={true}
             />
-            {imagesPreview[1] ? <img src={imagesPreview[1]} /> : null}
+            <label htmlFor="img2">
+              {imagesPreview[1] ? (
+                <img src={imagesPreview[1]} />
+              ) : (
+                <div className="image-selector">
+                  <img src={ImagePlaceholder} />
+                </div>
+              )}
+            </label>
           </div>
-        </div>
-        {/*Img 3*/}
-        <div className="product-form-field">
-          <label htmlFor="img3">Imagen 3</label>
+          {/*Img 3*/}
           <div className="product-image-field">
             <InputText
               id="img3"
@@ -241,14 +243,52 @@ function ProductForm({
               type="file"
               accept="image/jpg, image/jpeg, image/png, image/svg, image/webp"
               onChange={(e) => handleSetImagePreview({ e: e, imgIndex: 2 })}
+              hidden={true}
             />
-            {imagesPreview[2] ? <img src={imagesPreview[2]} /> : null}
+            <label htmlFor="img3">
+              {imagesPreview[2] ? (
+                <img src={imagesPreview[2]} />
+              ) : (
+                <div className="image-selector">
+                  <img src={ImagePlaceholder} />
+                </div>
+              )}
+            </label>
           </div>
+        </section>
+        <hr />
+        {/*description*/}
+        <div className="product-description-field">
+          <label htmlFor="description">Descripción</label>
+          <InputTextarea
+            id="description"
+            aria-describedby="description-help"
+            disabled={productFormProperties.disabled}
+            defaultValue={
+              productFormProperties.creatingMode
+                ? ""
+                : productFormProperties.initialValues.product_description
+            }
+          />
         </div>
-        {/*Submit*/}
-        {productFormProperties.disabled == false ? (
-          <Button label={loading == true?"Enviando...":"Enviar"} className="btn-general-styles" />
-        ) : null}
+        <section className="product-form-action-buttons-container">
+          {/*Submit*/}
+          {productFormProperties.disabled == false ? (
+            <Button
+              label={loading == true ? "Enviando..." : "Enviar"}
+              className="btn-general-styles"
+            />
+          ) : null}
+          {/*Cancel*/}
+          <Button
+            label={
+              productFormProperties.creatingMode == true ? "Cancelar" : "Cerrar"
+            }
+            className="btn-general-styles"
+            type="button"
+            onClick={() => resetProductFormProperties()}
+          />
+        </section>
       </form>
     </Dialog>
   );

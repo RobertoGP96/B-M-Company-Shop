@@ -19,7 +19,7 @@ function ProductsManagment() {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [listView, setListView] = useState(true);
-  const {mobileMode} = useIsMobileMode({})
+  const {mobileMode} = useIsMobileMode({mobileWidth:840})
   const {promotions} = useGetPromotions()
   const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
   useContext(QueryFiltersContext);

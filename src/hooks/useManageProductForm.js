@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { normalizeProductFormInfo } from "../utils/productInitialValues";
 
 export function useManageProductForm({
   productFormProperties,
@@ -21,18 +22,18 @@ export function useManageProductForm({
     code: null,
   });
   const [promotionSelected, setPromotionSelected] = useState({
-    name: "Promoción",
+    name: "Oferta",
     code: null,
   });
 
-  //effect to update the activeStatus and categorySelected
+  //effect to update the activeStatus, the categorySelected and the promotion
   useEffect(() => {
     //update if the product is active or not
     productFormProperties.creatingMode == false
       ? setChecked(productFormProperties.initialValues.is_active)
       : setChecked(true);
     //update the category and promotion of the product
-    if (productFormProperties.creatingMode == false) {
+    if (productFormProperties.creatingMode == false && productFormProperties.initialValues.category !== null && productFormProperties.initialValues.promotion !== null) {
       setCategorySelected(
         categoriesOptions.find(
           (category) =>
@@ -47,45 +48,29 @@ export function useManageProductForm({
       );
     } else {
       setCategorySelected({ name: "Categoría", code: null });
-      setPromotionSelected({ name: "Promoción", code: null });
+      setPromotionSelected({ name: "Oferta", code: null });
     }
   }, [productFormProperties.initialValues]);
 
   function createProduct(e) {
     e.preventDefault();
-    let values = {
-      product_name: e.target["name"].value,
-      product_description: e.target["description"].value,
-      about: e.target["about"].value,
-      precio: e.target["price"].value,
-      categoria: categorySelected.code,
-      promotion: promotionSelected.code,
-      is_active: activeStatusChecked,
-      in_stock: e.target["stock"].value,
-      descuento: e.target["discount"].value,
-      product_img1: e.target["img1"].files[0],
-      product_img2: e.target["img2"].files[0],
-      product_img3: e.target["img3"].files[0],
-    };
+    const values = normalizeProductFormInfo({
+      e: e,
+      categorySelected: categorySelected,
+      promotionSelected: promotionSelected,
+      activeStatusChecked: activeStatusChecked,
+    });
     handleCreateProduct({ values: values });
   }
 
   function updateProduct(e) {
     e.preventDefault();
-    let values = {
-      product_name: e.target["name"].value,
-      product_description: e.target["description"].value,
-      about: e.target["about"].value,
-      precio: e.target["price"].value,
-      categoria: categorySelected.code,
-      promotion: promotionSelected.code,
-      is_active: activeStatusChecked,
-      in_stock: e.target["stock"].value,
-      descuento: e.target["discount"].value,
-      product_img1: e.target["img1"].files[0],
-      product_img2: e.target["img2"].files[0],
-      product_img3: e.target["img3"].files[0],
-    };
+    const values = normalizeProductFormInfo({
+      e: e,
+      categorySelected: categorySelected,
+      promotionSelected: promotionSelected,
+      activeStatusChecked: activeStatusChecked,
+    });
     handleUpdateProduct({
       id: productFormProperties.initialValues.id,
       values: values,
@@ -100,6 +85,7 @@ export function useManageProductForm({
     promotionSelected,
     setPromotionSelected,
     promotionsOptions,
-    activeStatusChecked
+    activeStatusChecked,
+    setChecked
   };
 }

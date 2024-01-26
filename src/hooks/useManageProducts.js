@@ -107,6 +107,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
     }
     function handleCreateProduct({values}){
       if(productInfoValid({values:values})){
+        setLoading(true)
         createProduct({values:values})
         .then(res => {
           handleSetUpdateProducts()
@@ -125,11 +126,15 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
             detail: err.message,
         })
         })
+        .finally(() => {
+          setLoading(false)
+        })
       }
     }
 
     function handleUpdateProduct({id, values}){
       if(productInfoValid({values:values, creating:false})){
+        setLoading(true)
         updateProduct({id:id, values:values})
         .then(res => {
           setUpdateProducts(prev => !prev)
@@ -147,6 +152,9 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
             summary: "Error",
             detail: err.message,
         })
+        })
+        .finally(() => {
+          setLoading(false)
         })
       }
     }

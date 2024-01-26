@@ -6,6 +6,16 @@
     margin: 0 auto;
     grid-template-areas: 
         "search categories view-toggle filters add-products delete-products";
+    
+    color: #FFF;
+    text-align: center;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: "Noto Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 125%; /* 15px */
+    font-variant: small-caps;    
 }
 
 .search-container{
@@ -81,12 +91,24 @@
     }
 }
 
-@media (width < 750px) {
-    .products-managment-filters-bar-button span{
-        display: none;
-    }
+@media (width < 830px) {
     .products-managment-filters-bar-button img{
         width:18px;
         height:20px;
+    }
+    .view-toggle-container{
+        display: none;
+    }
+    .products-managment-filters-bar{
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas: 
+        "search search search search"
+        "categories filters add-products delete-products";
+    }
+}
+
+@media (width < 500px) {
+    .products-managment-filters-bar-button span{
+        display: none;
     }
 }
