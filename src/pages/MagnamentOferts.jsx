@@ -29,10 +29,12 @@ function MagnamentOferts() {
   const [mounted, setMounted] = useState(false)
   const [viewMode,setViewMode] = useState("table")
   const [numOfOferts, setNumOferts] = useState(0) 
-  
+
 
   // Useeffect hook for getting ofert data from server
   const { loading,setLoading } = useGetPromotions({promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
+
+
 
   useEffect(() => {
     if(mounted){

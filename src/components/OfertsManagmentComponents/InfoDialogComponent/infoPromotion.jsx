@@ -7,6 +7,7 @@ import { Toast } from "primereact/toast";
 import { Checkbox } from "primereact/checkbox";
 import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
+import AddProductsToOferts from "../AddProductsToOfertsComponent";
 
 function InfoPromotion({
   visible,
@@ -28,6 +29,7 @@ function InfoPromotion({
   });
   const toast = useRef(null);
   const [imgPreview, setImgPreview] = useState(infoData.img);
+  const [addProductModal, setAddProductModal] = useState(false);
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -66,8 +68,13 @@ function InfoPromotion({
     setInfoData(InfoDataCopy);
   };
 
+  const handleOnChangeProductMOdal = () => {
+      setAddProductModal(!addProductModal)
+  }
+
   return (
     <section className="info-promotion-container">
+      <AddProductsToOferts visible={addProductModal} onHide={handleOnChangeProductMOdal}/>
       <Toast ref={toast} />
       <Dialog
         visible={visible}
@@ -235,6 +242,7 @@ function InfoPromotion({
                     className="add-products-to-oferts-buttons"
                     onClick={(e) => {
                       e.preventDefault();
+                      setAddProductModal(true);
                     }}
                   >
                     <i className="pi pi-plus" style={{ color: "white" }}></i>

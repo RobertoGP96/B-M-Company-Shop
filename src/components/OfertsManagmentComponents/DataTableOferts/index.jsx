@@ -78,7 +78,6 @@ function DataTableOferts({
       scrollable={true}
       onSelectionChange={(e) => {
         setSelectedOferts(e.value);
-        console.log(selectedOferts);
       }}
       selection={selectedOferts}
     >
@@ -131,6 +130,7 @@ function DataTableOferts({
           lineHeight: "137%",
           fontVariant: "small-caps",
           letterSpacing: "-0.8px",
+          
         }}
       ></Column>
     </DataTable>

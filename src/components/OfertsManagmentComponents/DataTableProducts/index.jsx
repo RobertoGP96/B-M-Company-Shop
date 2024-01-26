@@ -3,7 +3,7 @@ import { DataScroller } from "primereact/datascroller";
 import { Checkbox } from "primereact/checkbox";
 import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
 import { useState,useEffect } from 'react';
-
+import { Image } from "primereact/image";
 
 
 function DataTableProducts({
@@ -15,7 +15,7 @@ function DataTableProducts({
  
     useEffect(() =>{ 
       getProductsOfert(OfertID).then(products =>{
-        console.log(products.results);
+        console.log(products);
         setProductsOferts(products.results)
       })
 
@@ -28,15 +28,16 @@ function DataTableProducts({
     return (
       <section className="promotion-product-card-container">
         <div className="img-promotion-product-card-section">
-          <div className="img-promotion-product-card-container">
-            <img src={data.product_img1} alt={data.product_name} />
-          </div>
-         { editable &&
+          { editable &&
           <Checkbox
               checked={""}
               onChange={() => {}}
             />
           }
+          <div className="img-promotion-product-card-container">
+            <Image src={data.product_img1} alt={data.product_name} preview/>
+          </div>
+
         </div>
         <div className="details-prmotion-product-card-section">
           <p className="mame-promotion-product-card">{data.product_name}</p>

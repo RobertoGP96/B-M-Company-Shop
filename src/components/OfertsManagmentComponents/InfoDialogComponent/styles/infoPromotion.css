@@ -127,8 +127,7 @@
 
 .button-promotion-container div{
     padding: 9px;
-    border-top: 2px solid #545454;
-    border-left: 2px solid #545454;
+
     cursor: default;
 }
 
@@ -146,9 +145,7 @@
     letter-spacing: -0.5px;
     justify-content: center;
     gap: 5px;
-    border-right:  1px solid rgb(63, 63, 63) !important;
-    border-bottom:  1px solid rgb(44, 44, 44) !important;
-    box-shadow: 2px 2px 3px 0px rgba(48, 48, 48, 0.7);
+    border-style: none;
 }
 
 .oferts-info-intrinsic{
