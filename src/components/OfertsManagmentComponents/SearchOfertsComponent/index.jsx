@@ -5,7 +5,8 @@ import DeleteIcon from "../../../assets/oferts-magnament-delete.svg";
 import SearchIcon from "../../../assets/search-icon.svg";
 
 import { ToggleButton } from 'primereact/togglebutton';
-
+import ViewToggleGrid from "../../../assets/view-toggle-grid.svg";
+import ViewToggleList from "../../../assets/view-toggle-list.svg";
         
 const options = [<i className='pi pi-table'></i>, <i className='pi pi-list'></i>]
 
@@ -44,14 +45,12 @@ function SearchOferts({
         />
       </form>
 
-      <ToggleButton
-        className="input-switch-oferts"
-        checked={viewMode == "grid"} 
-        onChange={handelOnChangeView}
-        onIcon = "pi pi-table"
-        offIcon = "pi pi-list"
-        onLabel=''
-      />
+      <div className="view-toggle-container">
+        <img
+          src={viewMode == 'table' ?ViewToggleGrid: ViewToggleList}
+          onClick={handelOnChangeView}
+        />
+        </div>
 
       <button className="search-oferts-button">
         <img src={FilterIcon} alt="filter" width={"12px"} />

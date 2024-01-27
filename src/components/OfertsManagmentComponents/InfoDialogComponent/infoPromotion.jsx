@@ -8,6 +8,7 @@ import { Checkbox } from "primereact/checkbox";
 import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
+import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
 
 function InfoPromotion({
   visible,
@@ -134,20 +135,15 @@ function InfoPromotion({
                       setImgPreview(URL.createObjectURL(e.target.files[0]));
                       handleOnchange(e.target.value, "img");
                     }}
+                    hidden="true"
                   />
-                  <i className="pi pi-file-import"></i>
                 </div>
 
                 <div className="img-dialog-container">
                   {infoData.img ? (
                     <Image src={imgPreview} />
                   ) : (
-                    <div className="img-textfile-container">
-                      <p>
-                        No hay ningún archivo(.jpg, .jpeg, .png, .svg, .webp)
-                        todavía.
-                      </p>
-                    </div>
+                    <Image src={ImagePlaceholder}/>
                   )}
                 </div>
               </div>
