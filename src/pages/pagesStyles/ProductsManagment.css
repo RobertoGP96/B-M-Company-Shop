@@ -4,9 +4,10 @@
 }
 
 .products-managment-page{
-    min-height: 100vh;
+    min-height: 85.5vh;
     background-color: #fff;
     position: relative;
+    font-family: "Noto Sans";
 }
 
 .back-button-title-container{
@@ -48,7 +49,10 @@
     margin:0;
 }
 
-@media (width < 750px) {
+@media (width < 1000px) {
+    .products-managment-page{
+        width: 100vw;
+    }
     .back-button-title-container h3{
         font-size: 25px;
     }

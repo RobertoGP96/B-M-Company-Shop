@@ -6,7 +6,7 @@ import {updateProduct} from "../services/ManageProducts/updateProduct";
 
 export function useManageProducts({ searchParams, toastRef, setSelectedProducts, resetProductFormProperties, removeAllFilters }) {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loadingProducts, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0);
   const [updateProducts, setUpdateProducts] = useState(false); //state to mark when to re-fetch the products
 
@@ -107,6 +107,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
     }
     function handleCreateProduct({values}){
       if(productInfoValid({values:values})){
+        setLoading(true)
         createProduct({values:values})
         .then(res => {
           handleSetUpdateProducts()
@@ -125,11 +126,15 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
             detail: err.message,
         })
         })
+        .finally(() => {
+          setLoading(false)
+        })
       }
     }
 
     function handleUpdateProduct({id, values}){
       if(productInfoValid({values:values, creating:false})){
+        setLoading(true)
         updateProduct({id:id, values:values})
         .then(res => {
           setUpdateProducts(prev => !prev)
@@ -147,6 +152,9 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
             summary: "Error",
             detail: err.message,
         })
+        })
+        .finally(() => {
+          setLoading(false)
         })
       }
     }
@@ -181,7 +189,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
 
   return {
     products,
-    loading,
+    loadingProducts,
     setLoading,
     numOfProducts,
     updateProducts,

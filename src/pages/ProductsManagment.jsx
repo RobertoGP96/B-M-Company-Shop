@@ -12,13 +12,15 @@ import { Toast } from "primereact/toast";
 import { useManageCategories } from "../hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
 import { useIsMobileMode } from "../hooks/useIsMobileMode";
+import { useGetPromotions } from "../hooks/useGetPromotions";
 
 function ProductsManagment() {
   const toast = useRef(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [listView, setListView] = useState(true);
-  const {mobileMode} = useIsMobileMode({})
+  const {mobileMode} = useIsMobileMode({mobileWidth:840})
+  const {promotions} = useGetPromotions()
   const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
   useContext(QueryFiltersContext);
 
@@ -53,7 +55,7 @@ function ProductsManagment() {
   //products managment hook
   const {
     products,
-    loading,
+    loadingProducts,
     numOfProducts,
     handleDeleteProduct,
     handleDeleteMultipleProducts,
@@ -81,7 +83,8 @@ function ProductsManagment() {
     setUpdateProducts: setUpdateProducts,
     setSelectedCategories: setSelectedCategories,
     removeAllFilters: removeAllFilters,
-    setCategoryFormProperties:setCategoryFormProperties
+    setCategoryFormProperties:setCategoryFormProperties,
+    searchParams:searchParams
   });
 
   function processUpdateProduct(product) {
@@ -128,6 +131,7 @@ function ProductsManagment() {
       </section>
       <ProductsManagmentFiltersBar
         loadingCategories={loadingCategories}
+        loadingProducts={loadingProducts}
         listView={listView}
         setListView = {setListView}
         categories = {categories}
@@ -149,11 +153,12 @@ function ProductsManagment() {
         productFormProperties={productFormProperties}
         handleCreateProduct = {handleCreateProduct}
         handleUpdateProduct = {handleUpdateProduct}
+        promotions = {promotions}
       />
       {listView?
       <ProductList
         products={products}
-        loading={loading}
+        loading={loadingProducts}
         selectedProducts={selectedProducts}
         setSelectedProducts={setSelectedProducts}
         handleDeleteProduct={handleDeleteProduct}
@@ -162,7 +167,7 @@ function ProductsManagment() {
       />:
       <ProductsGrid 
         products={products}
-        loading={loading}
+        loading={loadingProducts}
         selectedProducts={selectedProducts}
         setSelectedProducts={setSelectedProducts}
         handleDeleteProduct={handleDeleteProduct}
