@@ -8,11 +8,12 @@ import { Menu } from "primereact/menu";
 import { useRef } from "react";
 import "primeicons/primeicons.css";
 import { useLocation } from "react-router-dom";
-import CompanyImage from "../../assets/B&MCshop-logo.svg"
-import HomeIcon from "../../assets/home.svg"
-import StoreIcon from "../../assets/tiendaIcon.svg"
-import ProductsIcon from "../../assets/productsIcon.svg"
-import ContactIcon from "../../assets/contactusIcon.svg"
+import CompanyImage from "../../assets/B&MCshop-logo.svg";
+import HomeIcon from "../../assets/home.svg";
+import StoreIcon from "../../assets/tiendaIcon.svg";
+import ProductsIcon from "../../assets/productsIcon.svg";
+import ContactIcon from "../../assets/contactusIcon.svg";
+import RemesasIcon from "../../assets/remesas-icon.svg";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -20,12 +21,12 @@ function NavBar() {
   const [visible, setVisible] = useState(false);
   const refActive = useRef(null);
   const { pathname } = useLocation();
-  
+
   useEffect(() => {
-    if(document.body.style.overflow !== 'hidden'){
-      document.body.style.overflow = visible ? 'hidden' : 'auto';
+    if (document.body.style.overflow !== "hidden") {
+      document.body.style.overflow = visible ? "hidden" : "auto";
       return () => {
-        document.body.style.overflow = 'auto';
+        document.body.style.overflow = "auto";
       };
     }
   }, [visible]);
@@ -34,30 +35,37 @@ function NavBar() {
     {
       label: "Inicio",
       command: () => {
-        navigate("/")
-        setVisible(false)
-      }
+        navigate("/");
+        setVisible(false);
+      },
     },
     {
       label: "Tienda",
       command: () => {
-        navigate("/store")
-        setVisible(false)
-      }
+        navigate("/store");
+        setVisible(false);
+      },
     },
     {
       label: "Gestionar",
       command: () => {
-        navigate("/magnament-menu")
-        setVisible(false)
-      }
+        navigate("/magnament-menu");
+        setVisible(false);
+      },
     },
     {
       label: "Contacto",
       command: () => {
-        navigate("/contactus")
-        setVisible(false)
-      }
+        navigate("/contactus");
+        setVisible(false);
+      },
+    },
+    {
+      label: "Remesas",
+      command: () => {
+        navigate("/remesas");
+        setVisible(false);
+      },
     },
   ];
 
@@ -73,13 +81,9 @@ function NavBar() {
         <ul className="nav-BarConteiner">
           <li className="navBar-itemConteiner-companyName">
             <div className="companyName-conteiner">
-              <Link to = "/">
+              <Link to="/">
                 <figure>
-                  <img
-                    src={CompanyImage}
-                    width={127}
-                    height={45}
-                  ></img>
+                  <img src={CompanyImage} width={127} height={45}></img>
                 </figure>
               </Link>
             </div>
@@ -94,7 +98,7 @@ function NavBar() {
                   : "navBar-itemConteiner"
               }
             >
-              <Link to = "/">
+              <Link to="/">
                 <div className="navBar-item">
                   <span className="icon">
                     <img src={HomeIcon}></img>
@@ -113,14 +117,14 @@ function NavBar() {
                   : "navBar-itemConteiner"
               }
             >
-                <Link to = "/store">
-                    <div className="navBar-item">
-                        <span className="icon">
-                        <img src={StoreIcon}></img>
-                        </span>{" "}
-                        <span className="title">Tienda</span>
-                    </div>
-                </Link>
+              <Link to="/store">
+                <div className="navBar-item">
+                  <span className="icon">
+                    <img src={StoreIcon}></img>
+                  </span>{" "}
+                  <span className="title">Tienda</span>
+                </div>
+              </Link>
             </div>
           </li>
           <li>
@@ -131,14 +135,14 @@ function NavBar() {
                   : "navBar-itemConteiner"
               }
             >
-                <Link to = "/magnament-menu">
-                    <div className="navBar-item">
-                        <span className="icon">
-                        <img src={ProductsIcon}></img>
-                        </span>{" "}
-                        <span className="title">Gestionar</span>
-                    </div>
-                </Link>
+              <Link to="/magnament-menu">
+                <div className="navBar-item">
+                  <span className="icon">
+                    <img src={ProductsIcon}></img>
+                  </span>{" "}
+                  <span className="title">Gestionar</span>
+                </div>
+              </Link>
             </div>
           </li>
           <li>
@@ -149,14 +153,33 @@ function NavBar() {
                   : "navBar-itemConteiner"
               }
             >
-                <Link to = "/contactus">
-                    <div className="navBar-item">
-                        <span className="icon">
-                        <img src={ContactIcon}></img>
-                        </span>{" "}
-                        <span className="title">Contacto</span>
-                    </div>
-                </Link>
+              <Link to="/contactus">
+                <div className="navBar-item">
+                  <span className="icon">
+                    <img src={ContactIcon}></img>
+                  </span>{" "}
+                  <span className="title">Contacto</span>
+                </div>
+              </Link>
+            </div>
+          </li>
+
+          <li>
+            <div
+              className={
+                pathname == "/remesas"
+                  ? "navBar-itemConteiner active"
+                  : "navBar-itemConteiner"
+              }
+            >
+              <Link to="/remesas">
+                <div className="navBar-item">
+                  <span className="icon">
+                    <img src={RemesasIcon}></img>
+                  </span>{" "}
+                  <span className="title">Remesas</span>
+                </div>
+              </Link>
             </div>
           </li>
         </ul>
@@ -178,11 +201,7 @@ function NavBar() {
             <li className="navBar-itemConteiner-companyName">
               <div className="companyName-conteiner">
                 <figure>
-                  <img
-                    src={CompanyImage}
-                    width={127}
-                    height={45}
-                  ></img>
+                  <img src={CompanyImage} width={127} height={45}></img>
                 </figure>
               </div>
             </li>

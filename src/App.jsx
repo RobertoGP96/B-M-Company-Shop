@@ -1,6 +1,7 @@
 import './App.css'
 import {HashRouter as Router, Route, Routes} from 'react-router-dom'
 import Contact from './pages/Contact'
+import Remesas from './pages/Remesas'
 import Store from './pages/Store'
 import ProductsManagment from './pages/ProductsManagment'
 import Home from './pages/Home'
@@ -27,6 +28,7 @@ function App() {
               <Routes>
                 <Route path = "/store" element = {<Store/>}/>
                 <Route path = "/contactus" element = {<Contact/>}/>
+                <Route path = "/remesas" element = {<Remesas/>}/>
                 <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
                 <Route path = "/magnament/products" element = {<ProductsManagment/>}/>
                 <Route path = "/" element = {<Home/>}/>
