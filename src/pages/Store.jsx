@@ -18,7 +18,7 @@ function Store() {
             return () => {
             document.body.style.overflow = 'auto';
         }
-        };
+        }
       }, [activeProductDetails]);
   
     const handleOnactivateProductdetails = (products) => {
