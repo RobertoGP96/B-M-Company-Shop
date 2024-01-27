@@ -22,9 +22,6 @@
     background-color: transparent;
 }
 
-.search-form input::placeholder{
-    color: gray;
-}
 
 .search-form input:focus{
     outline:0;

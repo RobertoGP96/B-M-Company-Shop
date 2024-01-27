@@ -17,7 +17,7 @@ function Login() {
         <div className="">
           <img src={Logo} alt="" />
         </div>
-        <form action="">
+        <form action="" className="form-login">
           <span className="p-float-label">
             <InputText
               id="username"

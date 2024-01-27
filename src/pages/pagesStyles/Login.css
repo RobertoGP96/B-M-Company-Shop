@@ -41,7 +41,7 @@
   background-image: url(../../assets/home-background.jpeg) !important;
 }
 
-form {
+.form-login {
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -49,11 +49,11 @@ form {
   align-items: center;
   gap: 1rem;
 }
-form span {
+.form-login span {
   margin-top: 0.5rem;
 }
 
-form input {
+.form-login input {
   width: 100%;
   min-width: 150px;
   max-width: 225px;
@@ -65,12 +65,12 @@ form input {
   margin: 0 !important;
 }
 
-form input::placeholder {
+.form-login input::placeholder {
   color: white;
   font-size: 0.8rem;
 }
 
-form button {
+.form-login button {
   color: white;
   text-transform: uppercase;
   max-width: 225px;

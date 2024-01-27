@@ -21,6 +21,7 @@
   }
   
   .remesas-phone{
+
   }
 
   .remesas-section {
@@ -155,10 +156,28 @@
 
   @media (max-width: 800px) {
     .remesas-title ul li img{
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
     .remesas-container-text {
-      max-height: 600px;
+      min-height: 450px;
+    }
+
+    .remesas-phone{
+      height: 500px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .remesas-title ul li img{
+      width: 25px;
+      height: 25px;
+    }
+    .remesas-container-text {
+      min-height: 450px;
+    }
+
+    .remesas-phone{
+      height: 400px;
     }
   }
