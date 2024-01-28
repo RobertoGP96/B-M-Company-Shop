@@ -58,9 +58,8 @@
     height: 30px;
     align-items: center;
     justify-content: left;
-    border-radius: 5px;
     background: rgba(217, 217, 217, 0.16);  
-    width: 170px;   
+    width: 200px;   
 }
 
 .info-dialog-form input{
