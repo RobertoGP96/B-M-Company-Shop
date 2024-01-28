@@ -2,11 +2,9 @@
     width: 90%;
     margin: 20px auto;
     overflow-x: scroll;
-    height: 500px;
 
 }
 .table-oferts-container .p-paginator{
-   position: absolute;
    top:350px;
    width:100%;
 
@@ -43,4 +41,7 @@
 .column-oferts-field{
     max-width: 250px;
     max-height: 40px;  
+}
+.p-datatable-wrapper {
+    min-height: 75vh;
 }
