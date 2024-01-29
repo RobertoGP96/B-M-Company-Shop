@@ -62,3 +62,7 @@
     display: flex;
     gap: 8px;
 }
+
+.magnament-oferts-container  .p-toast{
+    scale: 0.9;
+}

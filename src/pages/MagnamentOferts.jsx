@@ -13,6 +13,14 @@ import DataTableOferts from "../components/OfertsManagmentComponents/DataTableOf
 import SearchOferts from "../components/OfertsManagmentComponents/SearchOfertsComponent";
 import DataScrollerOferts from "../components/OfertsManagmentComponents/DataScrollerOferts";
 
+const heaerTitle =(info) => {
+  return(
+    <div style={{display:"flex", alignItems:"center",gap:"10px"}}> 
+      <i className="pi pi-tag "></i>
+      <p style={{marginBlock:"0px",fontSize:"1rem"}}>{info}</p>
+    </div>
+  )
+}
 
 //Managment Ofert Component
 function MagnamentOferts() {
@@ -156,35 +164,40 @@ function MagnamentOferts() {
     
     <section className="magnament-oferts-container">
       <PageLoader visible={loading} onHide={()=> null}/>
-      <Toast ref={toast} />
+      <Toast ref={toast} position="bottom-center"/>
       <ConfirmDialog />
       <InfoPromotion
         editable={false}
-        heaerTitle={<><i className="pi pi-tag "></i>Información de promoción</>}
+        heaerTitle={heaerTitle("Información de promoción")}
         data={rowData}
         visible={infoDialogStatus}
         onHide={handleOnClickInfoButton}
         setPageLoad={setLoading}
+        mobileSize={responsive}
       />
       <InfoPromotion
         accion={"update"}
         editable={true}
         onSave={handleOnChangeData}
-        heaerTitle={<><i className="pi pi-tag "></i>Editar información de promoción</>}
+        heaerTitle={heaerTitle("Editar información de promoción")}
         data={rowData}
         visible={infoDialogEdit}
         onHide={handleOnClickEditButton}
         setPageLoad={setLoading}
+        show={show}
+        mobileSize={responsive}
       />
       <InfoPromotion
         accion={"create"}
         editable={true}
         onSave={handleOnChangeData}
-        heaerTitle={<><i className="pi pi-tag "></i>Agregar una nueva  promoción</>}
+        heaerTitle={heaerTitle("Agregar promoción")}
         data={{}}
         visible={infoDialogCreate}
         onHide={handleOnClickCreateButton}
         setPageLoad={setLoading}
+        show={show}
+        mobileSize={responsive}
       />
       {/* Titulo de la pagina*/}
       <header>

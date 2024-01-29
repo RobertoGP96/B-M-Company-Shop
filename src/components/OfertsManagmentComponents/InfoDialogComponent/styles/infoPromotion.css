@@ -5,11 +5,14 @@
     width: 500px;
     height: 550px; 
 }
+.info-dialog-promotion-mobileSize{
+    width: 320px;
+    height: 550px; 
+}
 
 .info-dialog-promotion .p-dialog-content{
- overflow: hidden;
  background-color: #FFFBFB;
- padding: 5px;
+ padding: 0px;
 }
 
 .info-dialog-promotion .p-dialog-header{
@@ -17,8 +20,8 @@
     background-color: #545454;
     color: white;
     font-variant: small-caps;
-
 }
+
 .info-dialog-promotion .p-dialog-title{
     font-size: 0.8rem;
     font-family: Noto Sans;
@@ -49,6 +52,13 @@
 .inputs-dialog-from-container{
     display: flex;
     gap: 35px;
+}
+
+.inputs-dialog-from-container-mobileSize{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }
 
 .input-info-dialog{
@@ -166,12 +176,22 @@
    
 }
 
+.add-products-to-oferts-containers-mobileSize{
+    flex-direction: column;
+    height: 250px;
+    width: 288px;
+}
+
 .add-products-to-oferts-buttons-container{
     width: 30px;
     display: flex;
     align-items: center;
     flex-direction: column;
     gap:3px;
+   
+}
+.add-products-to-oferts-buttons-container-mobileSize{
+    flex-direction: row;
    
 }
 
@@ -287,11 +307,12 @@
 }
 
 
-
-
-
-
-
 .buttons-user-info:hover{
     background: #353535;
+}
+
+
+@media (width < 500px){    
+
+
 }
