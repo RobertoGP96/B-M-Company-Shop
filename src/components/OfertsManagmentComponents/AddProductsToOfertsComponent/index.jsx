@@ -48,28 +48,31 @@ function AddProductsToOferts({visible,onHide}){
 
     return(
         <Dialog
-            visible={visible}
-            onHide={() =>onHide()}
+              visible={visible}
+              onHide={() =>onHide()}
+              className='addProductsToOferts-container'
         >
-            <Toast ref={toast} position="bottom-center" />
-      <div className="addProductsToOferts-search-container">
-         <Search/>
-      </div>
+              <Toast ref={toast} position="bottom-center" />
+          <div className="addProductsToOferts-search-container">
+            <Search/>
+          </div>
+          
+          <ProductsGridForOfertManagment 
+            products={products}
+            loading={loadingProducts}
+            selectedProducts={selectedProducts}
+            setSelectedProducts={setSelectedProducts}
+            />
+          <Paginator
+            numOfProducts={numOfProducts}
+            setFilter={setFilter}
+            getActiveFilter={getActiveFilter}
+            products={products}
+          />
+        </Dialog>
+      
+   
        
-      <ProductsGridForOfertManagment 
-        products={products}
-        loading={loadingProducts}
-        selectedProducts={selectedProducts}
-        setSelectedProducts={setSelectedProducts}
-        />
-      <Paginator
-        numOfProducts={numOfProducts}
-        setFilter={setFilter}
-        getActiveFilter={getActiveFilter}
-        products={products}
-      />
-
-    </Dialog>
     )
 }
 
