@@ -10,6 +10,7 @@ import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
 import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
 
+
 function InfoPromotion({
   visible,
   onHide,
@@ -19,6 +20,8 @@ function InfoPromotion({
   onSave,
   accion,
   setPageLoad,
+  show,
+  mobileSize,
 }) {
   const [infoData, setInfoData] = useState({
     name: "",
@@ -28,7 +31,6 @@ function InfoPromotion({
     is_special: false,
     img: "",
   });
-  const toast = useRef(null);
   const [imgPreview, setImgPreview] = useState(infoData.img);
   const [addProductModal, setAddProductModal] = useState(false);
 
@@ -48,13 +50,6 @@ function InfoPromotion({
     }
   }, [data, visible ? visible : undefined]);
 
-  const show = () => {
-    toast.current.show({
-      severity: "success",
-      summary: "",
-      detail: accion == "update" ? "Datos actualizados" : "Datos Añadidos",
-    });
-  };
 
   const handleOnchange = (value, campo) => {
     console.log(value);
@@ -74,12 +69,11 @@ function InfoPromotion({
   }
 
   return (
-    <section className="info-promotion-container">
+    <section className={"info-promotion-container"}>
       <AddProductsToOferts visible={addProductModal} onHide={handleOnChangeProductMOdal}/>
-      <Toast ref={toast} />
       <Dialog
         visible={visible}
-        className="info-dialog-promotion"
+        className={mobileSize?"info-dialog-promotion info-dialog-promotion-mobileSize":"info-dialog-promotion"}
         header={heaerTitle}
         onHide={() => onHide()}
       >
@@ -99,7 +93,7 @@ function InfoPromotion({
                 img: img.length == 0 ? undefined : img[0],
               }).then(() => {
                 onSave();
-                show();
+                show("Accion completada", "success");
                 setPageLoad(false);
                 onHide();
               });
@@ -113,7 +107,7 @@ function InfoPromotion({
                 img: img.length == 0 ? undefined : img[0],
               }).then(() => {
                 onSave();
-                show();
+                show("Accion completada", "success");
                 setPageLoad(false);
                 onHide();
               });
@@ -123,7 +117,7 @@ function InfoPromotion({
           encType="multipart/form-data"
         >
           {editable && (
-            <div className="inputs-dialog-from-container">
+            <div className={mobileSize?"inputs-dialog-from-container inputs-dialog-from-container-mobileSize":"inputs-dialog-from-container"}>
               <div className="input-info-dialog image-file-icon">
                 <div className="image-file-icon-container">
                   <input
@@ -190,7 +184,7 @@ function InfoPromotion({
           )}
 
           {!editable && (
-            <div className="inputs-dialog-from-container">
+            <div className={mobileSize?"inputs-dialog-from-container inputs-dialog-from-container-mobileSize":"inputs-dialog-from-container"}>
               <div className="input-info-dialog">
                 <div className="img-dialog-container">
                   <Image zoomSrc={infoData.img} src={infoData.img} preview />
@@ -230,8 +224,8 @@ function InfoPromotion({
           )}
           <hr className="oferts-info-intrinsic" />
           <p className="p-products-text-oferts">Productos:</p>
-          <div className="add-products-to-oferts-containers">
-            <div className="add-products-to-oferts-buttons-container">
+          <div className={mobileSize?"add-products-to-oferts-containers add-products-to-oferts-containers-mobileSize":"add-products-to-oferts-containers"}>
+            <div className={mobileSize?"add-products-to-oferts-buttons-container add-products-to-oferts-buttons-container-mobileSize":"add-products-to-oferts-buttons-container"}>
               {editable && (
                 <>
                   <button
@@ -254,7 +248,7 @@ function InfoPromotion({
                 </>
               )}
             </div>
-            <DataTableProducts OfertID={infoData.id} editable={editable} />
+            <DataTableProducts OfertID={infoData.id} editable={editable} mobileSize={mobileSize}/>
           </div>
           <div className="button-promotion-container">
             {editable && (

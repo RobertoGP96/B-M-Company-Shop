@@ -1,0 +1,19 @@
+
+
+.addProductsToOferts-search-container{
+  margin-top: 10px;
+ 
+   
+}
+
+
+
+@media   (width < 800px) {
+    .addProductsToOferts-container .p-dialog-content{
+        max-width: 340px ;
+        overflow-x: hidden;
+    }
+    .products-grid-magnament-oferts-container{
+        margin-left: -13px;
+    }
+}

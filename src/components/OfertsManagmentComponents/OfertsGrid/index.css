@@ -9,7 +9,7 @@
     height: max-content;
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
-    gap:12px;
+    gap:30px;
     justify-content: center;
     align-items:start;
     margin:0 auto;

@@ -1,0 +1,22 @@
+
+
+.products-grid-magnament-oferts-container{
+    min-width: 320px;
+    height: 100%;
+    min-height: 52vh;
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 150px));
+    gap:10px;
+    justify-content: center;
+    align-items:start;
+    margin-top: 20px;
+    color: #FFF;
+    text-align: center;
+    font-family: "Noto Sans";
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 137%; /* 38.36px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+}

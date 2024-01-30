@@ -1,17 +1,14 @@
+import './index.css';
 import { Dialog } from "primereact/dialog";
 import { useState, useContext, useRef, useEffect } from "react";
 import "primeicons/primeicons.css";
-import ProductsManagmentFiltersBar from "../../ProductsManagmentComponents/ProductsManagmentFiltersBar";
-import ProductsGrid from "../../ProductsManagmentComponents/ProductsGrid";
+import ProductsGridForOfertManagment from '../ProductGrid';
 import QueryFiltersContext from "../../../context/filtersContext";
 import { useManageProducts } from "../../../hooks/useManageProducts";
 import Paginator from "../../Paginator";
 import { Toast } from "primereact/toast";
-import { useManageCategories } from "../../../hooks/useManageCategories";
-import { getInitialValues,createProductInitialValues } from "../../../utils/productInitialValues";
-import { useIsMobileMode } from "../../../hooks/useIsMobileMode";
-import { useGetPromotions } from "../../../hooks/useGetPromotionsFromProducts";
-
+import { getInitialValues } from "../../../utils/productInitialValues";
+import Search from "../../Search";
 
 function AddProductsToOferts({visible,onHide}){
     const toast = useRef(null);
@@ -51,26 +48,31 @@ function AddProductsToOferts({visible,onHide}){
 
     return(
         <Dialog
-            visible={visible}
-            onHide={() =>onHide()}
+              visible={visible}
+              onHide={() =>onHide()}
+              className='addProductsToOferts-container'
         >
-            <Toast ref={toast} position="bottom-center" />
-
-
-      <ProductsGrid 
-        products={products}
-        loading={loadingProducts}
-        selectedProducts={selectedProducts}
-        setSelectedProducts={setSelectedProducts}
-        />
-      <Paginator
-        numOfProducts={numOfProducts}
-        setFilter={setFilter}
-        getActiveFilter={getActiveFilter}
-        products={products}
-      />
-
-    </Dialog>
+              <Toast ref={toast} position="bottom-center" />
+          <div className="addProductsToOferts-search-container">
+            <Search/>
+          </div>
+          
+          <ProductsGridForOfertManagment 
+            products={products}
+            loading={loadingProducts}
+            selectedProducts={selectedProducts}
+            setSelectedProducts={setSelectedProducts}
+            />
+          <Paginator
+            numOfProducts={numOfProducts}
+            setFilter={setFilter}
+            getActiveFilter={getActiveFilter}
+            products={products}
+          />
+        </Dialog>
+      
+   
+       
     )
 }
 

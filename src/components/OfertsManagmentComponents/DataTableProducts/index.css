@@ -21,9 +21,23 @@
     font-size: small;
     line-height: normal;
     font-family: Noto Sans;
-    justify-content: center;
-    height: 130px;
+    align-items: left;
     scale: 0.9;
+}
+
+.promotion-product-card-container-mobileSize{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: small;
+    line-height: normal;
+    font-family: Noto Sans;
+    align-items: left;
+    height: 130px;
+    scale: 0.75;
+    margin-left: -50px;
+    width: 310px;
+    height: 100px;
 }
 
 
@@ -68,6 +82,7 @@
     border-radius: 20px;
     background-color:transparent;
     width: 50px;
+    min-width: 33px;
     margin-left: 8px;
     display: flex;
     align-items: center;
@@ -76,3 +91,9 @@
     
 }
 
+@media   (width < 800px) {
+    .data-products-ofert-scroller .p-datascroller-content{
+        max-height: 200px !important;
+        background: rgba(199, 194, 194, 0.1) !important;
+    }
+}

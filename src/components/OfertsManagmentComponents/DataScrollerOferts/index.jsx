@@ -1,7 +1,8 @@
 import './index.css';
 import { DataScroller } from "primereact/datascroller";
 import { Checkbox } from "primereact/checkbox";
-
+import DeactiveStatusIcon from "../../../assets/deactive-status-icon.svg";
+import ActiveStatusIcon from "../../../assets/active-status-icon.svg";
 
 function DataScrollerOferts({
   dataOferts,
@@ -15,51 +16,57 @@ function DataScrollerOferts({
 }) {
   function PromotionItemTemplate(data) {
     return (
-      <section className="promotion-card-container">
-        <div className="img-promotion-card-section">
-          <div className="img-promotion-container">
-            <img src={data.img} alt={data.name} />
+      <section className="promotion-template-container">
+         <div style={{display:"flex",flexDirection:"row",alignItems:"left"}}>
+          <div className="img-promotion-template-section">
+            <Checkbox
+              checked={searchChecked(selectedOferts, data.id)}
+              onChange={() => handleOnChangeChecked(selectedOferts, data)}
+            />
+            <div className="img-template-container">
+              <img src={data.img} alt={data.name} />
+            </div>
           </div>
-          <Checkbox
-            checked={searchChecked(selectedOferts, data.id)}
-            onChange={() => handleOnChangeChecked(selectedOferts, data)}
-          />
-        </div>
-        <div className="details-prmotion-card-section">
+          <div className="details-prmotion-template-section">
+                <img src={data.active?ActiveStatusIcon:DeactiveStatusIcon} alt="" />
+          </div>
+          <div className='accion-promotion-container'> 
+            <div className="discount-promotion-container">
+              <p className="price">{`-${data.discount_in_percent}%`}</p>
+            </div>
+            <div className="accion-butotns-container">
+              <button
+                className="oferts-actions-table-button"
+                onClick={() => {
+                  setRowData(data);
+                  handleOnClickEditButton();
+                }}
+              >
+                <i className="pi pi-pencil icon-oferts-table"></i>
+              </button>
+              <button
+                className="oferts-actions-table-button"
+                onClick={() => {
+                  setRowData(data);
+                  handleOnClickInfoButton();
+                }}
+              >
+                <i className="pi pi-eye icon-oferts-table"></i>
+              </button>
+              <button
+                className="oferts-actions-table-button"
+                onClick={() => {
+                  confirm2(data.id);
+                }}
+              >
+                <i className="pi pi-trash icon-oferts-table"></i>
+              </button>
+            </div>
+            
+          </div>
+         </div>
+        
           <p className="mame-promotion">{data.name}</p>
-          <p className="total-products-promotion">{`Productos: ${data.cantidad_products}`}</p>
-          <div className="discount-promotion-container">
-            <p className="price">{`-${data.discount_in_percent}%`}</p>
-          </div>
-        </div>
-        <div className="accion-promotion-card-section">
-          <button
-            className="oferts-actions-table-button"
-            onClick={() => {
-              setRowData(data);
-              handleOnClickEditButton();
-            }}
-          >
-            <i className="pi pi-pencil icon-oferts-table"></i>
-          </button>
-          <button
-            className="oferts-actions-table-button"
-            onClick={() => {
-              setRowData(data);
-              handleOnClickInfoButton();
-            }}
-          >
-            <i className="pi pi-eye icon-oferts-table"></i>
-          </button>
-          <button
-            className="oferts-actions-table-button"
-            onClick={() => {
-              confirm2(data.id);
-            }}
-          >
-            <i className="pi pi-trash icon-oferts-table"></i>
-          </button>
-        </div>
       </section>
     );
   }

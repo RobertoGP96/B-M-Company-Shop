@@ -9,6 +9,7 @@ import { Image } from "primereact/image";
 function DataTableProducts({
   OfertID,
   editable,
+  mobileSize,
 }) {
   const [productsOFerts,setProductsOferts]=useState([])
  
@@ -26,7 +27,7 @@ function DataTableProducts({
 
 
     return (
-      <section className="promotion-product-card-container">
+      <section className={mobileSize?"promotion-product-card-container promotion-product-card-container-mobileSize":"promotion-product-card-container"}>
         <div className="img-promotion-product-card-section">
           { editable &&
           <Checkbox

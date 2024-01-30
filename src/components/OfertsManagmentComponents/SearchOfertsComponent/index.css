@@ -3,13 +3,11 @@
 
 .search-oferts-container{
     width: 90%;
- 
     margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap:10px;
-
 }
 
 .-wrap600px{
@@ -66,11 +64,28 @@
 }
 
 
+.view-toggle-container-oferts{
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+    grid-area: view-toggle;
 
-.input-switch-oferts {
-    border: 2px  solid rgb(48, 48, 48,0.5);
-    height: 30px;
-    min-width: 40px;
-    max-width: 40px;
+    color: #726E6E;
+    text-align: center;
+    font-family: Noto Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 137%; /* 32.88px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
 }
-
+.view-toggle-container-oferts img{
+    cursor: pointer;
+    width: 50px;
+    height: 30px;
+    margin-top:2px
+}
