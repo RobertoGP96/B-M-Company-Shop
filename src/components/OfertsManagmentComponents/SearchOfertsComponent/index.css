@@ -23,6 +23,7 @@
     background-color: rgba(240, 241, 245);
     padding-left: 10px;
     gap: 10px;
+    border: none;
 }
 
 .search-oferts-form input{

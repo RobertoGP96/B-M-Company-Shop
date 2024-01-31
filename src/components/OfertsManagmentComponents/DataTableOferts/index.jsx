@@ -77,9 +77,7 @@ function DataTableOferts({
       className="data-table-oferts"
       value={dataOferts}
       stripedRows
-      paginator
-      rows={5}
-      rowsPerPageOptions={[5, 10, 25, 50]}
+
       tableStyle={{ minWidth: "50rem" }}
       checked={selectedOferts}
       selectionMode={"checkbox"}

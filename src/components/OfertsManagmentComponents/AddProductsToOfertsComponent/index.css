@@ -2,10 +2,35 @@
 
 .addProductsToOferts-search-container{
   margin-top: 10px;
- 
-   
 }
 
+.addProductsToOferts-container .p-dialog-header{
+    padding:3px 8px;
+    background-color: #545454;
+    color: white;
+    font-variant: small-caps;
+}
+
+
+.addProductsToOferts-container .p-dialog-title{
+    font-size: 0.8rem;
+    font-family: Noto Sans;
+}
+
+.addProductsToOferts-container .p-dialog-header-icon{
+    background-color: transparent;
+    border: none;
+    outline: none !important;
+    background-image: url("../../assets/close-icon.svg") ;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50px;
+    font-size: x-small;
+    color: white;
+    line-height: 137%; /* 27.4px */
+    font-variant: small-caps;
+    letter-spacing: -0.8px;
+}
 
 
 @media   (width < 800px) {

@@ -13,7 +13,7 @@ function DataTableProducts({
 }) {
   const [productsOFerts,setProductsOferts]=useState([])
  
- 
+
     useEffect(() =>{ 
       getProductsOfert(OfertID).then(products =>{
         console.log(products);
@@ -23,9 +23,6 @@ function DataTableProducts({
     },[OfertID])
 
   function ProductItemTemplate(data) {
-    
-
-
     return (
       <section className={mobileSize?"promotion-product-card-container promotion-product-card-container-mobileSize":"promotion-product-card-container"}>
         <div className="img-promotion-product-card-section">
@@ -58,7 +55,6 @@ function DataTableProducts({
       itemTemplate={ProductItemTemplate}
       rows={productsOFerts.length}
       inline
-      
       scrollHeight="300px"
     />
   );

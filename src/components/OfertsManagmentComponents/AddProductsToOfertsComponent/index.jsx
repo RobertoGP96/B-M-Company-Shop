@@ -10,6 +10,17 @@ import { Toast } from "primereact/toast";
 import { getInitialValues } from "../../../utils/productInitialValues";
 import Search from "../../Search";
 
+
+const heaerTitle =(info) => {
+  return(
+    <div style={{display:"flex", alignItems:"center",gap:"10px"}}> 
+      <i className="pi pi-tag "></i>
+      <p style={{marginBlock:"0px",fontSize:"1rem"}}>{info}</p>
+    </div>
+  )
+}
+
+
 function AddProductsToOferts({visible,onHide}){
     const toast = useRef(null);
     const [selectedProducts, setSelectedProducts] = useState([]);
@@ -51,6 +62,7 @@ function AddProductsToOferts({visible,onHide}){
               visible={visible}
               onHide={() =>onHide()}
               className='addProductsToOferts-container'
+              header  = {heaerTitle("Añadir productos")}
         >
               <Toast ref={toast} position="bottom-center" />
           <div className="addProductsToOferts-search-container">

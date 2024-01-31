@@ -1,13 +1,13 @@
+
+
 .table-oferts-container{
-    width: 90%;
-    margin: 20px auto;
-    overflow-x: scroll;
-    height: 500px;
-
+    width: 90%;   
+    flex-direction: column;
 }
-
+.table-oferts-container .p-datatable{
+    width: 100%;
+}
 .table-oferts-container .p-paginator{
-   top:350px;
    width:100%;
 }
 

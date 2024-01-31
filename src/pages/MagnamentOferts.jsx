@@ -12,6 +12,9 @@ import PageLoader from "../components/PageLoader";
 import DataTableOferts from "../components/OfertsManagmentComponents/DataTableOferts";
 import SearchOferts from "../components/OfertsManagmentComponents/SearchOfertsComponent";
 import DataScrollerOferts from "../components/OfertsManagmentComponents/DataScrollerOferts";
+import Paginator from "../components/Paginator";
+import QueryFiltersContext from "../context/filtersContext";
+import { useContext } from "react";
 
 const heaerTitle =(info) => {
   return(
@@ -33,22 +36,18 @@ function MagnamentOferts() {
   const [infoDialogCreate, setInfoDialogCreate] = useState(false);
   const [rowData, setRowData] = useState({});
   const toast = useRef(null);
-  const [search,setSearch] = useState("")
   const [mounted, setMounted] = useState(false)
   const [viewMode,setViewMode] = useState("table")
   const [numOfOferts, setNumOferts] = useState(0) 
-
-
+  const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
+  const [search,setSearch] = useState(getActiveFilter("search"))
   // Useeffect hook for getting ofert data from server
-  const { loading,setLoading } = useGetPromotions({promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
-
+  const { loading,setLoading } = useGetPromotions({searchParams:searchParams,promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
 
 
   useEffect(() => {
     if(mounted){
-        let timeOut = setTimeout(() => getPromotions(`search=${search}`).then((result)=>{
-            setDataOferts(result.results)
-        }), 350)  
+        let timeOut = setTimeout(() => setFilter({name: "search", value:search}), 350)  
         return () => clearTimeout(timeOut)
     }
     else{
@@ -258,6 +257,13 @@ function MagnamentOferts() {
           />
         )}
       </section>
+      <Paginator
+            key={"paginator-Oferts-magnament-table"}
+            getActiveFilter={getActiveFilter}
+            products={dataOferts}
+            numOfProducts={numOfOferts}
+            setFilter={setFilter}
+          />
     </section>
   );
 }
