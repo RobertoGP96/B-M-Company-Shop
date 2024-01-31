@@ -15,6 +15,7 @@ import Footer  from './components/Footer/index.jsx'
 import 'primeicons/primeicons.css';
 import MagnamentOferts from './pages/MagnamentOferts.jsx'
 import MagnamentSecurity from './pages/MagnamentSecurity.jsx'
+import ManagmentContact from './pages/ManagmentContact.jsx'
 import Login from './pages/Login.jsx'
 
 function App() {
@@ -31,11 +32,12 @@ function App() {
                 <Route path = "/remesas" element = {<Remesas/>}/>
                 <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
                 <Route path = "/magnament/products" element = {<ProductsManagment/>}/>
-                <Route path = "/" element = {<Home/>}/>
-                <Route path = "*" element = {<Page404/>}/>
                 <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
                 <Route path = "/magnament-security" element = {<MagnamentSecurity/>}/>
+                <Route path = "/managment/contact" element = {<ManagmentContact/>}/>
                 <Route path = "/login" element = {<Login/>}/>
+                <Route path = "/" element = {<Home/>}/>
+                <Route path = "*" element = {<Page404/>}/>
               </Routes>
             </QueryFiltersContextProvider>
           </PrimeReactProvider>
