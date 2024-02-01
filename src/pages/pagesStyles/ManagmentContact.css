@@ -116,3 +116,18 @@
     font-size: 1.5rem;
     margin-right: 10px;
 }
+.btn-pane{
+ background-color: #545454;
+ color: white;
+ border: 2px solid #545454;
+ font-family: Noto Sans;
+ font-size: 0.8rem;
+}
+.save-btn-cont{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 1rem;
+  padding-bottom: 0;
+  gap: 5px;
+}

@@ -131,6 +131,10 @@ function ManagmentContact() {
             <Column body={actionBodyTemplate} headerStyle={{ width: '6%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }} headerClassName="table-column-header"></Column>
           </DataTable>
         </div>
+        <div className="save-btn-cont">
+          <Button icon="pi pi-save" label="Guardar" className="btn-pane" size="small"></Button>
+          <Button icon="pi pi-replay" label="Reiniciar" className="btn-pane" size="small"></Button>
+        </div>
       </div>
     </article>
   );
