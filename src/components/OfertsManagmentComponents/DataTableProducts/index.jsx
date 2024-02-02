@@ -10,10 +10,10 @@ function DataTableProducts({
   OfertID,
   editable,
   mobileSize,
+  productsOFerts,
+  setProductsOferts,
 }) {
-  const [productsOFerts,setProductsOferts]=useState([])
- 
-
+    
     useEffect(() =>{ 
       getProductsOfert(OfertID).then(products =>{
         console.log(products);

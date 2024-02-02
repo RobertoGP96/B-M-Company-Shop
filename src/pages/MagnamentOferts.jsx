@@ -77,7 +77,7 @@ function MagnamentOferts() {
     };
 
   const handleOnChangeChecked = (oferts,data) =>{
-       var copyOferts = []
+       var copyOferts = [] 
         if(oferts.length > 0){
         for(let i = 0; i < oferts.length; i++) {
             if(oferts[i] !== data){
@@ -128,8 +128,8 @@ function MagnamentOferts() {
         dataId.push(data[i].id);
     } 
     confirmDialog({
-      message: "Esta seguro que desea eliminar esta promoción?",
-      header: "Delete Confirmation",
+      message: "Esta seguro que desea eliminar?",
+      header: "Confirmar Eliminación",
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger",
       accept: () => {

@@ -5,6 +5,8 @@ import ProductCardForOfertManagment from "../ProductCard";
 function ProductsGridForOfertManagment({
   products,
   loading,
+  handleOnChangeChecked,
+  searchChecked,
 }) {
 
   return (
@@ -18,10 +20,10 @@ function ProductsGridForOfertManagment({
       ) : null}
       {products.map((product) => (
         <ProductCardForOfertManagment
-          key={product.id}
-          precio={product.precio}
-          product_img1={product.product_img1}
-          product_name={product.product_name}
+            key={product.id}
+            data={product}
+            handleOnChangeChecked={handleOnChangeChecked}
+            searchChecked={searchChecked}
         />
       ))}
     </section>

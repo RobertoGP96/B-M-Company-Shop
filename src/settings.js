@@ -13,5 +13,6 @@ export const URL_MANAGE_PROMOTIONS = `${BASE_URL}/store/manage-promotions/`
 
 export const URL_GET_PROMOTIONS = `${BASE_URL}/store/promotions/`
 export const URL_GET_PRODUCTS_PROMOTION = `${BASE_URL}/store/products?promotion=`
+export const URL_ADD_PRODUCTS_PROMOTION = `${BASE_URL}/store/manage-promotions/`
 
 

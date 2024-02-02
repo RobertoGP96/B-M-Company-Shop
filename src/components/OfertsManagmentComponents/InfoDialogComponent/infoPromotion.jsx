@@ -3,7 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { Dialog } from "primereact/dialog";
 import { updatePromotion } from "../../../services/ManagePromotions/updatePromotion";
 import { createPromotion } from "../../../services/ManagePromotions/createPromotion";
-import { Toast } from "primereact/toast";
 import { Checkbox } from "primereact/checkbox";
 import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
@@ -33,6 +32,7 @@ function InfoPromotion({
   });
   const [imgPreview, setImgPreview] = useState(infoData.img);
   const [addProductModal, setAddProductModal] = useState(false);
+  const [productsOFerts,setProductsOferts]=useState([])
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -70,7 +70,13 @@ function InfoPromotion({
 
   return (
     <section className={"info-promotion-container"}>
-      <AddProductsToOferts visible={addProductModal} onHide={handleOnChangeProductMOdal}/>
+      <AddProductsToOferts 
+        visible={addProductModal} 
+        onHide={handleOnChangeProductMOdal}
+        show={show}
+        idPromotion={data.id}
+        setProductOferts={setProductsOferts}
+      />
       <Dialog
         visible={visible}
         className={mobileSize?"info-dialog-promotion info-dialog-promotion-mobileSize":"info-dialog-promotion"}
@@ -248,7 +254,13 @@ function InfoPromotion({
                 </>
               )}
             </div>
-            <DataTableProducts OfertID={infoData.id} editable={editable} mobileSize={mobileSize}/>
+            <DataTableProducts 
+              OfertID={infoData.id} 
+              editable={editable} 
+              mobileSize={mobileSize}
+              productsOFerts={productsOFerts}
+              setProductsOferts={setProductsOferts}
+            />
           </div>
           <div className="button-promotion-container">
             {editable && (

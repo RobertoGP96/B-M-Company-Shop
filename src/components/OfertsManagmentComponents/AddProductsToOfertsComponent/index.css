@@ -17,6 +17,7 @@
     font-family: Noto Sans;
 }
 
+
 .addProductsToOferts-container .p-dialog-header-icon{
     background-color: transparent;
     border: none;
@@ -31,6 +32,26 @@
     font-variant: small-caps;
     letter-spacing: -0.8px;
 }
+.add-products-button{
+    color: aliceblue;
+    border-radius: 6px;
+    background: #545454;
+    font-family: Noto Sans;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: small;
+    line-height: 137%;
+    font-variant: small-caps;
+    letter-spacing: -0.5px;
+    justify-content: center;
+    gap: 5px;
+    border-style: none;
+    margin-right: 0px;
+    cursor: pointer;
+    margin-left: 80%;
+}
+
 
 
 @media   (width < 800px) {
@@ -38,7 +59,5 @@
         max-width: 340px ;
         overflow-x: hidden;
     }
-    .products-grid-magnament-oferts-container{
-        margin-left: -13px;
-    }
+
 }

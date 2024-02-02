@@ -1,15 +1,21 @@
 import './index.css'
+import { Checkbox } from "primereact/checkbox";
 
 
-function ProductCardForOfertManagment({id, product_name, precio, product_img1,}){
+function ProductCardForOfertManagment({data,handleOnChangeChecked,searchChecked}){
+    console.log(data);
     return(
-       <div className="product-card" id = {id} style={{width:"140px"}}>
+       <div className="product-card" id = {data.id} style={{width:"140px"}}>
         <div className = 'img-container'>
-            <img loading = "lazy" src={product_img1}  alt={product_name}/>
+            <img loading = "lazy" src={data.product_img1}  alt={data.product_name}/>
         </div>
         <div className = "name-and-price-container">
-          <p className="product-card-name">{product_name}</p>
-          <p className="card-text price">${precio}</p>
+          <Checkbox  
+                    checked={searchChecked(data.id)} 
+                    onChange={()=>handleOnChangeChecked(data)}  
+            />
+          <p className="product-card-name">{data.product_name}</p>
+          <p className="card-text price">${data.precio}</p>
         </div>
        </div>
 

@@ -9,6 +9,9 @@ import Paginator from "../../Paginator";
 import { Toast } from "primereact/toast";
 import { getInitialValues } from "../../../utils/productInitialValues";
 import Search from "../../Search";
+import { addProductsToPromotion } from '../../../services/ManagePromotions/addProductsToOfert';
+import AddIcon from "../../../assets/oferts-magnament-add.svg";
+import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
 
 
 const heaerTitle =(info) => {
@@ -21,10 +24,10 @@ const heaerTitle =(info) => {
 }
 
 
-function AddProductsToOferts({visible,onHide}){
+function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts}){
     const toast = useRef(null);
-    const [selectedProducts, setSelectedProducts] = useState([]);
-
+    const [checkedProducts, setCheckedProducts] = useState([]);
+   
     const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
     useContext(QueryFiltersContext);
   
@@ -33,6 +36,7 @@ function AddProductsToOferts({visible,onHide}){
   
     //function to reset the product Form Properties
     function resetProductFormProperties(){
+      
       setProductFormProperties((prev) => ({
         ...prev,
         show: false,
@@ -50,17 +54,44 @@ function AddProductsToOferts({visible,onHide}){
     } = useManageProducts({
       searchParams: searchParams,
       toastRef: toast,
-      setSelectedProducts: setSelectedProducts,
       resetProductFormProperties: resetProductFormProperties,
       removeAllFilters:removeAllFilters
     });
   
+    const searchChecked = (id) =>{
+      for(let i = 0; i < checkedProducts.length; i++) {
+          if(checkedProducts[i] === id){
+              return true;
+          }
+      }
+      return false;
+    };
 
+    const handleOnChangeChecked = (data) =>{
+      var aux = [];
+       if(checkedProducts.length > 0){
+       for(let i = 0; i < checkedProducts.length; i++) {
+           if(checkedProducts[i] !== data.id){
+              aux.push(checkedProducts[i]);
+           }
+       }
+           if(aux.length == checkedProducts.length){ 
+              aux.push(data.id);
+           }
+           setCheckedProducts(aux);
+       }else{
+           aux.push(data.id)
+           setCheckedProducts(aux);
+       }
+   };
 
     return(
         <Dialog
               visible={visible}
-              onHide={() =>onHide()}
+              onHide={() =>{
+                onHide()
+                setCheckedProducts([])
+              }}
               className='addProductsToOferts-container'
               header  = {heaerTitle("Añadir productos")}
         >
@@ -68,12 +99,12 @@ function AddProductsToOferts({visible,onHide}){
           <div className="addProductsToOferts-search-container">
             <Search/>
           </div>
-          
+         
           <ProductsGridForOfertManagment 
             products={products}
             loading={loadingProducts}
-            selectedProducts={selectedProducts}
-            setSelectedProducts={setSelectedProducts}
+            handleOnChangeChecked={handleOnChangeChecked}
+            searchChecked={searchChecked}
             />
           <Paginator
             numOfProducts={numOfProducts}
@@ -81,6 +112,26 @@ function AddProductsToOferts({visible,onHide}){
             getActiveFilter={getActiveFilter}
             products={products}
           />
+         <button
+          className="add-products-button"
+            onClick={() => {
+
+              if (checkedProducts.length > 0) {
+                console.log(checkedProducts)
+                addProductsToPromotion({products:checkedProducts,id:idPromotion}).then(() => {
+                  getProductsOfert(idPromotion).then((products) =>{
+                    setProductOferts(products.results)
+                  })
+                  show("Acción completada","success")
+                });
+              }
+                
+              else show("Debe seleccionar almenos un elemento", "warn");
+            }}
+            >
+          <img src={AddIcon} alt="delete" width={"13px"} />
+          <p>Añadir</p>
+        </button>
         </Dialog>
       
    
