@@ -30,14 +30,14 @@
   padding: 5px;
 }
 
-.head-contact h2{
-    font-family: Noto Sans;
-    font-variant: small-caps ;
+.head-contact h2 {
+  font-family: Noto Sans;
+  font-variant: small-caps;
 }
-.head-btn-back{
+.head-btn-back {
   width: 50px;
   height: 30px;
-    background-color: #545454;
+  background-color: #545454;
   color: #fff !important;
   align-self: center;
   border: none;
@@ -90,6 +90,12 @@
   font-variant: small-caps;
   letter-spacing: -0.8px;
 }
+
+.p-datatable-header {
+  font-family: Noto Sans;
+  font-variant: small-caps;
+  background-color: #fff;
+}
 .table-column-header svg {
   color: #fff !important;
 }
@@ -100,34 +106,90 @@
   justify-content: center;
 }
 
-.table-agend .p-datatable-wrapper{
-    max-height: 650px;
+.table-agend .p-datatable-wrapper {
+  max-height: 250px;
+  min-height: 60vh !important;
 }
-.agend-container{
-    padding-bottom: 2rem;
+.agend-container {
+  padding-bottom: 2rem;
 }
-.agend-container h3 {
-    text-align: left;
-    font-family: Noto Sans;
-    font-variant: small-caps;
-    color: #545454;
+.agend-container h2 {
+  text-align: left;
+  font-family: Noto Sans;
+  font-variant: small-caps;
+  color: #545454;
 }
-.agend-container h3 i{
-    font-size: 1.5rem;
-    margin-right: 10px;
+.agend-container h2 i {
+  font-size: 1.5rem;
+  margin-right: 10px;
 }
-.btn-pane{
- background-color: #545454;
- color: white;
- border: 2px solid #545454;
- font-family: Noto Sans;
- font-size: 0.8rem;
+
+.agend-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  color: #545454!important;
+  padding: 1rem;
+  margin: 0;
 }
-.save-btn-cont{
+
+.btn-pane {
+  background-color: #545454;
+  color: white;
+  border: 2px solid #545454;
+  font-family: Noto Sans;
+  font-size: 0.8rem;
+  align-self: center;
+}
+.save-btn-cont {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 1rem;
-  padding-bottom: 0;
+  padding-right: 0;
   gap: 5px;
+}
+.p-inputgroup-addon{
+  background: #545454;
+  border: 2px solid #545454;
+}
+
+.p-inputgroup-addon i{
+  color: #fff;
+}
+
+.dialog-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dialog-header h4{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.dialog-header i{
+  align-self: center;
+  margin-right: 1rem;
+  font-size: 1.5rem !important;
+}
+.product-form-dialog-header{
+  background-color:rgba(84, 84, 84, 1);
+  color: #fff;
+  height:20px;
+  color: #FFF;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: "Noto Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 125%; /* 15px */
+  font-variant: small-caps;
+}
+.p-dialog-content{
+  padding-top: 10px;
 }
