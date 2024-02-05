@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
   padding: 1rem 2rem;
@@ -197,11 +197,9 @@
   line-height: 125%; /* 15px */
   font-variant: small-caps;
 }
-.p-dialog-content{
-  padding-top: 10px;
-}
 
 .p-dialog-content{
+  padding-top: 10px;
   padding-top: 1.8rem;
   display: flex;
   flex-direction: column;
@@ -209,6 +207,13 @@
   align-items: center;
   gap: 1.8rem;
   max-width: 20vw;
+}
+
+@media (max-width: 800px) {
+  .p-dialog, .p-dialog-content{
+    max-width: 60vw !important;
+    min-width: 305px;
+  }
 }
 
 .p-dialog-content .p-inputtext{

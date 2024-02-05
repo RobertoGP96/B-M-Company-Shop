@@ -12,7 +12,6 @@ import { InputText } from "primereact/inputtext";
 import { Dialog } from "primereact/dialog";
 import { Avatar } from "primereact/avatar";
 
-
 function ManagmentContact() {
   const navigate = useNavigate();
   const [selectFaceContact, selectedFaceContact] = useState(null);
@@ -55,15 +54,15 @@ function ManagmentContact() {
     return (
       <div className="agend-header">
         <h2>
-        <i className="pi pi-book"></i> Agenda
+          <i className="pi pi-book"></i> Agenda
         </h2>
         <Button
-              icon="pi pi-user-plus"
-              label="Añadir"
-              className="btn-pane"
-              size="small"
-              onClick={openNew}
-            ></Button>
+          icon="pi pi-user-plus"
+          label="Añadir"
+          className="btn-pane"
+          size="small"
+          onClick={openNew}
+        ></Button>
       </div>
     );
   };
@@ -90,7 +89,6 @@ function ManagmentContact() {
         <i className="pi pi-id-card"></i>
         <h4>Registrar Contacto</h4>
       </div>
-      
     </React.Fragment>
   );
 
@@ -166,13 +164,15 @@ function ManagmentContact() {
               </span>
               <InputText
                 placeholder="Enlace"
-                style={{ minWidth: "160px", width: "15rem", maxWidth: "15rem" }}
+                style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
               <span className="p-inputgroup-addon">
                 <i className="pi pi-ellipsis-v"></i>
               </span>
             </div>
           </div>
+        </li>
+        <li className="element-contact">
           <div className="element-contact">
             <div className="p-inputgroup">
               <span className="p-inputgroup-addon">
@@ -180,11 +180,64 @@ function ManagmentContact() {
               </span>
               <InputText
                 placeholder="Enlace"
-                style={{ minWidth: "160px", width: "15rem", maxWidth: "15rem" }}
+                style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
               <span className="p-inputgroup-addon">
                 <i className="pi pi-ellipsis-v"></i>
               </span>
+            </div>
+          </div>
+        </li>
+        <li className="element-contact">
+        <div className="element-contact">
+            <div className="p-inputgroup">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-map-marker"></i>
+              </span>
+              <InputText
+                placeholder="Ubicación"
+                style={{ minWidth: "160px", maxWidth: "15rem" }}
+              />
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-ellipsis-v"></i>
+              </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <ul className="ccontact-container">
+        <li>
+          <div className="element-contact">
+            <div className="p-inputgroup">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-phone"></i>
+              </span>
+              <Dropdown
+                value={selectWhaContact}
+                onChange={(e) => selectedWhaContact(e.value)}
+                options={products}
+                optionLabel="name"
+                size="small"
+                placeholder="Select"
+                style={{ minWidth: "160px", width: "15rem", maxWidth: "15rem" }}
+              />
+            </div>
+          </div>
+          <div className="element-contact">
+            <div className="p-inputgroup">
+              <span className="p-inputgroup-addon">
+                <i className="pi pi-envelope"></i>
+              </span>
+              <Dropdown
+                value={selectTelContact}
+                onChange={(e) => selectedTelContact(e.value)}
+                options={products}
+                optionLabel="name"
+                size="small"
+                placeholder="Select"
+                style={{ minWidth: "160px", width: "15rem", maxWidth: "15rem" }}
+              />
             </div>
           </div>
         </li>
@@ -267,7 +320,7 @@ function ManagmentContact() {
               className="btn-pane"
               size="small"
             ></Button>
-            
+
             <Button
               icon="pi pi-save"
               label="Guardar"
@@ -327,7 +380,7 @@ function ManagmentContact() {
         modal
         visible={productDialog}
         onHide={hideDialog}
-        style={{ width: "32rem", maxWidth: "20vw"}}
+        style={{ width: "32rem", maxWidth: "20vw" }}
         breakpoints={{ "960px": "75vw", "641px": "90vw" }}
         header={contactDialogHeader}
         className="p-fluid"
@@ -336,26 +389,28 @@ function ManagmentContact() {
       >
         <Avatar icon="pi pi-user" size="xlarge" shape="circle" />
         <span className="p-float-label avatar-cont">
-          <InputText
-            id="username"
-          />
-          <label htmlFor="username"> <i className="pi pi-user"> </i> Nombre</label>
+          <InputText id="username" />
+          <label htmlFor="username">
+            {" "}
+            <i className="pi pi-user"> </i> Nombre
+          </label>
         </span>
 
         <span className="p-float-label">
-          <InputText
-            id="phone"
-          />
-          <label htmlFor="phone"> <i className="pi pi-phone"></i> Teléfono</label>
+          <InputText id="phone" />
+          <label htmlFor="phone">
+            {" "}
+            <i className="pi pi-phone"></i> Teléfono
+          </label>
         </span>
 
         <span className="p-float-label">
-          <InputText
-            id="mail"
-          />
-          <label htmlFor="mail"> <i className="pi pi-envelope"></i> Correo</label>
+          <InputText id="mail" />
+          <label htmlFor="mail">
+            {" "}
+            <i className="pi pi-envelope"></i> Correo
+          </label>
         </span>
-
       </Dialog>
     </article>
   );
