@@ -10,6 +10,8 @@ import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { Dialog } from "primereact/dialog";
+import { Avatar } from "primereact/avatar";
+
 
 function ManagmentContact() {
   const navigate = useNavigate();
@@ -51,9 +53,18 @@ function ManagmentContact() {
 
   const Header = () => {
     return (
-      <h2 className="agend-header">
+      <div className="agend-header">
+        <h2>
         <i className="pi pi-book"></i> Agenda
-      </h2>
+        </h2>
+        <Button
+              icon="pi pi-user-plus"
+              label="Añadir"
+              className="btn-pane"
+              size="small"
+              onClick={openNew}
+            ></Button>
+      </div>
     );
   };
 
@@ -79,6 +90,7 @@ function ManagmentContact() {
         <i className="pi pi-id-card"></i>
         <h4>Registrar Contacto</h4>
       </div>
+      
     </React.Fragment>
   );
 
@@ -255,13 +267,7 @@ function ManagmentContact() {
               className="btn-pane"
               size="small"
             ></Button>
-            <Button
-              icon="pi pi-user-plus"
-              label="Añadir"
-              className="btn-pane"
-              size="small"
-              onClick={openNew}
-            ></Button>
+            
             <Button
               icon="pi pi-save"
               label="Guardar"
@@ -321,31 +327,35 @@ function ManagmentContact() {
         modal
         visible={productDialog}
         onHide={hideDialog}
-        style={{ width: "32rem" }}
+        style={{ width: "32rem", maxWidth: "20vw"}}
         breakpoints={{ "960px": "75vw", "641px": "90vw" }}
         header={contactDialogHeader}
         className="p-fluid"
         footer={productDialogFooter}
         headerClassName="product-form-dialog-header"
       >
-        <div className="field">
-          <label htmlFor="name" className="font-bold">
-            Nombre
-          </label>
-          <InputText id="name" required autoFocus />
-        </div>
-        <div className="field">
-          <label htmlFor="Télefono" className="font-bold">
-            Teléfono
-          </label>
-          <InputText id="phone" required autoFocus />
-        </div>
-        <div className="field">
-          <label htmlFor="Télefono" className="font-bold">
-            Correo
-          </label>
-          <InputText id="mail" required autoFocus />
-        </div>
+        <Avatar icon="pi pi-user" size="xlarge" shape="circle" />
+        <span className="p-float-label avatar-cont">
+          <InputText
+            id="username"
+          />
+          <label htmlFor="username"> <i className="pi pi-user"> </i> Nombre</label>
+        </span>
+
+        <span className="p-float-label">
+          <InputText
+            id="phone"
+          />
+          <label htmlFor="phone"> <i className="pi pi-phone"></i> Teléfono</label>
+        </span>
+
+        <span className="p-float-label">
+          <InputText
+            id="mail"
+          />
+          <label htmlFor="mail"> <i className="pi pi-envelope"></i> Correo</label>
+        </span>
+
       </Dialog>
     </article>
   );

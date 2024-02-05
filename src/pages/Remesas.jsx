@@ -4,7 +4,7 @@ import "primeicons/primeicons.css";
 import Zelle from "../assets/zelle-icon.svg";
 import Cash from "../assets/cash-icon.svg";
 import PayPal from "../assets/paypal.svg";
-import PhoneImg from "../assets/phone-remesas.jpg";
+import PhoneImg from "../assets/Frame-2.webp";
 
 
 function Remesas() {
@@ -16,7 +16,7 @@ function Remesas() {
           <h1>Remesas</h1>
           <ul className="platform-icons">
             <li>
-              <img src={Zelle} alt="Zelle icon" />
+              <img src={Zelle} className="phone-hand-img" alt="Zelle icon" />
               <p>Zelle</p>
             </li>
             <li>
