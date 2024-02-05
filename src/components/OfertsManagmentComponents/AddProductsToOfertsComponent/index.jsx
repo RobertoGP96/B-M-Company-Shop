@@ -5,14 +5,12 @@ import "primeicons/primeicons.css";
 import ProductsGridForOfertManagment from '../ProductGrid';
 import QueryFiltersContext from "../../../context/filtersContext";
 import { useManageProducts } from "../../../hooks/useManageProducts";
-import Paginator from "../../Paginator";
 import { Toast } from "primereact/toast";
-import { getInitialValues } from "../../../utils/productInitialValues";
-import Search from "../../Search";
+import SearchProducts from '../SearchProducts';
 import { addProductsToPromotion } from '../../../services/ManagePromotions/addProductsToOfert';
 import AddIcon from "../../../assets/oferts-magnament-add.svg";
 import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
-
+import { useGetProducts } from '../../../hooks/useGetProducts';
 
 const heaerTitle =(info) => {
   return(
@@ -27,37 +25,13 @@ const heaerTitle =(info) => {
 function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts}){
     const toast = useRef(null);
     const [checkedProducts, setCheckedProducts] = useState([]);
-   
-    const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
-    useContext(QueryFiltersContext);
-  
-    //product form properties state
+    const [search, setSearch] = useState('');
+    const [numberOfProducts, setNumberOfProducts] = useState(0)
+    const [typeOfSaerch,setTypeOfSaerch] = useState("search=")
+    const{products,loadingProducts,next,previous} = useGetProducts({searchParams:`${typeOfSaerch}${search}`,setNumOfProducts:setNumberOfProducts})
+    const [page,setPage] = useState(1);
 
-  
-    //function to reset the product Form Properties
-    function resetProductFormProperties(){
-      
-      setProductFormProperties((prev) => ({
-        ...prev,
-        show: false,
-        creatingMode: true,
-        disabled: false,
-        initialValues: getInitialValues(),
-      }));
-    }
-  
-    //products managment hook
-    const {
-      products,
-      loadingProducts,
-      numOfProducts,
-    } = useManageProducts({
-      searchParams: searchParams,
-      toastRef: toast,
-      resetProductFormProperties: resetProductFormProperties,
-      removeAllFilters:removeAllFilters
-    });
-  
+
     const searchChecked = (id) =>{
       for(let i = 0; i < checkedProducts.length; i++) {
           if(checkedProducts[i] === id){
@@ -66,6 +40,31 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
       }
       return false;
     };
+
+    const handleOnsearch = (searchValue) =>{
+      setTypeOfSaerch("search=")
+      setSearch(searchValue);
+    }
+
+    const handleOnChangeNext=()=>{
+        console.log(page)
+        if(next !=null){
+          setTypeOfSaerch("page=")
+          setPage(page + 1)
+          setSearch(page)
+        }
+        
+          
+    }
+    const handleOnChangePrevious=()=>{
+      console.log(page)
+      if(previous !=null ) {
+          setTypeOfSaerch("page=")
+          setPage(page - 1)
+          setSearch(page)
+        }
+          
+    }
 
     const handleOnChangeChecked = (data) =>{
       var aux = [];
@@ -97,7 +96,7 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
         >
               <Toast ref={toast} position="bottom-center" />
           <div className="addProductsToOferts-search-container">
-            <Search/>
+            <SearchProducts search={search} onHandleChange={handleOnsearch}/>
           </div>
          
           <ProductsGridForOfertManagment 
@@ -106,18 +105,20 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
             handleOnChangeChecked={handleOnChangeChecked}
             searchChecked={searchChecked}
             />
-          <Paginator
-            numOfProducts={numOfProducts}
-            setFilter={setFilter}
-            getActiveFilter={getActiveFilter}
-            products={products}
-          />
+          <div className='btns-paginator-container ' >
+              <button onClick={handleOnChangePrevious} >
+                <i className='pi pi-angle-left' ></i>
+             
+              </button>
+              <button onClick={handleOnChangeNext}>
+                 <i className='pi pi-angle-right' ></i>
+              </button>
+          </div>
          <button
           className="add-products-button"
             onClick={() => {
 
               if (checkedProducts.length > 0) {
-                console.log(checkedProducts)
                 addProductsToPromotion({products:checkedProducts,id:idPromotion}).then(() => {
                   getProductsOfert(idPromotion).then((products) =>{
                     setProductOferts(products.results)

@@ -8,7 +8,7 @@ import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
 import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
-
+import { Button } from 'primereact/button';
 
 function InfoPromotion({
   visible,
@@ -33,6 +33,7 @@ function InfoPromotion({
   const [imgPreview, setImgPreview] = useState(infoData.img);
   const [addProductModal, setAddProductModal] = useState(false);
   const [productsOFerts,setProductsOferts]=useState([])
+  const [selectedProducts,setSelectedProducts]=useState([])
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -67,6 +68,32 @@ function InfoPromotion({
   const handleOnChangeProductMOdal = () => {
       setAddProductModal(!addProductModal)
   }
+  const searchChecked = (id) =>{
+    for(let i = 0; i < selectedProducts.length; i++) {
+        if(selectedProducts[i] === id){
+            return true;
+        }
+    }
+    return false;
+  };
+
+  const handleOnChangeChecked = (data) =>{
+    var aux = [];
+     if(selectedProducts.length > 0){
+     for(let i = 0; i < selectedProducts.length; i++) {
+         if(selectedProducts[i] !== data.id){
+            aux.push(selectedProducts[i]);
+         }
+     }
+         if(aux.length == selectedProducts.length){ 
+            aux.push(data.id);
+         }
+         setSelectedProducts(aux);
+     }else{
+         aux.push(data.id)
+         setSelectedProducts(aux);
+     }
+ };
 
   return (
     <section className={"info-promotion-container"}>
@@ -81,7 +108,10 @@ function InfoPromotion({
         visible={visible}
         className={mobileSize?"info-dialog-promotion info-dialog-promotion-mobileSize":"info-dialog-promotion"}
         header={heaerTitle}
-        onHide={() => onHide()}
+        onHide={() => {
+          onHide()
+          setProductsOferts([]);
+        }}
       >
         <form
           onSubmit={(event) => {
@@ -260,6 +290,8 @@ function InfoPromotion({
               mobileSize={mobileSize}
               productsOFerts={productsOFerts}
               setProductsOferts={setProductsOferts}
+              handleOnChangeChecked={handleOnChangeChecked}
+              searchChecked={searchChecked}
             />
           </div>
           <div className="button-promotion-container">
@@ -273,6 +305,7 @@ function InfoPromotion({
               className="buttons-user-info"
               onClick={() => {
                 onHide();
+                setProductsOferts([]);
               }}
             >
               Cancelar

@@ -2,8 +2,10 @@ import './index.css';
 import { DataScroller } from "primereact/datascroller";
 import { Checkbox } from "primereact/checkbox";
 import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import { Image } from "primereact/image";
+import { Button } from 'primereact/button';
+
 
 
 function DataTableProducts({
@@ -12,24 +14,46 @@ function DataTableProducts({
   mobileSize,
   productsOFerts,
   setProductsOferts,
+  searchChecked,
+  handleOnChangeChecked
 }) {
     
-    useEffect(() =>{ 
-      getProductsOfert(OfertID).then(products =>{
-        console.log(products);
-        setProductsOferts(products.results)
-      })
+    const tableProductsRef = useRef(null)
+    const [page, setPage] = useState(1);
+    const [loadMore,setLoadMore] = useState(true);
 
-    },[OfertID])
+
+    useEffect(() =>{ 
+      getProductsOfert(OfertID,page).then(products =>{
+        if(productsOFerts.length>0){
+          setProductsOferts(productsOFerts.concat(products.results));
+        }
+        else{
+          setProductsOferts(products.results);
+        }
+        if(products.next == null) setLoadMore(false)
+      })
+ 
+
+    },[OfertID,page])
+
+  
+    
+    const footer = <Button type="text" icon="pi pi-plus" label="Load" 
+    onClick={(e) => {
+      e.preventDefault();
+      setPage(page + 1);
+    }} 
+    />;
 
   function ProductItemTemplate(data) {
     return (
-      <section className={mobileSize?"promotion-product-card-container promotion-product-card-container-mobileSize":"promotion-product-card-container"}>
+      <section  className={mobileSize?"promotion-product-card-container promotion-product-card-container-mobileSize":"promotion-product-card-container"}>
         <div className="img-promotion-product-card-section">
           { editable &&
           <Checkbox
-              checked={""}
-              onChange={() => {}}
+              checked={searchChecked(data.id)}
+              onChange={() => handleOnChangeChecked(data)}
             />
           }
           <div className="img-promotion-product-card-container">
@@ -50,13 +74,15 @@ function DataTableProducts({
 
   return (
     <DataScroller
+      ref={tableProductsRef}
       className="data-products-ofert-scroller"
       value={productsOFerts}
       itemTemplate={ProductItemTemplate}
-      rows={productsOFerts.length}
+      rows={1000}
       inline
       scrollHeight="300px"
-    />
+      footer={loadMore?footer:undefined}
+      />
   );
 }
 

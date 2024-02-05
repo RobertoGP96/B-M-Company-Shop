@@ -29,5 +29,4 @@ function ProductsGridForOfertManagment({
     </section>
   );
 }
-
 export default ProductsGridForOfertManagment;

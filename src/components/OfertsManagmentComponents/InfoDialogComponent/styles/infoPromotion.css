@@ -3,7 +3,8 @@
 
 .info-dialog-promotion{
     width: 500px;
-    height: 550px; 
+    height: 620px !important ;
+    max-height: 800px !important; 
 }
 .info-dialog-promotion-mobileSize{
     width: 320px;
@@ -168,7 +169,7 @@
     padding: 4px;
     width: 455px;
     height: 250px;
-    background: rgb(90, 87, 87,0.1);
+    background: rgba(168, 168, 168, 0.2);
     border-radius: 5px;
     margin: auto;
     display: flex;

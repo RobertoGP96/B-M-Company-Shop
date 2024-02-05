@@ -10,6 +10,9 @@
     color: white;
     font-variant: small-caps;
 }
+.add-products-to-oferts-containers{
+  height: 305px;
+}
 
 
 .addProductsToOferts-container .p-dialog-title{
@@ -50,6 +53,24 @@
     margin-right: 0px;
     cursor: pointer;
     margin-left: 80%;
+}
+
+.btns-paginator-container{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 15px;
+    justify-content: center;
+    gap: 100px;
+}
+.btns-paginator-container button{
+        width: 40px;
+        height: 35px;
+        
+}
+.btns-paginator-container button:hover{
+        background-color: #a3a3a3;
+        border-style: none;
 }
 
 

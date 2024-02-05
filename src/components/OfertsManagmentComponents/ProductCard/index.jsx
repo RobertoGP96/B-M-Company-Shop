@@ -3,7 +3,6 @@ import { Checkbox } from "primereact/checkbox";
 
 
 function ProductCardForOfertManagment({data,handleOnChangeChecked,searchChecked}){
-    console.log(data);
     return(
        <div className="product-card" id = {data.id} style={{width:"140px"}}>
         <div className = 'img-container'>
