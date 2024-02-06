@@ -34,7 +34,7 @@ function ProductCard({
                 price: precio,
                 promotion: promotion_full_info,
                 discount: descuento,
-              })}
+              }).toFixed(2)}
             </span>
           </p>
         ) : (
