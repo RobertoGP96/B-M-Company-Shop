@@ -1,0 +1,78 @@
+
+.data-products-ofert-scroller .p-datascroller-header{
+    background-color: #545454 ;
+    color: white;
+    font-family: Noto Sans;
+    border-radius: 0px 0px 5px 5px;
+    font-variant: small-caps;
+    letter-spacing: -0.5px;
+}
+
+.data-products-ofert-scroller .p-datascroller-content{
+    max-height: 245px !important;
+    background: rgba(199, 194, 194, 0.1) !important;
+}
+
+
+.promotion-product-card-container{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    font-size: small;
+    line-height: normal;
+    font-family: Noto Sans;
+    justify-content: center;
+    height: 130px;
+    scale: 0.9;
+}
+
+
+.img-promotion-product-card-section{
+    display: flex;
+    padding:10px; 
+    width: 60%; 
+    margin: auto;
+    min-width: 150px;
+    text-align: left;
+    gap: 3px;
+}
+
+.img-promotion-product-card-container{
+    width: 100%;
+
+}
+
+.img-promotion-product-card-container img{
+    border-radius: 6px;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0);
+}
+
+.details-prmotion-product-card-section{
+    display: flex;
+    width: 35%;
+    text-align: left;
+    min-width: 150px;   
+    flex-direction: column; 
+}
+
+.mame-promotion-product-card{
+    font-size: medium;
+    
+}
+
+.dtp-price-container{
+    border-radius: 20px;
+    background-color:transparent;
+    width: 50px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 4px 0px rgba(5, 111, 153, 0.7);
+    
+}
+

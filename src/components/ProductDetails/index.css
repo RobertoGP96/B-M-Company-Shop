@@ -59,6 +59,11 @@
     z-index: 1 !important; 
     position: relative;  
 }
+.sidebar-2 .p-sidebar-content {
+    display: flex;
+   align-items: center;
+   justify-content: center;
+}
 
 .details-container{
     padding-top: 40px;

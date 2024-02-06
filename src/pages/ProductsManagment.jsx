@@ -12,7 +12,7 @@ import { Toast } from "primereact/toast";
 import { useManageCategories } from "../hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
 import { useIsMobileMode } from "../hooks/useIsMobileMode";
-import { useGetPromotions } from "../hooks/useGetPromotions";
+import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
 
 function ProductsManagment() {
   const toast = useRef(null);

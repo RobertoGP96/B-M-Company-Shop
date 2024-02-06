@@ -174,10 +174,28 @@
       height: 25px;
     }
     .remesas-container-text {
-      min-height: 450px;
+      min-height: 350px;
     }
 
     .remesas-phone{
-      height: 400px;
+      height: 300px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .remesas-container-text{
+      flex-direction: column;
+      min-height: 500px;
+    }
+    .remesas-phone{
+      height: 200px;
+    }
+    .remesas-title h1{
+      margin-bottom: 0;
+      margin-top: 5px;
+    }
+    .platform-icons{
+      padding-left: 0;
+      gap: 3px;
     }
   }

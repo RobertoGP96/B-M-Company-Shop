@@ -1,22 +1,24 @@
 
-import "./index.css"
+import "./styles/infoUserSecurity.css"
 import React, { useState,useEffect } from "react";
 import { Dialog } from 'primereact/dialog';
 
 
-function InfoUser({visible,onHide,data,editable,heaerTitle,setData}){
-    const [infoData,setInfoData] = useState({name: '', email: '', phone: '',password: ''})
-
+function InfoUserSecurity({visible,onHide,data,editable,heaerTitle,onHide2}){
+    const [infoData,setInfoData] = useState({})
+    
 
     useEffect(()=>{
         setInfoData(data);
+        
     },[data])
 
     const handleOnchange = ( value,campo ) => {
         var InfoDataCopy = {...infoData};
-        console.log(value);
+
         InfoDataCopy[campo] = value;
        setInfoData(InfoDataCopy);
+       
     }
 
     return(
@@ -96,7 +98,13 @@ function InfoUser({visible,onHide,data,editable,heaerTitle,setData}){
                     {
                         editable && 
                         <div className="buttons-user-info-container">
-                            <button className="buttons-user-info">Guardar</button>
+                            <button className="buttons-user-info"
+                                      onClick={()=>{
+                                        onHide()
+                                    }}
+                            >
+                                Guardar
+                            </button>
                             <button className="buttons-user-info" 
                                 onClick={()=>{
                                     onHide()
@@ -117,4 +125,7 @@ function InfoUser({visible,onHide,data,editable,heaerTitle,setData}){
 }
 
 
-export default InfoUser;
+
+
+
+export default InfoUserSecurity;
