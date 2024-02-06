@@ -4,7 +4,7 @@ import "primeicons/primeicons.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import {getContactInfo} from "../services/ManageContact/contact_info_managment"
+import getContactInfo from "../services/ManageContact/contact_info_managment"
 
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
@@ -16,11 +16,9 @@ function ManagmentContact() {
   const [contact, setContacts] = useState();
 
   useEffect(() => {
-    getContactInfo().then((result)=>{
-      setContacts(result.results)
-      console.log(contact)
-    })
-  },[save])
+    console.log(getContactInfo())
+  }, []);
+
 
   return (
     <article className="mcontact-container">
@@ -41,7 +39,6 @@ function ManagmentContact() {
                 <i className="pi pi-facebook"></i>
               </span>
               <InputText
-                placeholder="Enlace"
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
               <span className="p-inputgroup-addon">

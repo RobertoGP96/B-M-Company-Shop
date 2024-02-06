@@ -1,6 +1,6 @@
 const CONTACT_INFO_URL = "https://bmcompanybackend.pythonanywhere.com/contact_info/"
 
-export function getContactInfo(){
+export default function getContactInfo(){
     return fetch(CONTACT_INFO_URL, {
         method: "GET",
         headers: {
@@ -8,7 +8,7 @@ export function getContactInfo(){
         }
     })
     .then(response => response.json())
-    .then(data => {console.log(data.results)})
+    .then(data => {return data})
 }
 
 export function editContactInfo({info}){
