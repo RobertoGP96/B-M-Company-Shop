@@ -8,7 +8,6 @@ import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
 import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
-import { Button } from 'primereact/button';
 
 function InfoPromotion({
   visible,
@@ -32,8 +31,8 @@ function InfoPromotion({
   });
   const [imgPreview, setImgPreview] = useState(infoData.img);
   const [addProductModal, setAddProductModal] = useState(false);
-  const [productsOFerts,setProductsOferts]=useState([])
-  const [selectedProducts,setSelectedProducts]=useState([])
+  const [productsOFerts, setProductsOferts] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -51,7 +50,6 @@ function InfoPromotion({
     }
   }, [data, visible ? visible : undefined]);
 
-
   const handleOnchange = (value, campo) => {
     console.log(value);
     var InfoDataCopy = { ...infoData };
@@ -66,39 +64,39 @@ function InfoPromotion({
   };
 
   const handleOnChangeProductMOdal = () => {
-      setAddProductModal(!addProductModal)
-  }
-  const searchChecked = (id) =>{
-    for(let i = 0; i < selectedProducts.length; i++) {
-        if(selectedProducts[i] === id){
-            return true;
-        }
+    setAddProductModal(!addProductModal);
+  };
+  const searchChecked = (id) => {
+    for (let i = 0; i < selectedProducts.length; i++) {
+      if (selectedProducts[i] === id) {
+        return true;
+      }
     }
     return false;
   };
 
-  const handleOnChangeChecked = (data) =>{
+  const handleOnChangeChecked = (data) => {
     var aux = [];
-     if(selectedProducts.length > 0){
-     for(let i = 0; i < selectedProducts.length; i++) {
-         if(selectedProducts[i] !== data.id){
-            aux.push(selectedProducts[i]);
-         }
-     }
-         if(aux.length == selectedProducts.length){ 
-            aux.push(data.id);
-         }
-         setSelectedProducts(aux);
-     }else{
-         aux.push(data.id)
-         setSelectedProducts(aux);
-     }
- };
+    if (selectedProducts.length > 0) {
+      for (let i = 0; i < selectedProducts.length; i++) {
+        if (selectedProducts[i] !== data.id) {
+          aux.push(selectedProducts[i]);
+        }
+      }
+      if (aux.length == selectedProducts.length) {
+        aux.push(data.id);
+      }
+      setSelectedProducts(aux);
+    } else {
+      aux.push(data.id);
+      setSelectedProducts(aux);
+    }
+  };
 
   return (
     <section className={"info-promotion-container"}>
-      <AddProductsToOferts 
-        visible={addProductModal} 
+      <AddProductsToOferts
+        visible={addProductModal}
         onHide={handleOnChangeProductMOdal}
         show={show}
         idPromotion={data.id}
@@ -106,12 +104,17 @@ function InfoPromotion({
       />
       <Dialog
         visible={visible}
-        className={mobileSize?"info-dialog-promotion info-dialog-promotion-mobileSize":"info-dialog-promotion"}
+        className={
+          mobileSize
+            ? "info-dialog-promotion info-dialog-promotion-mobileSize"
+            : "info-dialog-promotion"
+        }
         header={heaerTitle}
         onHide={() => {
-          onHide()
+          onHide();
           setProductsOferts([]);
         }}
+
       >
         <form
           onSubmit={(event) => {
@@ -153,7 +156,13 @@ function InfoPromotion({
           encType="multipart/form-data"
         >
           {editable && (
-            <div className={mobileSize?"inputs-dialog-from-container inputs-dialog-from-container-mobileSize":"inputs-dialog-from-container"}>
+            <div
+              className={
+                mobileSize
+                  ? "inputs-dialog-from-container inputs-dialog-from-container-mobileSize"
+                  : "inputs-dialog-from-container"
+              }
+            >
               <div className="input-info-dialog image-file-icon">
                 <div className="image-file-icon-container">
                   <input
@@ -173,7 +182,7 @@ function InfoPromotion({
                   {infoData.img ? (
                     <Image src={imgPreview} />
                   ) : (
-                    <Image src={ImagePlaceholder}/>
+                    <Image src={ImagePlaceholder} />
                   )}
                 </div>
               </div>
@@ -220,7 +229,13 @@ function InfoPromotion({
           )}
 
           {!editable && (
-            <div className={mobileSize?"inputs-dialog-from-container inputs-dialog-from-container-mobileSize":"inputs-dialog-from-container"}>
+            <div
+              className={
+                mobileSize
+                  ? "inputs-dialog-from-container inputs-dialog-from-container-mobileSize"
+                  : "inputs-dialog-from-container"
+              }
+            >
               <div className="input-info-dialog">
                 <div className="img-dialog-container">
                   <Image zoomSrc={infoData.img} src={infoData.img} preview />
@@ -258,42 +273,64 @@ function InfoPromotion({
               </div>
             </div>
           )}
-          <hr className="oferts-info-intrinsic" />
-          <p className="p-products-text-oferts">Productos:</p>
-          <div className={mobileSize?"add-products-to-oferts-containers add-products-to-oferts-containers-mobileSize":"add-products-to-oferts-containers"}>
-            <div className={mobileSize?"add-products-to-oferts-buttons-container add-products-to-oferts-buttons-container-mobileSize":"add-products-to-oferts-buttons-container"}>
-              {editable && (
-                <>
-                  <button
-                    className="add-products-to-oferts-buttons"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setAddProductModal(true);
-                    }}
-                  >
-                    <i className="pi pi-plus" style={{ color: "white" }}></i>
-                  </button>
-                  <button
-                    className="add-products-to-oferts-buttons"
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
-                  >
-                    <i className="pi pi-minus" style={{ color: "white" }}></i>
-                  </button>
-                </>
-              )}
-            </div>
-            <DataTableProducts 
-              OfertID={infoData.id} 
-              editable={editable} 
-              mobileSize={mobileSize}
-              productsOFerts={productsOFerts}
-              setProductsOferts={setProductsOferts}
-              handleOnChangeChecked={handleOnChangeChecked}
-              searchChecked={searchChecked}
-            />
-          </div>
+          {  accion !== "create" && 
+            <>
+              <hr className="oferts-info-intrinsic" />
+              <p className="p-products-text-oferts">Productos:</p>
+              <div
+                className={
+                  mobileSize
+                    ? "add-products-to-oferts-containers add-products-to-oferts-containers-mobileSize"
+                    : "add-products-to-oferts-containers"
+                }
+              >
+                <div
+                  className={
+                    mobileSize
+                      ? "add-products-to-oferts-buttons-container add-products-to-oferts-buttons-container-mobileSize"
+                      : "add-products-to-oferts-buttons-container"
+                  }
+                >
+                  {editable && (
+                    <>
+                      <button
+                        className="add-products-to-oferts-buttons"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setAddProductModal(true);
+                        }}
+                      >
+                        <i
+                          className="pi pi-plus"
+                          style={{ color: "white" }}
+                        ></i>
+                      </button>
+                      <button
+                        className="add-products-to-oferts-buttons"
+                        onClick={(e) => {
+                          e.preventDefault();
+                        }}
+                      >
+                        <i
+                          className="pi pi-minus"
+                          style={{ color: "white" }}
+                        ></i>
+                      </button>
+                    </>
+                  )}
+                </div>
+                <DataTableProducts
+                  OfertID={infoData.id}
+                  editable={editable}
+                  mobileSize={mobileSize}
+                  productsOFerts={productsOFerts}
+                  setProductsOferts={setProductsOferts}
+                  handleOnChangeChecked={handleOnChangeChecked}
+                  searchChecked={searchChecked}
+                />
+              </div>
+            </>
+          }
           <div className="button-promotion-container">
             {editable && (
               <button name="submit_button" className="buttons-user-info">

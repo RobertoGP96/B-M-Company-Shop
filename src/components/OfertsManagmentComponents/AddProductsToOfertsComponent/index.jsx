@@ -3,8 +3,6 @@ import { Dialog } from "primereact/dialog";
 import { useState, useContext, useRef, useEffect } from "react";
 import "primeicons/primeicons.css";
 import ProductsGridForOfertManagment from '../ProductGrid';
-import QueryFiltersContext from "../../../context/filtersContext";
-import { useManageProducts } from "../../../hooks/useManageProducts";
 import { Toast } from "primereact/toast";
 import SearchProducts from '../SearchProducts';
 import { addProductsToPromotion } from '../../../services/ManagePromotions/addProductsToOfert';
@@ -27,11 +25,10 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
     const [checkedProducts, setCheckedProducts] = useState([]);
     const [search, setSearch] = useState('');
     const [numberOfProducts, setNumberOfProducts] = useState(0)
-    const [typeOfSaerch,setTypeOfSaerch] = useState("search=")
+    const [typeOfSaerch,setTypeOfSaerch] = useState("")
     const{products,loadingProducts,next,previous} = useGetProducts({searchParams:`${typeOfSaerch}${search}`,setNumOfProducts:setNumberOfProducts})
     const [page,setPage] = useState(1);
-
-
+  
     const searchChecked = (id) =>{
       for(let i = 0; i < checkedProducts.length; i++) {
           if(checkedProducts[i] === id){
@@ -43,28 +40,42 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
 
     const handleOnsearch = (searchValue) =>{
       setTypeOfSaerch("search=")
+      setPage(1)
       setSearch(searchValue);
     }
 
-    const handleOnChangeNext=()=>{
-        console.log(page)
-        if(next !=null){
-          setTypeOfSaerch("page=")
-          setPage(page + 1)
-          setSearch(page)
-        }
-        
-          
-    }
-    const handleOnChangePrevious=()=>{
-      console.log(page)
-      if(previous !=null ) {
-          setTypeOfSaerch("page=")
-          setPage(page - 1)
-          setSearch(page)
-        }
-          
-    }
+    const handleOnChangeNext = () => {
+      if (next !== null) {
+        const newPage = page + 1;
+        setPage(newPage);
+        setSearch(() => {
+          if (typeOfSaerch !== "page=") {
+            setTypeOfSaerch("page=");
+          }
+          return newPage.toString();
+        });
+      }
+    };
+  
+    const handleOnChangePrevious = () => {
+      if (previous !== null && page > 1) {
+        const newPage = page - 1;
+        setPage(newPage);
+        setSearch(() => {
+          if (typeOfSaerch !== "page=") {
+            setTypeOfSaerch("page=");
+          }
+          if (newPage === 1) {
+            setTypeOfSaerch("");
+            return "";
+          } else {
+            return newPage.toString();
+          }
+        });
+      }
+    };
+
+  
 
     const handleOnChangeChecked = (data) =>{
       var aux = [];
@@ -90,6 +101,9 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
               onHide={() =>{
                 onHide()
                 setCheckedProducts([])
+                setSearch("")
+                setTypeOfSaerch("")
+                setPage(1)
               }}
               className='addProductsToOferts-container'
               header  = {heaerTitle("Añadir productos")}
