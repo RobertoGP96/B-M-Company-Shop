@@ -1,20 +1,28 @@
 import { useState, useEffect } from "react";
-import { getPromotions } from "../services/getPromotions";
+import { getPromotions } from "../services/ManagePromotions/getPromotions";
 
-export function useGetPromotions() {
-    const [promotions, setPromotions] = useState([])
-    const [loadingPromotions, setLoading] = useState(false);
-
-    //get promotions
+export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions}) {
+    const [loading, setLoading] = useState(false);
+    const [promotions, changePromotions] = useState([])
+    //get promotions of store
     useEffect(() => {
         setLoading(true);
-        getPromotions()
+        getPromotions(searchParams)
         .then((data) => {
-          setPromotions(data.results);
-          setLoading(false);
+            setPromotions(data.results);
+            console.log(data.results);
+            changePromotions(data.results);
+            setNumOfPromotions(data.count);
+            setLoading(false);
         })
-        .catch((error) => {console.error(error)})
-      }, []);
+        .catch(() => {
+            setLoading(false);
+            setNumOfPromotions(0)
+        });
+    }, [searchParams]);
 
-    return ( {promotions, loadingPromotions} );
+    return({promotions,loading,setLoading})
+
 }
+
+

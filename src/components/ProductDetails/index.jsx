@@ -16,6 +16,7 @@ function ProductDetails ({active,data,onHide}) {
         
         <section title='Detalles del producto' className='product-details-container' >
                 <Sidebar 
+                    className='sidebar-products-details'
                     visible = {active}
                     onHide={() => {return}}
                     position='right' 
