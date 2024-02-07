@@ -5,7 +5,7 @@ import InOffertIcon from "../../../assets/in-offert-icon.svg";
 
 function ProductCardForOfertManagment({data,handleOnChangeChecked,searchChecked}){
     return(
-       <div className="product-card" id = {data.id} style={{width:"140px"}}>
+       <div className="product-card" id = {data.id} style={{width:"240px"}}>
         <div className = 'img-container'>
             <img loading = "lazy" src={data.product_img1}  alt={data.product_name}/>
         </div>

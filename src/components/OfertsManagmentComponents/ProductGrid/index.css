@@ -1,11 +1,18 @@
 
 
+.addProductsToOferts-container .p-dialog-content{
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+    
+}
+
+
 .products-grid-magnament-oferts-container{
-    min-width: 320px;
-    height: 100%;
+    min-width: 310px;
     min-height: 52vh;
     display:grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 150px));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 150px));
     gap:10px;
     justify-content: center;
     align-items:start;
@@ -18,5 +25,5 @@
     font-weight: 400;
     line-height: 137%; /* 38.36px */
     font-variant: small-caps;
-    letter-spacing: -0.8px;
+    
 }
