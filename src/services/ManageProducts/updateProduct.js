@@ -7,14 +7,11 @@ export function updateProduct({id, values}){
     formData.append('precio', values.precio)
     formData.append('descuento', values.descuento)
     formData.append('in_stock', values.in_stock)
-    formData.append('is_active', values.is_active)
+    formData.append('is_active', values.is_active) 
+    formData.append('categoria', values.categoria)
+    formData.append('promotion', values.promotion)
 
-    if(values.categoria !== undefined && values.categoria !== null){
-        formData.append('categoria', values.categoria)
-    }
-    if(values.promotion !== undefined && values.promotion !== null){
-        formData.append('promotion', values.promotion)
-    }
+    console.log(values.promotion, values.categoria)
     if(values.product_img1 !== undefined && values.product_img1 !== null){
         formData.append('product_img1', values.product_img1)
     }
@@ -38,6 +35,10 @@ export function updateProduct({id, values}){
                 return response
             }
             else{
+                response.json()
+                .then(data => {
+                    console.log(data)
+                })
                 throw new Error("Errror al editar el producto")
             }
         })

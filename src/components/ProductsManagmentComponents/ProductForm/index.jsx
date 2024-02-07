@@ -124,7 +124,7 @@ function ProductForm({
             onChange={(e) => setCategorySelected(e.value)}
             options={categoriesOptions}
             optionLabel="name"
-            placeholder="Categoría"
+            placeholder="Ninguna"
             className="w-full md:w-14rem product-form-dropdown"
           />
         </div>
@@ -139,7 +139,7 @@ function ProductForm({
             onChange={(e) => setPromotionSelected(e.value)}
             options={promotionsOptions}
             optionLabel="name"
-            placeholder="Oferta"
+            placeholder="Ninguna"
             className="w-full md:w-14rem product-form-dropdown"
             style={{ minWidth: "150px" }}
           />

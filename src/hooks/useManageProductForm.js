@@ -9,21 +9,26 @@ export function useManageProductForm({
   categories,
 }) {
   const [activeStatusChecked, setChecked] = useState(true);
-  const categoriesOptions = categories.map((category) => ({
-    name: category.nombre,
-    code: category.id,
-  }));
-  const promotionsOptions = promotions.map((promotion) => ({
-    name: promotion.name,
-    code: promotion.id,
-  }));
+
+  const categoriesOptions = [{ name: "Ninguna", code: '' }].concat(
+    categories.map((category) => ({
+      name: category.nombre,
+      code: category.id,
+    }))
+  );
+  const promotionsOptions = [{ name: "Ninguna", code: '' }].concat(
+    promotions.map((promotion) => ({
+      name: promotion.name,
+      code: promotion.id,
+    }))
+  );
   const [categorySelected, setCategorySelected] = useState({
-    name: "Categoría",
-    code: null,
+    name: "Ninguna",
+    code: '',
   });
   const [promotionSelected, setPromotionSelected] = useState({
-    name: "Oferta",
-    code: null,
+    name: "Ninguna",
+    code: '',
   });
 
   //effect to update the activeStatus, the categorySelected and the promotion
@@ -33,22 +38,23 @@ export function useManageProductForm({
       ? setChecked(productFormProperties.initialValues.is_active)
       : setChecked(true);
     //update the category and promotion of the product
-    if (productFormProperties.creatingMode == false && productFormProperties.initialValues.category !== null && productFormProperties.initialValues.promotion !== null) {
-      setCategorySelected(
-        categoriesOptions.find(
-          (category) =>
-            category.code == productFormProperties.initialValues.categoria
-        )
-      );
-      setPromotionSelected(
-        promotionsOptions.find(
-          (promotion) =>
-            promotion.code == productFormProperties.initialValues.promotion
-        )
-      );
-    } else {
-      setCategorySelected({ name: "Categoría", code: null });
-      setPromotionSelected({ name: "Oferta", code: null });
+    if(productFormProperties.creatingMode == false) {
+      if(productFormProperties.initialValues.category !== null){
+        setCategorySelected(
+          categoriesOptions.find(
+            (category) =>
+              category.code == productFormProperties.initialValues.categoria
+          )
+        );
+      }
+      if(productFormProperties.initialValues.promotion !== null){
+        setPromotionSelected(
+          promotionsOptions.find(
+            (promotion) =>
+              promotion.code == productFormProperties.initialValues.promotion
+          )
+        );
+      }
     }
   }, [productFormProperties.initialValues]);
 
@@ -86,6 +92,6 @@ export function useManageProductForm({
     setPromotionSelected,
     promotionsOptions,
     activeStatusChecked,
-    setChecked
+    setChecked,
   };
 }
