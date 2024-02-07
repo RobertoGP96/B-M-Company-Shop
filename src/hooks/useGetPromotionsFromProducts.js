@@ -10,7 +10,7 @@ export function useGetPromotions() {
         setLoading(true);
         getPromotions()
         .then((data) => {
-          setPromotions(data.results);
+          setPromotions(data);
           setLoading(false);
         })
         .catch((error) => {console.error(error)})

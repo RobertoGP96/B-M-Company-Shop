@@ -29,13 +29,13 @@ export default function ProductsGrid({activateProductdetails}) {
                   <ProductCard key={product.id} {...product}   onClick = {()=>activateProductdetails(product)} />
                 ))
               ) : (
-                <div className="not-found-message">
+                <div className="products-grid-not-found-message">
                   <strong>No hay productos</strong>
                 </div>
               )}
             </>
           ) : (
-            <div className="not-found-message">
+            <div className="products-grid-not-found-message">
               <strong>No hay productos</strong>
             </div>
           )}
