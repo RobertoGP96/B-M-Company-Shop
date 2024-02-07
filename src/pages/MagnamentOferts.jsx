@@ -135,7 +135,7 @@ function MagnamentOferts() {
       accept: () => {
         deletePromotions({ promotions: dataId }).then(() => {
           getPromotions().then((result) => {
-            setDataOferts(result.results);
+            setDataOferts(result);
             show("Eliminación completada","success");
           });
         });
@@ -146,7 +146,7 @@ function MagnamentOferts() {
 
   const handleOnChangeData = () => {
     getPromotions().then((promotions) => {
-      setDataOferts(promotions.results);
+      setDataOferts(promotions);
     });
   };
   const handleOnClickInfoButton = () => {
@@ -257,13 +257,6 @@ function MagnamentOferts() {
           />
         )}
       </section>
-      <Paginator
-            key={"paginator-Oferts-magnament-table"}
-            getActiveFilter={getActiveFilter}
-            products={dataOferts}
-            numOfProducts={numOfOferts}
-            setFilter={setFilter}
-          />
     </section>
   );
 }

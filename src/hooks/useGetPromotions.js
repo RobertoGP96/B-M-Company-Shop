@@ -9,10 +9,10 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
         setLoading(true);
         getPromotions(searchParams)
         .then((data) => {
-            setPromotions(data.results);
-            console.log(data.results);
-            changePromotions(data.results);
-            setNumOfPromotions(data.count);
+            setPromotions(data);
+            console.log(data);
+            changePromotions(data);
+            setNumOfPromotions(data.length);
             setLoading(false);
         })
         .catch(() => {

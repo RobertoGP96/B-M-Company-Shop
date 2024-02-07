@@ -8,6 +8,8 @@ import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
 import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
+import { deleteProductsToPromotion } from "../../../services/ManagePromotions/deleteProductsToOfert";
+
 
 function InfoPromotion({
   visible,
@@ -24,7 +26,7 @@ function InfoPromotion({
   const [infoData, setInfoData] = useState({
     name: "",
     description: "",
-    discount_in_percent: "",
+    discount_in_percent: "1",
     active: false,
     is_special: false,
     img: "",
@@ -135,7 +137,11 @@ function InfoPromotion({
                 show("Accion completada", "success");
                 setPageLoad(false);
                 onHide();
-              });
+              })
+              .catch((err) => {
+
+              }) 
+              ;
             } else {
               createPromotion({
                 name: infoData.name,
@@ -206,10 +212,11 @@ function InfoPromotion({
                   </div>
                   <div className="input-dialog-container discount-input">
                     <input
+                      min={1}
                       type="number"
                       defaultValue={infoData.discount_in_percent}
                       onChange={(e) =>
-                        handleOnchange(e.target.value, "discount_in_percent")
+                        handleOnchange(e.target.value, "discount_in_percent") 
                       }
                       required
                     />
@@ -309,6 +316,9 @@ function InfoPromotion({
                         className="add-products-to-oferts-buttons"
                         onClick={(e) => {
                           e.preventDefault();
+                          deleteProductsToPromotion({products:selectedProducts,id:data.id}).then(() => {
+                            show("Acción completada","success")
+                          });
                         }}
                       >
                         <i

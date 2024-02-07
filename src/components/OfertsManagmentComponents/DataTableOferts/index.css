@@ -3,6 +3,8 @@
 .table-oferts-container{
     width: 90%;   
     flex-direction: column;
+    overflow-y: scroll;
+    max-height: 400px;
 }
 .table-oferts-container .p-datatable{
     width: 100%;
