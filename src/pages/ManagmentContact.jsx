@@ -4,7 +4,7 @@ import "primeicons/primeicons.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import getContactInfo from "../services/ManageContact/contact_info_managment"
+import {getContactInfo} from "../services/ManageContact/contact_info_managment"
 
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
@@ -12,11 +12,11 @@ import { InputText } from "primereact/inputtext";
 function ManagmentContact() {
   const navigate = useNavigate();
   
-  const [save, setSave] = useState();
-  const [contact, setContacts] = useState();
+  const [contact, setContacts] = useState([]);
 
   useEffect(() => {
-    console.log(getContactInfo())
+    setContacts(getContactInfo())
+    console.log(contact)
   }, []);
 
 
