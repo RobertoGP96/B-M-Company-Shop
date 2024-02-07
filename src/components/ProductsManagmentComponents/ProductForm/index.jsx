@@ -173,7 +173,7 @@ function ProductForm({
         </div>
         {/*Discount*/}
         <div className="product-form-field">
-          <label htmlFor="discount">Descuento</label>
+          <label htmlFor="discount">Descuento (%)</label>
           <InputText
             id="discount"
             aria-describedby="discount-help"
