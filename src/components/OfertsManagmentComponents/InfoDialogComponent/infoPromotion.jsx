@@ -106,7 +106,7 @@ function InfoPromotion({
         visible={visible}
         className={
           mobileSize
-            ? "info-dialog-promotion info-dialog-promotion-mobileSize"
+            ? accion=="create"?"info-dialog-promotion-create":"info-dialog-promotion info-dialog-promotion-mobileSize"
             : "info-dialog-promotion"
         }
         header={heaerTitle}
@@ -126,7 +126,7 @@ function InfoPromotion({
                 id: infoData.id,
                 name: infoData.name,
                 description: infoData.description,
-                discount_in_percent: infoData.discount_in_percent,
+                discount_in_percent: infoData.discount_in_percent<=0?infoData.discount_in_percent*(-1):infoData.discount_in_percent,
                 active: infoData.active,
                 is_special: infoData.is_special,
                 img: img.length == 0 ? undefined : img[0],

@@ -20,18 +20,19 @@ function DataTableProducts({
     
     const tableProductsRef = useRef(null)
     const [page, setPage] = useState(1);
-    const [loadMore,setLoadMore] = useState(true);
+    const [loadMore,setLoadMore] = useState(false);
 
 
     useEffect(() =>{ 
       getProductsOfert(OfertID,page).then(products =>{
+        console.log(products.results);
         if(productsOFerts.length>0){
           setProductsOferts(productsOFerts.concat(products.results));
         }
         else{
           setProductsOferts(products.results);
         }
-        if(products.next == null) setLoadMore(false)
+        if(products.next !== null) {setLoadMore(true)}else{setLoadMore(false)}
       })
  
 
@@ -39,7 +40,7 @@ function DataTableProducts({
 
   
     
-    const footer = <Button type="text" icon="pi pi-plus" label="Load" 
+    const footer = <Button type="text" style={{height:"40px",backgroundColor:"InactiveBorder"}} icon="pi pi-plus"  
     onClick={(e) => {
       e.preventDefault();
       setPage(page + 1);
@@ -63,7 +64,7 @@ function DataTableProducts({
         </div>
         <div className="details-prmotion-product-card-section">
           <p className="mame-promotion-product-card">{data.product_name}</p>
-          <p className="category-product-card-promotion">{`Categoría: ${data.categoria_full_info.nombre}`}</p>
+          <p className="category-product-card-promotion">{`Categoría: ${data.categoria!=null?data.categoria_full_info.nombre:undefined}`}</p>
         </div>
         <div className="dtp-price-container">
           <p className='price'> {`${data.precio}$`}</p>

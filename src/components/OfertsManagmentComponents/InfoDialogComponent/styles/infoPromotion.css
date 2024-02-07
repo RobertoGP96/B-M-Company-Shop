@@ -16,6 +16,18 @@
  padding: 0px;
 }
 
+.info-dialog-promotion-create .p-dialog-header{
+    padding:3px 8px;
+    background-color: #545454;
+    color: white;
+    font-variant: small-caps;
+}
+
+.info-dialog-promotion-create .p-dialog-title{
+    font-size: 0.8rem;
+    font-family: Noto Sans;
+}
+
 .info-dialog-promotion .p-dialog-header{
     padding:3px 8px;
     background-color: #545454;
@@ -313,7 +325,10 @@
 }
 
 
-@media (width < 500px){    
-
+@media (width < 600px){    
+    .info-dialog-promotion {
+        height: 600px !important ;
+        max-height: 600px !important; 
+    }
 
 }
