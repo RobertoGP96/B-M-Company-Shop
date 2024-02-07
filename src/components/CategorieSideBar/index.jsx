@@ -7,7 +7,7 @@ import { Dialog } from "primereact/dialog";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
 import "./index.css";
 
-function CategorieSideBar({forceMobileMode = false, loading, categories}) {
+function CategorieSideBar({forceMobileMode = false, loading, categories, showPromotionsModal}) {
   const {mobileMode} = useIsMobileMode({forceMobileMode:forceMobileMode})
   const [showModal, setShowModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
@@ -60,6 +60,8 @@ function CategorieSideBar({forceMobileMode = false, loading, categories}) {
                   setActiveCategory={handleSetActiveCategory}
                   setFilter={setFilter}
                   activeCategory={activeCategory}
+                  showPromotionsModal = {showPromotionsModal}
+                  getActiveFilter = {getActiveFilter}
                 />
             </Dialog>
         </section>
@@ -70,6 +72,8 @@ function CategorieSideBar({forceMobileMode = false, loading, categories}) {
             setActiveCategory={handleSetActiveCategory}
             setFilter={setFilter}
             activeCategory={activeCategory}
+            showPromotionsModal = {showPromotionsModal}
+            getActiveFilter = {getActiveFilter}
           />
       )}
     </>
