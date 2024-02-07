@@ -12,7 +12,7 @@ function PromotionsModal({ show, setShow, promotions, loadingPromotions }) {
       position="top"
       draggable={false}
       resizable={false}
-      style={{ width: "90vw", maxWidth: "900px" }}
+      style={{ width: "90vw", maxWidth: "850px" }}
       header = {"Ofertas"}
     >
       <section className="store-promotions-grid">
