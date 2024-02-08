@@ -138,6 +138,8 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
                     setProductOferts(products.results)
                   })
                   show("Acción completada","success")
+                  setCheckedProducts([])
+                  onHide()
                 });
               }
                 

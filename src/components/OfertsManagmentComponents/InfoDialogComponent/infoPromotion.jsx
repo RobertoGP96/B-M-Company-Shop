@@ -115,6 +115,7 @@ function InfoPromotion({
         onHide={() => {
           onHide();
           setProductsOferts([]);
+          setSelectedProducts([]);
         }}
 
       >
@@ -283,23 +284,14 @@ function InfoPromotion({
           {  accion !== "create" && 
             <>
               <hr className="oferts-info-intrinsic" />
-              <p className="p-products-text-oferts">Productos:</p>
+             
               <div
-                className={
-                  mobileSize
-                    ? "add-products-to-oferts-containers add-products-to-oferts-containers-mobileSize"
-                    : "add-products-to-oferts-containers"
-                }
-              >
-                <div
-                  className={
-                    mobileSize
-                      ? "add-products-to-oferts-buttons-container add-products-to-oferts-buttons-container-mobileSize"
-                      : "add-products-to-oferts-buttons-container"
+                  className={"add-products-to-oferts-buttons-and-details-container"
                   }
                 >
+                   <p className="p-products-text-oferts">Productos:</p> 
                   {editable && (
-                    <>
+                    <div className="add-products-to-oferts-buttons-container">
                       <button
                         className="add-products-to-oferts-buttons"
                         onClick={(e) => {
@@ -326,9 +318,17 @@ function InfoPromotion({
                           style={{ color: "white" }}
                         ></i>
                       </button>
-                    </>
+                    </div>
                   )}
                 </div>
+              <div
+                className={
+                  mobileSize
+                    ? "add-products-to-oferts-containers add-products-to-oferts-containers-mobileSize"
+                    : "add-products-to-oferts-containers"
+                }
+              >
+               
                 <DataTableProducts
                   OfertID={infoData.id}
                   editable={editable}

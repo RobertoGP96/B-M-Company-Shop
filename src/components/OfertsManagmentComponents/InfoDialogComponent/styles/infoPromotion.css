@@ -195,11 +195,18 @@
     width: 288px;
 }
 
-.add-products-to-oferts-buttons-container{
-    width: 30px;
+.add-products-to-oferts-buttons-and-details-container{
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    width: 100%;
+    position: relative;
+    height: 30px;
+    
+}
+
+.add-products-to-oferts-buttons-container{
+    display: flex;
+    position: absolute;
+    right: 0px;
     gap:3px;
    
 }

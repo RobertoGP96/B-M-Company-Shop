@@ -5,6 +5,7 @@ import { getProductsOfert } from '../../../services/ManagePromotions/getProducts
 import { useState,useEffect,useRef } from 'react';
 import { Image } from "primereact/image";
 import { Button } from 'primereact/button';
+import { applyDiscount } from '../../../utils/applyDiscount';
 
 
 
@@ -40,7 +41,7 @@ function DataTableProducts({
 
   
     
-    const footer = <Button type="text" style={{height:"40px",backgroundColor:"InactiveBorder"}} icon="pi pi-plus"  
+    const footer = <Button type="text" style={{height:"40px",backgroundColor:" #545454"}} icon="pi pi-plus"  
     onClick={(e) => {
       e.preventDefault();
       setPage(page + 1);
@@ -66,9 +67,21 @@ function DataTableProducts({
           <p className="mame-promotion-product-card">{data.product_name}</p>
           <p className="category-product-card-promotion">{`Categoría: ${data.categoria!=null?data.categoria_full_info.nombre:undefined}`}</p>
         </div>
-        <div className="dtp-price-container">
-          <p className='price'> {`${data.precio}$`}</p>
-        </div>
+        {data.promotion || data.descuento > 0 ? (
+          <p className="card-text price price-with-discount" style={{display:"flex",flexDirection:"column",}}>
+            <span className="original-price" style={{marginRight:"0px"}}>${data.precio.toFixed(2)}</span>
+            <span className="new-price">
+              $
+              {applyDiscount({
+                price: data.precio,
+                promotion: data.promotion_full_info,
+                discount: data.descuento,
+              }).toFixed(2)}
+            </span>
+          </p>
+        ) : (
+          <p className="card-text price">${data.precio.toFixed(2)}</p>
+        )}
       </section>
     );
   }

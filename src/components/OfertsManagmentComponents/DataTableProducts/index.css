@@ -1,4 +1,12 @@
 
+
+.add-products-to-oferts-containers{
+    padding: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
 .data-products-ofert-scroller .p-datascroller-header{
     background-color: #545454 ;
     color: white;
@@ -16,24 +24,21 @@
    
 }
 .data-products-ofert-scroller .p-datascroller-footer{
-   
-    background:transparent !important;
-   
-   
+    background:transparent !important;   
 }
 
 
 
 .promotion-product-card-container{
+    width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 20px;
     font-size: small;
     line-height: normal;
     font-family: Noto Sans;
     align-items: left;
-    scale: 0.9;
-    align-items: center;
+    align-items:center;
 }
 
 .promotion-product-card-container-mobileSize{
@@ -44,27 +49,28 @@
     line-height: normal;
     font-family: Noto Sans;
     align-items: left;
-    height: 130px;
+    height: 105px;
     scale: 0.75;
-    margin-left: -50px;
+    margin-left: -40px;
     width: 310px;
-    height: 100px;
 }
 
 
 .img-promotion-product-card-section{
-    display: flex;
-    padding:10px; 
-    width: 60%; 
-    margin: auto;
+    display: flex; 
+    width: 40%; 
     min-width: 150px;
     text-align: left;
     align-items: center;
     gap: 3px;
+    
 }
 
 .img-promotion-product-card-container{
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -72,14 +78,14 @@
     border-radius: 6px;
     width: 100%;
     height: 120px;
-    object-fit: cover;
+    object-fit: contain;
     background-repeat: no-repeat;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0);
 }
 
 .details-prmotion-product-card-section{
     display: flex;
-    width: 35%;
+    max-width:180px;
     text-align: left;
     min-width: 150px;   
     flex-direction: column; 
@@ -90,23 +96,18 @@
     
 }
 
-.dtp-price-container{
-    border-radius: 20px;
-    background-color:transparent;
-    width: max-content;
-    height: 35px;
-    min-width: 45px;
-    margin-left: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 8px 0px 3px 0px rgba(134, 134, 134, 0.7);
-    
+
+.dtp-price-container .price{
+    color: aliceblue !important; 
 }
 
 @media   (width < 800px) {
     .data-products-ofert-scroller .p-datascroller-content{
-        max-height: 200px !important;
+        max-height: 250px !important;
         background: rgba(199, 194, 194, 0.1) !important;
+    }
+    .details-prmotion-product-card-section{
+        width: 100px !important;
+        min-width: unset;
     }
 }
