@@ -138,7 +138,8 @@ function MagnamentOferts() {
             setDataOferts(result);
             show("Eliminación completada","success");
           });
-        });
+          setSelectedOferts([])
+        }); 
       },
       reject: () => {},
     });

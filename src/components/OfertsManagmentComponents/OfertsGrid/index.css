@@ -6,7 +6,7 @@
 }
 .oferts-grid{
     width: 100%;
-    height: max-content;
+    height: 70vh;
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
     gap:30px;
