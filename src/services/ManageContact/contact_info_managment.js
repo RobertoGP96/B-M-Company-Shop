@@ -8,7 +8,7 @@ export function getContactInfo(){
         }
     })
     .then(response => response.json())
-    .then(data => {return data})
+    .then(data => {return data.results[0]})
 }
 
 export function editContactInfo({info}){

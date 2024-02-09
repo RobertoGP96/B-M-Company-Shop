@@ -4,21 +4,23 @@ import "primeicons/primeicons.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import {getContactInfo} from "../services/ManageContact/contact_info_managment"
+import { getContactInfo } from "../services/ManageContact/contact_info_managment";
 
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 
 function ManagmentContact() {
   const navigate = useNavigate();
-  
+
   const [contact, setContacts] = useState([]);
 
   useEffect(() => {
-    setContacts(getContactInfo())
-    console.log(contact)
+    //setLoading(true);
+    getContactInfo().then((data) => {
+      setContacts(data);
+      //setLoading(false);
+    });
   }, []);
-
 
   return (
     <article className="mcontact-container">
@@ -38,9 +40,7 @@ function ManagmentContact() {
               <span className="p-inputgroup-addon">
                 <i className="pi pi-facebook"></i>
               </span>
-              <InputText
-                style={{ minWidth: "160px", maxWidth: "15rem" }}
-              />
+              <InputText style={{ minWidth: "160px", maxWidth: "15rem" }} placeholder={contact.facebook}/>
               <span className="p-inputgroup-addon">
                 <i className="pi pi-ellipsis-v"></i>
               </span>
@@ -54,7 +54,7 @@ function ManagmentContact() {
                 <i className="pi pi-instagram"></i>
               </span>
               <InputText
-                placeholder="Enlace"
+                placeholder={contact.facebook}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
               <span className="p-inputgroup-addon">
@@ -70,7 +70,7 @@ function ManagmentContact() {
                 <i className="pi pi-map-marker"></i>
               </span>
               <InputText
-                placeholder="Ubicación"
+                placeholder={contact.facebook}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
               <span className="p-inputgroup-addon">
@@ -89,7 +89,7 @@ function ManagmentContact() {
                 <i className="pi pi-phone"></i>
               </span>
               <InputText
-                placeholder="Ubicación"
+                placeholder={contact.phone1}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
             </div>
@@ -100,7 +100,7 @@ function ManagmentContact() {
                 <i className="pi pi-envelope"></i>
               </span>
               <InputText
-                placeholder="Ubicación"
+                placeholder={contact.email1}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
             </div>
@@ -113,7 +113,7 @@ function ManagmentContact() {
                 <i className="pi pi-whatsapp"></i>
               </span>
               <InputText
-                placeholder="Ubicación"
+                placeholder={contact.whatsapp}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
             </div>
@@ -124,7 +124,7 @@ function ManagmentContact() {
                 <i className="pi pi-telegram"></i>
               </span>
               <InputText
-                placeholder="Ubicación"
+                placeholder={contact.telegram}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
             </div>
@@ -137,7 +137,7 @@ function ManagmentContact() {
                 <i className="pi pi-money-bill"></i>
               </span>
               <InputText
-                placeholder="Ubicación"
+                placeholder={contact.phone2}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
             </div>
@@ -148,7 +148,7 @@ function ManagmentContact() {
                 <i className="pi pi-truck"></i>
               </span>
               <InputText
-                placeholder="Ubicación"
+                placeholder={contact.phone2}
                 style={{ minWidth: "160px", maxWidth: "15rem" }}
               />
             </div>
