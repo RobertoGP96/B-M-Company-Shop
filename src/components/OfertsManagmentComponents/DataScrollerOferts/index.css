@@ -66,12 +66,16 @@
 
 .discount-promotion-container{
     border-radius: 6px;
-    background-color: rgba(55, 56, 56, 0.7);
+    background-color: #545454;
     width: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: none !important;    
+    box-shadow: none !important;   
+    color: white; 
+}
+.discount-promotion-container .price{
+    color: white;
 }
 
 .discount-promotion-container p{
