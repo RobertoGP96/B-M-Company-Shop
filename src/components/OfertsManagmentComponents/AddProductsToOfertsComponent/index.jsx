@@ -9,6 +9,7 @@ import { addProductsToPromotion } from '../../../services/ManagePromotions/addPr
 import AddIcon from "../../../assets/oferts-magnament-add.svg";
 import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
 import { useGetProducts } from '../../../hooks/useGetProducts';
+import Loader from '../../Loader';
 
 const heaerTitle =(info) => {
   return(
@@ -20,15 +21,16 @@ const heaerTitle =(info) => {
 }
 
 
-function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts}){
+function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts,setLoading}){
     const toast = useRef(null);
     const [checkedProducts, setCheckedProducts] = useState([]);
     const [search, setSearch] = useState('');
     const [numberOfProducts, setNumberOfProducts] = useState(0)
     const [typeOfSaerch,setTypeOfSaerch] = useState("")
-    const{products,loadingProducts,next,previous} = useGetProducts({searchParams:`${typeOfSaerch}${search}`,setNumOfProducts:setNumberOfProducts})
+    const [updateProductList,setUpdateProductList] = useState(false)
+    const{products,loadingProducts,next,previous} = useGetProducts({searchParams:`${typeOfSaerch}${search}`,setNumOfProducts:setNumberOfProducts,updateProductList:updateProductList})
+   
     const [page,setPage] = useState(1);
-  
     const searchChecked = (id) =>{
       for(let i = 0; i < checkedProducts.length; i++) {
           if(checkedProducts[i] === id){
@@ -113,12 +115,15 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
             <SearchProducts search={search} onHandleChange={handleOnsearch}/>
           </div>
          
+        {  !loadingProducts ?
+        
           <ProductsGridForOfertManagment 
             products={products}
             loading={loadingProducts}
             handleOnChangeChecked={handleOnChangeChecked}
             searchChecked={searchChecked}
-            />
+            />: <Loader/>
+          }
           <div className='btns-paginator-container ' >
               <button onClick={handleOnChangePrevious} >
                 <i className='pi pi-angle-left' ></i>
@@ -133,13 +138,20 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts})
             onClick={() => {
 
               if (checkedProducts.length > 0) {
+                
                 addProductsToPromotion({products:checkedProducts,id:idPromotion}).then(() => {
+                 
                   getProductsOfert(idPromotion).then((products) =>{
+                    setLoading(true);
                     setProductOferts(products.results)
+                    setLoading(false);
                   })
-                  show("Acción completada","success")
+                  
                   setCheckedProducts([])
+                  setUpdateProductList(!updateProductList);
+                  show("Acción completada","success")
                   onHide()
+                  
                 });
               }
                 

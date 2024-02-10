@@ -9,7 +9,8 @@ import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
 import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
 import { deleteProductsToPromotion } from "../../../services/ManagePromotions/deleteProductsToOfert";
-
+import Loader from "../../Loader";
+import { getProductsOfert } from "../../../services/ManagePromotions/getProductsOfert";
 
 function InfoPromotion({
   visible,
@@ -35,6 +36,7 @@ function InfoPromotion({
   const [addProductModal, setAddProductModal] = useState(false);
   const [productsOFerts, setProductsOferts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -103,6 +105,7 @@ function InfoPromotion({
         show={show}
         idPromotion={data.id}
         setProductOferts={setProductsOferts}
+        setLoading = {setLoading}
       />
       <Dialog
         visible={visible}
@@ -138,6 +141,7 @@ function InfoPromotion({
                 show("Accion completada", "success");
                 setPageLoad(false);
                 onHide();
+                setProductsOferts([])
               })
               .catch((err) => {
 
@@ -291,7 +295,8 @@ function InfoPromotion({
                 >
                    <p className="p-products-text-oferts">Productos:</p> 
                   {editable && (
-                    <div className="add-products-to-oferts-buttons-container">
+                    
+                      <div className="add-products-to-oferts-buttons-container">
                       <button
                         className="add-products-to-oferts-buttons"
                         onClick={(e) => {
@@ -308,9 +313,19 @@ function InfoPromotion({
                         className="add-products-to-oferts-buttons"
                         onClick={(e) => {
                           e.preventDefault();
+                          if(selectedProducts.length > 0) {
                           deleteProductsToPromotion({products:selectedProducts,id:data.id}).then(() => {
-                            show("Acción completada","success")
-                          });
+                            getProductsOfert(data.id).then((products) =>{
+                              setLoading(true);
+                              setProductsOferts(products.results)
+                              setLoading(false);
+                            })
+                            show("Acción completada","success");
+                            setProductsOferts([]);
+                          });}
+                          else{
+                            show("No hay ningún elemento seleccionado","warn")
+                          }
                         }}
                       >
                         <i
@@ -329,7 +344,8 @@ function InfoPromotion({
                 }
               >
                
-                <DataTableProducts
+                { !loading ?
+                  <DataTableProducts
                   OfertID={infoData.id}
                   editable={editable}
                   mobileSize={mobileSize}
@@ -337,7 +353,8 @@ function InfoPromotion({
                   setProductsOferts={setProductsOferts}
                   handleOnChangeChecked={handleOnChangeChecked}
                   searchChecked={searchChecked}
-                />
+                />:<Loader/>
+                }
               </div>
             </>
           }
