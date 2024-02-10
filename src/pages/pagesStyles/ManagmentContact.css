@@ -27,6 +27,11 @@
 
 }
 
+.loading-spinner{
+  color: #545454;
+  font-size: 1.5rem;
+}
+
 .head-contact {
   width: 100%;
   display: flex;
