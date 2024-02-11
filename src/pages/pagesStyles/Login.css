@@ -5,7 +5,7 @@
 
 .login-container {
   width: 100%;
-  min-height: 100vh;
+  min-height: 88vh;
   font-family: Noto Sans;
   display: flex;
   flex-direction: column;
@@ -39,6 +39,8 @@
 
 .login-container {
   background-image: url(../../assets/home-background.jpeg) !important;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form-login {
@@ -86,4 +88,10 @@
   border-bottom-style: solid !important;
   border-image: linear-gradient(to right,transparent, #cccccc4b , transparent ) 1 0.1 !important;
 
+}
+
+@media (width < 500px) {
+  .login-section {
+    width: 80%;
+  }
 }
