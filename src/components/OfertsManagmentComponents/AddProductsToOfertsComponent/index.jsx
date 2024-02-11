@@ -1,76 +1,170 @@
+import './index.css';
 import { Dialog } from "primereact/dialog";
 import { useState, useContext, useRef, useEffect } from "react";
 import "primeicons/primeicons.css";
-import ProductsManagmentFiltersBar from "../../ProductsManagmentComponents/ProductsManagmentFiltersBar";
-import ProductsGrid from "../../ProductsManagmentComponents/ProductsGrid";
-import QueryFiltersContext from "../../../context/filtersContext";
-import { useManageProducts } from "../../../hooks/useManageProducts";
-import Paginator from "../../Paginator";
+import ProductsGridForOfertManagment from '../ProductGrid';
 import { Toast } from "primereact/toast";
-import { useManageCategories } from "../../../hooks/useManageCategories";
-import { getInitialValues,createProductInitialValues } from "../../../utils/productInitialValues";
-import { useIsMobileMode } from "../../../hooks/useIsMobileMode";
-import { useGetPromotions } from "../../../hooks/useGetPromotionsFromProducts";
+import SearchProducts from '../SearchProducts';
+import { addProductsToPromotion } from '../../../services/ManagePromotions/addProductsToOfert';
+import AddIcon from "../../../assets/oferts-magnament-add.svg";
+import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
+import { useGetProducts } from '../../../hooks/useGetProducts';
+import Loader from '../../Loader';
+
+const heaerTitle =(info) => {
+  return(
+    <div style={{display:"flex", alignItems:"center",gap:"10px"}}> 
+      <i className="pi pi-tag "></i>
+      <p style={{marginBlock:"0px",fontSize:"1rem"}}>{info}</p>
+    </div>
+  )
+}
 
 
-function AddProductsToOferts({visible,onHide}){
+function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts,setLoading}){
     const toast = useRef(null);
-    const [selectedProducts, setSelectedProducts] = useState([]);
+    const [checkedProducts, setCheckedProducts] = useState([]);
+    const [search, setSearch] = useState('');
+    const [numberOfProducts, setNumberOfProducts] = useState(0)
+    const [typeOfSaerch,setTypeOfSaerch] = useState("")
+    const [updateProductList,setUpdateProductList] = useState(false)
+    const{products,loadingProducts,next,previous} = useGetProducts({searchParams:`${typeOfSaerch}${search}`,setNumOfProducts:setNumberOfProducts,updateProductList:updateProductList})
+   
+    const [page,setPage] = useState(1);
+    const searchChecked = (id) =>{
+      for(let i = 0; i < checkedProducts.length; i++) {
+          if(checkedProducts[i] === id){
+              return true;
+          }
+      }
+      return false;
+    };
 
-    const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
-    useContext(QueryFiltersContext);
-  
-    //product form properties state
-
-  
-    //function to reset the product Form Properties
-    function resetProductFormProperties(){
-      setProductFormProperties((prev) => ({
-        ...prev,
-        show: false,
-        creatingMode: true,
-        disabled: false,
-        initialValues: getInitialValues(),
-      }));
+    const handleOnsearch = (searchValue) =>{
+      setTypeOfSaerch("search=")
+      setPage(1)
+      setSearch(searchValue);
     }
+
+    const handleOnChangeNext = () => {
+      if (next !== null) {
+        const newPage = page + 1;
+        setPage(newPage);
+        setSearch(() => {
+          if (typeOfSaerch !== "page=") {
+            setTypeOfSaerch("page=");
+          }
+          return newPage.toString();
+        });
+      }
+    };
   
-    //products managment hook
-    const {
-      products,
-      loadingProducts,
-      numOfProducts,
-    } = useManageProducts({
-      searchParams: searchParams,
-      toastRef: toast,
-      setSelectedProducts: setSelectedProducts,
-      resetProductFormProperties: resetProductFormProperties,
-      removeAllFilters:removeAllFilters
-    });
+    const handleOnChangePrevious = () => {
+      if (previous !== null && page > 1) {
+        const newPage = page - 1;
+        setPage(newPage);
+        setSearch(() => {
+          if (typeOfSaerch !== "page=") {
+            setTypeOfSaerch("page=");
+          }
+          if (newPage === 1) {
+            setTypeOfSaerch("");
+            return "";
+          } else {
+            return newPage.toString();
+          }
+        });
+      }
+    };
+
   
 
+    const handleOnChangeChecked = (data) =>{
+      var aux = [];
+       if(checkedProducts.length > 0){
+       for(let i = 0; i < checkedProducts.length; i++) {
+           if(checkedProducts[i] !== data.id){
+              aux.push(checkedProducts[i]);
+           }
+       }
+           if(aux.length == checkedProducts.length){ 
+              aux.push(data.id);
+           }
+           setCheckedProducts(aux);
+       }else{
+           aux.push(data.id)
+           setCheckedProducts(aux);
+       }
+   };
 
     return(
         <Dialog
-            visible={visible}
-            onHide={() =>onHide()}
+              visible={visible}
+              onHide={() =>{
+                onHide()
+                setCheckedProducts([])
+                setSearch("")
+                setTypeOfSaerch("")
+                setPage(1)
+              }}
+              className='addProductsToOferts-container'
+              header  = {heaerTitle("Añadir productos")}
         >
-            <Toast ref={toast} position="bottom-center" />
+              <Toast ref={toast} position="bottom-center" />
+          <div className="addProductsToOferts-search-container">
+            <SearchProducts search={search} onHandleChange={handleOnsearch}/>
+          </div>
+         
+        {  !loadingProducts ?
+        
+          <ProductsGridForOfertManagment 
+            products={products}
+            loading={loadingProducts}
+            handleOnChangeChecked={handleOnChangeChecked}
+            searchChecked={searchChecked}
+            />: <Loader/>
+          }
+          <div className='btns-paginator-container ' >
+              <button onClick={handleOnChangePrevious} >
+                <i className='pi pi-angle-left' ></i>
+             
+              </button>
+              <button onClick={handleOnChangeNext}>
+                 <i className='pi pi-angle-right' ></i>
+              </button>
+          </div>
+         <button
+          className="add-products-button"
+            onClick={() => {
 
-
-      <ProductsGrid 
-        products={products}
-        loading={loadingProducts}
-        selectedProducts={selectedProducts}
-        setSelectedProducts={setSelectedProducts}
-        />
-      <Paginator
-        numOfProducts={numOfProducts}
-        setFilter={setFilter}
-        getActiveFilter={getActiveFilter}
-        products={products}
-      />
-
-    </Dialog>
+              if (checkedProducts.length > 0) {
+                
+                addProductsToPromotion({products:checkedProducts,id:idPromotion}).then(() => {
+                 
+                  getProductsOfert(idPromotion).then((products) =>{
+                    setLoading(true);
+                    setProductOferts(products.results)
+                    setLoading(false);
+                  })
+                  
+                  setCheckedProducts([])
+                  setUpdateProductList(!updateProductList);
+                  show("Acción completada","success")
+                  onHide()
+                  
+                });
+              }
+                
+              else show("Debe seleccionar almenos un elemento", "warn");
+            }}
+            >
+          <img src={AddIcon} alt="delete" width={"13px"} />
+          <p>Añadir</p>
+        </button>
+        </Dialog>
+      
+   
+       
     )
 }
 

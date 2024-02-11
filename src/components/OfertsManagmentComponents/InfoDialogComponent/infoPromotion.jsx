@@ -3,12 +3,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { Dialog } from "primereact/dialog";
 import { updatePromotion } from "../../../services/ManagePromotions/updatePromotion";
 import { createPromotion } from "../../../services/ManagePromotions/createPromotion";
-import { Toast } from "primereact/toast";
 import { Checkbox } from "primereact/checkbox";
 import { Image } from "primereact/image";
 import DataTableProducts from "../DataTableProducts";
 import AddProductsToOferts from "../AddProductsToOfertsComponent";
 import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
+import { deleteProductsToPromotion } from "../../../services/ManagePromotions/deleteProductsToOfert";
+import Loader from "../../Loader";
+import { getProductsOfert } from "../../../services/ManagePromotions/getProductsOfert";
 
 function InfoPromotion({
   visible,
@@ -19,18 +21,22 @@ function InfoPromotion({
   onSave,
   accion,
   setPageLoad,
+  show,
+  mobileSize,
 }) {
   const [infoData, setInfoData] = useState({
     name: "",
     description: "",
-    discount_in_percent: "",
+    discount_in_percent: "1",
     active: false,
     is_special: false,
     img: "",
   });
-  const toast = useRef(null);
   const [imgPreview, setImgPreview] = useState(infoData.img);
   const [addProductModal, setAddProductModal] = useState(false);
+  const [productsOFerts, setProductsOferts] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -48,14 +54,6 @@ function InfoPromotion({
     }
   }, [data, visible ? visible : undefined]);
 
-  const show = () => {
-    toast.current.show({
-      severity: "success",
-      summary: "",
-      detail: accion == "update" ? "Datos actualizados" : "Datos Añadidos",
-    });
-  };
-
   const handleOnchange = (value, campo) => {
     console.log(value);
     var InfoDataCopy = { ...infoData };
@@ -70,18 +68,59 @@ function InfoPromotion({
   };
 
   const handleOnChangeProductMOdal = () => {
-      setAddProductModal(!addProductModal)
-  }
+    setAddProductModal(!addProductModal);
+  };
+  const searchChecked = (id) => {
+    for (let i = 0; i < selectedProducts.length; i++) {
+      if (selectedProducts[i] === id) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const handleOnChangeChecked = (data) => {
+    var aux = [];
+    if (selectedProducts.length > 0) {
+      for (let i = 0; i < selectedProducts.length; i++) {
+        if (selectedProducts[i] !== data.id) {
+          aux.push(selectedProducts[i]);
+        }
+      }
+      if (aux.length == selectedProducts.length) {
+        aux.push(data.id);
+      }
+      setSelectedProducts(aux);
+    } else {
+      aux.push(data.id);
+      setSelectedProducts(aux);
+    }
+  };
 
   return (
-    <section className="info-promotion-container">
-      <AddProductsToOferts visible={addProductModal} onHide={handleOnChangeProductMOdal}/>
-      <Toast ref={toast} />
+    <section className={"info-promotion-container"}>
+      <AddProductsToOferts
+        visible={addProductModal}
+        onHide={handleOnChangeProductMOdal}
+        show={show}
+        idPromotion={data.id}
+        setProductOferts={setProductsOferts}
+        setLoading = {setLoading}
+      />
       <Dialog
         visible={visible}
-        className="info-dialog-promotion"
+        className={
+          mobileSize
+            ? accion=="create"?"info-dialog-promotion-create":"info-dialog-promotion info-dialog-promotion-mobileSize"
+            : "info-dialog-promotion"
+        }
         header={heaerTitle}
-        onHide={() => onHide()}
+        onHide={() => {
+          onHide();
+          setProductsOferts([]);
+          setSelectedProducts([]);
+        }}
+
       >
         <form
           onSubmit={(event) => {
@@ -93,16 +132,21 @@ function InfoPromotion({
                 id: infoData.id,
                 name: infoData.name,
                 description: infoData.description,
-                discount_in_percent: infoData.discount_in_percent,
+                discount_in_percent: infoData.discount_in_percent<=0?infoData.discount_in_percent*(-1):infoData.discount_in_percent,
                 active: infoData.active,
                 is_special: infoData.is_special,
                 img: img.length == 0 ? undefined : img[0],
               }).then(() => {
                 onSave();
-                show();
+                show("Accion completada", "success");
                 setPageLoad(false);
                 onHide();
-              });
+                setProductsOferts([])
+              })
+              .catch((err) => {
+
+              }) 
+              ;
             } else {
               createPromotion({
                 name: infoData.name,
@@ -113,7 +157,7 @@ function InfoPromotion({
                 img: img.length == 0 ? undefined : img[0],
               }).then(() => {
                 onSave();
-                show();
+                show("Accion completada", "success");
                 setPageLoad(false);
                 onHide();
               });
@@ -123,7 +167,13 @@ function InfoPromotion({
           encType="multipart/form-data"
         >
           {editable && (
-            <div className="inputs-dialog-from-container">
+            <div
+              className={
+                mobileSize
+                  ? "inputs-dialog-from-container inputs-dialog-from-container-mobileSize"
+                  : "inputs-dialog-from-container"
+              }
+            >
               <div className="input-info-dialog image-file-icon">
                 <div className="image-file-icon-container">
                   <input
@@ -143,7 +193,7 @@ function InfoPromotion({
                   {infoData.img ? (
                     <Image src={imgPreview} />
                   ) : (
-                    <Image src={ImagePlaceholder}/>
+                    <Image src={ImagePlaceholder} />
                   )}
                 </div>
               </div>
@@ -167,10 +217,11 @@ function InfoPromotion({
                   </div>
                   <div className="input-dialog-container discount-input">
                     <input
+                      min={1}
                       type="number"
                       defaultValue={infoData.discount_in_percent}
                       onChange={(e) =>
-                        handleOnchange(e.target.value, "discount_in_percent")
+                        handleOnchange(e.target.value, "discount_in_percent") 
                       }
                       required
                     />
@@ -190,7 +241,13 @@ function InfoPromotion({
           )}
 
           {!editable && (
-            <div className="inputs-dialog-from-container">
+            <div
+              className={
+                mobileSize
+                  ? "inputs-dialog-from-container inputs-dialog-from-container-mobileSize"
+                  : "inputs-dialog-from-container"
+              }
+            >
               <div className="input-info-dialog">
                 <div className="img-dialog-container">
                   <Image zoomSrc={infoData.img} src={infoData.img} preview />
@@ -228,34 +285,79 @@ function InfoPromotion({
               </div>
             </div>
           )}
-          <hr className="oferts-info-intrinsic" />
-          <p className="p-products-text-oferts">Productos:</p>
-          <div className="add-products-to-oferts-containers">
-            <div className="add-products-to-oferts-buttons-container">
-              {editable && (
-                <>
-                  <button
-                    className="add-products-to-oferts-buttons"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setAddProductModal(true);
-                    }}
-                  >
-                    <i className="pi pi-plus" style={{ color: "white" }}></i>
-                  </button>
-                  <button
-                    className="add-products-to-oferts-buttons"
-                    onClick={(e) => {
-                      e.preventDefault();
-                    }}
-                  >
-                    <i className="pi pi-minus" style={{ color: "white" }}></i>
-                  </button>
-                </>
-              )}
-            </div>
-            <DataTableProducts OfertID={infoData.id} editable={editable} />
-          </div>
+          {  accion !== "create" && 
+            <>
+              <hr className="oferts-info-intrinsic" />
+             
+              <div
+                  className={"add-products-to-oferts-buttons-and-details-container"
+                  }
+                >
+                   <p className="p-products-text-oferts">Productos:</p> 
+                  {editable && (
+                    
+                      <div className="add-products-to-oferts-buttons-container">
+                      <button
+                        className="add-products-to-oferts-buttons"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setAddProductModal(true);
+                        }}
+                      >
+                        <i
+                          className="pi pi-plus"
+                          style={{ color: "white" }}
+                        ></i>
+                      </button>
+                      <button
+                        className="add-products-to-oferts-buttons"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if(selectedProducts.length > 0) {
+                          deleteProductsToPromotion({products:selectedProducts,id:data.id}).then(() => {
+                            getProductsOfert(data.id).then((products) =>{
+                              setLoading(true);
+                              setProductsOferts(products.results)
+                              setLoading(false);
+                            })
+                            show("Acción completada","success");
+                            setProductsOferts([]);
+                          });}
+                          else{
+                            show("No hay ningún elemento seleccionado","warn")
+                          }
+                        }}
+                      >
+                        <i
+                          className="pi pi-minus"
+                          style={{ color: "white" }}
+                        ></i>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              <div
+                className={
+                  mobileSize
+                    ? "add-products-to-oferts-containers add-products-to-oferts-containers-mobileSize"
+                    : "add-products-to-oferts-containers"
+                }
+              >
+               
+                { !loading ?
+                  <DataTableProducts
+                  OfertID={infoData.id}
+                  editable={editable}
+                  mobileSize={mobileSize}
+                  productsOFerts={productsOFerts}
+                  setProductsOferts={setProductsOferts}
+                  handleOnChangeChecked={handleOnChangeChecked}
+                  searchChecked={searchChecked}
+                />:<Loader/>
+                }
+              </div>
+            </>
+          }
           <div className="button-promotion-container">
             {editable && (
               <button name="submit_button" className="buttons-user-info">
@@ -267,6 +369,7 @@ function InfoPromotion({
               className="buttons-user-info"
               onClick={() => {
                 onHide();
+                setProductsOferts([]);
               }}
             >
               Cancelar

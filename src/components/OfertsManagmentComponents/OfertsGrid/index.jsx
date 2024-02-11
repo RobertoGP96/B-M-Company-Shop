@@ -1,9 +1,6 @@
 import Loader from "../../Loader";
 import { useState, useContext } from "react";
 import "./index.css";
-import QueryFiltersContext from "../../../context/filtersContext";
-import Paginator from "../../Paginator";
-import { useGetPromotions } from "../../../hooks/useGetPromotions";
 import OfertCard from "../OfertCard";
 
 export default function OfertsGrid({
@@ -15,10 +12,8 @@ export default function OfertsGrid({
   handleOnClickEditButton,
   deleteConfirm,
   oferts,
-  numOfOferts,
 }) {
-  const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
-    useContext(QueryFiltersContext);
+
 
   return (
     <>

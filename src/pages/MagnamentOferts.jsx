@@ -12,7 +12,18 @@ import PageLoader from "../components/PageLoader";
 import DataTableOferts from "../components/OfertsManagmentComponents/DataTableOferts";
 import SearchOferts from "../components/OfertsManagmentComponents/SearchOfertsComponent";
 import DataScrollerOferts from "../components/OfertsManagmentComponents/DataScrollerOferts";
+import Paginator from "../components/Paginator";
+import QueryFiltersContext from "../context/filtersContext";
+import { useContext } from "react";
 
+const heaerTitle =(info) => {
+  return(
+    <div style={{display:"flex", alignItems:"center",gap:"10px"}}> 
+      <i className="pi pi-tag "></i>
+      <p style={{marginBlock:"0px",fontSize:"1rem"}}>{info}</p>
+    </div>
+  )
+}
 
 //Managment Ofert Component
 function MagnamentOferts() {
@@ -25,22 +36,18 @@ function MagnamentOferts() {
   const [infoDialogCreate, setInfoDialogCreate] = useState(false);
   const [rowData, setRowData] = useState({});
   const toast = useRef(null);
-  const [search,setSearch] = useState("")
   const [mounted, setMounted] = useState(false)
   const [viewMode,setViewMode] = useState("table")
   const [numOfOferts, setNumOferts] = useState(0) 
-
-
+  const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
+  const [search,setSearch] = useState(getActiveFilter("search"))
   // Useeffect hook for getting ofert data from server
-  const { loading,setLoading } = useGetPromotions({promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
-
+  const { loading,setLoading } = useGetPromotions({searchParams:searchParams,promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
 
 
   useEffect(() => {
     if(mounted){
-        let timeOut = setTimeout(() => getPromotions(`search=${search}`).then((result)=>{
-            setDataOferts(result.results)
-        }), 350)  
+        let timeOut = setTimeout(() => setFilter({name: "search", value:search}), 350)  
         return () => clearTimeout(timeOut)
     }
     else{
@@ -70,7 +77,7 @@ function MagnamentOferts() {
     };
 
   const handleOnChangeChecked = (oferts,data) =>{
-       var copyOferts = []
+       var copyOferts = [] 
         if(oferts.length > 0){
         for(let i = 0; i < oferts.length; i++) {
             if(oferts[i] !== data){
@@ -121,17 +128,18 @@ function MagnamentOferts() {
         dataId.push(data[i].id);
     } 
     confirmDialog({
-      message: "Esta seguro que desea eliminar esta promoción?",
-      header: "Delete Confirmation",
+      message: "Esta seguro que desea eliminar?",
+      header: "Confirmar Eliminación",
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger",
       accept: () => {
         deletePromotions({ promotions: dataId }).then(() => {
           getPromotions().then((result) => {
-            setDataOferts(result.results);
+            setDataOferts(result);
             show("Eliminación completada","success");
           });
-        });
+          setSelectedOferts([])
+        }); 
       },
       reject: () => {},
     });
@@ -139,7 +147,7 @@ function MagnamentOferts() {
 
   const handleOnChangeData = () => {
     getPromotions().then((promotions) => {
-      setDataOferts(promotions.results);
+      setDataOferts(promotions);
     });
   };
   const handleOnClickInfoButton = () => {
@@ -156,35 +164,40 @@ function MagnamentOferts() {
     
     <section className="magnament-oferts-container">
       <PageLoader visible={loading} onHide={()=> null}/>
-      <Toast ref={toast} />
+      <Toast ref={toast} position="bottom-center"/>
       <ConfirmDialog />
       <InfoPromotion
         editable={false}
-        heaerTitle={<><i className="pi pi-tag "></i>Información de promoción</>}
+        heaerTitle={heaerTitle("Información de promoción")}
         data={rowData}
         visible={infoDialogStatus}
         onHide={handleOnClickInfoButton}
         setPageLoad={setLoading}
+        mobileSize={responsive}
       />
       <InfoPromotion
         accion={"update"}
         editable={true}
         onSave={handleOnChangeData}
-        heaerTitle={<><i className="pi pi-tag "></i>Editar información de promoción</>}
+        heaerTitle={heaerTitle("Editar información de promoción")}
         data={rowData}
         visible={infoDialogEdit}
         onHide={handleOnClickEditButton}
         setPageLoad={setLoading}
+        show={show}
+        mobileSize={responsive}
       />
       <InfoPromotion
         accion={"create"}
         editable={true}
         onSave={handleOnChangeData}
-        heaerTitle={<><i className="pi pi-tag "></i>Agregar una nueva  promoción</>}
+        heaerTitle={heaerTitle("Agregar promoción")}
         data={{}}
         visible={infoDialogCreate}
         onHide={handleOnClickCreateButton}
         setPageLoad={setLoading}
+        show={show}
+        mobileSize={responsive}
       />
       {/* Titulo de la pagina*/}
       <header>

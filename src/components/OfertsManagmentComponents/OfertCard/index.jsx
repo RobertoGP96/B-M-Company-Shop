@@ -17,14 +17,15 @@ function OfertCard({
         <div className="img-promotion-container">
           <img src={data.img} alt={data.name} />
         </div>
-        <Checkbox
-          checked={searchChecked(selectedOferts, data.id)}
-          onChange={() => handleOnChangeChecked(selectedOferts, data)}
-        />
+       
         <div className="details-prmotion-card-section details-grid-prmotion">
           <p className="mame-promotion p-grid-card-promotion">{data.name}</p>
           <p className="total-products-promotion">{`Productos: ${data.cantidad_products}`}</p>
         </div>
+        <Checkbox
+          checked={searchChecked(selectedOferts, data.id)}
+          onChange={() => handleOnChangeChecked(selectedOferts, data)}
+        />
       </div>
       <div className="discount-promotion-container discount-grid-container">
               <p className="price">{`-${data.discount_in_percent}%`}</p>

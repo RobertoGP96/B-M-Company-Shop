@@ -45,7 +45,7 @@ function SearchOferts({
         />
       </form>
 
-      <div className="view-toggle-container">
+      <div className="view-toggle-container-oferts">
         <img
           src={viewMode == 'table' ?ViewToggleGrid: ViewToggleList}
           onClick={handelOnChangeView}

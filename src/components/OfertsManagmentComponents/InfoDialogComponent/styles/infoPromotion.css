@@ -3,13 +3,29 @@
 
 .info-dialog-promotion{
     width: 500px;
+    height: max-content !important ;
+    max-height: max-content !important; 
+}
+.info-dialog-promotion-mobileSize{
+    width: 320px;
     height: 550px; 
 }
 
 .info-dialog-promotion .p-dialog-content{
- overflow: hidden;
  background-color: #FFFBFB;
- padding: 5px;
+ padding: 0px;
+}
+
+.info-dialog-promotion-create .p-dialog-header{
+    padding:3px 8px;
+    background-color: #545454;
+    color: white;
+    font-variant: small-caps;
+}
+
+.info-dialog-promotion-create .p-dialog-title{
+    font-size: 0.8rem;
+    font-family: Noto Sans;
 }
 
 .info-dialog-promotion .p-dialog-header{
@@ -17,8 +33,8 @@
     background-color: #545454;
     color: white;
     font-variant: small-caps;
-
 }
+
 .info-dialog-promotion .p-dialog-title{
     font-size: 0.8rem;
     font-family: Noto Sans;
@@ -49,6 +65,13 @@
 .inputs-dialog-from-container{
     display: flex;
     gap: 35px;
+}
+
+.inputs-dialog-from-container-mobileSize{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }
 
 .input-info-dialog{
@@ -158,20 +181,39 @@
     padding: 4px;
     width: 455px;
     height: 250px;
-    background: rgb(90, 87, 87,0.1);
+    background: rgba(168, 168, 168, 0.2);
     border-radius: 5px;
     margin: auto;
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
    
 }
 
-.add-products-to-oferts-buttons-container{
-    width: 30px;
-    display: flex;
-    align-items: center;
+.add-products-to-oferts-containers-mobileSize{
     flex-direction: column;
+    height: 250px;
+    width: 288px;
+}
+
+.add-products-to-oferts-buttons-and-details-container{
+    display: flex;
+    width: 100%;
+    position: relative;
+    height: 30px;
+    
+}
+
+.add-products-to-oferts-buttons-container{
+    display: flex;
+    position: absolute;
+    right: 0px;
     gap:3px;
+   
+}
+.add-products-to-oferts-buttons-container-mobileSize{
+    flex-direction: row;
    
 }
 
@@ -287,11 +329,15 @@
 }
 
 
-
-
-
-
-
 .buttons-user-info:hover{
     background: #353535;
+}
+
+
+@media (width < 600px){    
+    .info-dialog-promotion {
+        height: 600px !important ;
+        max-height: 600px !important; 
+    }
+
 }
