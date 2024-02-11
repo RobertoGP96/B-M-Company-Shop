@@ -9,7 +9,9 @@
 .grid-promotion-card-container{
     height: 280px;
     border-radius: 15px;
-    box-shadow: 2px 2px 5px 0px rgba(65, 65, 65, 0.8);
+    box-shadow: 2px 5px 10px rgb(202, 201, 201);
+    border-radius: 5px;
+    border: 2px solid rgba(212, 212, 212, 0.209);
     position: relative;
 }
 

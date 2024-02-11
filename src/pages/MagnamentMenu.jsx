@@ -34,7 +34,7 @@ function MagnamentMenu (){
                         </div>
                         <div title="contac-section" className="magnament-menu-section">
                             <h4>Contacto</h4>
-                            <div className="icon-magnament-section">
+                            <div className="icon-magnament-section" onClick={()=>navigate("/managment/contact")}>
                                 <img src={Contactsgnament} alt="contacts" width="48px"/>
                             </div>
                         </div>        

@@ -4,10 +4,27 @@ import "primeicons/primeicons.css";
 import Zelle from "../assets/zelle-icon.svg";
 import Cash from "../assets/cash-icon.svg";
 import PayPal from "../assets/paypal.svg";
-import PhoneImg from "../assets/phone-remesas.jpg";
+import PhoneImg from "../assets/Frame-2.webp";
+
+import { useState, useEffect } from "react";
+
+import { getContactInfo } from "../services/ManageContact/contact_info_managment";
 
 
 function Remesas() {
+
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    getContactInfo().then((response) => {
+      setData(response);
+      setLoading(false);
+    });
+  }, []);
+
+
+
   return (
     <div className="remesas-container">
       <section className="remesas-container-text">
@@ -16,7 +33,7 @@ function Remesas() {
           <h1>Remesas</h1>
           <ul className="platform-icons">
             <li>
-              <img src={Zelle} alt="Zelle icon" />
+              <img src={Zelle} className="phone-hand-img" alt="Zelle icon" />
               <p>Zelle</p>
             </li>
             <li>
@@ -29,9 +46,10 @@ function Remesas() {
             </li>
           </ul>
           <span className="contact-button">
+            <ContactLabel label={data.remesas} loading={loading}/>
             <button className="remesas-contact-button">
               <i className="pi pi-phone"></i>
-              Contactar
+              <a href="http://">Contactar</a>
             </button>
           </span>
         </div>
@@ -40,4 +58,15 @@ function Remesas() {
   );
 }
 
+
+function ContactLabel({ label, loading }) {
+  return loading ? (
+    <i className="pi pi-spinner pi-spin"></i>
+  ) : (
+    <h4>{label}</h4>
+  );
+}
+
 export default Remesas;
+
+

@@ -17,7 +17,7 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
         })
         .catch(() => {
             setLoading(false);
-            setNumOfPromotions(0)
+            setNumOfPromotions(0)   
         });
     }, [searchParams]);
 

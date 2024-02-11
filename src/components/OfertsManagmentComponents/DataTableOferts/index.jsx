@@ -1,6 +1,8 @@
 import './index.css'
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
+import DeactiveStatusIcon from "../../../assets/deactive-status-icon.svg";
+import ActiveStatusIcon from "../../../assets/active-status-icon.svg";
 
 const headerTableStyle = {
   backgroundColor: "#545454",
@@ -17,6 +19,13 @@ const nameTamplate = (data) => {
     <div className="name-template-container">
       <i className="pi pi-tag"></i>
       <span>{data.name}</span>
+    </div>
+  );
+};
+const statusTamplate = (data) => {
+  return (
+    <div className="status-template-container">
+        <img src={data.active?ActiveStatusIcon:DeactiveStatusIcon} alt="" />
     </div>
   );
 };
@@ -68,9 +77,7 @@ function DataTableOferts({
       className="data-table-oferts"
       value={dataOferts}
       stripedRows
-      paginator
-      rows={5}
-      rowsPerPageOptions={[5, 10, 25, 50]}
+
       tableStyle={{ minWidth: "50rem" }}
       checked={selectedOferts}
       selectionMode={"checkbox"}
@@ -98,8 +105,9 @@ function DataTableOferts({
       ></Column>
       <Column
         className={"column-oferts-field"}
-        field="description"
-        header="Descripcion"
+        body={statusTamplate}
+        field="active"
+        header="Estado"
         headerStyle={headerTableStyle}
       ></Column>
       <Column

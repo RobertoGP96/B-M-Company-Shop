@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    
 }
 .oferts-grid{
     width: 100%;
-    height: max-content;
+    height: 70vh;
     display:grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
-    gap:12px;
+    gap:30px;
     justify-content: center;
     align-items:start;
     margin:0 auto;

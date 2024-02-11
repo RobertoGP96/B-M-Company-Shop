@@ -1,8 +1,8 @@
-import {URL_ADD_PRODUCTS_PROMOTION} from "../../settings"
+import {URL_DELETE_PRODUCTS_PROMOTION} from "../../settings"
 
-export function addProductsToPromotion({products,id, token = ""}){
+export function deleteProductsToPromotion({products,id, token = ""}){
     return(
-        fetch(`${URL_ADD_PRODUCTS_PROMOTION}${id}/add_products_to_promotion/`,{
+        fetch(`${URL_DELETE_PRODUCTS_PROMOTION}${id}/remove_products_from_promotion/`,{
             method: 'POST',
             headers: {
                 //Authorization: `Token ${token}`,
@@ -21,3 +21,4 @@ export function addProductsToPromotion({products,id, token = ""}){
         })
     )
 }
+
