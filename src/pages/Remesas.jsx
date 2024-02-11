@@ -49,7 +49,7 @@ function Remesas() {
             <ContactLabel label={data.remesas} loading={loading}/>
             <button className="remesas-contact-button">
               <i className="pi pi-phone"></i>
-              <a href="http://">Contactar:</a>
+              <a href="http://">Contactar</a>
             </button>
           </span>
         </div>
