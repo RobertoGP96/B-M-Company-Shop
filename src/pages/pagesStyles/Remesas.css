@@ -72,7 +72,7 @@
   .remesas-container{
     width: 100% !important;
     height: 100%;
-    background-image: url(../../assets/homebackground.webp) !important;
+    background-image: url(../../assets/back-remesas.jpg) !important;
     object-fit: cover;
     
     background-position: center; 
