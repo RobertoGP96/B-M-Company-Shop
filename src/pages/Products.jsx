@@ -1,4 +1,4 @@
-import "./pagesStyles/products.css";
+import "./pagesStyles/Products.css";
 import 'primeicons/primeicons.css';
 
 
@@ -7,8 +7,8 @@ function Products() {
   return (
     <section className="products-container">
         <section className="products-section">
-        <i className="pi pi-spin pi-cog"></i>
-        <p>Próximamente...</p>
+        <i className="pi pi-exclamation-triangle"></i>
+        <p>404 !</p>
         </section>
     </section>
     );
