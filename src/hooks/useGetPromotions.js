@@ -12,7 +12,7 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
             setPromotions(data);
             console.log(data);
             changePromotions(data);
-            setNumOfPromotions(data.length);
+            setNumOfPromotions(data.count);
             setLoading(false);
         })
         .catch(() => {

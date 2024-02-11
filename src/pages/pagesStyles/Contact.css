@@ -61,9 +61,13 @@
 
   border-width: 1px;
   border-left-style: solid;
-  border-image: linear-gradient(to bottom, rgba(0, 0, 0, 0),rgb(192, 192, 192), rgba(0, 0, 0, 0)) 1 100%;
-
-  
+  border-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0),
+      rgb(192, 192, 192),
+      rgba(0, 0, 0, 0)
+    )
+    1 100%;
 }
 .social-info {
   gap: 5px;
@@ -109,23 +113,22 @@
 }
 
 .social-contact-into div span {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: start;
-    gap: 7px;
-    cursor: pointer;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  gap: 7px;
+  cursor: pointer;
 }
-.social-contact-into div span p{
-    margin: 0;
-    font-size: 0.65rem;
-}
-
-.social-contact-into div span i{
-    font-size: 1.1rem;
+.social-contact-into div span p {
+  margin: 0;
+  font-size: 0.65rem;
 }
 
+.social-contact-into div span i {
+  font-size: 1.1rem;
+}
 
 /*
 footer {
@@ -140,10 +143,22 @@ footer {
 }
 */
 
-.contact-container{
+.contact-container {
   width: 100% !important;
   height: 100%;
   background-image: url(../../assets/home-background.jpeg) !important;
-  max-width: 2000px ;
+
   object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.label-social{
+  appearance: none;
+  text-decoration: none;
+  margin: 0;
+  font-size: 0.65rem !important;
+  color: white;
 }

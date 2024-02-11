@@ -14,13 +14,15 @@
     align-items:start;
     margin:0 auto;
     padding:10px;
+    position: relative;
 }
 
-.not-found-message{
+.products-grid-not-found-message{
     text-align:center;
     position: absolute;
-    left: 55%;
-    top:30%
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
 }
 
 .products-loader-container{
@@ -57,9 +59,5 @@
     .products-loader-container{
         top: 50%;
         left: 50%;
-    }
-    .not-found-message{
-        top:75%;
-        left: 30%;
     }
 }
