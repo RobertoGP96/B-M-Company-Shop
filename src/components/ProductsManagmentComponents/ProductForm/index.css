@@ -159,7 +159,7 @@
 }
 
 /*Mobile*/
-
+@media (width < 500px) {
     .product-image-field{
         flex-direction: column;
     }
