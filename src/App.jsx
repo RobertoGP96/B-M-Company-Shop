@@ -9,43 +9,45 @@ import Page404 from './pages/Page404'
 import MagnamentMenu from './pages/MagnamentMenu.jsx'
 import { PrimeReactProvider } from 'primereact/api';
 import "primereact/resources/themes/lara-light-cyan/theme.css";
+import {CartContextProvider} from './context/cartContext.jsx'
 import {QueryFiltersContextProvider} from './context/filtersContext.jsx'
 import NavBar from './components/NavBar/index.jsx'
 import Footer  from './components/Footer/index.jsx'
-import 'primeicons/primeicons.css';
 import MagnamentOferts from './pages/MagnamentOferts.jsx'
 import MagnamentSecurity from './pages/MagnamentSecurity.jsx'
 import ManagmentContact from './pages/ManagmentContact.jsx'
 import Products from './pages/Products.jsx'
 import Login from './pages/Login.jsx'
+import 'primeicons/primeicons.css';
 
 function App() {
   return (
     <Router>
-      <section >
-        <header><NavBar /></header>
-        <section className="main-section-route">
-          <PrimeReactProvider>
-            <QueryFiltersContextProvider>
-              <Routes>
-                <Route path = "/store" element = {<Store/>}/>
-                <Route path = "/contactus" element = {<Contact/>}/>
-                <Route path = "/remesas" element = {<Remesas/>}/>
-                <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
-                <Route path = "/magnament/products" element = {<ProductsManagment/>}/>
-                <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
-                <Route path = "/magnament-security" element = {<MagnamentSecurity/>}/>
-                <Route path = "/managment/contact" element = {<ManagmentContact/>}/>
-                <Route path = "/login" element = {<Login/>}/>
-                <Route path = "/" element = {<Home/>}/>
-                <Route path = "*" element = {<Products/>}/>
-              </Routes>
-            </QueryFiltersContextProvider>
-          </PrimeReactProvider>
-        </section>
-        <footer><Footer/></footer>
-      </section>
- 
+      <PrimeReactProvider>
+        <CartContextProvider>
+          <QueryFiltersContextProvider>
+            <section >
+              <header><NavBar /></header>
+              <section className="main-section-route">
+                <Routes>
+                  <Route path = "/store" element = {<Store/>}/>
+                  <Route path = "/contactus" element = {<Contact/>}/>
+                  <Route path = "/remesas" element = {<Remesas/>}/>
+                  <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
+                  <Route path = "/magnament/products" element = {<ProductsManagment/>}/>
+                  <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
+                  <Route path = "/magnament-security" element = {<MagnamentSecurity/>}/>
+                  <Route path = "/managment/contact" element = {<ManagmentContact/>}/>
+                  <Route path = "/login" element = {<Login/>}/>
+                  <Route path = "/" element = {<Home/>}/>
+                  <Route path = "*" element = {<Products/>}/>
+                </Routes>
+              </section>
+              <footer><Footer/></footer>
+            </section>
+          </QueryFiltersContextProvider>
+        </CartContextProvider>
+      </PrimeReactProvider>
     </Router>
   )
 }

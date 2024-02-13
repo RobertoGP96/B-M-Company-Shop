@@ -26,7 +26,7 @@ export default function ProductsGrid({activateProductdetails}) {
             <>
               {products.length > 0 ? (
                 products.map((product) => (
-                  <ProductCard key={product.id} {...product}   onClick = {()=>activateProductdetails(product)} />
+                  <ProductCard key={product.id} {...product} isInStore = {true}  onClick = {()=>activateProductdetails(product)} />
                 ))
               ) : (
                 <div className="products-grid-not-found-message">

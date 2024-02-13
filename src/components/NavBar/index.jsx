@@ -14,10 +14,11 @@ import StoreIcon from "../../assets/tiendaIcon.svg";
 import ProductsIcon from "../../assets/productsIcon.svg";
 import ContactIcon from "../../assets/contactusIcon.svg";
 import RemesasIcon from "../../assets/remesas-icon.svg";
+import Cart from '../Cart'
 
 function NavBar() {
   const navigate = useNavigate();
-  const responsive = useWindowSize("min", 800);
+  const responsive = useWindowSize("min", 1000);
   const [visible, setVisible] = useState(false);
   const refActive = useRef(null);
   const { pathname } = useLocation();
@@ -218,6 +219,7 @@ function NavBar() {
           </Sidebar>
         </>
       )}
+      <Cart/>
     </nav>
   );
 }
