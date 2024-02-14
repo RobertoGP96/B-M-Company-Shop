@@ -26,6 +26,8 @@ function ProductmanagmentCard({product, handleDeleteProduct, processDetailProduc
               handleDetil={processDetailProduct}
               handleEdit={processUpdateProduct}
             />
+          </div>
+          <div className = "product-managment-card-checkbox">
             <Checkbox
                 checked={selectedProducts.some(selectedProduct => product.id === selectedProduct.id)}
                 onChange={(e) => handleCheckProduct({checked:e.checked, product:product})}
