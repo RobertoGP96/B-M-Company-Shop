@@ -57,7 +57,7 @@
 }
 
 .product-form-field label{
-    min-width: 85px;
+    min-width: 120px;
 }
 .product-form-field label::after{
     content: ":";
@@ -71,7 +71,7 @@
 .product-form-active-checkbox{
     display: flex;
     flex-direction: row;
-    gap:45px;
+    gap:80px;
     align-items: center;
     margin-top: 10px;
 }
@@ -159,7 +159,7 @@
 }
 
 /*Mobile*/
-
+@media (width < 500px) {
     .product-image-field{
         flex-direction: column;
     }

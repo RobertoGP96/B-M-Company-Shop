@@ -110,7 +110,7 @@ function MagnamentOferts() {
         setLoading(true);
         deletePromotions({ promotions: [id] }).then(() => {
           getPromotions().then((result) => {
-            setDataOferts(result.results);
+            setDataOferts(result);
             setLoading(false);
             show("Eliminación completada","success");
           });

@@ -16,6 +16,7 @@ import 'primeicons/primeicons.css';
 import MagnamentOferts from './pages/MagnamentOferts.jsx'
 import MagnamentSecurity from './pages/MagnamentSecurity.jsx'
 import ManagmentContact from './pages/ManagmentContact.jsx'
+import Products from './pages/Products.jsx'
 import Login from './pages/Login.jsx'
 
 function App() {
@@ -37,7 +38,7 @@ function App() {
                 <Route path = "/managment/contact" element = {<ManagmentContact/>}/>
                 <Route path = "/login" element = {<Login/>}/>
                 <Route path = "/" element = {<Home/>}/>
-                <Route path = "*" element = {<Page404/>}/>
+                <Route path = "*" element = {<Products/>}/>
               </Routes>
             </QueryFiltersContextProvider>
           </PrimeReactProvider>
