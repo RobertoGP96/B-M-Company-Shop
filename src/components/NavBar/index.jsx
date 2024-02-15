@@ -15,6 +15,7 @@ import ProductsIcon from "../../assets/productsIcon.svg";
 import ContactIcon from "../../assets/contactusIcon.svg";
 import RemesasIcon from "../../assets/remesas-icon.svg";
 import Cart from '../Cart'
+import CloseSession from "../CloseSession";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ function NavBar() {
   };
 
   return (
-    <nav title="primaryNavigation" className="navbar">
+    <nav className="navbar">
       {responsive ? (
         <ul className="nav-BarConteiner">
           <li className="navBar-itemConteiner-companyName">
@@ -219,7 +220,10 @@ function NavBar() {
           </Sidebar>
         </>
       )}
-      <Cart/>
+      <div className = "cart-and-close-session-icons-container">
+        <Cart/>
+        <CloseSession/>
+      </div>
     </nav>
   );
 }

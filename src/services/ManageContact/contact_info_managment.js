@@ -1,4 +1,4 @@
-const CONTACT_INFO_URL = "https://bmcompanybackend.pythonanywhere.com/contact_info/"
+import {CONTACT_INFO_URL} from '../../settings.js'
 
 export function getContactInfo(){
     return fetch(CONTACT_INFO_URL, {
@@ -12,7 +12,7 @@ export function getContactInfo(){
 }
 
 export function editContactInfo(info){
-    return fetch(`${CONTACT_INFO_URL}/1/`, {
+    return fetch(`${CONTACT_INFO_URL}1/`, {
         method: "PUT",
         headers: {
             'Content-Type': "application/json",
