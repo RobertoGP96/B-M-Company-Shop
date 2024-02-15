@@ -11,7 +11,6 @@ function CloseSession() {
     const [showConfirmDialog, setShowConfirmDialog] = useState(false)
 
     function closeSession(){
-        console.log("cerrar")
         handleLogout(() => {
             navigate('/bye')
         });
