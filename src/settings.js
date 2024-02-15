@@ -1,5 +1,5 @@
-//export const BASE_URL = `http://127.0.0.1:8000`
-export const BASE_URL = `https://bmcompanybackend.pythonanywhere.com`
+export const BASE_URL = `http://127.0.0.1:8000`
+//export const BASE_URL = `https://bmcompanybackend.pythonanywhere.com`
 
 //store urls
 export const URL_STORE_GET_CATEGORIES= `${BASE_URL}/store/categories/`
@@ -14,5 +14,11 @@ export const URL_MANAGE_PROMOTIONS = `${BASE_URL}/store/manage-promotions/`
 export const URL_GET_PRODUCTS_PROMOTION = `${BASE_URL}/store/products?promotion=`
 export const URL_ADD_PRODUCTS_PROMOTION = `${BASE_URL}/store/manage-promotions/`
 export const URL_DELETE_PRODUCTS_PROMOTION = `${BASE_URL}/store/manage-promotions/`
+
+//authentication
+export const LOGIN_URL = `${BASE_URL}/authentication/login/`
+
+//contact info
+export const CONTACT_INFO_URL = `${BASE_URL}/contact_info/`
 
 
