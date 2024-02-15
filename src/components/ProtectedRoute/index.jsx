@@ -11,14 +11,22 @@ function ProtectedRoute({ children }) {
     if (auth.token) {
       setShowChildren(true);
     }
-  }, []);
+  }, [auth]);
 
   return showChildren ? (
-    children
+    auth.infoUser?.is_staff?children:
+    <section className="protected-route-page">
+      <article>
+        <header>No tienes los permisos necesarios para acceder a esta pagina</header>
+        <div>
+          <Link to = "/">Inicio</Link>
+        </div>
+      </article>
+    </section>
   ) : (
     <section className="protected-route-page">
       <article>
-        <header>Debes estar autenticad@ para accedes a esta página</header>
+        <header>Debes estar autenticad@ para acceder a esta página</header>
         <div>
           <Link to="/login">Iniciar Sesion</Link>
         </div>
