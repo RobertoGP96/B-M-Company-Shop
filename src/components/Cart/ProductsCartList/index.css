@@ -1,0 +1,11 @@
+.products-cart-datatable .product-cart-img{
+    width: 80px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.products-cart-datatable .delete-product-from-cart-button{
+    border: 0;
+    background-color:transparent;
+    cursor: pointer;
+}

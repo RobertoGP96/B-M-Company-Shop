@@ -5,6 +5,7 @@ import BoxIcon from "../../../assets/box-icon.svg";
 import ProductQuantityController from "../ProductQuantityController";
 import CartContext from "../../../context/cartContext";
 import {useContext } from "react";
+import './index.css'
 
 function ProductsCartList() {
     const {

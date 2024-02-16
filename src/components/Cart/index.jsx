@@ -47,9 +47,11 @@ function Cart() {
         contentClassName="cart-modal-content"
       >{productsCart.length > 0 ?
       <>
-      {listView?
-        <ProductsCartList />:<ProductsCartGrid/>
-      }
+        <div className = "table-grid-container">
+          {listView?
+            <ProductsCartList />:<ProductsCartGrid/>
+          }
+        </div>
         <section className="cart-action-buttons">
           <button className="btn-general-styles" onClick={() => cleanCart()}>
             Vaciar Carrito
