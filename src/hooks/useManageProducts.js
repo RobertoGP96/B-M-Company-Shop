@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getProductsToManage } from "../services/ManageProducts/getProductsToManage";
 import { deleteProducts } from "../services/ManageProducts/deleteProducts";
 import { createProduct } from "../services/ManageProducts/createProduct";
 import {updateProduct} from "../services/ManageProducts/updateProduct";
+import AuthenticationContext from '../context/authenticationContext.jsx'
 
 export function useManageProducts({ searchParams, toastRef, setSelectedProducts, resetProductFormProperties, removeAllFilters }) {
+  const {auth} = useContext(AuthenticationContext)
   const [products, setProducts] = useState([]);
   const [loadingProducts, setLoading] = useState(false);
   const [numOfProducts, setNumOfProducts] = useState(0);
@@ -27,7 +29,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
   //get products
   useEffect(() => {
     setLoading(true);
-    getProductsToManage(searchParams)
+    getProductsToManage({filters:searchParams, token:auth.token})
       .then((data) => {
         setProducts(data.results);
         setNumOfProducts(data.count);
@@ -52,7 +54,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
   //delete one product by its id
   function handleDeleteProduct(productId) {
     setLoading(true);
-    deleteProducts({ products: [productId] })
+    deleteProducts({ products: [productId], token:auth.token })
       .then((res) => {
         setUpdateProducts((prev) => !prev);
         setSelectedProducts([])
@@ -78,7 +80,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
             //create a list only with the ids
             const productsId = products.map(product => product.id)
             setLoading(true);
-            deleteProducts({ products: productsId })
+            deleteProducts({ products: productsId, token:auth.token })
               .then((res) => {
                 setUpdateProducts((prev) => !prev);
                 setSelectedProducts([])
@@ -108,7 +110,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
     function handleCreateProduct({values}){
       if(productInfoValid({values:values})){
         setLoading(true)
-        createProduct({values:values})
+        createProduct({values:values, token:auth.token})
         .then(res => {
           handleSetUpdateProducts()
           setSelectedProducts([])
@@ -135,7 +137,7 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
     function handleUpdateProduct({id, values}){
       if(productInfoValid({values:values, creating:false})){
         setLoading(true)
-        updateProduct({id:id, values:values})
+        updateProduct({id:id, values:values, token:auth.token})
         .then(res => {
           setUpdateProducts(prev => !prev)
           setSelectedProducts([])
