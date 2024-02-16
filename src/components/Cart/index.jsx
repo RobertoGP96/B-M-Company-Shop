@@ -5,14 +5,16 @@ import { useState, useContext, useEffect } from "react";
 import ProductsCartList from "./ProductsCartList";
 import ProductsCartGrid from "./ProductsCartGrid";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
-import { sendWhatsappMessage } from "../../utils/sendWhatsappMessage";
+import { sendWhatsappMessage, prepareProductsCartToBeSentByWhatsapp } from "../../utils/sendWhatsappMessage";
+import { useGetContactInfo } from "../../hooks/useGetContactInfo";
 import "./index.css";
 
 function Cart() {
   const [show, setShow] = useState(false);
   const [listView, setListView] = useState(true);
-  const { productsCart, cleanCart } = useContext(CartContext);
+  const { productsCart, cleanCart, calculateTotal} = useContext(CartContext);
   const { mobileMode } = useIsMobileMode({ mobileWidth: 950 });
+  const {contactInfo} = useGetContactInfo()
 
   //effect to change the view type to grid or list depending of the mobileMode
   useEffect(() => {
@@ -25,10 +27,12 @@ function Cart() {
 
   //function to send the pedido
   function handleSendPedido() {
-    sendWhatsappMessage({ 
-      phone: "+5351706878", 
-      message: 'Hola Hijo mio' 
-    });
+    if(productsCart.length > 0 && contactInfo !== null){
+      sendWhatsappMessage({ 
+        phone: contactInfo.whatsapp, 
+        message: prepareProductsCartToBeSentByWhatsapp({productsCart:productsCart, total: calculateTotal().toFixed(2)}) 
+      });
+    }
   }
 
   return (

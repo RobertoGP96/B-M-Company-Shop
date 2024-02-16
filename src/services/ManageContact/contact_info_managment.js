@@ -7,8 +7,15 @@ export function getContactInfo(){
             'Content-Type': "application/json",
         }
     })
-    .then(response => response.json())
-    .then(data => {return data.results[0]})
+    .then(response => {
+        if(response.status == 200){
+            return response.json()
+            .then(data => {return data.results[0]})
+        }else{
+            throw new Error('Error al obtener la info de contacto')
+        }
+    })
+    
 }
 
 export function editContactInfo(info){
