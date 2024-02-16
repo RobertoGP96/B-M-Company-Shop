@@ -5,7 +5,7 @@ export function deleteCategories({categories, token = ""}){
         fetch(URL_MANAGE_CATEGORIES,{
             method: 'DELETE',
             headers: {
-                //Authorization: `Token ${token}`,
+                'Authorization': `Token ${token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({categories_to_delete:categories})

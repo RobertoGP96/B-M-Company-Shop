@@ -1,5 +1,5 @@
-//export const BASE_URL = `http://127.0.0.1:8000`
-export const BASE_URL = `https://bmcompanybackend.pythonanywhere.com`
+export const BASE_URL = `http://127.0.0.1:8000`
+//export const BASE_URL = `https://bmcompanybackend.pythonanywhere.com`
 
 //store urls
 export const URL_STORE_GET_CATEGORIES= `${BASE_URL}/store/categories/`

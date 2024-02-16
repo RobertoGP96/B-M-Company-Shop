@@ -3,8 +3,9 @@ import { Dialog } from "primereact/dialog";
 import CartContext from "../../context/cartContext";
 import { useState, useContext, useEffect } from "react";
 import ProductsCartList from "./ProductsCartList";
-import ProductsCartGrid from './ProductsCartGrid'
+import ProductsCartGrid from "./ProductsCartGrid";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
+import { sendWhatsappMessage } from "../../utils/sendWhatsappMessage";
 import "./index.css";
 
 function Cart() {
@@ -12,6 +13,7 @@ function Cart() {
   const [listView, setListView] = useState(true);
   const { productsCart, cleanCart } = useContext(CartContext);
   const { mobileMode } = useIsMobileMode({ mobileWidth: 950 });
+
   //effect to change the view type to grid or list depending of the mobileMode
   useEffect(() => {
     if (mobileMode) {
@@ -20,6 +22,14 @@ function Cart() {
       setListView(true);
     }
   }, [mobileMode]);
+
+  //function to send the pedido
+  function handleSendPedido() {
+    sendWhatsappMessage({ 
+      phone: "+5351706878", 
+      message: 'Hola Hijo mio' 
+    });
+  }
 
   return (
     <section className="cart">
@@ -45,24 +55,36 @@ function Cart() {
           </div>
         }
         contentClassName="cart-modal-content"
-      >{productsCart.length > 0 ?
-      <>
-        <div className = "table-grid-container">
-          {listView?
-            <ProductsCartList />:<ProductsCartGrid/>
-          }
-        </div>
-        <section className="cart-action-buttons">
-          <button className="btn-general-styles" onClick={() => cleanCart()}>
-            Vaciar Carrito
-          </button>
-          <button className="btn-general-styles" onClick={() => setShow(false)}>
-            Cancelar
-          </button>
-          <button className="btn-general-styles">Procesar Pedido</button>
-        </section>
-      </>:<div className = "empty-cart-message">Tu carrito esta vacio</div>} 
-      
+      >
+        {productsCart.length > 0 ? (
+          <>
+            <div className="table-grid-container">
+              {listView ? <ProductsCartList /> : <ProductsCartGrid />}
+            </div>
+            <section className="cart-action-buttons">
+              <button
+                className="btn-general-styles"
+                onClick={() => cleanCart()}
+              >
+                Vaciar Carrito
+              </button>
+              <button
+                className="btn-general-styles"
+                onClick={() => setShow(false)}
+              >
+                Cancelar
+              </button>
+              <button
+                className="btn-general-styles"
+                onClick={() => handleSendPedido()}
+              >
+                Procesar Pedido
+              </button>
+            </section>
+          </>
+        ) : (
+          <div className="empty-cart-message">Tu carrito esta vacio</div>
+        )}
       </Dialog>
     </section>
   );
