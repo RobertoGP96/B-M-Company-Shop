@@ -18,6 +18,7 @@ import MagnamentSecurity from './pages/MagnamentSecurity.jsx'
 import ManagmentContact from './pages/ManagmentContact.jsx'
 import Products from './pages/Products.jsx'
 import Login from './pages/Login.jsx'
+import Envios from './pages/Envios.jsx'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
                 <Route path = "/store" element = {<Store/>}/>
                 <Route path = "/contactus" element = {<Contact/>}/>
                 <Route path = "/remesas" element = {<Remesas/>}/>
+                <Route path = "/envios" element = {<Envios/>}/>
                 <Route path = "/magnament-menu" element = {<MagnamentMenu/>}/>
                 <Route path = "/magnament/products" element = {<ProductsManagment/>}/>
                 <Route path = "/magnament-oferts" element = {<MagnamentOferts/>}/>
