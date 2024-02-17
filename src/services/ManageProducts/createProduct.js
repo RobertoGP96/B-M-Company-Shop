@@ -1,6 +1,6 @@
 import {URL_MANAGE_PRODUCTS} from "../../settings"
 
-export function createProduct({values}){
+export function createProduct({values, token}){
     let formData = new FormData()
     formData.append('product_name', values.product_name)
     formData.append('product_description', values.product_description)
@@ -28,7 +28,7 @@ export function createProduct({values}){
         fetch(URL_MANAGE_PRODUCTS,{
             method: 'POST',
             headers: {
-                //Authorization: `Token ${token}`,
+                Authorization: `Token ${token}`,
             },
             body:formData
         })

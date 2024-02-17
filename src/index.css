@@ -61,3 +61,7 @@ h1 {
   background-color: transparent;
 }
 
+button:hover{
+  cursor: pointer;
+}
+

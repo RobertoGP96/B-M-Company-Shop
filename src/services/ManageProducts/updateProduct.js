@@ -1,6 +1,6 @@
 import {URL_MANAGE_PRODUCTS} from "../../settings"
 
-export function updateProduct({id, values}){
+export function updateProduct({id, values, token}){
     let formData = new FormData()
     formData.append('product_name', values.product_name)
     formData.append('product_description', values.product_description)
@@ -26,7 +26,7 @@ export function updateProduct({id, values}){
         fetch(`${URL_MANAGE_PRODUCTS}${id}/`,{
             method: 'PUT',
             headers: {
-                //Authorization: `Token ${token}`,
+                Authorization: `Token ${token}`,
             },
             body:formData
         })

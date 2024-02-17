@@ -5,7 +5,7 @@ export function deleteProducts({products, token = ""}){
         fetch(URL_MANAGE_PRODUCTS,{
             method: 'DELETE',
             headers: {
-                //Authorization: `Token ${token}`,
+                'Authorization': `Token ${token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({products_to_delete:products})

@@ -19,6 +19,7 @@
     align-items: center;
     white-space: nowrap;
     overflow-x: hidden;
+    scroll-snap-type: x mandatory;
 }
 
 .add-scroll-x{
@@ -34,7 +35,7 @@
     object-fit: contain;
     mix-blend-mode: multiply;
     background-blend-mode: multiply;
-   
+    scroll-snap-align: center;
 }
 
 .selector{
