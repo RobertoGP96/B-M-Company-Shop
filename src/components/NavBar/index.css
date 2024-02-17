@@ -68,6 +68,13 @@ figure {
   cursor: pointer;
 }
 
+.logo-continer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
 .navBar-itemConteiner {
   position: relative;
   text-decoration: none;

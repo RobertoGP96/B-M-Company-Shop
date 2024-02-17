@@ -108,4 +108,7 @@
     .all-oferts{
         justify-content: center;
     }
+    .oferts{
+        max-height: none;
+    }
 }

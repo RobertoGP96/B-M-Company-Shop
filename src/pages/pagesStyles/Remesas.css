@@ -148,6 +148,7 @@
   margin-top: 0.5rem;
   background-color: black;
   font-family: "Noto Sans";
+  align-self: center;
 }
 
 .remesas-contact-button i {
@@ -164,13 +165,19 @@
 
 .contact-button{
   color: white;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .contact-button h4{
   margin: 0;
   margin-bottom: 10px;
   font-size: 1.2rem;
+}
+
+.contact-button .p-skeleton{
+  background-color: rgba(114, 114, 114, 0.11);
 }
 
 @media (max-width: 800px) {

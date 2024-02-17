@@ -8,7 +8,8 @@ import { Menu } from "primereact/menu";
 import { useRef } from "react";
 import "primeicons/primeicons.css";
 import { useLocation } from "react-router-dom";
-import CompanyImage from "../../assets/B&MCshop-logo.svg";
+import CompanyImage from "../../assets/BYM logo/B&M-LOGO.svg";
+import ByMEcommers from "../../assets/BYM logo/B&M-SUB-LOGO.svg";
 import HomeIcon from "../../assets/home.svg";
 import StoreIcon from "../../assets/tiendaIcon.svg";
 import ProductsIcon from "../../assets/productsIcon.svg";
@@ -67,6 +68,13 @@ function NavBar() {
         setVisible(false);
       },
     },
+    {
+      label: "Envios",
+      command: () => {
+        navigate("/envios");
+        setVisible(false);
+      },
+    },
   ];
 
   const handleOnActive = () => {
@@ -82,8 +90,9 @@ function NavBar() {
           <li className="navBar-itemConteiner-companyName">
             <div className="companyName-conteiner">
               <Link to="/">
-                <figure>
-                  <img src={CompanyImage} width={127} height={45}></img>
+                <figure className="logo-continer">
+                  <img src={CompanyImage} width={50} height={42}></img>
+                  <img src={ByMEcommers} width={50} height={25}></img>
                 </figure>
               </Link>
             </div>
@@ -182,6 +191,24 @@ function NavBar() {
               </Link>
             </div>
           </li>
+          <li>
+            <div
+              className={
+                pathname == "/envios"
+                  ? "navBar-itemConteiner active"
+                  : "navBar-itemConteiner"
+              }
+            >
+              <Link to="/envios">
+                <div className="navBar-item">
+                  <span className="icon">
+                    <i className="pi pi-truck"></i>
+                  </span>{" "}
+                  <span className="title">Envios</span>
+                </div>
+              </Link>
+            </div>
+          </li>
         </ul>
       ) : (
         <>
@@ -201,7 +228,8 @@ function NavBar() {
             <li className="navBar-itemConteiner-companyName">
               <div className="companyName-conteiner">
                 <figure>
-                  <img src={CompanyImage} width={127} height={45}></img>
+                  <img src={CompanyImage} width={50} height={45}></img>
+                  <img src={ByMEcommers} width={50} height={25}></img>
                 </figure>
               </div>
             </li>
