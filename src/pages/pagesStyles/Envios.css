@@ -112,3 +112,10 @@
     align-items: center;
     gap: 10px;
 }
+
+@media (width < 500px) {
+  .intro-envios-into p {
+    width: 100%;
+    text-wrap: balance;
+  }
+}

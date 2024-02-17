@@ -3,8 +3,8 @@ import "primeicons/primeicons.css";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import {useContext} from 'react'
-import AuthenticationContext from '../../context/authenticationContext.jsx'
+//import {useContext} from 'react'
+//import AuthenticationContext from '../../context/authenticationContext.jsx'
 
 import { getContactInfo, editContactInfo } from "../services/ManageContact/contact_info_managment";
 
@@ -13,7 +13,7 @@ import { InputText } from "primereact/inputtext";
 import { Toast } from 'primereact/toast';
 
 function ManagmentContact() {
-  const {auth} = useContext(AuthenticationContext)
+ // const {auth} = useContext(AuthenticationContext)
   const navigate = useNavigate();
 
   const [contact, setContacts] = useState([]);
@@ -24,7 +24,7 @@ function ManagmentContact() {
 
   useEffect(() => {
     setLoading(true);
-    getContactInfo(auth.token).then((data) => {
+    getContactInfo(/*auth.token*/).then((data) => {
       setContacts(data);
       setLoading(false);
       setSaved(false);
