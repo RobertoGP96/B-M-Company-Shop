@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { getPromotions } from "../services/ManagePromotions/getPromotions";
+import AuthenticationContext from '../context/authenticationContext.jsx'
 
 export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions}) {
+    const {auth} = useContext(AuthenticationContext)
     const [loading, setLoading] = useState(false);
     const [promotions, changePromotions] = useState([])
     //get promotions of store

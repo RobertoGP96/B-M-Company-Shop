@@ -1,6 +1,6 @@
 import { URL_MANAGE_PROMOTIONS } from "../../settings"
 
-export function updatePromotion({id,name,description,discount_in_percent, img,active,is_special}){
+export function updatePromotion({id,name,description,discount_in_percent, img,active,is_special,token}){
     let formData = new FormData();
     formData.append('name', name);
     formData.append('description', description);
@@ -12,7 +12,7 @@ export function updatePromotion({id,name,description,discount_in_percent, img,ac
         fetch(`${URL_MANAGE_PROMOTIONS}${id}/`,{
             method: 'PUT',
             headers: {
-                //Authorization: `Token ${token}`,
+                Authorization: `Token ${token}`,
             },
             body:formData
         })

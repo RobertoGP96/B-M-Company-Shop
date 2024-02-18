@@ -1,7 +1,13 @@
 import { URL_MANAGE_PROMOTIONS } from "../../settings"
 
-export function getPromotions(filters='') {
-  return fetch(`${URL_MANAGE_PROMOTIONS}?${filters}`).then((response) => {
+export function getPromotions(filters='',token) {
+  return fetch(`${URL_MANAGE_PROMOTIONS}?${filters}`,{
+    method: "GET",
+    headers: {
+      'Content-Type': "application/json",
+      'Authorization': `Token ${token}`
+    }
+  }).then((response) => {
     if (response.status === 200) {
       return response.json();
     } else {

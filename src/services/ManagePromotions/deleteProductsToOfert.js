@@ -1,11 +1,11 @@
 import {URL_DELETE_PRODUCTS_PROMOTION} from "../../settings"
 
-export function deleteProductsToPromotion({products,id, token = ""}){
+export function deleteProductsToPromotion({products,id, token}){
     return(
         fetch(`${URL_DELETE_PRODUCTS_PROMOTION}${id}/remove_products_from_promotion/`,{
             method: 'POST',
             headers: {
-                //Authorization: `Token ${token}`,
+                Authorization: `Token ${token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({products:products})
