@@ -13,6 +13,7 @@ import { useManageCategories } from "../hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
 import { useIsMobileMode } from "../hooks/useIsMobileMode";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
+import ActiveFilters from '../components/ActiveFilters'
 
 function ProductsManagment() {
   const toast = useRef(null);
@@ -155,6 +156,9 @@ function ProductsManagment() {
         handleUpdateProduct = {handleUpdateProduct}
         promotions = {promotions}
       />
+      <div className = "products-managment-page-active-filter-component-container">
+        <ActiveFilters/>
+      </div>
       {listView?
       <ProductList
         products={products}

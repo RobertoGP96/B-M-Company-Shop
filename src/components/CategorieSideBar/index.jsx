@@ -11,7 +11,7 @@ function CategorieSideBar({forceMobileMode = false, loading, categories, showPro
   const {mobileMode} = useIsMobileMode({forceMobileMode:forceMobileMode})
   const [showModal, setShowModal] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
-  const { setFilter, getActiveFilter } = useContext(QueryFilterContext);
+  const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFilterContext);
 
   function handleSetActiveCategory(category) {
     setActiveCategory(category);
@@ -21,7 +21,7 @@ function CategorieSideBar({forceMobileMode = false, loading, categories, showPro
   //everytime the categories change, update the active category
   useEffect(() => {
     setActiveCategory(getActiveFilter("categoria"));
-  },[categories])
+  },[categories, searchParams])
 
   function getActiveCategoryName(){
     const matchedCategory = categories.find(category => category.id == getActiveFilter("categoria"));
@@ -59,6 +59,7 @@ function CategorieSideBar({forceMobileMode = false, loading, categories, showPro
                   loading={loading}
                   setActiveCategory={handleSetActiveCategory}
                   setFilter={setFilter}
+                  removeFilter={removeFilter}
                   activeCategory={activeCategory}
                   showPromotionsModal = {showPromotionsModal}
                   getActiveFilter = {getActiveFilter}
@@ -71,6 +72,7 @@ function CategorieSideBar({forceMobileMode = false, loading, categories, showPro
             loading={loading}
             setActiveCategory={handleSetActiveCategory}
             setFilter={setFilter}
+            removeFilter={removeFilter}
             activeCategory={activeCategory}
             showPromotionsModal = {showPromotionsModal}
             getActiveFilter = {getActiveFilter}

@@ -11,7 +11,6 @@ export function updateProduct({id, values, token}){
     formData.append('categoria', values.categoria)
     formData.append('promotion', values.promotion)
 
-    console.log(values.promotion, values.categoria)
     if(values.product_img1 !== undefined && values.product_img1 !== null){
         formData.append('product_img1', values.product_img1)
     }
