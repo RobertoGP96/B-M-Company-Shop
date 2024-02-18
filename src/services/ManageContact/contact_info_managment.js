@@ -1,4 +1,4 @@
-import {CONTACT_INFO_URL} from '../../settings.js'
+import {CONTACT_INFO_URL} from '../../settings'
 
 export function getContactInfo(){
     return fetch(CONTACT_INFO_URL, {
@@ -18,13 +18,13 @@ export function getContactInfo(){
     
 }
 
-export function editContactInfo(info/*,token*/){
-    return fetch(`${CONTACT_INFO_URL}/1/`, {
+export function editContactInfo({info,token}){
+    return fetch(`${CONTACT_INFO_URL}1/`, {
         method: "PUT",
         headers: {
             'Content-Type': "application/json",
+            'Authorization': `Token ${token}`,
         },
-        /*'Authorization': `Token ${token}`,*/
         body: JSON.stringify(info)
     })
     .then(response => response.json())
