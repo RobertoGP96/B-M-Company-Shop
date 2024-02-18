@@ -1,4 +1,4 @@
-export function translateFilterName({name, value}){
+export function showActiveFilter({name, value}){
     switch(name){
         case 'categoria': return "categoría"
         case 'ordering': return "ordenar"

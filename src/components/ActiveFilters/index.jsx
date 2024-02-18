@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import QueryFiltersContext from "../../context/filtersContext";
 import CloseIcon from "../../assets/close-icon.svg";
-import { translateFilterName } from "../../utils/translateFiltersName";
+import { showActiveFilter } from "../../utils/showActiveFilter";
 import "./index.css";
 
 function ActiveFilters() {
@@ -14,7 +14,7 @@ function ActiveFilters() {
       <ul className="active-filters-list">
         {getAllFilters().map((filter) => (
           <li key={filter.name}>
-            <span>{translateFilterName({name: filter.name, value:filter.value})}</span>
+            <span>{showActiveFilter({name: filter.name, value:filter.value})}</span>
             <button onClick={() => removeFilter(filter.name)}>
               <img src={CloseIcon} alt="close" />
             </button>
