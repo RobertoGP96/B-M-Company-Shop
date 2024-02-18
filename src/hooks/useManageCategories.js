@@ -1,10 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getCategories } from "../services/getCategories";
 import { deleteCategories } from "../services/ManageCategories/deleteCategories";
 import { createCategory } from "../services/ManageCategories/createCategory";
 import { updateCategory } from "../services/ManageCategories/updateCategory";
+import AuthenticationContext from '../context/authenticationContext.jsx'
 
 export function useManageCategories({toastRef, searchParams, setUpdateProducts, setSelectedCategories, removeAllFilters, setCategoryFormProperties}) {
+  const {auth} = useContext(AuthenticationContext)
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoading] = useState(false);
   const [updateCategories, setUpdateCategories] = useState(false); //state to mark when to re-fetch the Categories
@@ -47,7 +49,7 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
   //delete one product by its id
   function handleDeleteCategory(categoryId) {
     setLoading(true);
-    deleteCategories({ categories: [categoryId] })
+    deleteCategories({ categories: [categoryId], token:auth.token })
       .then((res) => {
         handleSetUpdateCategories()
         setSelectedCategories([])
@@ -73,7 +75,7 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
             //create a list only with the ids
             const categoriesId = categories.map(category => category.id)
             setLoading(true);
-            deleteCategories({ categories: categoriesId })
+            deleteCategories({ categories: categoriesId, token:auth.token })
               .then((res) => {
                 handleSetUpdateCategories()
                 setSelectedCategories([])
@@ -107,7 +109,7 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
       }
       else{
         setLoading(true)
-        createCategory({name:name, img:img})
+        createCategory({name:name, img:img, token:auth.token})
         .then(res => {
           setUpdateCategories(prev => !prev)
           setSelectedCategories([])
@@ -136,7 +138,7 @@ export function useManageCategories({toastRef, searchParams, setUpdateProducts, 
       }
       else{
         setLoading(true)
-        updateCategory({id:id, name:name, img:img})
+        updateCategory({id:id, name:name, img:img, token:auth.token})
         .then(res => {
           setUpdateCategories(prev => !prev)
           setSelectedCategories([])

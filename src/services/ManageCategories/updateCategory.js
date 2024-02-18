@@ -1,6 +1,6 @@
 import { URL_MANAGE_CATEGORIES } from "../../settings"
 
-export function updateCategory({id, name, img}){
+export function updateCategory({id, name, img, token}){
     let formData = new FormData();
     formData.append('nombre', name);
     img !== undefined ? formData.append('img', img):null
@@ -8,7 +8,7 @@ export function updateCategory({id, name, img}){
         fetch(`${URL_MANAGE_CATEGORIES}${id}/`,{
             method: 'PUT',
             headers: {
-                //Authorization: `Token ${token}`,
+                Authorization: `Token ${token}`,
             },
             body:formData
         })
