@@ -5,11 +5,13 @@ import CategoryIcon from "../../assets/category-icon.svg";
 import CategoriesList from "./CategoriesList";
 import { Dialog } from "primereact/dialog";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
+import PromotionsModal from "../PromotionsModal";
 import "./index.css";
 
-function CategorieSideBar({forceMobileMode = false, loading, categories, showPromotionsModal}) {
+function CategorieSideBar({forceMobileMode = false, loading, categories, promotions, loadingPromotions}) {
   const {mobileMode} = useIsMobileMode({forceMobileMode:forceMobileMode})
   const [showModal, setShowModal] = useState(false);
+  const [showPromotionsModal, setShowPromotionsModal] = useState(false)
   const [activeCategory, setActiveCategory] = useState(null);
   const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFilterContext);
 
@@ -30,6 +32,12 @@ function CategorieSideBar({forceMobileMode = false, loading, categories, showPro
 
   return (
     <>
+      <PromotionsModal
+          show={showPromotionsModal}
+          setShow={setShowPromotionsModal}
+          promotions={promotions}
+          loadingPromotions={loadingPromotions}
+        />
       {forceMobileMode === true || mobileMode === true? (
         <section className="mobile-mode-categories-container">
           <h3 className="h3-title">Productos</h3>
@@ -61,7 +69,7 @@ function CategorieSideBar({forceMobileMode = false, loading, categories, showPro
                   setFilter={setFilter}
                   removeFilter={removeFilter}
                   activeCategory={activeCategory}
-                  showPromotionsModal = {showPromotionsModal}
+                  showPromotionsModal = {setShowPromotionsModal}
                   getActiveFilter = {getActiveFilter}
                 />
             </Dialog>
@@ -74,7 +82,7 @@ function CategorieSideBar({forceMobileMode = false, loading, categories, showPro
             setFilter={setFilter}
             removeFilter={removeFilter}
             activeCategory={activeCategory}
-            showPromotionsModal = {showPromotionsModal}
+            showPromotionsModal = {setShowPromotionsModal}
             getActiveFilter = {getActiveFilter}
           />
       )}

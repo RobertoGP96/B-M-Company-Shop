@@ -7,7 +7,6 @@ import ProductDetails from "../components/ProductDetails";
 import { useState, useEffect } from "react";
 import { useGetCategories } from "../hooks/useGetCategories";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
-import PromotionsModal from "../components/PromotionsModal";
 import ActiveFilters from "../components/ActiveFilters";
 
 function Store() {
@@ -15,7 +14,6 @@ function Store() {
   const [data, setdata] = useState([]);
   const { categories, loading } = useGetCategories();
   const { promotions, loadingPromotions } = useGetPromotions();
-  const [showPromotionsModal, setShowPromotionsModal] = useState(false);
 
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
@@ -35,16 +33,11 @@ function Store() {
       <aside>
         <CategorieSideBar
           loading={loading}
+          loadingPromotions={loadingPromotions}
           categories={categories}
-          showPromotionsModal = {setShowPromotionsModal}
+          promotions={promotions}
         />
       </aside>
-      <PromotionsModal
-        show={showPromotionsModal}
-        setShow={setShowPromotionsModal}
-        promotions={promotions}
-        loadingPromotions={loadingPromotions}
-      />
       <search>
         <section className="search-product">
           <h3>Productos</h3>
