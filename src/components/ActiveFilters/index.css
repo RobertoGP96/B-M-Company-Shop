@@ -1,10 +1,9 @@
 .active-filters-container{
-    margin: 0 auto;
+    width: 100%;
     text-align: start!important;
     display: flex;
     flex-direction: row;
     font-family: Noto Sans;
-    justify-content: center;
     align-items: center;
 }
 
@@ -69,13 +68,6 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-@media (width > 830px){
-    .active-filters-container{
-        width: 80%;
-        padding-left: 10px;
-    }
 }
 
 @media (width < 510px) {

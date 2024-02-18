@@ -55,7 +55,9 @@ function Store() {
         </section>
       </search>
       <main>
-        <ActiveFilters/>
+        <div className = "store-page-active-filters-component-container">
+          <ActiveFilters/>
+        </div>
         <ProductsGrid activateProductdetails={handleOnactivateProductdetails} />
       </main>
       <ProductDetails

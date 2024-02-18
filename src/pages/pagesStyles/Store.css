@@ -56,6 +56,18 @@
     gap:10px;
 }
 
+/*active filters container*/
+.store-page-active-filters-component-container{
+    margin: 0 auto;
+}
+
+@media (width > 830px){
+    .store-page-active-filters-component-container{
+        width: 80%;
+        padding-left: 10px;
+    }
+}
+
 @media (width < 830px) {
     .store-page{
         grid-template-areas: 
