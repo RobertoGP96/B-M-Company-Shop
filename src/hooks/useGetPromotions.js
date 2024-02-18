@@ -9,7 +9,7 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
     //get promotions of store
     useEffect(() => {
         setLoading(true);
-        getPromotions(searchParams)
+        getPromotions(searchParams,auth.token)
         .then((data) => {
             setPromotions(data);
             console.log(data);
