@@ -1,19 +1,23 @@
 import "./index.css";
 import { Dropdown } from "primereact/dropdown";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import QueryFiltersContext from "../../context/filtersContext";
 import { orderingValues } from "../../constants";
 
 function OrderingProducts() {
-  const { setFilter, getActiveFilter } = useContext(QueryFiltersContext);
-  const [ordering, setOrdering] = useState(
-    orderingValues.find((value) => value.code === getActiveFilter("ordering"))
-  );
+  const { searchParams, setFilter, getActiveFilter, removeFilter } = useContext(QueryFiltersContext);
+  const [ordering, setOrdering] = useState();
 
+  //update the ordering filter value
   function handleSetOrdering(value) {
-    setFilter({ name: "ordering", value: value.code });
-    setOrdering(value);
+    value.code == ""?removeFilter("ordering"):setFilter({ name: "ordering", value: value.code });
   }
+
+  //get the currrent ordering filter value from the searchParams context
+  useEffect(() => {
+    setOrdering(orderingValues.find((value) => value.code == getActiveFilter("ordering")))
+  },[searchParams])
+
   return (
     <Dropdown
       value={ordering}

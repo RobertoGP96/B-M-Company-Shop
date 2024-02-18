@@ -1,19 +1,18 @@
 import Loader from "../../Loader";
 import "./index.css";
-import CloseIcon from '../../../assets/close-icon.svg'
 
 function CategoriesList({
   categories,
   loading,
   setActiveCategory,
   setFilter,
+  removeFilter,
   activeCategory,
   showPromotionsModal,
-  getActiveFilter
 }) {
   return (
     <section className="categories-side-bar">
-      <h2>Categorias</h2>
+      <h2>Categorías</h2>
       {loading ? (
         <div className="categories-loader-container">
           <Loader />
@@ -24,7 +23,7 @@ function CategoriesList({
             className={activeCategory === "" ? "category-selected" : null}
             onClick={() => {
               setActiveCategory("");
-              setFilter({ name: "categoria", value: "" });
+              removeFilter("categoria");
             }}
           >
             <span>Todas</span>
@@ -47,9 +46,6 @@ function CategoriesList({
           ))}
           <li className="ofers-category">
             <span onClick = {() => showPromotionsModal(true)}>Ofertas</span>
-            {getActiveFilter("promotion") !== ""?
-              <div className = "clear-promotion-filter" onClick = {() => setFilter({name: "promotion", value:""})}><img src = {CloseIcon} alt = "close"/></div>:<div></div>
-            }
           </li>
         </ul>
       )}

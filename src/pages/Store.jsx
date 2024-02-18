@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useGetCategories } from "../hooks/useGetCategories";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
 import PromotionsModal from "../components/PromotionsModal";
+import ActiveFilters from "../components/ActiveFilters";
 
 function Store() {
   const [activeProductDetails, setActiveProductDetails] = useState(false);
@@ -54,6 +55,7 @@ function Store() {
         </section>
       </search>
       <main>
+        <ActiveFilters/>
         <ProductsGrid activateProductdetails={handleOnactivateProductdetails} />
       </main>
       <ProductDetails

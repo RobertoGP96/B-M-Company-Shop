@@ -47,7 +47,6 @@
     justify-content: center;
     align-items: center;
     gap:10px;
-    padding-left: 30px;
 }
 
 .ofers-category span{
@@ -56,18 +55,4 @@
     font-weight: 500 !important;
     font-size: 18px;
     font-style: normal;
-}
-
-.ofers-category div{
-    width: 20px;
-    height: 20px;
-}
-
-.ofers-category .clear-promotion-filter{
-    background-color: rgba(90, 86, 86, 0.767);
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
 }

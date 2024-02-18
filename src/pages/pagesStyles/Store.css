@@ -22,6 +22,7 @@
 }
 .store-page main{
     grid-area: content;
+    height: auto;
 }
 
 .search-product{
