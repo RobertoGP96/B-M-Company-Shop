@@ -5,7 +5,12 @@ import OrderingProducts from "../../OrderingProducts";
 import CategorieSideBar from "../../CategorieSideBar";
 import "./index.css";
 
-function FiltersModal({categories, loadingCategories}) {
+function FiltersModal({
+  categories,
+  loadingCategories,
+  promotions,
+  loadingPromotions,
+}) {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -22,8 +27,8 @@ function FiltersModal({categories, loadingCategories}) {
         visible={showModal}
         position="top"
         showHeader={false}
-        draggable = {false}
-        resizable = {false}
+        draggable={false}
+        resizable={false}
       >
         <button
           className="close-modal-button btn-general-styles"
@@ -32,7 +37,13 @@ function FiltersModal({categories, loadingCategories}) {
           X
         </button>
         <OrderingProducts />
-        <CategorieSideBar forceMobileMode={true} categories={categories} loading={loadingCategories}/>
+        <CategorieSideBar
+          forceMobileMode={true}
+          categories={categories}
+          loading={loadingCategories}
+          promotions={promotions}
+          loadingPromotions={loadingPromotions}
+        />
       </Dialog>
     </section>
   );

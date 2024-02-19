@@ -4,14 +4,14 @@ import QueryFiltersContext from '../../context/filtersContext';
 import SearchIcon from '../../assets/search-icon.svg'
 
 function Search() {
-    const {setFilter, getActiveFilter} = useContext(QueryFiltersContext)
+    const {setFilter, getActiveFilter, removeFilter} = useContext(QueryFiltersContext)
     const [mounted, setMounted] = useState(false)
     const [searchingValue, setSearchingValue] = useState(getActiveFilter("search"))
 
     //search the product when the user ends writting on the search form
     useEffect(() => {
         if(mounted){
-            let timeOut = setTimeout(() => setFilter({name: "search", value:searchingValue}), 500)
+            let timeOut = setTimeout(() => {searchingValue == ""?removeFilter("search"):setFilter({name: "search", value:searchingValue})}, 500)
             return () => clearTimeout(timeOut)
         }
         else{

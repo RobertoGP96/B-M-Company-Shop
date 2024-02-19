@@ -22,7 +22,7 @@ function ProductsManagmentFiltersBar({
   handleDeleteMultipleProducts,
   resetProductFormProperties,
   setProductFormProperties,
-  categoryFormProperties, 
+  categoryFormProperties,
   setCategoryFormProperties,
   handleCreateCategory,
   handleUpdateCategory,
@@ -31,7 +31,8 @@ function ProductsManagmentFiltersBar({
   productFormProperties,
   handleCreateProduct,
   handleUpdateProduct,
-  promotions
+  promotions,
+  loadingPromotions,
 }) {
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   return (
@@ -46,47 +47,56 @@ function ProductsManagmentFiltersBar({
         header="Confirmación"
         icon="pi pi-exclamation-triangle"
         accept={() => handleDeleteMultipleProducts(selectedProducts)}
-        style={{maxWidth:"90%"}}
+        style={{ maxWidth: "90%" }}
       />
       <div className="search-container">
         <Search />
       </div>
       <div className="categories-managment-button-container">
-        <CategoriesManagment 
+        <CategoriesManagment
           loadingCategories={loadingCategories}
-          categories = {categories}
+          categories={categories}
           selectedCategories={selectedCategories}
           setSelectedCategories={setSelectedCategories}
-          categoryFormProperties = {categoryFormProperties}
-          setCategoryFormProperties = {setCategoryFormProperties}
-          handleCreateCategory = {handleCreateCategory}
-          handleUpdateCategory = {handleUpdateCategory}
-          handleDeleteCategory = {handleDeleteCategory}
-          handleDeleteMultipleCategories = {handleDeleteMultipleCategories}
-          />
+          categoryFormProperties={categoryFormProperties}
+          setCategoryFormProperties={setCategoryFormProperties}
+          handleCreateCategory={handleCreateCategory}
+          handleUpdateCategory={handleUpdateCategory}
+          handleDeleteCategory={handleDeleteCategory}
+          handleDeleteMultipleCategories={handleDeleteMultipleCategories}
+        />
         <ProductForm
-        productFormProperties={productFormProperties}
-        resetProductFormProperties={resetProductFormProperties}
-        handleCreateProduct = {handleCreateProduct}
-        handleUpdateProduct = {handleUpdateProduct}
-        categories={categories}
-        promotions = {promotions}
-        loading={loadingProducts}
-      />  
+          productFormProperties={productFormProperties}
+          resetProductFormProperties={resetProductFormProperties}
+          handleCreateProduct={handleCreateProduct}
+          handleUpdateProduct={handleUpdateProduct}
+          categories={categories}
+          promotions={promotions}
+          loading={loadingProducts}
+        />
       </div>
       <div className="view-toggle-container">
         <span>Vista:</span>
         <img
-          src={listView ?ViewToggleGrid: ViewToggleList}
-          onClick={() => setListView(prev => !prev)}
+          src={listView ? ViewToggleGrid : ViewToggleList}
+          onClick={() => setListView((prev) => !prev)}
         />
       </div>
       <div className="filters-modal-button-container">
-        <FiltersModal 
-        categories = {categories} loadingCategories = {loadingCategories}/>
+        <FiltersModal
+          categories={categories}
+          loadingCategories={loadingCategories}
+          promotions={promotions}
+          loadingPromotions={loadingPromotions}
+        />
       </div>
       <div className="add-product-button-container">
-        <button className="products-managment-filters-bar-button btn-general-styles" onClick={() => setProductFormProperties(prev => ({...prev,show:true}))}>
+        <button
+          className="products-managment-filters-bar-button btn-general-styles"
+          onClick={() =>
+            setProductFormProperties((prev) => ({ ...prev, show: true }))
+          }
+        >
           <img src={AddProductIcon} />
           <span>Agregar</span>
         </button>
