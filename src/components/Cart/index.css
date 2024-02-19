@@ -78,6 +78,7 @@
 .cart-action-buttons button{
     border: 1px solid black;
 }
+/*
 .cart-action-buttons button:first-child{
     background-color: rgb(162, 162, 162);
     border: 0;
@@ -86,11 +87,20 @@
 .cart-action-buttons button:nth-child(2){
     background-color: white;
 }
-.cart-action-buttons button:last-child{
-    background-color: rgb(84, 84, 84);
+*/
+.cart-action-buttons button:first-child{
+    margin-right: auto;
+}
+
+.cart-action-buttons button/*:last-child*/{
+    background-color: #545454;
     color: white;
     border: 0;
 }
+.cart-action-buttons button i{
+ margin-right: 5px;
+}
+
 
 /*Mobile*/
 @media (width < 600px) {
