@@ -5,7 +5,11 @@
   background-color: #010101;
   z-index: 10;
   width: 100%;
+<<<<<<<<< Temporary merge branch 1
+  padding-left: 0.7rem;
+=========
   position: relative;
+>>>>>>>>> Temporary merge branch 2
 }
 
 .nav-BarConteiner {
@@ -66,6 +70,13 @@ figure {
 .navbar li {
   text-decoration: none;
   cursor: pointer;
+}
+
+.logo-continer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 }
 
 .navBar-itemConteiner {

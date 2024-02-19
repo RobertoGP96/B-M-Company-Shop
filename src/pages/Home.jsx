@@ -43,7 +43,7 @@ function Home() {
               </h1>
               <p>
                 En B&M company, nos enorgullece ofrecer una amplia selección de 
-                productos de alta calidad a precios asequibles. 
+                productos de alta calidad a precios. 
                 <br/>
                 Tenemos todo lo que necesitas para satisfacer tus necesidades.  
               </p>
