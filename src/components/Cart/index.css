@@ -21,6 +21,10 @@
 }
 
 .cart-products-cont{
+    background-color: rgba(255, 0, 0, 0.788);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
     position: absolute;
     color: white;
 }
