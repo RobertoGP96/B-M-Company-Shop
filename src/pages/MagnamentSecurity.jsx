@@ -1,20 +1,19 @@
 import "./pagesStyles/MagnamentOfertsAndSecurity.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef,useContext } from "react";
 import useWindowSize from "../hooks/useWindowSize";
 import { getPromotions } from "../services/ManagePromotions/getPromotions";
 import InfoUser from "../components/UserManagmentComponents/InfoDialogComponent/infoUser";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
 import { deletePromotions } from "../services/ManagePromotions/deletePrmotion";
 import { Toast } from "primereact/toast";
-import { useGetPromotions } from "../hooks/useGetPromotions";
 import UsersGrid from "../components/UserManagmentComponents/UserGrid";
 import PageLoader from "../components/PageLoader";
 import DataTableUsers from "../components/UserManagmentComponents/DataTableUsers";
 import SearchOferts from "../components/OfertsManagmentComponents/SearchOfertsComponent";
-import DataScrollerUsers from "../components/UserManagmentComponents/DataScrollerUser";
 import QueryFiltersContext from "../context/filtersContext";
-import { useContext } from "react";
 import { useGetUsers } from "../hooks/useGetUsers";
+import { getUsers } from "../services/ManageUser/getUsers";
+import AuthenticationContext from "../context/authenticationContext";
 
 const heaerTitle =(info) => {
   return(
@@ -27,6 +26,7 @@ const heaerTitle =(info) => {
 
 //Managment Ofert Component
 function MagnamentSecurity() {
+  const {auth} = useContext(AuthenticationContext)
   const [selectedOferts, setSelectedOferts] = useState([]);
   const mobileView = useWindowSize("max", 800);
   const [dataOferts, setDataOferts] = useState([]);
@@ -146,8 +146,8 @@ function MagnamentSecurity() {
   };
 
   const handleOnChangeData = () => {
-    getPromotions().then((promotions) => {
-      setDataOferts(promotions);
+    getUsers("",auth.token).then((users) => {
+      setDataUsers(users);
     });
   };
   const handleOnClickInfoButton = () => {
@@ -245,15 +245,15 @@ function MagnamentSecurity() {
             users={dataUsers}
           />
         :(
-          <DataScrollerUsers
-            dataUsers={dataOferts}
-            confirm2={confirm2}
+          <UsersGrid 
+            deleteConfirm={confirm2} 
             handleOnChangeChecked={handleOnChangeChecked}
             handleOnClickEditButton={handleOnClickEditButton}
             handleOnClickInfoButton={handleOnClickInfoButton}
             searchChecked={searchChecked}
-            selectedUsers={selectedOferts}
             setRowData={setRowData}
+            selectedUsers={selectedOferts}
+            users={dataUsers}
           />
         )}
       </section>

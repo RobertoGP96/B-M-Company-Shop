@@ -13,6 +13,7 @@ export function addUsers({
   state="",
   address="",
   zip_code="",
+  token
 }) {
   let formData = new FormData();
   formData.append('name', name);
@@ -30,14 +31,16 @@ export function addUsers({
   return fetch(URL_MAGNAMENT_USERS, {
     method: "POST",
     headers: {
-      //Authorization: `Token ${token}`,
+      Authorization: `Token ${token}`,
     },
     body: formData,
   }).then((response) => {
     if (response.status === 201) {
       return response.json();
     } else {
+      console.log(response);
       throw new Error("Error al crear la usuario");
+      
     }
   });
 }
