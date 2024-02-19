@@ -28,5 +28,5 @@ export function editContactInfo(info){
     })
     .then(response => response.json())
     .then(response => {return response})
-    .catch(error => console.error('Error:', error));
+    .catch(error => {});
 }

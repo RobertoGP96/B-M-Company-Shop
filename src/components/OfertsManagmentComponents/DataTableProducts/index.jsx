@@ -26,7 +26,6 @@ function DataTableProducts({
 
     useEffect(() =>{ 
       getProductsOfert(OfertID,page).then(products =>{
-        console.log(products.results);
         if(productsOFerts.length>0){
           setProductsOferts(productsOFerts.concat(products.results));
         }

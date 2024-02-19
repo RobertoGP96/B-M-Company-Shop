@@ -15,7 +15,6 @@ export function deleteProducts({products, token = ""}){
                 return response
             }
             else{
-                console.log("error")
                 throw new Error("Error al eliminar el producto")
             }
         })
