@@ -4,26 +4,45 @@
     flex-direction: row;
     line-height: normal;
     font-family: Noto Sans;
-    padding: 5px;
+    padding: 10px;
 }
 .grid-users-card-container{
-    height: 280px;
+    height: 130px;
     border-radius: 15px;
     box-shadow: 2px 5px 10px rgb(202, 201, 201);
     border-radius: 5px;
     border: 2px solid rgba(212, 212, 212, 0.209);
     position: relative;
+    background-color: rgba(128, 128, 128, 0.151);
+}
+.details-users-card-section p{
+    min-height: 20px;
+    width: 100%;
+    background-color: #d3d3d34b;
+    border-radius: 3px;
+    margin-block: 0px;
+    font-size: 14px;
 }
 
+.user-icon-card{
+    font-size: 2rem;
+    color: #545454;
 
+}
 .img-users-card-section{
-    padding:10px; 
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 15px;
+    justify-content: center;
     width: 40%; 
     margin: auto;
     min-width: 150px;
     text-align: left;
 }
-
+.img-users-card-section .p-checkbox{
+ align-self: center;
+}
 .img-grid-card-users{
     width: 75%; 
 }
@@ -49,8 +68,12 @@
     width: 45%;
     text-align: left;
     min-width: 110px;   
-    flex-direction: column; 
-    position: relative;
+    flex-direction: column;
+    gap: 5px;
+
+}
+.details-users-card-section i{
+    width: 100%;
 }
 
 .details-grid-users{
@@ -98,11 +121,7 @@
 }
 .accion-users-card-section button{
     width: 100%;
-    height: 50px;
 }
-
-
 .accion-users-card-section button i{
     font-size:medium;
 }
-

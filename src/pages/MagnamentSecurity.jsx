@@ -207,7 +207,7 @@ function MagnamentSecurity() {
         >
           <i className="pi pi-arrow-left" ></i>
         </button>
-        <h1>Gestión de Usuarios</h1>
+        <h1 className="management-user-title">Gestión de Usuarios</h1>
       </header>
       {/* Seccion de la barra de busqueda */}
       <SearchOferts

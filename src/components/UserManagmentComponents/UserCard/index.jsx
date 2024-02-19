@@ -14,15 +14,16 @@ function UserCard({
   return (
     <section className="users-card-container grid-users-card-container">
       <div className="img-users-card-section img-grid-card-users">
-        <div className="details-users-card-section details-grid-users">
-          <p className="mame-users p-grid-card-users">{data.name}</p>
-          <p className="mame-users p-grid-card-users">{data.last_name}</p>
-          <p className="total-products-users">{`Usuario: ${data.username}`}</p>
-        </div>
-        <Checkbox
+      <Checkbox
           checked={searchChecked(selectedUsers, data.id)}
           onChange={() => handleOnChangeChecked(selectedUsers, data)}
         />
+        <div className="details-users-card-section details-grid-users">
+          <i className="pi pi-user user-icon-card"></i>
+          <p className="">{data.name} {data.last_name}</p>
+          <p className=""><small>Usuario:</small>{data.username}</p>
+        </div>
+        
       </div>
       <div className="accion-users-card-section grid-accion-users" >
         <button
