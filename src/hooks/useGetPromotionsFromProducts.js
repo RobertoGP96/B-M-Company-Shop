@@ -13,7 +13,7 @@ export function useGetPromotions() {
           setPromotions(data);
           setLoading(false);
         })
-        .catch((error) => {console.error(error)})
+        .catch((error) => {})
       }, []);
 
     return ( {promotions, loadingPromotions} );

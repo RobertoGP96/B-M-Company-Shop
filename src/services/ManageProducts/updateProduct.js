@@ -1,6 +1,6 @@
 import {URL_MANAGE_PRODUCTS} from "../../settings"
 
-export function updateProduct({id, values}){
+export function updateProduct({id, values, token}){
     let formData = new FormData()
     formData.append('product_name', values.product_name)
     formData.append('product_description', values.product_description)
@@ -11,7 +11,6 @@ export function updateProduct({id, values}){
     formData.append('categoria', values.categoria)
     formData.append('promotion', values.promotion)
 
-    console.log(values.promotion, values.categoria)
     if(values.product_img1 !== undefined && values.product_img1 !== null){
         formData.append('product_img1', values.product_img1)
     }
@@ -26,7 +25,7 @@ export function updateProduct({id, values}){
         fetch(`${URL_MANAGE_PRODUCTS}${id}/`,{
             method: 'PUT',
             headers: {
-                //Authorization: `Token ${token}`,
+                Authorization: `Token ${token}`,
             },
             body:formData
         })
@@ -37,7 +36,6 @@ export function updateProduct({id, values}){
             else{
                 response.json()
                 .then(data => {
-                    console.log(data)
                 })
                 throw new Error("Errror al editar el producto")
             }

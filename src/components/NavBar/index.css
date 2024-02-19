@@ -5,7 +5,7 @@
   background-color: #010101;
   z-index: 10;
   width: 100%;
-  padding-left: 0.7rem;
+  position: relative;
 }
 
 .nav-BarConteiner {
@@ -18,8 +18,8 @@
   gap: 30px;
 }
 .nav-BarConteiner-Responsive {
-  list-style: none !important;
-  padding-inline-start: 0;
+  padding-inline-start: 1.3rem;
+  justify-content: flex-end;
   margin: 0px;
   display: flex;
   list-style: none;
@@ -128,4 +128,15 @@ figure {
 
 .p-menu *{
    color: #000;
+}
+
+.cart-and-close-session-icons-container{
+  height: 100%;
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap:20px;
+  padding-right: 20px;
 }

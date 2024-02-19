@@ -114,7 +114,7 @@
     background-blend-mode: multiply;
   }
 
-.categoriest-card .name-container{
+  .categories-managment-card .name-container{
     width: 100%;
     height: 15%;
     display:flex;
@@ -139,6 +139,15 @@
     text-overflow:ellipsis;
 }
 
+.categories-managment-card .action-buttons-container{
+    width: 100%;
+    height:auto;
+    padding: 10px;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+}
+
 
 @media (width < 750px) {
     .category-managment-buttons span{
@@ -155,7 +164,7 @@
         flex-direction: column;
     }
     .category-image-field img{
-        width: 90%;
+        width: 50%;
         height: auto;
     }
 }

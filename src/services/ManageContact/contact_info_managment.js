@@ -1,4 +1,4 @@
-const CONTACT_INFO_URL = "https://bmcompanybackend.pythonanywhere.com/contact_info/"
+import {CONTACT_INFO_URL} from '../../settings.js'
 
 export function getContactInfo(){
     return fetch(CONTACT_INFO_URL, {
@@ -7,12 +7,19 @@ export function getContactInfo(){
             'Content-Type': "application/json",
         }
     })
-    .then(response => response.json())
-    .then(data => {return data.results[0]})
+    .then(response => {
+        if(response.status == 200){
+            return response.json()
+            .then(data => {return data.results[0]})
+        }else{
+            throw new Error('Error al obtener la info de contacto')
+        }
+    })
+    
 }
 
 export function editContactInfo(info){
-    return fetch(`${CONTACT_INFO_URL}/1/`, {
+    return fetch(`${CONTACT_INFO_URL}1/`, {
         method: "PUT",
         headers: {
             'Content-Type': "application/json",
@@ -21,5 +28,5 @@ export function editContactInfo(info){
     })
     .then(response => response.json())
     .then(response => {return response})
-    .catch(error => console.error('Error:', error));
+    .catch(error => {});
 }

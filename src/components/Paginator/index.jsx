@@ -12,7 +12,7 @@ function Paginator({numOfProducts, setFilter, getActiveFilter, products}) {
           nextLinkClassName = {"next-page-button"}
           previousLinkClassName = {"previous-page-button"}
           breakClassName = {'page'}
-          pageCount = {Math.ceil(numOfProducts/9)}
+          pageCount = {Math.ceil(numOfProducts/14)}
           pageRangeDisplayed = {3}
           previousLabel = {<img src = {LeftArrow}/>}
           nextLabel = {<img src = {RightArrow}/>}
