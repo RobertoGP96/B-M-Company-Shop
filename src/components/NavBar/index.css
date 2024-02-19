@@ -18,6 +18,7 @@
   gap: 30px;
 }
 .nav-BarConteiner-Responsive {
+  padding-inline-start: 1.3rem;
   justify-content: flex-end;
   margin: 0px;
   display: flex;
