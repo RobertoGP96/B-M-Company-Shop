@@ -149,13 +149,13 @@
 }
 
 
-@media (width < 750px) {
+@media (max-width: 750px) {
     .category-managment-buttons span{
         display: contents;
     }
 }
 
-@media (width < 500px) {
+@media (max-width : 500px) {
     .categories-managment-list-loader-container{
         top:40vh;
         left: 50%;

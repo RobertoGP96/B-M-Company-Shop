@@ -75,7 +75,7 @@
 
 
 
-@media   (width < 800px) {
+@media   (max-width: 800px) {
     .addProductsToOferts-container .p-dialog-content{
         max-width: 340px ;
         overflow-x: hidden;

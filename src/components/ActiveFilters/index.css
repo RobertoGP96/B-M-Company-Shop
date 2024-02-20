@@ -70,7 +70,7 @@
     cursor: pointer;
 }
 
-@media (width < 510px) {
+@media (max-width: 510px) {
     .active-filters-container{
         flex-direction: column;
         justify-content: flex-start;

@@ -82,7 +82,7 @@
     grid-area: delete-products;
 }
 
-@media (width < 1000px) {
+@media (max-width: 1000px) {
     .products-managment-filters-bar{
         grid-template-columns: repeat(4, 1fr);
         grid-template-areas: 
@@ -91,7 +91,7 @@
     }
 }
 
-@media (width < 830px) {
+@media (max-width: 830px) {
     .products-managment-filters-bar-button img{
         width:18px;
         height:20px;
@@ -107,7 +107,7 @@
     }
 }
 
-@media (width < 500px) {
+@media (max-width: 500px) {
     .products-managment-filters-bar-button span{
         display: none;
     }
