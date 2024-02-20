@@ -1,7 +1,8 @@
 import "./pagesStyles/Login.css";
 import "primeicons/primeicons.css";
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-import Logo from "../assets/B&MCshop-logo.svg";
+import Logo from "../assets/BYM logo/B&M-LOGO.svg";
+import LogoPart1 from "../assets/BYM logo/BYM-E-COMMERSE-Leter.svg";
 import {useNavigate} from "react-router-dom"
 
 import { Toast } from "primereact/toast";
@@ -50,8 +51,9 @@ function Login() {
     <section className="login-container">
       <Toast ref={toast} position="bottom-center" />
       <section className="login-section">
-        <div className="">
-          <img src={Logo} alt="" />
+        <div className="logo-container-login">
+          <img src={Logo} alt="" width={'80px'}/>
+          <img src={LogoPart1} alt="" width={'100px'}/>
         </div>
         <form action="" className="form-login" onSubmit = {(e) => login(e)}>
           <span className="p-float-label">
