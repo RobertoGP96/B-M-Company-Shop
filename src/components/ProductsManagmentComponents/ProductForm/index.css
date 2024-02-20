@@ -160,6 +160,9 @@
 
 /*Mobile*/
 @media (max-width: 540px) {
+    .product-form-dialog{
+        margin-top: 30px;
+    }
     .product-image-field{
         flex-direction: column;
         width: 60%;
