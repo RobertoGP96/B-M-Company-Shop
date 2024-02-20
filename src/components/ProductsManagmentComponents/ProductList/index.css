@@ -60,7 +60,7 @@
     background-blend-mode: multiply;
 }
 
-@media (width > 1300px){
+@media (min-width: 1300px){
     .products-managment-list-loader-container{
         left: 40vw;
     }

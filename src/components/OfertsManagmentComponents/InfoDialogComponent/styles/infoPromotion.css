@@ -334,7 +334,7 @@
 }
 
 
-@media (width < 600px){    
+@media (max-width: 600px){    
     .info-dialog-promotion {
         height: 600px !important ;
         max-height: 600px !important; 
