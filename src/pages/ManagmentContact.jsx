@@ -3,21 +3,26 @@ import "primeicons/primeicons.css";
 
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
+import { useContext } from "react";
+import { AuthenticationContext } from "../context/authenticationContext.jsx";
 
-import { getContactInfo, editContactInfo } from "../services/ManageContact/contact_info_managment";
+import {
+  getContactInfo,
+  editContactInfo,
+} from "../services/ManageContact/contact_info_managment";
 
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
-import { Toast } from 'primereact/toast';
+import { Toast } from "primereact/toast";
 
 function ManagmentContact() {
+  const { auth } = useContext(AuthenticationContext);
   const navigate = useNavigate();
 
   const [contact, setContacts] = useState([]);
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [datos, setData] = useState(false);
-  
+  const [datos, setData] = useState({});
 
   useEffect(() => {
     setLoading(true);
@@ -38,13 +43,20 @@ function ManagmentContact() {
   };
 
   const show = () => {
-    toast.current.show({ severity: 'info', summary: 'Precaución', detail: 'No se ha actulizado ningun contacto.' });
+    toast.current.show({
+      severity: "info",
+      summary: "Precaución",
+      detail: "No se ha actulizado ningun contacto.",
+    });
   };
 
-  function editContact() {
-    if(datos){
-      editContactInfo(datos).then(()=>{setSaved(true)});
-    }else{
+  function editContact(data) {
+    if (data) {
+      console.log(data)
+      editContactInfo({ info: data, token: auth.token }).then(() => {
+        setSaved(true);
+      });
+    } else {
       show();
     }
   }
@@ -67,7 +79,7 @@ function ManagmentContact() {
           action="submit"
           onSubmit={() => {
             event.preventDefault();
-            editContact(datos);
+            editContact(datos.whatsapp?datos:{ ...datos, "whatsapp": contact.whatsapp});
           }}
         >
           <ul className="ccontact-container">
