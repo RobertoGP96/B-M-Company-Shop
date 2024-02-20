@@ -89,7 +89,7 @@
 }
 
 /*Mobile*/
-@media (width < 600px) {
+@media (max-width: 600px) {
     .cart-action-buttons{
         flex-direction: column;
         align-items: flex-end;

@@ -57,14 +57,14 @@
     width: 91.5%;
 }
 
-@media (width < 500px){
+@media (max-width: 500px){
     .products-managment-page-active-filter-component-container{
         width: 95%;
         margin-top: 20px;
     }
 }
 
-@media (width < 1000px) {
+@media (max-width: 1000px) {
     .products-managment-page{
         width: 100vw;
     }

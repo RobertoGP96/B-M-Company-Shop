@@ -44,14 +44,14 @@
     height: 20px;
 }
 
-@media (width > 1300px){
+@media (min-width: 1300px){
     .products-grid{
         width: 80%;
     }
 }
 
 /*Mobile*/
-@media (width < 830px){
+@media (max-width: 830px){
     .next-page-button{
         margin:0
     }
