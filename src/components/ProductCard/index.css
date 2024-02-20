@@ -129,11 +129,11 @@
     font-weight: 500;
     line-height: 21.245px;
     border-radius:3px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-@media (max-width: 500px) {
-    .add-to-cart-button{
-        gap:0
-    }
-}
+
+
 

@@ -82,7 +82,7 @@ function ProductCard({
               }
             >
               <i className="pi pi-cart-plus"></i>
-              Agregar al carrito
+              <span>Agregar al carrito</span>
             </button>
           )}
         </div>
