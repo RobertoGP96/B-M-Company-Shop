@@ -70,18 +70,21 @@ function Cart() {
                 className="btn-general-styles"
                 onClick={() => cleanCart()}
               >
+                <i className="pi pi-trash"></i>
                 Vaciar Carrito
               </button>
               <button
                 className="btn-general-styles"
                 onClick={() => setShow(false)}
               >
+                <i className="pi pi-times"></i>
                 Cancelar
               </button>
               <button
                 className="btn-general-styles"
                 onClick={() => handleSendPedido()}
               >
+                <i className="pi pi-check"></i>
                 Procesar Pedido
               </button>
             </section>

@@ -15,7 +15,6 @@ export function deleteProductsToPromotion({products,id, token}){
                 return response
             }
             else{
-                console.log("error")
                 throw new Error("Error")
             }
         })

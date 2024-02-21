@@ -12,7 +12,6 @@ export function useGetPromotions({searchParams, setNumOfPromotions,setPromotions
         getPromotions(searchParams,auth.token)
         .then((data) => {
             setPromotions(data);
-            console.log(data);
             changePromotions(data);
             setNumOfPromotions(data.count);
             setLoading(false);

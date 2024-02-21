@@ -159,9 +159,11 @@
 }
 
 /*Mobile*/
-@media (width < 500px) {
+@media (width < 540px) {
     .product-image-field{
         flex-direction: column;
+        width: 60%;
+        margin: 0 auto;
     }
     .product-image-field img{
         width: 100%;

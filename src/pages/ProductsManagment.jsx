@@ -13,6 +13,7 @@ import { useManageCategories } from "../hooks/useManageCategories";
 import { getInitialValues, createProductInitialValues } from "../utils/productInitialValues";
 import { useIsMobileMode } from "../hooks/useIsMobileMode";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
+import ActiveFilters from '../components/ActiveFilters'
 
 function ProductsManagment() {
   const toast = useRef(null);
@@ -20,7 +21,7 @@ function ProductsManagment() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [listView, setListView] = useState(true);
   const {mobileMode} = useIsMobileMode({mobileWidth:840})
-  const {promotions} = useGetPromotions()
+  const {promotions, loadingPromotions} = useGetPromotions()
   const { searchParams, setFilter, getActiveFilter, removeAllFilters } =
   useContext(QueryFiltersContext);
 
@@ -154,7 +155,11 @@ function ProductsManagment() {
         handleCreateProduct = {handleCreateProduct}
         handleUpdateProduct = {handleUpdateProduct}
         promotions = {promotions}
+        loadingPromotions = {loadingPromotions}
       />
+      <div className = "products-managment-page-active-filter-component-container">
+        <ActiveFilters/>
+      </div>
       {listView?
       <ProductList
         products={products}

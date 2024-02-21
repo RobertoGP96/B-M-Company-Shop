@@ -57,7 +57,6 @@ function InfoPromotion({
   }, [data, visible ? visible : undefined]);
 
   const handleOnchange = (value, campo) => {
-    console.log(value);
     var InfoDataCopy = { ...infoData };
     InfoDataCopy[campo] = value;
     setInfoData(InfoDataCopy);
