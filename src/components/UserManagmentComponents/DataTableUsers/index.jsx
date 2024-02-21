@@ -33,7 +33,7 @@ const statusTamplate = (data) => {
 function DataTableUsers({
   dataUsers,
   selectedUSers,
-  setelectedUSers,
+  setSelectedUSers,
   setRowData,
   handleOnClickEditButton,
   handleOnClickInfoButton,
@@ -84,7 +84,7 @@ function DataTableUsers({
       size="small"
       scrollable={true}
       onSelectionChange={(e) => {
-        setelectedUSers(e.value);
+        setSelectedUSers(e.value);
       }}
       selection={selectedUSers}
     >
@@ -106,7 +106,7 @@ function DataTableUsers({
       <Column
         className={"column-users-field"}
         body={statusTamplate}
-        field="active"
+        field="is_active"
         header="Estado"
         headerStyle={headerTableStyle}
       ></Column>

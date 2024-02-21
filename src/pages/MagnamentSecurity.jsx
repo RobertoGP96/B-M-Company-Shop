@@ -37,7 +37,6 @@ function MagnamentSecurity() {
   const toast = useRef(null);
   const [mounted, setMounted] = useState(false)
   const [viewMode,setViewMode] = useState("table")
-  const [numOfOferts, setNumOferts] = useState(0) 
   const {searchParams, setFilter, getActiveFilter} = useContext(QueryFiltersContext)
   const [search,setSearch] = useState(getActiveFilter("search"))
   // Useeffect hook for getting ofert data from server
@@ -106,9 +105,9 @@ function MagnamentSecurity() {
       acceptClassName: "p-button-danger",
       accept: () => {
         setLoading(true);
-        deleteUser({ id:id,token:auth.token }).then(() => {
-          getUsers("",auth.token).then((result) => {
-            setDataUsers(result.results);
+        deleteUser({ users:[id],token:auth.token }).then(() => {
+          getUsers("",auth.token).then((users) => {
+            setDataUsers(users.results);
             setLoading(false);
             show("Eliminación completada","success");
           });
@@ -121,31 +120,31 @@ function MagnamentSecurity() {
   };
 
   const confirmAll = (data) => {
-    // var dataId=[];
-    // for (var i = 0; i < data.length; i++) {
-    //     dataId.push(data[i].id);
-    // } 
-    // confirmDialog({
-    //   message: "Esta seguro que desea eliminar?",
-    //   header: "Confirmar Eliminación",
-    //   icon: "pi pi-info-circle",
-    //   acceptClassName: "p-button-danger",
-    //   accept: () => {
-    //     deleteUseres({ users: dataId }).then(() => {
-    //       getUsers("",auth.token).then((result) => {
-    //         setDataUsers(result.results);
-    //         show("Eliminación completada","success");
-    //       });
-    //       setSelectedUsers([])
-    //     }); 
-    //   },
-    //   reject: () => {},
-    // });
+    var dataId=[];
+    for (var i = 0; i < data.length; i++) {
+        dataId.push(data[i].id);
+    } 
+    confirmDialog({
+      message: "Esta seguro que desea eliminar?",
+      header: "Confirmar Eliminación",
+      icon: "pi pi-info-circle",
+      acceptClassName: "p-button-danger",
+      accept: () => {
+        deleteUser({ users: dataId,token:auth.token }).then(() => {
+          getUsers("",auth.token).then((result) => {
+            setDataUsers(result.results);
+            show("Eliminación completada","success");
+          });
+          setSelectedUsers([])
+        }); 
+      },
+      reject: () => {},
+    });
   };
 
   const handleOnChangeData = () => {
     getUsers("",auth.token).then((users) => {
-      setDataUsers(users);
+      setDataUsers(users.results);
     });
   };
   const handleOnClickInfoButton = () => {
@@ -230,6 +229,7 @@ function MagnamentSecurity() {
             handleOnClickEditButton={handleOnClickEditButton}
             setRowData={setRowData}
             handleOnClickInfoButton={handleOnClickInfoButton}
+            setSelectedUSers={setSelectedUsers}
           />
         ) : viewMode =="grid"?
           <UsersGrid 

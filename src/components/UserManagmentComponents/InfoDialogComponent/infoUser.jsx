@@ -22,14 +22,14 @@ function InfoUser({
     email: "",
     username: "",
     name: "",
-    last_name: null,
+    last_name: "",
     is_staff: true,
     is_active: true,
-    phone: null,
-    country: null,
-    state: null,
-    address: null,
-    zip_code: null,
+    phone: "",
+    country: "",
+    state: "",
+    address: "",
+    zip_code: "",
     password: "",
     country:""
   });
@@ -44,11 +44,11 @@ function InfoUser({
     }
   }, [visible]);
 
-  //useEffect(() => {
-  //  if (data !== null) {
-  //    setInfoData(data);
-  //  }
-  //}, [data, visible ? visible : undefined]);
+  useEffect(() => {
+   if (data !== null && accion !== "create") {
+     setInfoData(data);
+   }
+  }, [data, visible ? visible : undefined]);
 
   const handleOnchange = (value, campo) => {
     var InfoDataCopy = { ...infoData };
@@ -84,7 +84,6 @@ function InfoUser({
         header={heaerTitle}
         onHide={() => {
           onHide();
-          setselectedUsers([]);
         }}
       >
         <form
@@ -116,7 +115,12 @@ function InfoUser({
                 show("Accion completada", "success");
                 setPageLoad(false);
                 onHide();
+          
+              }).catch((err) => {
+                  console.log(err);
+
               });
+              
             }
           }}
           className="info-dialog-form-user"
@@ -313,7 +317,6 @@ function InfoUser({
               onClick={(e) => {
                 e.preventDefault();
                 onHide();
-                setProductsOferts([]);
               }}
             >
               Cancelar

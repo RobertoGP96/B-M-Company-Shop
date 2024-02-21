@@ -15,22 +15,8 @@ export function addUsers({info,token
     } else {
       return response.json()
       .then((responseData) => {
-
-              console.log(responseData)
-              console.log(username,
-                email,
-                password,
-                name,
-                last_name,
-                is_staff,
-                is_active,
-                phone,
-                country,
-                state,
-                address,
-                zip_code,
-                token,)
-      throw new Error("Error al crear la usuario");
+        console.log(responseData);
+      throw new Error(responseData);
       });
 
     }
