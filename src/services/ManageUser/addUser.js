@@ -39,7 +39,6 @@ export function addUsers({
     if (response.status === 201) {
       return response.json();
     } else {
-      console.log(response);
       throw new Error("Error al crear la usuario");
     }
   });

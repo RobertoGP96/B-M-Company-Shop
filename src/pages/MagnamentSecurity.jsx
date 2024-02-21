@@ -54,8 +54,7 @@ function MagnamentSecurity() {
     else{
         setMounted(true)
     }
-},[search])
-
+},[search]) 
 
   //Function for show delete messange when ofert is deleted
   const show = (detail,severity) => {

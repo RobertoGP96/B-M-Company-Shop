@@ -201,7 +201,7 @@ function InfoUser({
                           type="password"
                           defaultValue={infoData.password}
                           onChange={(e) =>
-                            handleOnchange(e.target.value, "email")
+                            handleOnchange(e.target.value, "password")
                           }
                           required
                         />
@@ -216,7 +216,7 @@ function InfoUser({
                           type="password"
                           defaultValue={infoData.password}
                           onChange={(e) =>
-                            handleOnchange(e.target.value, "email")
+                            handleOnchange(e.target.value, "password")
                           }
                           required
                         />
