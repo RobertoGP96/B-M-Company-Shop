@@ -26,6 +26,7 @@ function InfoUser({
     is_active: false,
     is_staff: false,
     password: "",
+    country:""
   });
   const [passwordModalStatus, setPasswordModalStatus] = useState(false);
   const {auth} = useContext(AuthenticationContext)
@@ -109,13 +110,18 @@ function InfoUser({
             } else {
               addUsers({
                 name: infoData.name,
+                username: infoData.username,
+                address: infoData.address,
+                country: infoData.country,
                 email: infoData.email,
+                is_active: true,
                 is_staff: infoData.is_staff,
-                last_name: infoData.last_name,
-                username:infoData.username,
+                last_name: infoData.last,
                 password: infoData.password,
-                token:auth.token
-                
+                phone: infoData.phone,
+                state : infoData.state,
+                zip_code: infoData.zip_code,
+                token: auth.token
               }).then(() => {
                 onSave();
                 show("Accion completada", "success");
