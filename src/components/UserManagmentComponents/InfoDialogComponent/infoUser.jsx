@@ -19,17 +19,22 @@ function InfoUser({
   mobileSize,
 }) {
   const [infoData, setInfoData] = useState({
-    name: "",
-    last_name: "",
-    username: "",
     email: "",
-    is_active: false,
-    is_staff: false,
+    username: "",
+    name: "",
+    last_name: null,
+    is_staff: true,
+    is_active: true,
+    phone: null,
+    country: null,
+    state: null,
+    address: null,
+    zip_code: null,
     password: "",
     country:""
   });
   const [passwordModalStatus, setPasswordModalStatus] = useState(false);
-  const {auth} = useContext(AuthenticationContext)
+  const { auth } = useContext(AuthenticationContext);
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
       document.body.style.overflow = visible ? "hidden" : "auto";
@@ -39,14 +44,13 @@ function InfoUser({
     }
   }, [visible]);
 
-  useEffect(() => {
-    if (data !== null) {
-      setInfoData(data);
-    }
-  }, [data, visible ? visible : undefined]);
+  //useEffect(() => {
+  //  if (data !== null) {
+  //    setInfoData(data);
+  //  }
+  //}, [data, visible ? visible : undefined]);
 
   const handleOnchange = (value, campo) => {
-    console.log(value);
     var InfoDataCopy = { ...infoData };
     InfoDataCopy[campo] = value;
     setInfoData(InfoDataCopy);
@@ -104,25 +108,10 @@ function InfoUser({
               //   setProductsOferts([])
               // })
               // .catch((err) => {
-
               // })
               // ;
             } else {
-              addUsers({
-                name: infoData.name,
-                username: infoData.username,
-                address: infoData.address,
-                country: infoData.country,
-                email: infoData.email,
-                is_active: true,
-                is_staff: infoData.is_staff,
-                last_name: infoData.last,
-                password: infoData.password,
-                phone: infoData.phone,
-                state : infoData.state,
-                zip_code: infoData.zip_code,
-                token: auth.token
-              }).then(() => {
+              addUsers({ info: infoData, token: auth.token }).then(() => {
                 onSave();
                 show("Accion completada", "success");
                 setPageLoad(false);
@@ -163,7 +152,9 @@ function InfoUser({
                     <input
                       type="text"
                       defaultValue={infoData.last_name}
-                      onChange={(e) => handleOnchange(e.target.value, "last_name")}
+                      onChange={(e) =>
+                        handleOnchange(e.target.value, "last_name")
+                      }
                       required
                     />
                   </div>
@@ -196,8 +187,8 @@ function InfoUser({
                     />
                   </div>
                 </div>
-                {
-                  accion == "create" &&  <>
+                {accion == "create" && (
+                  <>
                     <div className="input-info-dialog">
                       <div className="p-dialog-container">
                         <p>Contraseña:</p>
@@ -229,7 +220,7 @@ function InfoUser({
                       </div>
                     </div>
                   </>
-                }
+                )}
 
                 <div className="input-info-dialog">
                   <div className="p-dialog-container">
