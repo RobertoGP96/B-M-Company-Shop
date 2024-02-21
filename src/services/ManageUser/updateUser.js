@@ -1,8 +1,8 @@
 import { URL_MAGNAMENT_USERS } from "../../settings";
 
-export function updateUser({info,token
+export function updateUser({id,info,token
 }) {
-  return fetch(URL_MAGNAMENT_USERS, {
+  return fetch(`${URL_MAGNAMENT_USERS}${id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -13,8 +13,12 @@ export function updateUser({info,token
     if (response.status === 201) {
       return response.json();
     } else {
-      console.log(response)
-      throw new Error("Error al crear la usuario");
+      return response.json()
+      .then((responseData) => {
+        console.log(responseData);
+      throw new Error("error: " + responseData);
+      });
+
     }
   });
 }

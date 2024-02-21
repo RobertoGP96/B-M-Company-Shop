@@ -5,6 +5,7 @@ import { ChangePassword } from "../ChangePassword";
 import { Checkbox } from "primereact/checkbox";
 import AuthenticationContext from "../../../context/authenticationContext";
 import { addUsers } from "../../../services/ManageUser/addUser";
+import { updateUser } from "../../../services/ManageUser/updateUser";
 
 function InfoUser({
   visible,
@@ -31,7 +32,7 @@ function InfoUser({
     address: "",
     zip_code: "",
     password: "",
-    country:""
+    country: "",
   });
   const [passwordModalStatus, setPasswordModalStatus] = useState(false);
   const { auth } = useContext(AuthenticationContext);
@@ -45,9 +46,9 @@ function InfoUser({
   }, [visible]);
 
   useEffect(() => {
-   if (data !== null && accion !== "create") {
-     setInfoData(data);
-   }
+    if (data !== null && accion !== "create") {
+      setInfoData(data);
+    }
   }, [data, visible ? visible : undefined]);
 
   const handleOnchange = (value, campo) => {
@@ -91,36 +92,35 @@ function InfoUser({
             event.preventDefault();
             setPageLoad(true);
             if (accion == "update") {
-              // updateuser({
-              //   id: infoData.id,
-              //   name: infoData.name,
-              //   description: infoData.description,
-              //   discount_in_percent: infoData.discount_in_percent<=0?infoData.discount_in_percent*(-1):infoData.discount_in_percent,
-              //   active: infoData.active,
-              //   is_special: infoData.is_special,
-              //   img: img.length == 0 ? undefined : img[0],
-              // }).then(() => {
-              //   onSave();
-              //   show("Accion completada", "success");
-              //   setPageLoad(false);
-              //   onHide();
-              //   setProductsOferts([])
-              // })
-              // .catch((err) => {
-              // })
-              // ;
+              updateUser({
+                id: infoData.id,
+                info: infoData,
+                token: auth.token,
+              })
+                .then(() => {
+                  onSave();
+                  show("Accion completada", "success");
+                  setPageLoad(false);
+                  onHide();
+                })
+                .catch((err) => {
+                  console.log(err); 
+                  onSave();
+                  show("Accion completada", "success");
+                  setPageLoad(false);
+                  onHide();
+                });
             } else {
-              addUsers({ info: infoData, token: auth.token }).then(() => {
-                onSave();
-                show("Accion completada", "success");
-                setPageLoad(false);
-                onHide();
-          
-              }).catch((err) => {
+              addUsers({ info: infoData, token: auth.token })
+                .then(() => {
+                  onSave();
+                  show("Accion completada", "success");
+                  setPageLoad(false);
+                  onHide();
+                })
+                .catch((err) => {
                   console.log(err);
-
-              });
-              
+                });
             }
           }}
           className="info-dialog-form-user"
