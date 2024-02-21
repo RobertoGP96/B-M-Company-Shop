@@ -113,7 +113,7 @@ function MagnamentSecurity() {
           });
         }).catch(err => {
           setLoading(false);
-        });;
+        });
       },
       reject: () => {},
     });
