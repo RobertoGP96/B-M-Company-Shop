@@ -31,6 +31,7 @@ function InfoUser({
     address: null,
     zip_code: null,
     password: "",
+    country:""
   });
   const [passwordModalStatus, setPasswordModalStatus] = useState(false);
   const { auth } = useContext(AuthenticationContext);

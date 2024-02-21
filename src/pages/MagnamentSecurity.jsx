@@ -1,10 +1,9 @@
 import "./pagesStyles/MagnamentOfertsAndSecurity.css";
 import React, { useState, useEffect, useRef,useContext } from "react";
 import useWindowSize from "../hooks/useWindowSize";
-import { getPromotions } from "../services/ManagePromotions/getPromotions";
 import InfoUser from "../components/UserManagmentComponents/InfoDialogComponent/infoUser";
 import { ConfirmDialog, confirmDialog } from "primereact/confirmdialog";
-import { deletePromotions } from "../services/ManagePromotions/deletePrmotion";
+import { deleteUser } from "../services/ManageUser/deleteUser";
 import { Toast } from "primereact/toast";
 import UsersGrid from "../components/UserManagmentComponents/UserGrid";
 import PageLoader from "../components/PageLoader";
@@ -27,9 +26,8 @@ const heaerTitle =(info) => {
 //Managment Ofert Component
 function MagnamentSecurity() {
   const {auth} = useContext(AuthenticationContext)
-  const [selectedOferts, setSelectedOferts] = useState([]);
+  const [selectedUsers, setSelectedUsers] = useState([]);
   const mobileView = useWindowSize("max", 800);
-  const [dataOferts, setDataOferts] = useState([]);
   const [dataUsers, setDataUsers] = useState([]);
   const responsive = useWindowSize("max", 600);
   const [infoDialogStatus, setInfoDialogStatus] = useState(false);
@@ -76,20 +74,21 @@ function MagnamentSecurity() {
         return false;
     };
 
-  const handleOnChangeChecked = (oferts,data) =>{
-        if(oferts.length > 0){
-        for(let i = 0; i < oferts.length; i++) {
-            if(oferts[i] !== data){
-                copyOferts.push(oferts[i]);
+  const handleOnChangeChecked = (users,data) =>{
+    var copyUsers = []
+        if(users.length > 0){
+        for(let i = 0; i < users.length; i++) {
+            if(users[i] !== data){
+                copyUsers.push(users[i]);
             }
         }
-            if(copyOferts.length == oferts.length){ 
-                copyOferts.push(data);
+            if(copyUsers.length == users.length){ 
+              copyUsers.push(data);
             }
-            setSelectedOferts(copyOferts);
+            setSelectedUsers(copyUsers);
         }else{
-            copyOferts.push(data)
-            setSelectedOferts(copyOferts);
+          copyUsers.push(data)
+            setSelectedUsers(copyUsers);
         }
     };
 
@@ -107,9 +106,9 @@ function MagnamentSecurity() {
       acceptClassName: "p-button-danger",
       accept: () => {
         setLoading(true);
-        deletePromotions({ promotions: [id] }).then(() => {
-          getPromotions().then((result) => {
-            setDataOferts(result);
+        deleteUser({ id:id,token:auth.token }).then(() => {
+          getUsers("",auth.token).then((result) => {
+            setDataUsers(result.results);
             setLoading(false);
             show("Eliminación completada","success");
           });
@@ -122,26 +121,26 @@ function MagnamentSecurity() {
   };
 
   const confirmAll = (data) => {
-    var dataId=[];
-    for (var i = 0; i < data.length; i++) {
-        dataId.push(data[i].id);
-    } 
-    confirmDialog({
-      message: "Esta seguro que desea eliminar?",
-      header: "Confirmar Eliminación",
-      icon: "pi pi-info-circle",
-      acceptClassName: "p-button-danger",
-      accept: () => {
-        deletePromotions({ promotions: dataId }).then(() => {
-          getPromotions().then((result) => {
-            setDataOferts(result);
-            show("Eliminación completada","success");
-          });
-          setSelectedOferts([])
-        }); 
-      },
-      reject: () => {},
-    });
+    // var dataId=[];
+    // for (var i = 0; i < data.length; i++) {
+    //     dataId.push(data[i].id);
+    // } 
+    // confirmDialog({
+    //   message: "Esta seguro que desea eliminar?",
+    //   header: "Confirmar Eliminación",
+    //   icon: "pi pi-info-circle",
+    //   acceptClassName: "p-button-danger",
+    //   accept: () => {
+    //     deleteUseres({ users: dataId }).then(() => {
+    //       getUsers("",auth.token).then((result) => {
+    //         setDataUsers(result.results);
+    //         show("Eliminación completada","success");
+    //       });
+    //       setSelectedUsers([])
+    //     }); 
+    //   },
+    //   reject: () => {},
+    // });
   };
 
   const handleOnChangeData = () => {
@@ -213,7 +212,7 @@ function MagnamentSecurity() {
         confirmAll={confirmAll}
         handelOnChangeView={handelOnChangeView}
         handleOnClickCreateButton={handleOnClickCreateButton}
-        selectedOferts={selectedOferts}
+        selectedOferts={selectedUsers}
         setSearch={setSearch}
         show={show}
         responsive={responsive}
@@ -225,8 +224,8 @@ function MagnamentSecurity() {
         {!mobileView && viewMode !=="grid"? (
           <DataTableUsers
             dataUsers={dataUsers}
-            selectedUSers={selectedOferts}
-            setelectedUSers={setSelectedOferts}
+            selectedUSers={selectedUsers}
+            setelectedUSers={setDataUsers}
             confirm2={confirm2}
             handleOnClickEditButton={handleOnClickEditButton}
             setRowData={setRowData}
@@ -240,7 +239,7 @@ function MagnamentSecurity() {
             handleOnClickInfoButton={handleOnClickInfoButton}
             searchChecked={searchChecked}
             setRowData={setRowData}
-            selectedUsers={selectedOferts}
+            selectedUsers={selectedUsers}
             users={dataUsers}
           />
         :(
@@ -251,7 +250,7 @@ function MagnamentSecurity() {
             handleOnClickInfoButton={handleOnClickInfoButton}
             searchChecked={searchChecked}
             setRowData={setRowData}
-            selectedUsers={selectedOferts}
+            selectedUsers={selectedUsers}
             users={dataUsers}
           />
         )}
