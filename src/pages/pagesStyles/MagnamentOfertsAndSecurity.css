@@ -1,5 +1,3 @@
-
-
 .magnament-oferts-container{
     height: max-content;
     background-color: white;
@@ -113,4 +111,10 @@
 
 .magnament-oferts-container  .p-toast{
     scale: 0.9;
+}
+
+@media (width<550px) {
+    .management-user-title{
+        font-size: 1.2rem !important;
+    }
 }

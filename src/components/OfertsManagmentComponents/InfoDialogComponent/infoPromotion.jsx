@@ -1,5 +1,5 @@
 import "./styles/infoPromotion.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Dialog } from "primereact/dialog";
 import { updatePromotion } from "../../../services/ManagePromotions/updatePromotion";
 import { createPromotion } from "../../../services/ManagePromotions/createPromotion";
@@ -11,6 +11,7 @@ import ImagePlaceholder from "../../../assets/product_form_img_placeholder.png";
 import { deleteProductsToPromotion } from "../../../services/ManagePromotions/deleteProductsToOfert";
 import Loader from "../../Loader";
 import { getProductsOfert } from "../../../services/ManagePromotions/getProductsOfert";
+import AuthenticationContext from "../../../context/authenticationContext";
 
 function InfoPromotion({
   visible,
@@ -32,6 +33,7 @@ function InfoPromotion({
     is_special: false,
     img: "",
   });
+  const {auth} = useContext(AuthenticationContext)
   const [imgPreview, setImgPreview] = useState(infoData.img);
   const [addProductModal, setAddProductModal] = useState(false);
   const [productsOFerts, setProductsOferts] = useState([]);
@@ -135,6 +137,7 @@ function InfoPromotion({
                 active: infoData.active,
                 is_special: infoData.is_special,
                 img: img.length == 0 ? undefined : img[0],
+                token:auth.token,
               }).then(() => {
                 onSave();
                 show("Accion completada", "success");
@@ -154,6 +157,7 @@ function InfoPromotion({
                 active: infoData.active,
                 is_special: infoData.is_special,
                 img: img.length == 0 ? undefined : img[0],
+                token:auth.token,
               }).then(() => {
                 onSave();
                 show("Accion completada", "success");
@@ -313,7 +317,7 @@ function InfoPromotion({
                         onClick={(e) => {
                           e.preventDefault();
                           if(selectedProducts.length > 0) {
-                          deleteProductsToPromotion({products:selectedProducts,id:data.id}).then(() => {
+                          deleteProductsToPromotion({products:selectedProducts,id:data.id,token:auth.token}).then(() => {
                             getProductsOfert(data.id).then((products) =>{
                               setLoading(true);
                               setProductsOferts(products.results)

@@ -1,7 +1,7 @@
-import { URL_MANAGE_PROMOTIONS } from "../../settings"
+import { URL_MAGNAMENT_USERS } from "../../settings"
 
-export function getPromotions(filters='',token) {
-  return fetch(`${URL_MANAGE_PROMOTIONS}?${filters}`,{
+export function getUsers(filters='',token) {
+  return fetch(`${URL_MAGNAMENT_USERS}?${filters}`,{
     method: "GET",
     headers: {
       'Content-Type': "application/json",

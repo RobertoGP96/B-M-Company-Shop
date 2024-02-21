@@ -15,6 +15,7 @@ import DataScrollerOferts from "../components/OfertsManagmentComponents/DataScro
 import Paginator from "../components/Paginator";
 import QueryFiltersContext from "../context/filtersContext";
 import { useContext } from "react";
+import AuthenticationContext from "../context/authenticationContext";
 
 const heaerTitle =(info) => {
   return(
@@ -43,7 +44,7 @@ function MagnamentOferts() {
   const [search,setSearch] = useState(getActiveFilter("search"))
   // Useeffect hook for getting ofert data from server
   const { loading,setLoading } = useGetPromotions({searchParams:searchParams,promotions:dataOferts,setPromotions:setDataOferts,setNumOfPromotions:setNumOferts})
-
+  const {auth} = useContext(AuthenticationContext)
 
   useEffect(() => {
     if(mounted){
@@ -108,8 +109,8 @@ function MagnamentOferts() {
       acceptClassName: "p-button-danger",
       accept: () => {
         setLoading(true);
-        deletePromotions({ promotions: [id] }).then(() => {
-          getPromotions().then((result) => {
+        deletePromotions({ promotions: [id],token:auth.token }).then(() => {
+          getPromotions("",auth.token,).then((result) => {
             setDataOferts(result);
             setLoading(false);
             show("Eliminación completada","success");
@@ -133,8 +134,8 @@ function MagnamentOferts() {
       icon: "pi pi-info-circle",
       acceptClassName: "p-button-danger",
       accept: () => {
-        deletePromotions({ promotions: dataId }).then(() => {
-          getPromotions().then((result) => {
+        deletePromotions({ promotions: dataId,token:auth.token}).then(() => {
+          getPromotions("",auth.token).then((result) => {
             setDataOferts(result);
             show("Eliminación completada","success");
           });
@@ -146,7 +147,7 @@ function MagnamentOferts() {
   };
 
   const handleOnChangeData = () => {
-    getPromotions().then((promotions) => {
+    getPromotions("",auth.token).then((promotions) => {
       setDataOferts(promotions);
     });
   };
