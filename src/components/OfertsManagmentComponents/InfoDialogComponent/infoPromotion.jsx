@@ -317,7 +317,7 @@ function InfoPromotion({
                         onClick={(e) => {
                           e.preventDefault();
                           if(selectedProducts.length > 0) {
-                          deleteProductsToPromotion({products:selectedProducts,id:data.id}).then(() => {
+                          deleteProductsToPromotion({products:selectedProducts,id:data.id,token:auth.token}).then(() => {
                             getProductsOfert(data.id).then((products) =>{
                               setLoading(true);
                               setProductsOferts(products.results)

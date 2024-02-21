@@ -11,6 +11,7 @@ export function deleteProductsToPromotion({products,id, token}){
             body: JSON.stringify({products:products})
         })
         .then(response => {
+            console.log(products)
             if(response.status == 200){
                 return response
             }
