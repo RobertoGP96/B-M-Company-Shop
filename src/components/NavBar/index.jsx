@@ -20,7 +20,7 @@ import CloseSession from "../CloseSession";
 
 function NavBar() {
   const navigate = useNavigate();
-  const responsive = useWindowSize("min", 1000);
+  const responsive = useWindowSize("min", 1030);
   const [visible, setVisible] = useState(false);
   const refActive = useRef(null);
   const { pathname } = useLocation();
