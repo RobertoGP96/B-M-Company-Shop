@@ -2,7 +2,8 @@ import './index.css';
 import { Sidebar } from "primereact/sidebar";
 import useWindowSize from '../../hooks/useWindowSize';
 import ImageCarousel from '../ImageCarousel';
-
+import { applyDiscount } from '../../utils/applyDiscount';
+import InOffertIcon from "../../assets/in-offert-icon.svg";
 const style = {
     backdropFilter: "blur(1px)",  
     backgroundColor: "transparent !important",
@@ -34,12 +35,29 @@ function ProductDetails ({active,data,onHide}) {
                             </div>
 
                             <div className='price-oferts-container'>
-                                <div className='oferts-status'>
-                                    <p>En Oferta</p>
-                                </div>
+                              
+                                    {data.promotion ? (
+                                        <abbr title="En oferta">
+                                        <img className="in-offert-icon" src={InOffertIcon} alt="En Oferta" />
+                                        </abbr>
+                                    ) : null}
+                           
                                 <div className='price-status'> 
-                                    <p className='description'>Precio</p>
-                                    <h2 className='price'>${data.precio}.00</h2>
+                                {data.promotion || data.descuento > 0 ? (
+                                    <p className="card-text price price-with-discount">
+                                        <span className="original-price">${data.precio.toFixed(2)}</span>
+                                        <span className="new-price">
+                                        $
+                                        {applyDiscount({
+                                            price: data.precio,
+                                            promotion: data.promotion_full_info,
+                                            discount: data.descuento,
+                                        }).toFixed(2)}
+                                        </span>
+                                    </p>
+                                    ) : (
+                                    <p className="card-text price">${data.precio}</p>
+                                    )}
                                 </div>
 
                             </div>

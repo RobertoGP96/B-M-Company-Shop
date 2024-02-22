@@ -18,7 +18,7 @@
 
 
 .data-products-ofert-scroller .p-datascroller-content{
-    max-height: 245px !important;
+    max-height: 200px !important;
     background:transparent !important;
     overflow-x: hidden !important;
    
@@ -103,7 +103,7 @@
 
 @media   (max-width: 800px) {
     .data-products-ofert-scroller .p-datascroller-content{
-        max-height: 250px !important;
+        max-height: 200px !important;
         background: rgba(199, 194, 194, 0.1) !important;
     }
     .details-prmotion-product-card-section{

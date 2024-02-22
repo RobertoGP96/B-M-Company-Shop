@@ -1,11 +1,11 @@
 import {URL_MANAGE_PROMOTIONS} from "../../settings"
 
-export function deletePromotions({promotions, token = ""}){
+export function deletePromotions({promotions, token}){
     return(
         fetch(URL_MANAGE_PROMOTIONS,{
             method: 'DELETE',
             headers: {
-                //Authorization: `Token ${token}`,
+                Authorization: `Token ${token}`,
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({promotions_to_delete:promotions})
