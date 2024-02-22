@@ -15,8 +15,16 @@ export function updateUser({id,info,token
     } else {
       return response.json()
       .then((responseData) => {
-        console.log(responseData);
-      throw new Error("error: " + responseData);
+        if(responseData.email) {
+          throw new Error(responseData.email);
+        }
+        else if(responseData.username){
+          throw new Error(responseData.username);
+        }
+        else if(responseData.password){
+          throw new Error(responseData.password);
+        }
+
       });
 
     }

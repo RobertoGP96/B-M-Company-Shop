@@ -15,8 +15,19 @@ export function addUsers({info,token
     } else {
       return response.json()
       .then((responseData) => {
-        console.log(responseData);
-      throw new Error(responseData);
+        if(responseData.email) {
+          throw new Error(responseData.email);
+        }
+        if(responseData.username){
+          throw new Error(responseData.username);
+        }
+        if(responseData.password){
+          throw new Error(responseData.password);
+        }
+        else{
+          console.log(responseData)
+          throw new Error(responseData);
+        }
       });
 
     }

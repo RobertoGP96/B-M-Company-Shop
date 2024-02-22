@@ -25,7 +25,7 @@ const nameTamplate = (data) => {
 const statusTamplate = (data) => {
   return (
     <div className="status-template-container">
-        <img src={data.active?ActiveStatusIcon:DeactiveStatusIcon} alt="" />
+        <img src={data.is_active?ActiveStatusIcon:DeactiveStatusIcon} alt="" />
     </div>
   );
 };
@@ -106,7 +106,6 @@ function DataTableUsers({
       <Column
         className={"column-users-field"}
         body={statusTamplate}
-        field="is_active"
         header="Estado"
         headerStyle={headerTableStyle}
       ></Column>

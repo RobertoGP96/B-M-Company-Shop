@@ -85,6 +85,21 @@ function InfoUser({
         header={heaerTitle}
         onHide={() => {
           onHide();
+          setInfoData({
+            email: "",
+            username: "",
+            name: "",
+            last_name: "",
+            is_staff: true,
+            is_active: true,
+            phone: "",
+            country: "",
+            state: "",
+            address: "",
+            zip_code: "",
+            password: "",
+            country: "",
+          })
         }}
       >
         <form
@@ -104,11 +119,25 @@ function InfoUser({
                   onHide();
                 })
                 .catch((err) => {
-                  console.log(err); 
-                  onSave();
-                  show("Accion completada", "success");
+                  if(err.message=="This password is entirely numeric."){
+                    show("La contraseña debe contener numeros y letras", "warn");
+                  }
+                  else if(err.message=="This password is too short. It must contain at least 8 characters."){
+                    show("La contraseña es muy corta, debe contener como mínimo 8 caracteres", "warn");
+                  }
+                  else if(err.message=="user profile with this email already exists."){
+                    show("Ese correo ya esta en uso", "warn");
+                  }
+                  else if(err.message.includes("Unexpected token ")){
+                    show("Ese usuario ya está en uso", "warn");
+                  }else{
+                    console.log(err); 
+                    onSave();
+                    show("Accion completada", "success");
+                    setPageLoad(false);
+                    onHide();
+                  }
                   setPageLoad(false);
-                  onHide();
                 });
             } else {
               addUsers({ info: infoData, token: auth.token })
@@ -117,9 +146,36 @@ function InfoUser({
                   show("Accion completada", "success");
                   setPageLoad(false);
                   onHide();
+                  setInfoData({
+                    email: "",
+                    username: "",
+                    name: "",
+                    last_name: "",
+                    is_staff: true,
+                    is_active: true,
+                    phone: "",
+                    country: "",
+                    state: "",
+                    address: "",
+                    zip_code: "",
+                    password: "",
+                    country: "",
+                  })
                 })
                 .catch((err) => {
-                  console.log(err);
+                  if(err.message=="This password is entirely numeric."){
+                    show("La contraseña debe contener numeros y letras", "warn");
+                  }
+                  if(err.message=="This password is too short. It must contain at least 8 characters."){
+                    show("La contraseña es muy corta, debe contener como mínimo 8 caracteres", "warn");
+                  }
+                  if(err.message=="user profile with this email already exists."){
+                    show("Ese correo ya esta en uso", "warn");
+                  }
+                  if(err.message.includes("Unexpected token ")){
+                    show("Ese usuario ya está en uso", "warn");
+                  }
+                  setPageLoad(false);
                 });
             }
           }}
@@ -299,7 +355,7 @@ function InfoUser({
                   <div className="p-dialog-container">
                     <p>Admin:</p>
                   </div>
-                  <Checkbox checked={infoData.is_staff} readOnly />
+                  <Checkbox checked={infoData.is_active} readOnly />
                 </div>
               </div>
             </div>
