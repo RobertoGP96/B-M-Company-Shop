@@ -25,7 +25,7 @@ const nameTamplate = (data) => {
 const statusTamplate = (data) => {
   return (
     <div className="status-template-container">
-        <img src={data.active?ActiveStatusIcon:DeactiveStatusIcon} alt="" />
+        <img src={data.is_active?ActiveStatusIcon:DeactiveStatusIcon} alt="" />
     </div>
   );
 };
@@ -33,7 +33,7 @@ const statusTamplate = (data) => {
 function DataTableUsers({
   dataUsers,
   selectedUSers,
-  setelectedUSers,
+  setSelectedUSers,
   setRowData,
   handleOnClickEditButton,
   handleOnClickInfoButton,
@@ -84,7 +84,7 @@ function DataTableUsers({
       size="small"
       scrollable={true}
       onSelectionChange={(e) => {
-        setelectedUSers(e.value);
+        setSelectedUSers(e.value);
       }}
       selection={selectedUSers}
     >
@@ -106,7 +106,6 @@ function DataTableUsers({
       <Column
         className={"column-users-field"}
         body={statusTamplate}
-        field="active"
         header="Estado"
         headerStyle={headerTableStyle}
       ></Column>

@@ -1,9 +1,9 @@
 import { URL_MAGNAMENT_USERS } from "../../settings";
 
-export function addUsers({info,token
+export function updateUser({id,info,token
 }) {
-  return fetch(URL_MAGNAMENT_USERS, {
-    method: "POST",
+  return fetch(`${URL_MAGNAMENT_USERS}${id}/`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Token ${token}`,
@@ -18,16 +18,13 @@ export function addUsers({info,token
         if(responseData.email) {
           throw new Error(responseData.email);
         }
-        if(responseData.username){
+        else if(responseData.username){
           throw new Error(responseData.username);
         }
-        if(responseData.password){
+        else if(responseData.password){
           throw new Error(responseData.password);
         }
-        else{
-          console.log(responseData)
-          throw new Error(responseData);
-        }
+
       });
 
     }

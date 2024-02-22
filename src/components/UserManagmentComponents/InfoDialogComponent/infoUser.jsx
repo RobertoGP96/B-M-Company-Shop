@@ -5,6 +5,7 @@ import { ChangePassword } from "../ChangePassword";
 import { Checkbox } from "primereact/checkbox";
 import AuthenticationContext from "../../../context/authenticationContext";
 import { addUsers } from "../../../services/ManageUser/addUser";
+import { updateUser } from "../../../services/ManageUser/updateUser";
 
 function InfoUser({
   visible,
@@ -19,16 +20,22 @@ function InfoUser({
   mobileSize,
 }) {
   const [infoData, setInfoData] = useState({
+    email: "",
+    username: "",
     name: "",
     last_name: "",
-    username: "",
-    email: "",
-    is_active: false,
-    is_staff: false,
+    is_staff: true,
+    is_active: true,
+    phone: "",
+    country: "",
+    state: "",
+    address: "",
+    zip_code: "",
     password: "",
+    country: "",
   });
   const [passwordModalStatus, setPasswordModalStatus] = useState(false);
-  const {auth} = useContext(AuthenticationContext)
+  const { auth } = useContext(AuthenticationContext);
   useEffect(() => {
     if (document.body.style.overflow !== "hidden") {
       document.body.style.overflow = visible ? "hidden" : "auto";
@@ -39,13 +46,12 @@ function InfoUser({
   }, [visible]);
 
   useEffect(() => {
-    if (data !== null) {
+    if (data !== null && accion !== "create") {
       setInfoData(data);
     }
   }, [data, visible ? visible : undefined]);
 
   const handleOnchange = (value, campo) => {
-    console.log(value);
     var InfoDataCopy = { ...infoData };
     InfoDataCopy[campo] = value;
     setInfoData(InfoDataCopy);
@@ -79,7 +85,21 @@ function InfoUser({
         header={heaerTitle}
         onHide={() => {
           onHide();
-          setselectedUsers([]);
+          setInfoData({
+            email: "",
+            username: "",
+            name: "",
+            last_name: "",
+            is_staff: true,
+            is_active: true,
+            phone: "",
+            country: "",
+            state: "",
+            address: "",
+            zip_code: "",
+            password: "",
+            country: "",
+          })
         }}
       >
         <form
@@ -87,41 +107,76 @@ function InfoUser({
             event.preventDefault();
             setPageLoad(true);
             if (accion == "update") {
-              // updateuser({
-              //   id: infoData.id,
-              //   name: infoData.name,
-              //   description: infoData.description,
-              //   discount_in_percent: infoData.discount_in_percent<=0?infoData.discount_in_percent*(-1):infoData.discount_in_percent,
-              //   active: infoData.active,
-              //   is_special: infoData.is_special,
-              //   img: img.length == 0 ? undefined : img[0],
-              // }).then(() => {
-              //   onSave();
-              //   show("Accion completada", "success");
-              //   setPageLoad(false);
-              //   onHide();
-              //   setProductsOferts([])
-              // })
-              // .catch((err) => {
-
-              // })
-              // ;
+              updateUser({
+                id: infoData.id,
+                info: infoData,
+                token: auth.token,
+              })
+                .then(() => {
+                  onSave();
+                  show("Accion completada", "success");
+                  setPageLoad(false);
+                  onHide();
+                })
+                .catch((err) => {
+                  if(err.message=="This password is entirely numeric."){
+                    show("La contraseña debe contener numeros y letras", "warn");
+                  }
+                  else if(err.message=="This password is too short. It must contain at least 8 characters."){
+                    show("La contraseña es muy corta, debe contener como mínimo 8 caracteres", "warn");
+                  }
+                  else if(err.message=="user profile with this email already exists."){
+                    show("Ese correo ya esta en uso", "warn");
+                  }
+                  else if(err.message.includes("Unexpected token ")){
+                    show("Ese usuario ya está en uso", "warn");
+                  }else{
+                    console.log(err); 
+                    onSave();
+                    show("Accion completada", "success");
+                    setPageLoad(false);
+                    onHide();
+                  }
+                  setPageLoad(false);
+                });
             } else {
-              addUsers({
-                name: infoData.name,
-                email: infoData.email,
-                is_staff: infoData.is_staff,
-                last_name: infoData.last_name,
-                username:infoData.username,
-                password: infoData.password,
-                token:auth.token
-                
-              }).then(() => {
-                onSave();
-                show("Accion completada", "success");
-                setPageLoad(false);
-                onHide();
-              });
+              addUsers({ info: infoData, token: auth.token })
+                .then(() => {
+                  onSave();
+                  show("Accion completada", "success");
+                  setPageLoad(false);
+                  onHide();
+                  setInfoData({
+                    email: "",
+                    username: "",
+                    name: "",
+                    last_name: "",
+                    is_staff: true,
+                    is_active: true,
+                    phone: "",
+                    country: "",
+                    state: "",
+                    address: "",
+                    zip_code: "",
+                    password: "",
+                    country: "",
+                  })
+                })
+                .catch((err) => {
+                  if(err.message=="This password is entirely numeric."){
+                    show("La contraseña debe contener numeros y letras", "warn");
+                  }
+                  if(err.message=="This password is too short. It must contain at least 8 characters."){
+                    show("La contraseña es muy corta, debe contener como mínimo 8 caracteres", "warn");
+                  }
+                  if(err.message=="user profile with this email already exists."){
+                    show("Ese correo ya esta en uso", "warn");
+                  }
+                  if(err.message.includes("Unexpected token ")){
+                    show("Ese usuario ya está en uso", "warn");
+                  }
+                  setPageLoad(false);
+                });
             }
           }}
           className="info-dialog-form-user"
@@ -157,7 +212,9 @@ function InfoUser({
                     <input
                       type="text"
                       defaultValue={infoData.last_name}
-                      onChange={(e) => handleOnchange(e.target.value, "last_name")}
+                      onChange={(e) =>
+                        handleOnchange(e.target.value, "last_name")
+                      }
                       required
                     />
                   </div>
@@ -190,8 +247,8 @@ function InfoUser({
                     />
                   </div>
                 </div>
-                {
-                  accion == "create" &&  <>
+                {accion == "create" && (
+                  <>
                     <div className="input-info-dialog">
                       <div className="p-dialog-container">
                         <p>Contraseña:</p>
@@ -223,7 +280,7 @@ function InfoUser({
                       </div>
                     </div>
                   </>
-                }
+                )}
 
                 <div className="input-info-dialog">
                   <div className="p-dialog-container">
@@ -298,7 +355,7 @@ function InfoUser({
                   <div className="p-dialog-container">
                     <p>Admin:</p>
                   </div>
-                  <Checkbox checked={infoData.is_staff} readOnly />
+                  <Checkbox checked={infoData.is_active} readOnly />
                 </div>
               </div>
             </div>
@@ -316,7 +373,6 @@ function InfoUser({
               onClick={(e) => {
                 e.preventDefault();
                 onHide();
-                setProductsOferts([]);
               }}
             >
               Cancelar
