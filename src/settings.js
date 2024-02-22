@@ -15,7 +15,7 @@ export const URL_GET_PRODUCTS_PROMOTION = `${BASE_URL}/store/products?promotion=
 export const URL_ADD_PRODUCTS_PROMOTION = `${BASE_URL}/store/manage-promotions/`
 export const URL_DELETE_PRODUCTS_PROMOTION = `${BASE_URL}/store/manage-promotions/`
 
-export const URL_MANAGEMENT_USERS = `${BASE_URL}/user/management/`
+export const URL_MANAGEMENT_USERS = `${BASE_URL}/user/managment/`
 
 
 //authentication
