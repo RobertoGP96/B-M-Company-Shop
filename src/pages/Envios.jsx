@@ -24,9 +24,9 @@ function Envios() {
             <img src={Logo} className="Logo" alt="Logo of B&M Company" />
           </div>
           <p>
-            Realicamos 
+            Realizamos 
             <strong> envios </strong>
-             a todas partes del pais. con un exelente servicio, la mayor rapidéz posible y  gran confiabilidad.
+            a todas partes del país. con un excelente servicio, la mayor rapidez posible y gran confiabilidad.
           </p>
         </article>
         <article className="social-envios-into">
