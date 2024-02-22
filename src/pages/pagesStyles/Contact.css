@@ -51,7 +51,7 @@
   padding-bottom: 1rem;
 }
 .social-contact-into > div {
-  width: 25%;
+  width: 20%;
   min-width: 195px;
   display: flex;
   flex-direction: column;
@@ -147,7 +147,7 @@
 .contact-container {
   width: 100% !important;
   height: 100%;
-  background-image: url(../../assets/home-background.jpeg) !important;
+  background-image: url("../../assets/contact background.jpg") !important;
 
   object-fit: cover;
   background-position: center;
