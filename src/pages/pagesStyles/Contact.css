@@ -102,9 +102,10 @@
 .intro-contact-into p {
   width: 80%;
   margin: 0;
-  padding: 1.5rem 1.5rem;
+  padding: 1.7rem 1.5rem;
   font-weight: 100;
   font-size: 13px;
+  text-wrap: balance;
 }
 .container {
   width: 100%;
@@ -131,7 +132,8 @@
 }
 .social-contact-into div span p {
   margin: 0;
-  font-size: 0.65rem;
+  font-size: 0.9rem;
+  
 }
 
 .social-contact-into div span i {
@@ -157,6 +159,16 @@
   appearance: none;
   text-decoration: none;
   margin: 0;
-  font-size: 0.65rem !important;
+  font-size: 0.8rem !important;
   color: white;
+  
+}
+
+@media (max-width: 500px) {
+  .intro-contact-into p{
+    width: 100%;
+  }
+  .intro-contact-into {
+    width: 100%;
+  }
 }
