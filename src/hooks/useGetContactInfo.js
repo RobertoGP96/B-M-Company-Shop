@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getContactInfo } from "../services/ManageContact/contact_info_managment";
+import { getContactInfo } from "../services/ManageContact/contact_info_management";
 
 export function useGetContactInfo() {
     const [contactInfo, setContactInfo] = useState(null)

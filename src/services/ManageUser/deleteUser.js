@@ -1,8 +1,8 @@
-import {URL_MAGNAMENT_USERS} from "../../settings"
+import {URL_MANAGEMENT_USERS} from "../../settings"
 
 export function deleteUser({users, token}){
     return(
-        fetch(`${URL_MAGNAMENT_USERS}`,{
+        fetch(`${URL_MANAGEMENT_USERS}`,{
             method: 'DELETE',
             headers: {
                 Authorization: `Token ${token}`,

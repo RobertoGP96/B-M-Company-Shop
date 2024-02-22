@@ -1,8 +1,8 @@
-import { URL_MAGNAMENT_USERS } from "../../settings";
+import { URL_MANAGEMENT_USERS } from "../../settings";
 
 export function addUsers({info,token
 }) {
-  return fetch(URL_MAGNAMENT_USERS, {
+  return fetch(URL_MANAGEMENT_USERS, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

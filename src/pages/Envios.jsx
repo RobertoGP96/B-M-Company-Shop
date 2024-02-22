@@ -2,7 +2,7 @@ import "./pagesStyles/Envios.css";
 import "primeicons/primeicons.css";
 import Logo from "../assets/BYM logo/B&M-E-COMMERSE.svg";
 import { useState, useEffect } from "react";
-import { getContactInfo } from "../services/ManageContact/contact_info_managment.js";
+import { getContactInfo } from "../services/ManageContact/contact_info_management.js";
 import { Skeleton } from "primereact/skeleton";
 
 function Envios() {

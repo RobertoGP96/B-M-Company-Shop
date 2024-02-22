@@ -2,7 +2,7 @@ import "./pagesStyles/Contact.css";
 import "primeicons/primeicons.css";
 import Logo from "../assets/BYM logo/B&M-E-COMMERSE.svg";
 import { useState, useEffect } from "react";
-import { getContactInfo } from "../services/ManageContact/contact_info_managment";
+import { getContactInfo } from "../services/ManageContact/contact_info_management";
 import {Skeleton} from "primereact/skeleton"
 
 function Contact() {
