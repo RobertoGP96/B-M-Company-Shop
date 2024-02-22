@@ -7,7 +7,7 @@ import 'primeicons/primeicons.css';
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from 'primereact/skeleton';
 
-function Oferts({lastAded, recomendedProducts,load1,load2,activateProductdetails}){    
+function Oferts({lastAded, recomendedProducts,load1,load2}){    
     const [showAll1,setShowAll1] = useState(false)
     const [showAll2,setShowAll2] = useState(false)
     const navigate = useNavigate();
