@@ -1,6 +1,6 @@
 import './index.css';
 import { Dialog } from "primereact/dialog";
-import { useState, useContext, useRef, useEffect } from "react";
+import { useState, useContext, useRef,  } from "react";
 import "primeicons/primeicons.css";
 import ProductsGridForOfertManagment from '../ProductGrid';
 import { Toast } from "primereact/toast";
@@ -10,6 +10,8 @@ import AddIcon from "../../../assets/oferts-magnament-add.svg";
 import { getProductsOfert } from '../../../services/ManagePromotions/getProductsOfert';
 import { useGetProducts } from '../../../hooks/useGetProducts';
 import Loader from '../../Loader';
+import AuthenticationContext from '../../../context/authenticationContext';
+
 
 const heaerTitle =(info) => {
   return(
@@ -22,6 +24,7 @@ const heaerTitle =(info) => {
 
 
 function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts,setLoading}){
+    const {auth} = useContext(AuthenticationContext)
     const toast = useRef(null);
     const [checkedProducts, setCheckedProducts] = useState([]);
     const [search, setSearch] = useState('');
@@ -139,7 +142,7 @@ function AddProductsToOferts({visible,onHide,show,idPromotion,setProductOferts,s
 
               if (checkedProducts.length > 0) {
                 
-                addProductsToPromotion({products:checkedProducts,id:idPromotion}).then(() => {
+                addProductsToPromotion({products:checkedProducts,id:idPromotion,token:auth.token}).then(() => {
                  
                   getProductsOfert(idPromotion).then((products) =>{
                     setLoading(true);
