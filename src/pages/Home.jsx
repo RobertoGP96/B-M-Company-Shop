@@ -60,10 +60,10 @@ function Home() {
               <p>
                 Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
                 y promociones y no dudes en ponerte en
-                contacto con nososotros si 
+                contacto con nosotros si 
                 <br />
                 necesitas ayuda 
-                para encontar lo q
+                para encontrar lo que
                 buscas.
                 !Gracias por visitarnos!
               </p>

@@ -9,7 +9,7 @@ import { Skeleton } from "primereact/skeleton";
 
 import { useState, useEffect } from "react";
 
-import { getContactInfo } from "../services/ManageContact/contact_info_managment";
+import { getContactInfo } from "../services/ManageContact/contact_info_management";
 
 
 function Remesas() {

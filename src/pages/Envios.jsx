@@ -2,7 +2,7 @@ import "./pagesStyles/Envios.css";
 import "primeicons/primeicons.css";
 import Logo from "../assets/BYM logo/B&M-E-COMMERSE.svg";
 import { useState, useEffect } from "react";
-import { getContactInfo } from "../services/ManageContact/contact_info_managment.js";
+import { getContactInfo } from "../services/ManageContact/contact_info_management.js";
 import { Skeleton } from "primereact/skeleton";
 
 function Envios() {
@@ -24,7 +24,9 @@ function Envios() {
             <img src={Logo} className="Logo" alt="Logo of B&M Company" />
           </div>
           <p>
-            Realicamos envios a todas partes del pais. con un exelente servicio, la mayor rapidéz posible y  gran confiabilidad.
+            Realizamos 
+            <strong> envios </strong>
+            a todas partes del país. con un excelente servicio, la mayor rapidez posible y gran confiabilidad.
           </p>
         </article>
         <article className="social-envios-into">

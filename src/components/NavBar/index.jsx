@@ -20,7 +20,7 @@ import CloseSession from "../CloseSession";
 
 function NavBar() {
   const navigate = useNavigate();
-  const responsive = useWindowSize("min", 1000);
+  const responsive = useWindowSize("min", 1030);
   const [visible, setVisible] = useState(false);
   const refActive = useRef(null);
   const { pathname } = useLocation();
@@ -52,7 +52,7 @@ function NavBar() {
     {
       label: "Gestionar",
       command: () => {
-        navigate("/magnament-menu");
+        navigate("/management-menu");
         setVisible(false);
       },
     },
@@ -141,12 +141,12 @@ function NavBar() {
           <li>
             <div
               className={
-                pathname == "/magnament-menu"
+                pathname == "/management-menu"
                   ? "navBar-itemConteiner active"
                   : "navBar-itemConteiner"
               }
             >
-              <Link to="/magnament-menu">
+              <Link to="/management-menu">
                 <div className="navBar-item">
                   <span className="icon">
                     <img src={ProductsIcon}></img>
