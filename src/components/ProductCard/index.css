@@ -11,6 +11,7 @@
     width: 100%;
     height: auto;   
     max-width: 300px;
+    min-width: 169.6px;
     cursor: pointer;
     background-color: #fff;
     box-shadow: 2px 5px 5px rgb(202, 201, 201);
@@ -129,5 +130,10 @@
     font-weight: 500;
     line-height: 21.245px;
     border-radius:3px;
+    
 }
-
+@media (max-width: 400px) {
+  .add-to-cart-button{
+      font-size: 12px;
+  }
+}
