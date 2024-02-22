@@ -74,6 +74,10 @@
     color: white;
 }
 
+.intro-envios-into p strong{
+  font-style: oblique;
+}
+
 .social-envios-into{
     display: flex;
     flex-direction: column;
@@ -117,5 +121,10 @@
   .intro-envios-into p {
     width: 100%;
     text-wrap: balance;
+    font-size: 15px;
+    padding: 15px;
+  }
+  .intro-envios-into{
+    width: 100%;
   }
 }
