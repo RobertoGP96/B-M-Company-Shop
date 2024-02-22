@@ -3,7 +3,9 @@
   flex-direction: row;
   line-height: normal;
   font-family: Noto Sans;
+  gap: 5px;
   padding: 10px;
+  max-width: 258px;
 }
 .grid-users-card-container {
   height: 130px;
@@ -33,12 +35,13 @@
 .img-users-card-section {
   display: flex;
   flex-direction: row;
-  align-items: start;
-  gap: 15px;
+  align-items: center;
+  align-items: center;
+  gap: 8px;
   justify-content: center;
   width: 40%;
-  margin: auto;
-  min-width: 150px;
+  width: 100%;
+  min-width: 200px;
   text-align: left;
 }
 .img-users-card-section .p-checkbox {
@@ -107,7 +110,8 @@
 .accion-users-card-section {
   flex-direction: column;
   width: 12%;
-  margin: auto;
+  align-items: center;
+  justify-content: center;
   background-color: rgba(187, 187, 187, 0.3);
   border-radius: 10px;
 }
