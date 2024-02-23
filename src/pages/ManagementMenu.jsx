@@ -5,6 +5,7 @@ import SecurityManagement from "../assets/security-management.svg";
 import ContactsManagement from "../assets/contacts-management.svg";
 import BackArrow from '../assets/products-management-back-icon.svg';
 import useWindowSize from "../hooks/useWindowSize";
+import IconPage from "../assets/productsIcon.svg"
 import { useNavigate } from "react-router-dom";
 
 function ManagementMenu (){
@@ -53,5 +54,4 @@ function ManagementMenu (){
     )
 }
 
-
-export default  ManagementMenu;
+export default ManagementMenu;

@@ -108,6 +108,7 @@
 }
 
 .accion-users-card-section {
+  display: flex;
   flex-direction: column;
   width: 12%;
   align-items: center;

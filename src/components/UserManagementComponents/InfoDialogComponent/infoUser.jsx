@@ -79,8 +79,8 @@ function InfoUser({
           mobileSize
             ? accion == "create"
               ? "info-dialog-user-create"
-              : "info-dialog-user info-dialog-user-mobileSize"
-            : "info-dialog-user"
+              : "info-dialog-user"
+            : "info-dialog-user info-dialog-user-mobileSize"
         }
         header={heaerTitle}
         onHide={() => {
