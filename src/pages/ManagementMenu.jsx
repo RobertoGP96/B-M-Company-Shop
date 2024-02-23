@@ -13,10 +13,7 @@ function ManagementMenu() {
 
   return (
     <section className="management-container">
-      <div className="contrainer-title-menu">
-        <i className="pi pi-cog"></i>
         <h2> Menú de Gestión</h2>
-      </div>
       <main
         className={
           responsive
