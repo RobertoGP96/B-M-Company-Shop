@@ -9,7 +9,7 @@
 }
 .info-dialog-user-mobileSize{
     width: 320px;
-    height: 550px; 
+    height: 400px; 
 }
 
 .info-dialog-user .p-dialog-content{
@@ -339,8 +339,9 @@
 
 @media (width < 600px){    
     .info-dialog-user {
-        height: 600px !important ;
-        max-height: 600px !important; 
+        width: 320px;
+        height: 400px; 
     }
+
 
 }

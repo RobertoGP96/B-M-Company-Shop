@@ -105,8 +105,15 @@
     height: 30px;
 }
 
-@media (max-width: 590px) {
+@media (max-width: 680px) {
     .all-oferts{
         justify-content: center;
+    }
+    .oferts{
+       max-height: 1150px;
+    }
+    .expanded{
+        max-height: 2600px ;
+      
     }
 }
