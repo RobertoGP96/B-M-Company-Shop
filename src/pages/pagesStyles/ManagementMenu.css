@@ -1,5 +1,3 @@
-
-
 .management-container{
     display: flex;
     min-height: 100vh;
@@ -47,9 +45,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-items: center;
 }
-.contrainer-title-menu h2{
-    margin: 0;
+
+.managment-menu-title-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    gap:20px;
+}
+
+.management-menu-container-reponsive{
+    grid-template-columns:1fr;
+    margin-bottom: 20px;
 }
 
 .management-menu-section{
