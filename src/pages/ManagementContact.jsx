@@ -68,7 +68,7 @@ function ManagementContact() {
           icon="pi pi-arrow-left"
           className="head-btn-back"
           size="small"
-          onClick={() => navigate("/management-menu")}
+          onClick={() => history.back()}
         />
         <h2>Gestión de Contacto</h2>
       </div>
