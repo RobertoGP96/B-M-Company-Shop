@@ -19,6 +19,7 @@ import ManagementContact from './pages/ManagementContact.jsx'
 import ProtectedRoute from './components/ProtectedRoute'
 import Products from './pages/Products.jsx'
 import Login from './pages/Login.jsx'
+import ChangePassword from './pages/ChangePassword.jsx'
 import Envios from './pages/Envios.jsx'
 import Bye from './pages/Bye.jsx'
 import 'primeicons/primeicons.css';
@@ -44,6 +45,7 @@ function App() {
                     <Route path = "/management/security" element = {<ProtectedRoute><ManagementSecurity/></ProtectedRoute>}/>
                     <Route path = "/management/contact" element = {<ProtectedRoute><ManagementContact/></ProtectedRoute>}/>
                     <Route path = "/login" element = {<Login/>}/>
+                    <Route path = "/change-password" element = {<ProtectedRoute><ChangePassword/></ProtectedRoute>}/>
                     <Route path = "/envios" element = {<Envios/>}/>
                     <Route path = "/bye" element = {<Bye/>}/>
                     <Route path = "/" element = {<Home/>}/>

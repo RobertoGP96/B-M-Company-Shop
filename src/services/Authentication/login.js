@@ -17,8 +17,11 @@ export function login({email, pass}){
             if(data.password){
                 throw new Error('Ingresa una contraseña válida')
             }
-            if(data.non_field_errors){
+            else if(data.non_field_errors){
                 throw new Error('Credenciales Incorrectas')
+            }
+            else{
+                throw new Error('Error al iniciar sesión')
             }
         }
     })

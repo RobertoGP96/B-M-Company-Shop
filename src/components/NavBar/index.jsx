@@ -16,7 +16,7 @@ import ProductsIcon from "../../assets/productsIcon.svg";
 import ContactIcon from "../../assets/contactusIcon.svg";
 import RemesasIcon from "../../assets/remesas-icon.svg";
 import Cart from '../Cart'
-import CloseSession from "../CloseSession";
+import UserNavbarActionsDropdown from "../UserNavbarActions";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -250,7 +250,7 @@ function NavBar() {
       )}
       <div className = "cart-and-close-session-icons-container">
         <Cart/>
-        <CloseSession/>
+        <UserNavbarActionsDropdown/>
       </div>
     </nav>
   );

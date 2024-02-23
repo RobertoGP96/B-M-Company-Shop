@@ -145,6 +145,6 @@ figure {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap:7px;
+  gap:10px;
   padding-right: 20px;
 }
