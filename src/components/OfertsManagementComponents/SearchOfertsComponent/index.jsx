@@ -52,10 +52,7 @@ function SearchOferts({
         />
         </div>
 
-      <button className="search-oferts-button">
-        <img src={FilterIcon} alt="filter" width={"12px"} />
-        <p>Filtros</p>
-      </button>
+      
 
       <button
         className="search-oferts-button"
