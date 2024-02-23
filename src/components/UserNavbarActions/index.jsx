@@ -26,10 +26,11 @@ const {auth} = useContext(AuthenticationContext)
 
   return (
     auth.token?
-    <section className = "user-navbar-actions-dropdown-container">
-        <img alt="user-icon" src={UserIcon} onClick={() => dropdownRef.current.show()}/>
+    <section className = "user-navbar-actions-dropdown-container" onClick={() => dropdownRef.current.show()}>
+        <img alt="user-icon" src={UserIcon}/>
         <Dropdown
           ref = {dropdownRef}
+          onChange={(e) => handleChange(e)}
           options={options}
           optionLabel="name"
           placeholder={""}
