@@ -32,7 +32,7 @@ function Oferts({
   };
 
   const handdleOnClickButton3 = () => {
-    setShowAll2(!showAll3);
+    setShowAll3(!showAll3);
   };
 
   return (
