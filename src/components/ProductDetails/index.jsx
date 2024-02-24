@@ -35,13 +35,12 @@ function ProductDetails ({active,data,onHide}) {
                             </div>
 
                             <div className='price-oferts-container'>
-                              
-                                    {data.promotion ? (
-                                        <abbr title="En oferta">
-                                        <img className="in-offert-icon" src={InOffertIcon} alt="En Oferta" />
-                                        </abbr>
+                                {data.promotion ? (
+                                    <div className = "oferts-status">
+                                        <img src={InOffertIcon} alt="En Oferta" />
+                                        <span>En oferta</span>
+                                    </div>
                                     ) : null}
-                           
                                 <div className='price-status'> 
                                 {data.promotion || data.descuento > 0 ? (
                                     <p className="card-text price product-detail-price-with-discount">
