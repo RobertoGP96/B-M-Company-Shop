@@ -123,6 +123,9 @@
 
 .accion-users-card-section button {
   width: 100%;
+  background-color: transparent;
+    padding: 6px;
+    border: none;
 }
 
 .accion-users-card-section button i {

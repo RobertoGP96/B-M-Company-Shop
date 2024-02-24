@@ -181,6 +181,12 @@
   background-color: rgba(114, 114, 114, 0.11);
 }
 
+.remesas-price p{
+  margin-bottom: 0;
+  color: white;
+  font-family: Noto Sans;
+}
+
 @media (max-width: 800px) {
   .remesas-title ul li img {
     width: 40px;

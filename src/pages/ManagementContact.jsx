@@ -38,22 +38,32 @@ function ManagementContact() {
   const handleInput = (event) => {
     setData({
       ...datos,
-      [event.target.name]: event.target.value,
+      [event.target.name]: `${event.target.value}`,
     });
   };
 
   const show = () => {
     toast.current.show({
-      severity: "info",
-      summary: "Precaución",
-      detail: "No se ha actulizado ningun contacto.",
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Se ha producido un error.',
+      life:3000,
     });
   };
-
+  const showOK = () => {
+    toast.current.show({
+      severity: 'success',
+      summary: 'Actialización realizada.',
+      detail: '',
+      life:3000,
+    });
+  };
+  
   function editContact(data) {
     if (data) {
       console.log(data)
       editContactInfo({ info: data, token: auth.token }).then(() => {
+        showOK
         setSaved(true);
       });
     } else {
@@ -63,6 +73,7 @@ function ManagementContact() {
 
   return (
     <article className="mcontact-container">
+      <Toast ref={toast} position="top-left"/>
       <div className="head-contact">
         <Button
           icon="pi pi-arrow-left"
@@ -80,6 +91,7 @@ function ManagementContact() {
           onSubmit={() => {
             event.preventDefault();
             editContact(datos.whatsapp?datos:{ ...datos, "whatsapp": contact.whatsapp});
+            showOK;
           }}
         >
           <ul className="ccontact-container">
@@ -205,6 +217,19 @@ function ManagementContact() {
                   <InputText
                     name="remesas"
                     defaultValue={contact.remesas}
+                    style={{ minWidth: "160px", maxWidth: "15rem" }}
+                    onChange={handleInput}
+                  />
+                </div>
+              </div>
+              <div className="element-contact">
+                <div className="p-inputgroup">
+                  <span className="p-inputgroup-addon">
+                    <i className="pi pi-arrow-right-arrow-left"></i>
+                  </span>
+                  <InputText
+                    name="phone2"
+                    defaultValue={contact.phone2}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
