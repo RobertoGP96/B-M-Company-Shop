@@ -43,7 +43,7 @@ function Oferts({
       </div>
 
       <article title="Promociones">
-        <div className={showAll2 ? "oferts expanded" : "oferts"}>
+        <div className={showAll1 ? "oferts expanded" : "oferts"}>
           {!loadingPromotions ? (
             promotions.map((promotion, index) => (
               <PromotionCard
@@ -66,14 +66,14 @@ function Oferts({
         {!load2 ? (
           <div className="button-container">
             <button
-              title={showAll2 ? "Ver menos" : "Ver mas"}
-              onClick={handdleOnClickButton2}
+              title={showAll1 ? "Ver menos" : "Ver mas"}
+              onClick={handdleOnClickButton1}
               className={
-                showAll2 ? "showAll-button button-active2" : "showAll-button"
+                showAll1 ? "showAll-button button-active2" : "showAll-button"
               }
             >
               <i
-                className={showAll2 ? "pi pi-chevron-up" : "pi pi-chevron-down"}
+                className={showAll1 ? "pi pi-chevron-up" : "pi pi-chevron-down"}
                 style={{ fontSize: "1.2rem" }}
               ></i>
             </button>
@@ -87,7 +87,7 @@ function Oferts({
       </div>
 
       <article title="Productos Recomendados">
-        <div className={showAll1 ? "oferts expanded" : "oferts"}>
+        <div className={showAll2 ? "oferts expanded" : "oferts"}>
           {!load1 ? (
             recomendedProducts.map((products, index) => (
               <ProductCard
@@ -113,14 +113,14 @@ function Oferts({
         {!load1 ? (
           <div className="button-container">
             <button
-              title={showAll1 ? "Ver menos" : "Ver mas"}
-              onClick={handdleOnClickButton1}
+              title={showAll2 ? "Ver menos" : "Ver mas"}
+              onClick={handdleOnClickButton2}
               className={
-                showAll1 ? "showAll-button button-active" : "showAll-button"
+                showAll2 ? "showAll-button button-active" : "showAll-button"
               }
             >
               <i
-                className={showAll1 ? "pi pi-chevron-up" : "pi pi-chevron-down"}
+                className={showAll2 ? "pi pi-chevron-up" : "pi pi-chevron-down"}
                 style={{ fontSize: "1.3rem" }}
               ></i>
             </button>
@@ -134,7 +134,7 @@ function Oferts({
       </div>
 
       <article title="Últimos Añadidos">
-        <div className={showAll2 ? "oferts expanded" : "oferts"}>
+        <div className={showAll3 ? "oferts expanded" : "oferts"}>
           {!load2 ? (
             lastAded.map((products, index) => (
               <ProductCard
@@ -161,10 +161,10 @@ function Oferts({
         {!load2 ? (
           <div className="button-container">
             <button
-              title={showAll3 ? "Ver menos" : "Ver mas"}
+              title={showAll3 ? "oferts expanded" : "oferts"}
               onClick={handdleOnClickButton3}
               className={
-                showAll2 ? "showAll-button button-active2" : "showAll-button"
+                showAll3 ? "showAll-button button-active2" : "showAll-button"
               }
             >
               <i
