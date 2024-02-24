@@ -19,6 +19,7 @@ function Oferts({
 }) {
   const [showAll1, setShowAll1] = useState(false);
   const [showAll2, setShowAll2] = useState(false);
+  const [showAll3, setShowAll3] = useState(false);
   const navigate = useNavigate();
   const mobileSize = useWindowSize("max", 600);
 
@@ -28,6 +29,10 @@ function Oferts({
   };
   const handdleOnClickButton2 = () => {
     setShowAll2(!showAll2);
+  };
+
+  const handdleOnClickButton3 = () => {
+    setShowAll2(!showAll3);
   };
 
   return (
@@ -156,14 +161,14 @@ function Oferts({
         {!load2 ? (
           <div className="button-container">
             <button
-              title={showAll2 ? "Ver menos" : "Ver mas"}
-              onClick={handdleOnClickButton2}
+              title={showAll3 ? "Ver menos" : "Ver mas"}
+              onClick={handdleOnClickButton3}
               className={
                 showAll2 ? "showAll-button button-active2" : "showAll-button"
               }
             >
               <i
-                className={showAll2 ? "pi pi-chevron-up" : "pi pi-chevron-down"}
+                className={showAll3 ? "pi pi-chevron-up" : "pi pi-chevron-down"}
                 style={{ fontSize: "1.2rem" }}
               ></i>
             </button>
