@@ -42,3 +42,6 @@
     font-variant: small-caps;
     letter-spacing: -0.8px;
 }
+.dialog-change-password .button-user-container{
+    padding-top: 20px;
+}
