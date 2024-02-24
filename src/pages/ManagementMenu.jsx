@@ -3,7 +3,9 @@ import ProductsManagement from "../assets/products-management.svg";
 import OfertsManagement from "../assets/oferts-management.svg";
 import SecurityManagement from "../assets/security-management.svg";
 import ContactsManagement from "../assets/contacts-management.svg";
+import BackArrow from '../assets/products-management-back-icon.svg';
 import useWindowSize from "../hooks/useWindowSize";
+import IconPage from "../assets/productsIcon.svg"
 import { useNavigate } from "react-router-dom";
 
 function ManagementMenu (){
@@ -12,7 +14,15 @@ function ManagementMenu (){
 
     return(
         <section className="management-container"> 
-            <h2>Menú de Gestión</h2>
+            <div className = "managment-menu-title-container">
+                <button
+                    className="products-management-go-back-button btn-general-styles"
+                    onClick={() => history.back()}
+                    >
+                    <img src={BackArrow} />
+                </button>
+                <h2>Menú de Gestión</h2>
+            </div>
             <main className={responsive?"management-menu-container management-menu-container-reponsive":"management-menu-container"}>
                         <div title="products-secction" className="management-menu-section" onClick={()=>navigate("/management/products")}> 
                                 <h4>Productos</h4>
@@ -44,5 +54,4 @@ function ManagementMenu (){
     )
 }
 
-
-export default  ManagementMenu;
+export default ManagementMenu;

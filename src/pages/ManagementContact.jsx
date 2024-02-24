@@ -68,7 +68,7 @@ function ManagementContact() {
           icon="pi pi-arrow-left"
           className="head-btn-back"
           size="small"
-          onClick={() => navigate("/management-menu")}
+          onClick={() => history.back()}
         />
         <h2>Gestión de Contacto</h2>
       </div>
@@ -92,7 +92,7 @@ function ManagementContact() {
                   <InputText
                     name="facebook"
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
-                    placeholder={contact.facebook}
+                    defaultValue={contact.facebook}
                     onChange={handleInput}
                   />
                   <span className="p-inputgroup-addon">
@@ -109,7 +109,7 @@ function ManagementContact() {
                   </span>
                   <InputText
                     name="instagram"
-                    placeholder={contact.instagram}
+                    defaultValue={contact.instagram}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
@@ -127,7 +127,7 @@ function ManagementContact() {
                   </span>
                   <InputText
                     name="location"
-                    placeholder={contact.location}
+                    defaultValue={contact.location}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
@@ -148,7 +148,7 @@ function ManagementContact() {
                   </span>
                   <InputText
                     name="phone1"
-                    placeholder={contact.phone1}
+                    defaultValue={contact.phone1}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
@@ -161,7 +161,7 @@ function ManagementContact() {
                   </span>
                   <InputText
                     name="email1"
-                    placeholder={contact.email1}
+                    defaultValue={contact.email1}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
@@ -176,7 +176,7 @@ function ManagementContact() {
                   </span>
                   <InputText
                     name="whatsapp"
-                    placeholder={contact.whatsapp}
+                    defaultValue={contact.whatsapp}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
@@ -189,7 +189,7 @@ function ManagementContact() {
                   </span>
                   <InputText
                     name="telegram"
-                    placeholder={contact.telegram}
+                    defaultValue={contact.telegram}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
@@ -204,7 +204,7 @@ function ManagementContact() {
                   </span>
                   <InputText
                     name="remesas"
-                    placeholder={contact.remesas}
+                    defaultValue={contact.remesas}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
@@ -216,7 +216,7 @@ function ManagementContact() {
                     <i className="pi pi-truck"></i>
                   </span>
                   <InputText
-                    placeholder={contact.envios}
+                    defaultValue={contact.envios}
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                     name="envios"

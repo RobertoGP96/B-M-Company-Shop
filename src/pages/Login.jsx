@@ -60,12 +60,13 @@ function Login() {
             <InputText
               type = 'email'
               id="email"
+              required = {true}
             />
             <label htmlFor="email">Email</label>
           </span>
 
           <span className="p-float-label">
-            <Password inputId="password" toggleMask feedback={false} />
+            <Password inputId="password" toggleMask feedback={false} required = {true}/>
             <label htmlFor="password">Contraseña</label>
           </span>
 

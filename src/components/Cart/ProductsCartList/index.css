@@ -9,3 +9,8 @@
     background-color:transparent;
     cursor: pointer;
 }
+
+.products-cart-datatable .p-datatable-wrapper{
+    height:auto;
+    min-height:0;
+}

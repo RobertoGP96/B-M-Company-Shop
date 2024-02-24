@@ -61,6 +61,14 @@
     overflow-x: hidden!important;
 }
 
+.cart-delivery-info-container{
+    width: 100%;
+    margin-top:20px;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
 .cart-action-buttons{
     width: 100%;
     height: auto;
@@ -78,16 +86,7 @@
 .cart-action-buttons button{
     border: 1px solid black;
 }
-/*
-.cart-action-buttons button:first-child{
-    background-color: rgb(162, 162, 162);
-    border: 0;
-    margin-right: auto;
-}
-.cart-action-buttons button:nth-child(2){
-    background-color: white;
-}
-*/
+
 .cart-action-buttons button:first-child{
     margin-right: auto;
 }
