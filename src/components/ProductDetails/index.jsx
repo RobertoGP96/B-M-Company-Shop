@@ -44,7 +44,7 @@ function ProductDetails ({active,data,onHide}) {
                            
                                 <div className='price-status'> 
                                 {data.promotion || data.descuento > 0 ? (
-                                    <p className="card-text price price-with-discount">
+                                    <p className="card-text price product-detail-price-with-discount">
                                         <span className="original-price">${data.precio.toFixed(2)}</span>
                                         <span className="new-price">
                                         $

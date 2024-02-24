@@ -159,9 +159,15 @@ letter-spacing: -0.8px;
     letter-spacing: -0.8px;
 }
 
-.price-with-discount{
+.product-detail-price-with-discount{
     display: flex;
     flex-direction: row;
     gap: 10px;
+}
+
+.product-detail-price-with-discount .original-price{
+    text-decoration-line: line-through;
+    font-size: 16px;
+    opacity: .6;
 }
 
