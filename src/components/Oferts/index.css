@@ -6,13 +6,13 @@
 .oferts-conteiner{
     width: 100%;
     margin-top: 0px;
-    background-color: rgb(252, 251, 251);
+    background-color: #e8e8e8;
     color:black;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction:column;
-    gap: 50px;
+    gap: 20px;
     padding: 20px;
     padding-top: 2.5rem;
     position: relative;
@@ -21,7 +21,7 @@
 .oferts{    
     width: 100%;
     max-width: 1200px;
-    max-height: 252px;
+    max-height: 282px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,15 +105,17 @@
     height: 30px;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 600px) {
     .all-oferts{
         justify-content: center;
     }
     .oferts{
-       max-height: 1150px;
+       max-height: 525px;
     }
     .expanded{
-        max-height: 2600px ;
-      
+        max-height: 2000px ;
     }
+    .oferts{
+        gap: 20px;
+    } 
 }

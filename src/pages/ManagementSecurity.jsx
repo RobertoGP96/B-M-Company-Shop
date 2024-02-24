@@ -7,8 +7,7 @@ import { deleteUser } from "../services/ManageUser/deleteUser";
 import { Toast } from "primereact/toast";
 import UsersGrid from "../components/UserManagementComponents/UserGrid";
 import PageLoader from "../components/PageLoader";
-import DataTableUsers from "../components/UserManagementComponents/DataTableUsers";
-import SearchOferts from "../components/OfertsManagementComponents/SearchOfertsComponent";
+import SearchOferts from "../components/UserManagementComponents/SearchOfertsComponent";
 import QueryFiltersContext from "../context/filtersContext";
 import { useGetUsers } from "../hooks/useGetUsers";
 import { getUsers } from "../services/ManageUser/getUsers";
@@ -220,18 +219,6 @@ function ManagementSecurity() {
       />
       {/* Tabla de ofertas */}
       <section className={viewMode=="table"?"table-oferts-container":"table-oferts-container not-overfllow-x"}>
-        {!mobileView && viewMode !=="grid"? (
-          <DataTableUsers
-            dataUsers={dataUsers}
-            selectedUSers={selectedUsers}
-            setelectedUSers={setDataUsers}
-            confirm2={confirm2}
-            handleOnClickEditButton={handleOnClickEditButton}
-            setRowData={setRowData}
-            handleOnClickInfoButton={handleOnClickInfoButton}
-            setSelectedUSers={setSelectedUsers}
-          />
-        ) : viewMode =="grid"?
           <UsersGrid 
             deleteConfirm={confirm2} 
             handleOnChangeChecked={handleOnChangeChecked}
@@ -242,18 +229,6 @@ function ManagementSecurity() {
             selectedUsers={selectedUsers}
             users={dataUsers}
           />
-        :(
-          <UsersGrid 
-            deleteConfirm={confirm2} 
-            handleOnChangeChecked={handleOnChangeChecked}
-            handleOnClickEditButton={handleOnClickEditButton}
-            handleOnClickInfoButton={handleOnClickInfoButton}
-            searchChecked={searchChecked}
-            setRowData={setRowData}
-            selectedUsers={selectedUsers}
-            users={dataUsers}
-          />
-        )}
       </section>
     </section>
   );
