@@ -1,12 +1,8 @@
 import './index.css';
-import FilterIcon from "../../../assets/oferts-management-filter.svg";
 import AddIcon from "../../../assets/oferts-management-add.svg";
 import DeleteIcon from "../../../assets/oferts-management-delete.svg";
 import SearchIcon from "../../../assets/search-icon.svg";
 
-import { ToggleButton } from 'primereact/togglebutton';
-import ViewToggleGrid from "../../../assets/view-toggle-grid.svg";
-import ViewToggleList from "../../../assets/view-toggle-list.svg";
         
 const options = [<i className='pi pi-table'></i>, <i className='pi pi-list'></i>]
 
@@ -16,10 +12,8 @@ function SearchOferts({
   selectedOferts,
   confirmAll,
   show,
-  handelOnChangeView,
   responsive,
   search,
-  viewMode
 }) {
   return (
     <search
@@ -45,17 +39,6 @@ function SearchOferts({
         />
       </form>
 
-      <div className="view-toggle-container-oferts">
-        <img
-          src={viewMode == 'table' ?ViewToggleGrid: ViewToggleList}
-          onClick={handelOnChangeView}
-        />
-        </div>
-
-      <button className="search-oferts-button">
-        <img src={FilterIcon} alt="filter" width={"12px"} />
-        <p>Filtros</p>
-      </button>
 
       <button
         className="search-oferts-button"
