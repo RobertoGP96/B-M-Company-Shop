@@ -36,7 +36,6 @@ export function updateProduct({id, values, token}){
             else{
                 response.json()
                 .then(data => {
-                    console.log(data)
                 })
                 throw new Error("Errror al editar el producto")
             }

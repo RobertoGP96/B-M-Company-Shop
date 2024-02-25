@@ -18,6 +18,7 @@
   gap: 30px;
 }
 .nav-BarConteiner-Responsive {
+  padding-inline-start: 1.3rem;
   justify-content: flex-end;
   margin: 0px;
   display: flex;
@@ -27,6 +28,7 @@
   align-items: center;
   gap: 5px;
 }
+
 figure {
   display: flex;
   align-items: center;
@@ -65,6 +67,13 @@ figure {
 .navbar li {
   text-decoration: none;
   cursor: pointer;
+}
+
+.logo-continer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 }
 
 .navBar-itemConteiner {
@@ -136,6 +145,6 @@ figure {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap:20px;
+  gap:10px;
   padding-right: 20px;
 }

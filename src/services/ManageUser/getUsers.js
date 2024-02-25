@@ -1,7 +1,7 @@
-import { URL_MAGNAMENT_USERS } from "../../settings"
+import { URL_MANAGEMENT_USERS } from "../../settings"
 
 export function getUsers(filters='',token) {
-  return fetch(`${URL_MAGNAMENT_USERS}?${filters}`,{
+  return fetch(`${URL_MANAGEMENT_USERS}?${filters}`,{
     method: "GET",
     headers: {
       'Content-Type': "application/json",

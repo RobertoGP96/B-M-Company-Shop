@@ -1,0 +1,130 @@
+@font-face {
+  font-family: "Noto Sans";
+  src: url("../../assets/fonts/NotoSans-Regular.woff2");
+}
+
+.Logo {
+  width: 6rem;
+}
+
+.envios-container {
+  width: 100%;
+  min-height: 100vh;
+  font-family: Noto Sans;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  background-image: url(../../assets/envios-back.jpg) !important;
+
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.envios-section {
+  background-color: white;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-social-envio {
+  appearance: none;
+  text-decoration: none;
+  margin: 0;
+  font-size: 1.5rem !important;
+  color: white;
+}
+
+.envios-container-section{
+    width: 100%;
+    background-color: rgba(1, 1, 1, 0.5);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 5px 0 black;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 25px;
+    gap: 0;
+}
+
+.intro-envios-into{
+    width: 80%;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-envios-into p {
+    font-family: Noto Sans;
+    text-align: center;
+    width: 60%;
+    margin: 0;
+    padding: 1.5rem 1.5rem;
+    font-weight: 100;
+    font-size: 13px;
+    color: white;
+}
+
+.intro-envios-into p strong{
+  font-style: oblique;
+}
+
+.social-envios-into{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-envios-into h5{
+    color: white;
+    margin: 5px;
+    font-family: Noto Sans;
+}
+
+.social-envios-into .p-skeleton{
+  background-color: rgba(114, 114, 114, 0.11);
+}
+.social-envios-info{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding-inline-start: 0;
+}
+
+.social-envios-info li i{
+    color: white;
+    font-size: larger;
+}
+
+.social-envios-info li{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (width < 500px) {
+  .intro-envios-into p {
+    width: 100%;
+    text-wrap: balance;
+    font-size: 15px;
+    padding: 15px;
+  }
+  .intro-envios-into{
+    width: 100%;
+  }
+}

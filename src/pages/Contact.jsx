@@ -1,8 +1,9 @@
 import "./pagesStyles/Contact.css";
 import "primeicons/primeicons.css";
-import Logo from "../assets/B&MCshop-logo.svg";
+import Logo from "../assets/BYM logo/B&M-E-COMMERSE.svg";
 import { useState, useEffect } from "react";
-import { getContactInfo } from "../services/ManageContact/contact_info_managment";
+import { getContactInfo } from "../services/ManageContact/contact_info_management";
+import {Skeleton} from "primereact/skeleton"
 
 function Contact() {
   const [loading, setLoading] = useState(true);
@@ -19,17 +20,13 @@ function Contact() {
     <div className="contact-container">
       <section className="container">
         <div className="logo-contact-into">
-          <img src={Logo} alt="Logo of B&M Company Shop" />
+          <img src={Logo}  className="Logo" alt="Logo of B&M Company" />
         </div>
         <article className="intro-contact-into">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+          Esperemos que haya sido de su agrado alguno de nuestros productos.  
+          Si desea puede contactarnos por alguno de estos medios.
+          Estaremos encantados de responder cualquiera de sus dudas.
           </p>
         </article>
         <article className="social-contact-into">
@@ -84,7 +81,7 @@ export default Contact;
 
 function ContactLabel({ label, loading, action }) {
   return loading ? (
-    <i className="pi pi-spinner pi-spin"></i>
+    <Skeleton width="6rem"></Skeleton>
   ) : (
     <a className="label-social" href={action} >{label}</a>
   );

@@ -13,7 +13,7 @@
 }
 
 /*Mobile*/
-@media (width < 830px){
+@media (max-width: 830px){
     .order-button span{
         margin:0;
         padding: 0;

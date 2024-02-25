@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import getLastProducts from "../services/getLastProducts";
 import getRecommendedProducts from "../services/getRecommendedProducts";
+import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
 
 function Home() {
   const responsive = useWindowSize("max", 800);
@@ -13,6 +14,7 @@ function Home() {
   const [recomendedProducts, setRecomendedProducts] = useState([]);
   const [loading1, setLoading1] = useState(false);
   const [loading2, setLoading2] = useState(false);
+  const { promotions, loadingPromotions } = useGetPromotions();
 
   useEffect(() => {
     setLoading1(true);
@@ -43,7 +45,7 @@ function Home() {
               </h1>
               <p>
                 En B&M company, nos enorgullece ofrecer una amplia selección de 
-                productos de alta calidad a precios asequibles. 
+                productos de alta calidad a precios. 
                 <br/>
                 Tenemos todo lo que necesitas para satisfacer tus necesidades.  
               </p>
@@ -60,10 +62,10 @@ function Home() {
               <p>
                 Explora nuestro sitio web para descubrir nuestras ultimas ofertas 
                 y promociones y no dudes en ponerte en
-                contacto con nososotros si 
+                contacto con nosotros si 
                 <br />
                 necesitas ayuda 
-                para encontar lo q
+                para encontrar lo que
                 buscas.
                 !Gracias por visitarnos!
               </p>
@@ -82,6 +84,8 @@ function Home() {
             load2={loading2}
             recomendedProducts={recomendedProducts}
             lastAded={lastAded}
+            promotions={promotions}
+            loadingPromotions={loadingPromotions}
           />
         </section>
     </section>

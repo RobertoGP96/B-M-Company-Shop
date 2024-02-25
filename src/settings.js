@@ -15,11 +15,12 @@ export const URL_GET_PRODUCTS_PROMOTION = `${BASE_URL}/store/products?promotion=
 export const URL_ADD_PRODUCTS_PROMOTION = `${BASE_URL}/store/manage-promotions/`
 export const URL_DELETE_PRODUCTS_PROMOTION = `${BASE_URL}/store/manage-promotions/`
 
-export const URL_MAGNAMENT_USERS = `${BASE_URL}/user/managment/`
+export const URL_MANAGEMENT_USERS = `${BASE_URL}/user/managment/`
 
 
 //authentication
 export const LOGIN_URL = `${BASE_URL}/authentication/login/`
+export const CHANGE_PASSWORD_URL = `${BASE_URL}/authentication/password/change/`
 
 //contact info
 export const CONTACT_INFO_URL = `${BASE_URL}/contact_info/`

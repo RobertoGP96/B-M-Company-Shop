@@ -13,7 +13,7 @@ export function useGetUsers({searchParams,setUsers}) {
         .then((data) => {
             setUsers(data.results);
             console.log(data.results);
-            changeUsers(datadata.results);
+            changeUsers(data.results);
             setLoading(false);
         })
         .catch(() => {

@@ -5,10 +5,11 @@ import Zelle from "../assets/zelle-icon.svg";
 import Cash from "../assets/cash-icon.svg";
 import PayPal from "../assets/paypal.svg";
 import PhoneImg from "../assets/Frame-2.webp";
+import { Skeleton } from "primereact/skeleton";
 
 import { useState, useEffect } from "react";
 
-import { getContactInfo } from "../services/ManageContact/contact_info_managment";
+import { getContactInfo } from "../services/ManageContact/contact_info_management";
 
 
 function Remesas() {
@@ -61,7 +62,7 @@ function Remesas() {
 
 function ContactLabel({ label, loading }) {
   return loading ? (
-    <i className="pi pi-spinner pi-spin"></i>
+    <Skeleton width="10rem" height="1.5rem" ></Skeleton>
   ) : (
     <h4>{label}</h4>
   );
