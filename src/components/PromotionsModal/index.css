@@ -114,8 +114,7 @@
 @media (max-width: 365px) {
 
     .home-mobile-location{
-        height: 200px;
-        width: 100px;   
+        
         max-width: 155px;
         margin: 0px !important;
     }
