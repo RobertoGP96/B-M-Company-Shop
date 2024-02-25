@@ -12,17 +12,9 @@
 
 
 .store-promotion-card{
-<<<<<<< HEAD
-    width: 300px;
-    height: 270px;
-    min-height: 250px;   
-    max-width: 280px;
-    min-width: 155px;
-=======
     width: 100%;
     height: 200px;   
     max-width: 250px;
->>>>>>> ofert-managment
     cursor: pointer;
     background-color: #fff;
     box-shadow: 2px 5px 10px rgb(202, 201, 201);
