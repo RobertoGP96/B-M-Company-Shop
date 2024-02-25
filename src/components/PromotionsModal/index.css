@@ -112,12 +112,6 @@
     font-family: "Agency-fb";
 }
 @media (max-width: 365px) {
-    .store-promotion-card{
-        height: 200px !important;   
-        max-width: 100px !important;
-        width: 100px;   
-        margin: 0px !important;
-    }
 
     .home-mobile-location{
         height: 200px;
