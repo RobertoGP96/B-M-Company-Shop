@@ -72,6 +72,9 @@ function InfoUser({
       <ChangePassword
         onHide={handelOnChangePassworModalStatus}
         visible={passwordModalStatus}
+        token={auth.token}
+        user_id={infoData.id}
+        show={show}
       />
       <Dialog
         visible={visible}
