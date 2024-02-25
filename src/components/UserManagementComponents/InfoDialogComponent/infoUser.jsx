@@ -134,7 +134,6 @@ function InfoUser({
                   else if(err.message.includes("Unexpected token ")){
                     show("Ese usuario ya está en uso", "warn");
                   }else{
-                    console.log(err); 
                     onSave();
                     show("Accion completada", "success");
                     setPageLoad(false);

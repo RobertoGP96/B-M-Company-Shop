@@ -45,7 +45,6 @@ export function ChangePassword({ onHide, visible, token, user_id, show }) {
           if (passowrdDetails.password !== passowrdDetails.confirmPassword) {
             show("Las contraseñas no coinciden","warn");
           } else {
-            console.log("password", passowrdDetails.password)
             changePassword({
               user_id: user_id,
               //se esta llamando al parametro password de la funcion changePassword, esta se llama newPassword
