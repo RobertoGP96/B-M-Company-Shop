@@ -96,6 +96,12 @@
     height: 30px;
 }
 
+.users-actions-table-button{
+    background-color: transparent;
+    padding: 6px;
+    border: none;
+}
+
 
 .accion-users-template-section button i{
     font-size:medium;

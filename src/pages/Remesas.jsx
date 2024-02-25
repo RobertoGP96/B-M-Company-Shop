@@ -32,19 +32,29 @@ function Remesas() {
         <img className="remesas-phone" src={PhoneImg} alt="" />
         <div className="remesas-title">
           <h1>Remesas</h1>
+          <div className="remesas-price">
+            <p>{data.phone2}</p>
+          </div>
           <ul className="platform-icons">
+              <a href="https://www.zellepay.com/" target="_blank">
             <li>
               <img src={Zelle} className="phone-hand-img" alt="Zelle icon" />
               <p>Zelle</p>
             </li>
+              </a>
+              <a href="https://cash.app/" target="_blank">
+
             <li>
               <img src={Cash} alt="Zelle icon" />
               <p>Cash</p>
             </li>
+              </a>
+              <a href="https://www.paypal.com/" target="_blank">           
             <li>
               <img src={PayPal} alt="Zelle icon" />
               <p>PayPal</p>
             </li>
+              </a>
           </ul>
           <span className="contact-button">
             <ContactLabel label={data.remesas} loading={loading}/>

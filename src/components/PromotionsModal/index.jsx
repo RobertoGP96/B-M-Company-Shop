@@ -2,6 +2,7 @@ import { Dialog } from "primereact/dialog";
 import { useContext } from "react";
 import QueryFiltersContext from "../../context/filtersContext";
 import "./index.css";
+import PromotionCard from "./PromotionCard";
 
 function PromotionsModal({ show, setShow, promotions, loadingPromotions }) {
   const { setFilter } = useContext(QueryFiltersContext);
@@ -17,24 +18,15 @@ function PromotionsModal({ show, setShow, promotions, loadingPromotions }) {
     >
       <section className="store-promotions-grid">
         {promotions.map((promotion) => (
-          <article
-            key={promotion.id}
-            className="store-promotion-card"
-            onClick={() =>
-                {
-                    setFilter({ name: "promotion", value: promotion.id })
-                    setShow(false)
-                }
-            }
-          >
-            <header>
-              <img alt={promotion.name} src={promotion.img} />
-            </header>
-            <footer>
-                <span>{promotion.name}</span>
-                <span>{promotion.discount_in_percent}% OFF</span>
-            </footer>
-          </article>
+          <PromotionCard    
+            promotion={promotion} 
+            handleOnclick={() =>
+              {
+                setFilter({ name: "promotion", value: promotion.id })
+                setShow(false)
+              }}
+          />
+
         ))}
       </section>
     </Dialog>

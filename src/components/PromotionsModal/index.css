@@ -11,9 +11,11 @@
 }
 
 .store-promotion-card{
-    width: 100%;
-    height: 200px;   
-    max-width: 250px;
+    width: 300px;
+    height: 270px;
+    min-height: 250px;   
+    max-width: 280px;
+    min-width: 155px;
     cursor: pointer;
     background-color: #fff;
     box-shadow: 2px 5px 10px rgb(202, 201, 201);
@@ -23,6 +25,33 @@
     margin: 0 auto;
 }
 
+.home-location{
+    height: 250px;   
+    max-width: 300px;
+    margin: 0px ;
+}
+
+.home-mobile-location{
+    height: 235px;   
+    max-width: 155px;
+    margin: 0px !important;
+}
+
+
+
+.header-mobile{
+    height: 70% !important;
+}
+
+.footer-mobile{
+    display: flex !important;
+    flex-direction: column !important;
+    font-size: 11px !important;
+    gap: 0px !important;
+    margin-block: 0px;
+    height: 30% !important;
+    
+}
 .store-promotion-card header{
     width: 100%;
     height: 80%;
@@ -30,8 +59,8 @@
     align-items: top;
     justify-content: center;
     background: rgb(243 241 241);
-    border-top-left-radius:5px ;
-    border-top-right-radius:5px ;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
 }
 
 .store-promotion-card img{
@@ -79,4 +108,19 @@
     line-height: 40.214px; /* 167.557% */
     letter-spacing: -0.48px;
     font-family: "Agency-fb";
+}
+@media (max-width: 365px) {
+    .store-promotion-card{
+        height: 200px !important;   
+        max-width: 100px !important;
+        width: 100px;   
+        margin: 0px !important;
+    }
+
+    .home-mobile-location{
+        height: 200px;
+        width: 100px;   
+        max-width: 155px;
+        margin: 0px !important;
+    }
 }
