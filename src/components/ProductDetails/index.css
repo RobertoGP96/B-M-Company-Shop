@@ -18,12 +18,6 @@
     justify-content: center;
 }
 
-.close-button:hover{
-    outline: 2px solid rgb(55, 96, 209);
-}
-.close-button-responsive:hover{
-    outline: 2px solid rgb(55, 96, 209);
-}
 
 .close-button-responsive{
     width: 25px;
