@@ -39,17 +39,25 @@ export function ChangePassword({ onHide, visible, token, user_id, show }) {
       header={heaerTitle}
     >
       <form
-        onSubmit={() => {
+        onSubmit={(e) => {
+          //prevent default faltaba
+          e.preventDefault()
           if (passowrdDetails.password !== passowrdDetails.confirmPassword) {
             show("Las contraseñas no coinciden","warn");
           } else {
+            console.log("password", passowrdDetails.password)
             changePassword({
               user_id: user_id,
-              password: passowrdDetails.password,
+              //se esta llamando al parametro password de la funcion changePassword, esta se llama newPassword
+              newPassword: passowrdDetails.password, 
               token: token,
             }).then((respponse) => {     
               if(respponse == "Password Error"){   
                 show("Error al cambiar la contraseña. Inténtelo más tarde","warn")
+              }
+              //este else no estaba, no se mostraba si se habia cambiado bien
+              else{
+                show("Contraseña cambiada correctamente","success")
               }
             })
 
