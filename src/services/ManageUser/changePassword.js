@@ -9,14 +9,12 @@ export function changePassword({newPassword,user_id, token}){
         },
         body: JSON.stringify({new_password: newPassword})
     })
-    .then(data => {
-        if(data.statusText == "New password has been saved."){
+    .then(res => {
+        if(res.status == 200){ // hay que comprobar data.status == 200
             return "Password change successfuly"
         }
         else{
-            if(data.statusText == "Bad Request"){
-                return "Password Error"
-            }
+            return "Password Error"
         }
     })
     
