@@ -47,6 +47,7 @@ function Oferts({
           {!loadingPromotions ? (
             promotions.map((promotion, index) => (
               <PromotionCard
+                key = {promotion.id}
                 id={promotions.id}
                 promotion={promotion}
                 location={mobileSize ? "home-mobile" : "home"}
@@ -82,7 +83,7 @@ function Oferts({
       </article>
 
       <div className="divider-conteiner">
-        <h3 style={{ display: "inline" }}>Ofertas Recomendadas</h3>
+        <h3 style={{ display: "inline" }}>Productos Recomendados</h3>
         <hr className="divider" />
       </div>
 
@@ -91,6 +92,7 @@ function Oferts({
           {!load1 ? (
             recomendedProducts.map((products, index) => (
               <ProductCard
+                key = {products.id}
                 className={"item"}
                 id={products.id}
                 {...products}
@@ -138,6 +140,7 @@ function Oferts({
           {!load2 ? (
             lastAded.map((products, index) => (
               <ProductCard
+                key = {products.id}
                 id={products.id}
                 precio={products.precio}
                 {...products}
