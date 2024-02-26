@@ -10,12 +10,11 @@
     justify-content: center;
 }
 
+
 .store-promotion-card{
-    width: 300px;
-    height: 270px;
-    min-height: 250px;   
-    max-width: 280px;
-    min-width: 155px;
+    width: 100%;
+    height: 200px;   
+    max-width: 250px;
     cursor: pointer;
     background-color: #fff;
     box-shadow: 2px 5px 10px rgb(202, 201, 201);
@@ -26,9 +25,12 @@
 }
 
 .home-location{
-    height: 250px;   
+    width: 300px;
+    height: 250px;
+    min-height: 250px;   
     max-width: 300px;
-    margin: 0px ;
+    min-width: 155px;
+    margin: 0px;
 }
 
 .home-mobile-location{
@@ -110,16 +112,9 @@
     font-family: "Agency-fb";
 }
 @media (max-width: 365px) {
-    .store-promotion-card{
-        height: 200px !important;   
-        max-width: 100px !important;
-        width: 100px;   
-        margin: 0px !important;
-    }
 
     .home-mobile-location{
-        height: 200px;
-        width: 100px;   
+        
         max-width: 155px;
         margin: 0px !important;
     }

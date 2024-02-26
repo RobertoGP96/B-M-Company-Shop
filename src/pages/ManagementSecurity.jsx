@@ -11,6 +11,7 @@ import SearchOferts from "../components/UserManagementComponents/SearchOfertsCom
 import QueryFiltersContext from "../context/filtersContext";
 import { useGetUsers } from "../hooks/useGetUsers";
 import { getUsers } from "../services/ManageUser/getUsers";
+import DataTableUsers from "../components/UserManagementComponents/DataTableUsers";
 import AuthenticationContext from "../context/authenticationContext";
 
 const heaerTitle =(info) => {
@@ -219,6 +220,18 @@ function ManagementSecurity() {
       />
       {/* Tabla de ofertas */}
       <section className={viewMode=="table"?"table-oferts-container":"table-oferts-container not-overfllow-x"}>
+      {!mobileView && viewMode !=="grid"? (
+          <DataTableUsers
+            dataUsers={dataUsers}
+            selectedUSers={selectedUsers}
+            setelectedUSers={setDataUsers}
+            confirm2={confirm2}
+            handleOnClickEditButton={handleOnClickEditButton}
+            setRowData={setRowData}
+            handleOnClickInfoButton={handleOnClickInfoButton}
+            setSelectedUSers={setSelectedUsers}
+          />
+        ) : viewMode =="grid"?
           <UsersGrid 
             deleteConfirm={confirm2} 
             handleOnChangeChecked={handleOnChangeChecked}
@@ -229,6 +242,18 @@ function ManagementSecurity() {
             selectedUsers={selectedUsers}
             users={dataUsers}
           />
+        :(
+          <UsersGrid 
+            deleteConfirm={confirm2} 
+            handleOnChangeChecked={handleOnChangeChecked}
+            handleOnClickEditButton={handleOnClickEditButton}
+            handleOnClickInfoButton={handleOnClickInfoButton}
+            searchChecked={searchChecked}
+            setRowData={setRowData}
+            selectedUsers={selectedUsers}
+            users={dataUsers}
+          />
+        )}
       </section>
     </section>
   );

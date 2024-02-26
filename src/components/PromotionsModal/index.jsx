@@ -19,6 +19,7 @@ function PromotionsModal({ show, setShow, promotions, loadingPromotions }) {
       <section className="store-promotions-grid">
         {promotions.map((promotion) => (
           <PromotionCard    
+          key = {promotion.id}
             promotion={promotion} 
             handleOnclick={() =>
               {

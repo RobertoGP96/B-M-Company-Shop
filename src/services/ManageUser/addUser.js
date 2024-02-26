@@ -25,7 +25,6 @@ export function addUsers({info,token
           throw new Error(responseData.password);
         }
         else{
-          console.log(responseData)
           throw new Error(responseData);
         }
       });

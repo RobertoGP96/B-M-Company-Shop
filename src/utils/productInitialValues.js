@@ -7,6 +7,7 @@ export function createProductInitialValues({product}){
     categoria: product.categoria,
     promotion: product.promotion,
     is_active: product.is_active,
+    recommended: product.recommended,
     in_stock: product.in_stock,
     descuento: product.descuento,
     product_img1: product.product_img1,
@@ -24,6 +25,7 @@ export function getInitialValues(){
         categoria: null,
         promotion:null,
         is_active: true,
+        recommended:false,
         in_stock: 0,
         descuento: 0,
         product_img1: null,
@@ -32,14 +34,15 @@ export function getInitialValues(){
       }
 }
 
-export function normalizeProductFormInfo({e, categorySelected, promotionSelected, activeStatusChecked}){
-    return {
+export function normalizeProductFormInfo({e, categorySelected, promotionSelected, activeStatusChecked, recommendedCheck}){
+  return {
         product_name: e.target["name"].value,
         product_description: e.target["description"].value,
         precio: e.target["price"].value,
         categoria: categorySelected.code,
         promotion: promotionSelected.code,
         is_active: activeStatusChecked,
+        recommended:recommendedCheck,
         in_stock: e.target["stock"].value,
         descuento: e.target["discount"].value,
         product_img1: e.target["img1"].files[0],

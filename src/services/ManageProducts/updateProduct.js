@@ -8,6 +8,7 @@ export function updateProduct({id, values, token}){
     formData.append('descuento', values.descuento)
     formData.append('in_stock', values.in_stock)
     formData.append('is_active', values.is_active) 
+    formData.append('recommended', values.recommended) 
     formData.append('categoria', values.categoria)
     formData.append('promotion', values.promotion)
 

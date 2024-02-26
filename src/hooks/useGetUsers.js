@@ -12,7 +12,6 @@ export function useGetUsers({searchParams,setUsers}) {
         getUsers(searchParams,auth.token)
         .then((data) => {
             setUsers(data.results);
-            console.log(data.results);
             changeUsers(data.results);
             setLoading(false);
         })

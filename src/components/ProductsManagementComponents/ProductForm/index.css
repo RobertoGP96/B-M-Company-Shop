@@ -68,6 +68,7 @@
     background:rgba(84, 84, 84, 1);
 }
 
+/*ACTIVE CHECKBOX*/
 .product-form-active-checkbox{
     display: flex;
     flex-direction: row;
@@ -83,6 +84,25 @@
 }
 /*Cambio estilos del borde del checkbox*/
 .product-form-active-checkbox .p-checkbox .p-checkbox-box{
+    border: 1.5px solid gray;
+}
+
+/*RECOMMENDED CHECKBOX*/
+.product-form-recommended-checkbox{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/*cambio el color del checkbox a gris*/
+.product-form-recommended-checkbox .p-highlight{
+    background-color: rgba(84, 84, 84, 1);
+    border:0
+}
+/*Cambio estilos del borde del checkbox*/
+.product-form-recommended-checkbox .p-checkbox .p-checkbox-box{
     border: 1.5px solid gray;
 }
 

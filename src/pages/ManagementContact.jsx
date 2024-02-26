@@ -61,7 +61,6 @@ function ManagementContact() {
   
   function editContact(data) {
     if (data) {
-      console.log(data)
       editContactInfo({ info: data, token: auth.token }).then(() => {
         showOK
         setSaved(true);

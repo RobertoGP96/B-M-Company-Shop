@@ -7,6 +7,7 @@ export function createProduct({values, token}){
     formData.append('precio', values.precio)
     formData.append('descuento', values.descuento)
     formData.append('is_active', values.is_active)
+    formData.append('recommended', values.recommended)
     formData.append('in_stock', values.in_stock)
     
     if(values.categoria !== undefined && values.categoria !== null){

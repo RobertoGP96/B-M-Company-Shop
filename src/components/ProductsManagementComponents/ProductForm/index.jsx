@@ -32,6 +32,8 @@ function ProductForm({
     setChecked,
     updateProduct,
     createProduct,
+    recommendedCheck,
+    setRecommendedCheck
   } = useManageProductForm({
     productFormProperties: productFormProperties,
     handleCreateProduct: handleCreateProduct,
@@ -153,6 +155,17 @@ function ProductForm({
             disabled={productFormProperties.disabled}
             checked={activeStatusChecked}
             onChange={(e) => setChecked(e.checked)}
+          />
+        </div>
+        {/*recommended*/}
+        <div className="product-form-recommended-checkbox">
+          <label htmlFor="recommended">Recomendado:</label>
+          <Checkbox
+            id="recommended"
+            aria-describedby="recommended-help"
+            disabled={productFormProperties.disabled}
+            checked={recommendedCheck}
+            onChange={(e) => setRecommendedCheck(e.checked)}
           />
         </div>
         {/*stock*/}
