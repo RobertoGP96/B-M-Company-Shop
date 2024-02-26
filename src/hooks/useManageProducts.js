@@ -107,6 +107,8 @@ export function useManageProducts({ searchParams, toastRef, setSelectedProducts,
             })
         }
     }
+    
+    //create product
     function handleCreateProduct({values}){
       if(productInfoValid({values:values})){
         setLoading(true)
