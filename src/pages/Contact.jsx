@@ -64,11 +64,11 @@ function Contact() {
             </span>
             <span>
               <i className="pi pi-whatsapp"></i>
-              <ContactLabel label="Whatsap" loading={loading} action={`https://wa.me/message/${data.whatsapp}`}/>
+              <ContactLabel label="Whatsap" loading={loading} action={`https://api.whatsapp.com/send?phone=${data.whatsapp}`}/>
             </span>
             <span>
               <i className="pi pi-telegram"></i>
-              <ContactLabel label="Telegram" loading={loading} action={`https://te.me/message/${data.telegram}`}/>
+              <ContactLabel label="Telegram" loading={loading} action={`https://t.me/${data.telegram}`}/>
             </span>
           </div>
         </article>
