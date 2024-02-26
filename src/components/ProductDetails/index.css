@@ -55,7 +55,7 @@
 }
 .sidebar-2 .p-sidebar-content {
     display: flex;
-   align-items: center;
+   align-items: flex-start;
    justify-content: center;
 }
 
@@ -65,7 +65,8 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-    margin-left: 50px;
+    margin-left: 45px;
+    margin-right: 25px;
 }
 
 .carousel{
