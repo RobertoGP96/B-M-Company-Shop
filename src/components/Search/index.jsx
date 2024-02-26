@@ -4,9 +4,9 @@ import QueryFiltersContext from '../../context/filtersContext';
 import SearchIcon from '../../assets/search-icon.svg'
 
 function Search() {
-    const {setFilter, getActiveFilter, removeFilter} = useContext(QueryFiltersContext)
+    const {searchParams, setFilter, getActiveFilter, removeFilter} = useContext(QueryFiltersContext)
     const [mounted, setMounted] = useState(false)
-    const [searchingValue, setSearchingValue] = useState(getActiveFilter("search"))
+    const [searchingValue, setSearchingValue] = useState("")
 
     //search the product when the user ends writting on the search form
     useEffect(() => {
@@ -18,6 +18,10 @@ function Search() {
             setMounted(true)
         }
     },[searchingValue])
+
+    useEffect(() => {
+        setSearchingValue(getActiveFilter("search"))
+    },[searchParams])
 
     return (
         <form onSubmit={(e) => e.preventDefault()} className = "search-form">
