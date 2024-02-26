@@ -60,7 +60,9 @@ function Remesas() {
             <ContactLabel label={data.remesas} loading={loading}/>
             <button className="remesas-contact-button">
               <i className="pi pi-phone"></i>
-              <a href={`https://wa.me/message/${data.remesas}`}>Contactar</a>
+              <a href={`https://wa.me/message/${data.remesas}`}>
+                Contactar
+              </a>
             </button>
           </span>
         </div>
