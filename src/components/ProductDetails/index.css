@@ -93,7 +93,9 @@
     padding-right: 3px;
     white-space: nowrap;
     padding: 3px;
-    outline: 1px solid rgba(0, 0, 0, 0.415);
+    outline: 1px solid rgba(0, 0, 0, 0.788);
+    color: #000;
+    font-weight: bold;
 }
 
 .price-status{
