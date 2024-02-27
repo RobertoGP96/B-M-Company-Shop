@@ -39,7 +39,7 @@ function Envios() {
               </a>
             </li>
             <li>
-              <a href={`https://api.whatsapp.com/send?phone=${data.whatsapp}`}>
+              <a href={`whatsapp://send?phone=${data.whatsapp}`}>
                 <i className="pi pi-whatsapp"></i>
               </a>
             </li>

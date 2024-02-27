@@ -64,7 +64,7 @@ function Contact() {
             </span>
             <span>
               <i className="pi pi-whatsapp"></i>
-              <ContactLabel label="Whatsap" loading={loading} action={`https://api.whatsapp.com/send?phone=${data.whatsapp}`}/>
+              <ContactLabel label="Whatsap" loading={loading} action={`whatsapp://send?phone=${data.whatsapp}`}/>
             </span>
             <span>
               <i className="pi pi-telegram"></i>

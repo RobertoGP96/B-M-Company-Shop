@@ -60,7 +60,7 @@ function Remesas() {
             <ContactLabel label={data.remesas} loading={loading}/>
             <button className="remesas-contact-button">
               <i className="pi pi-phone"></i>
-              <a href={`https://api.whatsapp.com/send?phone=${data.remesas}`}>
+              <a href={`whatsapp://send?phone=${data.remesas}`}>
                 Contactar
               </a>
             </button>
