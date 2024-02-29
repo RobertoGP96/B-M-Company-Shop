@@ -81,6 +81,7 @@ function ProductDetails2({ active, data, onHide }) {
               numVisible={1}
               numScroll={1}
               itemTemplate={productTemplate}
+              className="carousel-detail"
             />
           </div>
 
@@ -92,6 +93,7 @@ function ProductDetails2({ active, data, onHide }) {
           </div>
           <div className="price-oferts-container">
             <div className="price-status">
+                <span className="price-label">Precio:</span>
               {data.promotion || data.descuento > 0 ? (
                 <p className="card-text price product-detail-price-with-discount">
                   <span className="original-price">

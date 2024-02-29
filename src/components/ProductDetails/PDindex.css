@@ -1,0 +1,127 @@
+
+.carousel-detail .p-carousel-indicators .p-link {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+.carousel-detail .p-carousel-container{
+    border: 1px solid #54545460;
+    border-radius: 5px;
+}
+
+.carousel-detail .p-carousel-next,
+.carousel-detail .p-carousel-prev {
+    width: 10px;
+}
+
+.p-carousel-indicators {
+    padding-bottom: 0;
+}
+
+.header-side-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-products-details .p-sidebar-content {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.img-card-carrusel {
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+.car-img-carrusel{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+
+.sidebar-products-details .p-sidebar-header {
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+}
+
+.car-img-carrusel {
+    border-radius: 5px;
+}
+
+
+
+/**/
+
+.close-button-responsive {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background: #00000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 0, 0);
+    border: none;
+}
+
+.oferts-status img {
+    width: 40px;
+    height: 40px;
+}
+
+
+/*Price*/
+.product-detail-price-with-discount {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.product-detail-price-with-discount .original-price {
+    text-decoration-line: line-through;
+    font-size: 16px;
+    opacity: .6;
+}
+
+.price-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.price-status .price-label {
+    align-self: center;
+    margin-block: 0px;
+    display: inline;
+    color: #202020;
+    font-size: 1rem;
+    letter-spacing: -0.1px;
+    line-height: 21px;
+    font-family: Noto Sans;
+}
+
+.description {
+    margin-block: 0px;
+    display: inline;
+    color: #202020;
+    font-size: 0.78rem;
+    letter-spacing: -0.1px;
+    line-height: 21px;
+    font-family: Noto Sans;
+
+}
+
+.product-name {
+    color: #000000;
+    font-family: Noto Sans;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: -0.8px;
+}
+
+.product-description-container {
+    min-height: 160px;
+    margin-bottom: 10px;
+}
