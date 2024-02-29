@@ -20,6 +20,7 @@ function Cart() {
   const { mobileMode } = useIsMobileMode({ mobileWidth: 950 });
   const { contactInfo } = useGetContactInfo();
   const [deliveryInfo, setDeliveryInfo] = useState({
+    name: null,
     phone: null,
     address: null,
   });
@@ -37,7 +38,7 @@ function Cart() {
   //function to send the pedido
   function handleSendPedido() {
     if (productsCart.length > 0 && contactInfo !== null) {
-      if (deliveryInfo.phone == null || deliveryInfo.address == null) {
+      if (deliveryInfo.name || deliveryInfo.phone == null || deliveryInfo.address == null) {
         setShowErrorDeliveryInfo(true);
       } else {
         sendWhatsappMessage({

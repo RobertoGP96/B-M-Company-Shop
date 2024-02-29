@@ -46,10 +46,18 @@ function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, set
           className="cart-delivery-info-form"
           onSubmit={(e) => {
             e.preventDefault();
-            setDeliveryInfo((prev) => ({...prev, phone:e.target["phone"].value, address:e.target["address"].value}))
+            setDeliveryInfo((prev) => ({...prev,name:e.target["name"].value ,phone:e.target["phone"].value, address:e.target["address"].value}))
             setShow(false)
           }}
         >
+          <span className="p-float-label">
+            <InputText
+              id="name"
+              defaultValue={deliveryInfo.name}
+              required={true}
+            />
+            <label htmlFor="phone">Nombre</label>
+          </span>
           <span className="p-float-label">
             <InputText
               id="phone"
