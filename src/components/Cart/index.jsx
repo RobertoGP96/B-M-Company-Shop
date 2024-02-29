@@ -38,7 +38,7 @@ function Cart() {
   //function to send the pedido
   function handleSendPedido() {
     if (productsCart.length > 0 && contactInfo !== null) {
-      if (deliveryInfo.name || deliveryInfo.phone == null || deliveryInfo.address == null) {
+      if (deliveryInfo.name==null || deliveryInfo.phone == null || deliveryInfo.address == null) {
         setShowErrorDeliveryInfo(true);
       } else {
         sendWhatsappMessage({
