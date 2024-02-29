@@ -1,27 +1,40 @@
-import "./index.css";
+import "./PDindex.css";
 import { Sidebar } from "primereact/sidebar";
 import useWindowSize from "../../hooks/useWindowSize";
-import ImageCarousel from "../ImageCarousel";
 import { applyDiscount } from "../../utils/applyDiscount";
 import InOffertIcon from "../../assets/in-offert-icon.svg";
 import CartButton from "./CartButton";
+import { Carousel } from "primereact/carousel";
 
-const style = {
-  backdropFilter: "blur(1px)",
-  backgroundColor: "transparent !important",
-  zIndex: "9 !important",
-  position: "relative",
-};
-
-
-
-function ProductDetails({ active, data, onHide }) {
+function ProductDetails2({ active, data, onHide }) {
   const responsive = useWindowSize("max", 600);
 
-  const imgData ={};
-  
-  return (
-    data?
+  const imgData = [
+    {
+      img: data.product_img1,
+    },
+    {
+      img: data.product_img2,
+    },
+    {
+      img: data.product_img3,
+    },
+  ];
+
+  const 
+
+  const productTemplate = (item) => {
+    return (
+      <div className="car-img-carrusel">
+        <img
+          className="img-card-carrusel"
+          src={item.img}
+        />
+      </div>
+    );
+  };
+
+  return data ? (
     <section
       title="Detalles del producto"
       className="product-details-container"
@@ -53,15 +66,15 @@ function ProductDetails({ active, data, onHide }) {
           <i className="pi pi-chevron-right"></i>
         </button>
         <section className="details-container">
-          <div className="carousel">
-            <ImageCarousel
-              images={[
-                data.product_img1,
-                data.product_img2,
-                data.product_img3,
-              ]}
+          <div className="carrusel-sidebar content">
+            <Carousel
+              value={imgData}
+              numVisible={1}
+              numScroll={1}
+              itemTemplate={productTemplate}
             />
           </div>
+
           <div className="name-description-container">
             <div className="name-container">
               <p className="description">Nombre del producto</p>
@@ -112,8 +125,10 @@ function ProductDetails({ active, data, onHide }) {
           />
         </section>
       </Sidebar>
-    </section>: <></>
+    </section>
+  ) : (
+    <></>
   );
 }
 
-export default ProductDetails;
+export default ProductDetails2;

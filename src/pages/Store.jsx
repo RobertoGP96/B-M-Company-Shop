@@ -3,7 +3,7 @@ import ProductsGrid from "../components/ProductsGrid";
 import Search from "../components/Search";
 import OrderingProducts from "../components/OrderingProducts";
 import "./pagesStyles/Store.css";
-import ProductDetails from "../components/ProductDetails";
+import ProductDetails2 from "../components/ProductDetails/ProductDetail2";
 import { useState, useEffect } from "react";
 import { useGetCategories } from "../hooks/useGetCategories";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
@@ -55,7 +55,7 @@ function Store() {
       </main>
 
 
-      <ProductDetails
+      <ProductDetails2
         active={activeProductDetails}
         onHide={() => setActiveProductDetails(false)}
         data={detail}
