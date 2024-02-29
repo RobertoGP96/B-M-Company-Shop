@@ -177,3 +177,8 @@ letter-spacing: -0.8px;
     right: -240px;
     }
 }
+
+.product-description-container{
+    height: 200px;
+    margin-bottom: 10px;
+}
