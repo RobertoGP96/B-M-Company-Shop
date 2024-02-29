@@ -21,15 +21,37 @@ function ProductDetails2({ active, data, onHide }) {
     },
   ];
 
-  const 
+  const headerSide = () => {
+    return (
+      <div className="header-side-content">
+        <button
+          onClick={onHide}
+          className={
+            responsive
+              ? active
+                ? "close-button-responsive open"
+                : "close-button-responsive closed"
+              : active
+              ? "close-button open"
+              : "close-button closed"
+          }
+        >
+          <i className="pi pi-chevron-right"></i>
+        </button>
+
+        {data.promotion ? (
+          <div className="oferts-status">
+            <img src={InOffertIcon} alt="En Oferta" />
+          </div>
+        ) : null}
+      </div>
+    );
+  };
 
   const productTemplate = (item) => {
     return (
       <div className="car-img-carrusel">
-        <img
-          className="img-card-carrusel"
-          src={item.img}
-        />
+        <img className="img-card-carrusel" src={item.img} />
       </div>
     );
   };
@@ -50,21 +72,8 @@ function ProductDetails2({ active, data, onHide }) {
         showCloseIcon={false}
         maskStyle={{ color: "red" }}
         maskClassName="sidebar-2"
+        header={headerSide}
       >
-        <button
-          onClick={onHide}
-          className={
-            responsive
-              ? active
-                ? "close-button-responsive open"
-                : "close-button-responsive closed"
-              : active
-              ? "close-button open"
-              : "close-button closed"
-          }
-        >
-          <i className="pi pi-chevron-right"></i>
-        </button>
         <section className="details-container">
           <div className="carrusel-sidebar content">
             <Carousel
@@ -82,11 +91,6 @@ function ProductDetails2({ active, data, onHide }) {
             </div>
           </div>
           <div className="price-oferts-container">
-            {data.promotion ? (
-              <div className="oferts-status">
-                <img src={InOffertIcon} alt="En Oferta" />
-              </div>
-            ) : null}
             <div className="price-status">
               {data.promotion || data.descuento > 0 ? (
                 <p className="card-text price product-detail-price-with-discount">
