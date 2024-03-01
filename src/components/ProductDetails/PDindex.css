@@ -74,6 +74,11 @@
 }
 .oferts-status{
     height: 25px;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 /*Price*/
 .product-detail-price-with-discount {
@@ -163,4 +168,21 @@
     .product-description{
         min-height: 165px;
     }
+}
+
+.oferts-status .cart{
+    background-color: #000000;
+    border-radius: 5px;
+    border: 3px solid #00000042;
+    height: 30px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oferts-status .cart .show-cart-button-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

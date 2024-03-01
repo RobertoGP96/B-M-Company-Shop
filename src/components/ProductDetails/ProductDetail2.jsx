@@ -5,6 +5,8 @@ import { applyDiscount } from "../../utils/applyDiscount";
 import InOffertIcon from "../../assets/in-offert-icon.svg";
 import CartButton from "./CartButton";
 import { Carousel } from "primereact/carousel";
+import Cart from '../Cart'
+import UserNavbarActionsDropdown from "../UserNavbarActions";
 
 function ProductDetails2({ active, data, onHide }) {
   const responsive = useWindowSize("max", 600);
@@ -41,6 +43,7 @@ function ProductDetails2({ active, data, onHide }) {
 
         {data.promotion ? (
           <div className="oferts-status">
+            <Cart/>
             <img src={InOffertIcon} alt="En Oferta" />
           </div>
         ) : null}
