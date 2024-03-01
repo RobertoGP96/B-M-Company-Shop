@@ -68,7 +68,7 @@ function ProductDetails2({ active, data, onHide }) {
           return;
         }}
         position="right"
-        style={{ width: responsive ? "100%" : "450px" }}
+        style={{ width: responsive ? "100%" : "350px" }}
         showCloseIcon={false}
         maskStyle={{ color: "red" }}
         maskClassName="sidebar-2"
@@ -85,13 +85,13 @@ function ProductDetails2({ active, data, onHide }) {
             />
           </div>
 
-          <div className="name-description-container">
+          <div className="name-description-container padding-line">
             <div className="name-container">
               <p className="description">Nombre del producto</p>
               <p className="product-name">{data.product_name}</p>
             </div>
           </div>
-          <div className="price-oferts-container">
+          <div className="price-oferts-container padding-line">
             <div className="price-status">
                 <span className="price-label">Precio:</span>
               {data.promotion || data.descuento > 0 ? (
@@ -113,7 +113,7 @@ function ProductDetails2({ active, data, onHide }) {
               )}
             </div>
           </div>
-          <div className="name-description-container">
+          <div className="name-description-container padding-line">
             <div className="product-description-container">
               <p className="description">Descripción</p>
               <p className="product-description">{data.product_description}</p>

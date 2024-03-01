@@ -5,13 +5,15 @@
     border-radius: 5px;
 }
 .carousel-detail .p-carousel-container{
-    border: 1px solid #54545460;
-    border-radius: 5px;
+    border: 2px solid #5454541f;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .carousel-detail .p-carousel-next,
 .carousel-detail .p-carousel-prev {
     width: 10px;
+    display: none;
 }
 
 .p-carousel-indicators {
@@ -33,7 +35,7 @@
 
 .img-card-carrusel {
     width: 100%;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4/2.8;
 }
 .car-img-carrusel{
     display: grid;
@@ -54,24 +56,25 @@
 
 /**/
 
-.close-button-responsive {
-    width: 30px;
-    height: 30px;
+.close-button-responsive, .close-button {
+    width: 25px;
+    height: 25px;
     border-radius: 5px;
-    background: #00000000;
+    background: transparent;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     color: rgb(0, 0, 0);
-    border: none;
 }
 
 .oferts-status img {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
 }
-
-
+.oferts-status{
+    height: 25px;
+}
 /*Price*/
 .product-detail-price-with-discount {
     display: flex;
@@ -89,6 +92,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-top: 1px solid rgba(128, 128, 128, 0.288);
 }
 
 .price-status .price-label {
@@ -122,6 +126,38 @@
 }
 
 .product-description-container {
-    min-height: 160px;
     margin-bottom: 10px;
+    border-top: 1px solid rgba(128, 128, 128, 0.288);
+}
+
+.padding-line{
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+
+}
+
+.product-name,
+.product-description{
+    margin-top: 0;
+}
+
+.product-description{
+    border-radius: 5px;
+    min-height: 105px;
+    background-color: rgba(128, 128, 128, 0.077);
+    padding: 3px;
+    margin-bottom: 0;
+}
+
+.product-name{
+    border-radius: 5px;
+    background-color: rgba(128, 128, 128, 0.077);
+    padding: 3px;
+}
+
+
+@media (min-width: 800px) {
+    .product-description{
+        min-height: 165px;
+    }
 }
