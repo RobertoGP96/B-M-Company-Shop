@@ -97,7 +97,7 @@
 
 .price-status .price-label {
     align-self: center;
-    
+
     margin-block: 0px;
     display: inline;
     color: #202020;
@@ -148,6 +148,8 @@
     background-color: rgba(128, 128, 128, 0.077);
     padding: 3px;
     margin-bottom: 0;
+    font-size: 0.9rem !important;
+    text-wrap: balance;
 }
 
 .product-name{
