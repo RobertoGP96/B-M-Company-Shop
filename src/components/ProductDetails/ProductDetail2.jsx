@@ -5,8 +5,8 @@ import { applyDiscount } from "../../utils/applyDiscount";
 import InOffertIcon from "../../assets/in-offert-icon.svg";
 import CartButton from "./CartButton";
 import { Carousel } from "primereact/carousel";
-import Cart from '../Cart'
-import UserNavbarActionsDropdown from "../UserNavbarActions";
+import Cart from "../Cart";
+import BMlogo from "../../assets/BYM logo/B&M-LOGO.svg";
 
 function ProductDetails2({ active, data, onHide }) {
   const responsive = useWindowSize("max", 600);
@@ -40,13 +40,12 @@ function ProductDetails2({ active, data, onHide }) {
         >
           <i className="pi pi-chevron-right"></i>
         </button>
+          <img src={BMlogo} className="logo-header" />
 
-        {data.promotion ? (
-          <div className="oferts-status">
-            <Cart/>
-            <img src={InOffertIcon} alt="En Oferta" />
-          </div>
-        ) : null}
+        <div className="oferts-status">
+          <Cart />
+          {data.promotion ? <img src={InOffertIcon} alt="En Oferta" /> : null}
+        </div>
       </div>
     );
   };
@@ -96,7 +95,7 @@ function ProductDetails2({ active, data, onHide }) {
           </div>
           <div className="price-oferts-container padding-line">
             <div className="price-status">
-                <span className="price-label">Precio:</span>
+              <span className="price-label">Precio:</span>
               {data.promotion || data.descuento > 0 ? (
                 <p className="card-text price product-detail-price-with-discount">
                   <span className="original-price">

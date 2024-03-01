@@ -57,8 +57,8 @@
 /**/
 
 .close-button-responsive, .close-button {
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 30px;
     border-radius: 5px;
     background: transparent;
     border: none;
@@ -66,6 +66,7 @@
     align-items: center;
     justify-content: center;
     color: rgb(0, 0, 0);
+    border: 2px solid #0000008e;
 }
 
 .oferts-status img {
@@ -185,4 +186,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.logo-header{
+    width: 45px !important;
+    height: 40px !important;
 }
