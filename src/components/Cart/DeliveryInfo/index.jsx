@@ -74,7 +74,7 @@ function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, set
             />
             <label htmlFor="address">Dirección</label>
           </span>
-          <button className = "btn-general-styles" type="submit">Guardar</button>
+          <button className = "btn-general-styles save-btn" type="submit">Guardar</button>
         </form>
       </Dialog>
     </>

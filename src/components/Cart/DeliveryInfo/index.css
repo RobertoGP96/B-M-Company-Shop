@@ -59,3 +59,7 @@
 .cart-delivery-info-form button{
     border: 1px solid black!important;
 }
+
+.save-btn{
+    color: rgb(0, 0, 0) !important;
+}
