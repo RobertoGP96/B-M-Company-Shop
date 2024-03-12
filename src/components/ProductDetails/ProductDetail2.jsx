@@ -1,43 +1,31 @@
-import "./index.css";
+import "./PDindex.css";
 import { Sidebar } from "primereact/sidebar";
 import useWindowSize from "../../hooks/useWindowSize";
-import ImageCarousel from "../ImageCarousel";
 import { applyDiscount } from "../../utils/applyDiscount";
 import InOffertIcon from "../../assets/in-offert-icon.svg";
 import CartButton from "./CartButton";
+import { Carousel } from "primereact/carousel";
+import Cart from "../Cart";
+import BMlogo from "../../assets/BYM logo/B&M-LOGO.svg";
 
-const style = {
-  backdropFilter: "blur(1px)",
-  backgroundColor: "transparent !important",
-  zIndex: "9 !important",
-  position: "relative",
-};
-
-
-
-function ProductDetails({ active, data, onHide }) {
+function ProductDetails2({ active, data, onHide }) {
   const responsive = useWindowSize("max", 600);
 
-  const imgData ={};
-  
-  return (
-    data?
-    <section
-      title="Detalles del producto"
-      className="product-details-container"
-    >
-      <Sidebar
-        className="sidebar-products-details"
-        visible={active}
-        onHide={() => {
-          return;
-        }}
-        position="right"
-        style={{ width: responsive ? "100%" : "450px" }}
-        showCloseIcon={false}
-        maskStyle={{ color: "red" }}
-        maskClassName="sidebar-2"
-      >
+  const imgData = [
+    {
+      img: data.product_img1,
+    },
+    {
+      img: data.product_img2,
+    },
+    {
+      img: data.product_img3,
+    },
+  ];
+
+  const headerSide = () => {
+    return (
+      <div className="header-side-content">
         <button
           onClick={onHide}
           className={
@@ -52,29 +40,62 @@ function ProductDetails({ active, data, onHide }) {
         >
           <i className="pi pi-chevron-right"></i>
         </button>
+          <img src={BMlogo} className="logo-header" />
+
+        <div className="oferts-status">
+          <Cart />
+          {data.promotion ? <img src={InOffertIcon} alt="En Oferta" /> : null}
+        </div>
+      </div>
+    );
+  };
+
+  const productTemplate = (item) => {
+    return (
+      <div className="car-img-carrusel">
+        <img className="img-card-carrusel" src={item.img} />
+      </div>
+    );
+  };
+
+  return data ? (
+    <section
+      title="Detalles del producto"
+      className="product-details-container"
+    >
+      <Sidebar
+        className="sidebar-products-details"
+        visible={active}
+        onHide={() => {
+          return;
+        }}
+        position="right"
+        style={{ width: responsive ? "100%" : "350px" }}
+        showCloseIcon={false}
+        maskStyle={{ color: "red" }}
+        maskClassName="sidebar-2"
+        header={headerSide}
+      >
         <section className="details-container">
-          <div className="carousel">
-            <ImageCarousel
-              images={[
-                data.product_img1,
-                data.product_img2,
-                data.product_img3,
-              ]}
+          <div className="carrusel-sidebar content">
+            <Carousel
+              value={imgData}
+              numVisible={1}
+              numScroll={1}
+              itemTemplate={productTemplate}
+              className="carousel-detail"
             />
           </div>
-          <div className="name-description-container">
+
+          <div className="name-description-container padding-line">
             <div className="name-container">
               <p className="description">Nombre del producto</p>
               <p className="product-name">{data.product_name}</p>
             </div>
           </div>
-          <div className="price-oferts-container">
-            {data.promotion ? (
-              <div className="oferts-status">
-                <img src={InOffertIcon} alt="En Oferta" />
-              </div>
-            ) : null}
+          <div className="price-oferts-container padding-line">
             <div className="price-status">
+              <span className="price-label">Precio:</span>
               {data.promotion || data.descuento > 0 ? (
                 <p className="card-text price product-detail-price-with-discount">
                   <span className="original-price">
@@ -94,7 +115,7 @@ function ProductDetails({ active, data, onHide }) {
               )}
             </div>
           </div>
-          <div className="name-description-container">
+          <div className="name-description-container padding-line">
             <div className="product-description-container">
               <p className="description">Descripción</p>
               <p className="product-description">{data.product_description}</p>
@@ -112,8 +133,10 @@ function ProductDetails({ active, data, onHide }) {
           />
         </section>
       </Sidebar>
-    </section>: <></>
+    </section>
+  ) : (
+    <></>
   );
 }
 
-export default ProductDetails;
+export default ProductDetails2;

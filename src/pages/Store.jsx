@@ -3,7 +3,7 @@ import ProductsGrid from "../components/ProductsGrid";
 import Search from "../components/Search";
 import OrderingProducts from "../components/OrderingProducts";
 import "./pagesStyles/Store.css";
-import ProductDetails from "../components/ProductDetails";
+import ProductDetails2 from "../components/ProductDetails/ProductDetail2";
 import { useState, useEffect } from "react";
 import { useGetCategories } from "../hooks/useGetCategories";
 import { useGetPromotions } from "../hooks/useGetPromotionsFromProducts";
@@ -11,7 +11,7 @@ import ActiveFilters from "../components/ActiveFilters";
 
 function Store() {
   const [activeProductDetails, setActiveProductDetails] = useState(false);
-  const [data, setdata] = useState([]);
+  const [detail, setDetail] = useState({});
   const { categories, loading } = useGetCategories();
   const { promotions, loadingPromotions } = useGetPromotions();
 
@@ -24,8 +24,8 @@ function Store() {
     }
   }, [activeProductDetails]);
 
-  const handleOnactivateProductdetails = (products) => {
-    setdata(products);
+  const handleOnactivateProductdetails = (product) => {
+    setDetail(product);
     setActiveProductDetails(true);
   };
   return (
@@ -53,11 +53,15 @@ function Store() {
         </div>
         <ProductsGrid activateProductdetails={handleOnactivateProductdetails} />
       </main>
-      <ProductDetails
+
+
+      <ProductDetails2
         active={activeProductDetails}
         onHide={() => setActiveProductDetails(false)}
-        data={data}
+        data={detail}
       />
+
+      
     </section>
   );
 }

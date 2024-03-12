@@ -44,25 +44,25 @@ function ManagementContact() {
 
   const show = () => {
     toast.current.show({
-      severity: 'error',
-      summary: 'Error',
-      detail: 'Se ha producido un error.',
-      life:3000,
+      severity: "error",
+      summary: "Error",
+      detail: "Se ha producido un error.",
+      life: 3000,
     });
   };
   const showOK = () => {
     toast.current.show({
-      severity: 'success',
-      summary: 'Actialización realizada.',
-      detail: '',
-      life:3000,
+      severity: "success",
+      summary: "Actialización realizada.",
+      detail: "",
+      life: 3000,
     });
   };
-  
+
   function editContact(data) {
     if (data) {
       editContactInfo({ info: data, token: auth.token }).then(() => {
-        showOK
+        showOK;
         setSaved(true);
       });
     } else {
@@ -72,7 +72,7 @@ function ManagementContact() {
 
   return (
     <article className="mcontact-container">
-      <Toast ref={toast} position="top-left"/>
+      <Toast ref={toast} position="top-left" />
       <div className="head-contact">
         <Button
           icon="pi pi-arrow-left"
@@ -89,7 +89,9 @@ function ManagementContact() {
           action="submit"
           onSubmit={() => {
             event.preventDefault();
-            editContact(datos.whatsapp?datos:{ ...datos, "whatsapp": contact.whatsapp});
+            editContact(
+              datos.whatsapp ? datos : { ...datos, whatsapp: contact.whatsapp }
+            );
             showOK;
           }}
         >
@@ -106,9 +108,6 @@ function ManagementContact() {
                     defaultValue={contact.facebook}
                     onChange={handleInput}
                   />
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-ellipsis-v"></i>
-                  </span>
                 </div>
               </div>
             </li>
@@ -124,9 +123,6 @@ function ManagementContact() {
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-ellipsis-v"></i>
-                  </span>
                 </div>
               </div>
             </li>
@@ -142,9 +138,6 @@ function ManagementContact() {
                     style={{ minWidth: "160px", maxWidth: "15rem" }}
                     onChange={handleInput}
                   />
-                  <span className="p-inputgroup-addon">
-                    <i className="pi pi-ellipsis-v"></i>
-                  </span>
                 </div>
               </div>
             </li>
@@ -234,7 +227,10 @@ function ManagementContact() {
                   />
                 </div>
               </div>
-              <div className="element-contact">
+              
+            </li>
+            <li>
+            <div className="element-contact last">
                 <div className="p-inputgroup">
                   <span className="p-inputgroup-addon">
                     <i className="pi pi-truck"></i>

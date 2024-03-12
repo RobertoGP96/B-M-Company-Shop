@@ -9,6 +9,7 @@ export function useManageProductForm({
   categories,
 }) {
   const [activeStatusChecked, setChecked] = useState(true);
+  const [recommendedCheck, setRecommendedCheck] = useState(false);
 
   const categoriesOptions = [{ name: "Ninguna", code: '' }].concat(
     categories.map((category) => ({
@@ -33,13 +34,17 @@ export function useManageProductForm({
 
   //effect to update the activeStatus, the categorySelected and the promotion
   useEffect(() => {
-    //update if the product is active or not
-    productFormProperties.creatingMode == false
-      ? setChecked(productFormProperties.initialValues.is_active)
-      : setChecked(true);
+    //update if the product is active or not and if is recommended
+    if(productFormProperties.creatingMode == false){
+      setChecked(productFormProperties.initialValues.is_active)
+      setRecommendedCheck(productFormProperties.initialValues.recommended)
+    }else{
+      setChecked(true)
+      setRecommendedCheck(false)
+    }
     //update the category and promotion of the product
     if(productFormProperties.creatingMode == false) {
-      if(productFormProperties.initialValues.category !== null){
+      if(productFormProperties.initialValues.categoria !== null){
         setCategorySelected(
           categoriesOptions.find(
             (category) =>
@@ -65,6 +70,7 @@ export function useManageProductForm({
       categorySelected: categorySelected,
       promotionSelected: promotionSelected,
       activeStatusChecked: activeStatusChecked,
+      recommendedCheck: recommendedCheck,
     });
     handleCreateProduct({ values: values });
   }
@@ -76,6 +82,7 @@ export function useManageProductForm({
       categorySelected: categorySelected,
       promotionSelected: promotionSelected,
       activeStatusChecked: activeStatusChecked,
+      recommendedCheck: recommendedCheck,
     });
     handleUpdateProduct({
       id: productFormProperties.initialValues.id,
@@ -93,5 +100,7 @@ export function useManageProductForm({
     promotionsOptions,
     activeStatusChecked,
     setChecked,
+    recommendedCheck, 
+    setRecommendedCheck,
   };
 }
