@@ -6,7 +6,7 @@ import "./index.css";
 
 function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, setShowErrorDeliveryInfo}) {
   const [show, setShow] = useState(false);
-  const deliveryInfoButtonRef = useRef(null)
+  const deliveryInfoButtonRef = useRef(null);
 
   //focus the add delivery info button when the user try to send the order and the delivery info is empty
   useEffect(() => {
