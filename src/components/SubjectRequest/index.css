@@ -82,3 +82,6 @@
     background: white !important;
     border: 1px solid black;
 }
+.save-btn-subject p{
+    margin: 0;
+}

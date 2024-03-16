@@ -1,18 +1,20 @@
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
+import { InputMask } from "primereact/inputmask";
+
 import { InputTextarea } from "primereact/inputtextarea";
-import { useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import "./index.css";
+
+import { redirect } from "react-router-dom";
 
 function SubjectRequest(MailBM) {
   const [show, setShow] = useState(false);
   const deliveryInfoButtonRef = useRef(null);
-  const [info, setInfo] = useState(
-    {
-      phone: "",
-      text: "",
-    }
-  );
+  const [info, setInfo] = useState({
+    phone: "",
+    text: "",
+  });
 
   //focus the add delivery info button when the user try to send the order and the delivery info is empty
   useEffect(() => {
@@ -35,7 +37,7 @@ function SubjectRequest(MailBM) {
         }}
       >
         <i className="pi pi-send"></i>
-        <span>Enviar queja</span>
+        <span>Enviar</span>
       </button>
 
       <Dialog
@@ -48,7 +50,7 @@ function SubjectRequest(MailBM) {
         style={{ width: "85%" }}
       >
         <form
-          action=""
+          
           className="cart-delivery-info-form"
           onSubmit={(e) => {
             e.preventDefault();
@@ -56,8 +58,11 @@ function SubjectRequest(MailBM) {
           }}
         >
           <span className="p-float-label">
-            <InputText
+
+            <InputMask
               id="phone"
+              mask="(+99) 99-999999"
+              placeholder=""
               defaultValue={""}
               required={false}
               onChange={(e) => {
@@ -66,7 +71,8 @@ function SubjectRequest(MailBM) {
                   phone: e.target.value,
                 }));
               }}
-            />
+            ></InputMask>
+
             <label htmlFor="phone">Teléfono</label>
           </span>
           <span className="p-float-label">
@@ -79,14 +85,19 @@ function SubjectRequest(MailBM) {
                   ...prev,
                   text: e.target.value,
                 }));
-                console.log(info)
               }}
             />
             <label htmlFor="address">Queja</label>
           </span>
+
           <a
+            type="submit"
             className="btn-general save-btn-subject"
-            href={`mailto:${MailBM.MailBM}?subject=${String(info.phone)}&body=${info.text}`}
+            
+            href={`mailto:${MailBM.MailBM}?subject=${String(info.phone)}&body=${
+              info.text
+            }`}
+            
           >
             <i className="pi pi-send"></i>
             Enviar
