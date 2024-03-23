@@ -1,7 +1,7 @@
 import CartIcon from "../../assets/cart-icon.svg";
 import { Dialog } from "primereact/dialog";
 import CartContext from "../../context/cartContext";
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import ProductsCartList from "./ProductsCartList";
 import ProductsCartGrid from "./ProductsCartGrid";
 import { useIsMobileMode } from "../../hooks/useIsMobileMode";
@@ -19,6 +19,7 @@ function Cart() {
   const { productsCart, cleanCart, calculateTotal } = useContext(CartContext);
   const { mobileMode } = useIsMobileMode({ mobileWidth: 950 });
   const { contactInfo } = useGetContactInfo();
+  const deliveryInfoButtonRef = useRef(null);
   const [deliveryInfo, setDeliveryInfo] = useState({
     name: null,
     phone: null,
@@ -39,7 +40,7 @@ function Cart() {
   function handleSendPedido() {
     if (productsCart.length > 0 && contactInfo !== null) {
       if (deliveryInfo.name==null || deliveryInfo.phone == null || deliveryInfo.address == null) {
-        setShowErrorDeliveryInfo(true);
+        showErrorEmptyDeliveryInfo(true);
       } else {
         sendWhatsappMessage({
           phone: contactInfo.whatsapp,
@@ -50,6 +51,18 @@ function Cart() {
           }),
         });
       }
+    }
+  }
+
+  //focus the add delivery info button when the user try to send the order and the delivery info is empty
+  function showErrorEmptyDeliveryInfo(){
+    setShowErrorDeliveryInfo(true)
+    if(deliveryInfoButtonRef !== null){
+      deliveryInfoButtonRef.current.scrollIntoView({
+        top:0,
+        left:0,
+        behavior:'smooth'
+      })
     }
   }
 
@@ -84,10 +97,11 @@ function Cart() {
               {listView ? <ProductsCartList /> : <ProductsCartGrid />}
               <div className="cart-delivery-info-container">
                 <DeliveryInfo
-                deliveryInfo = {deliveryInfo}
+                  deliveryInfo = {deliveryInfo}
                   setDeliveryInfo={setDeliveryInfo}
                   showErrorDeliveryInfo={showErrorDeliveryInfo}
                   setShowErrorDeliveryInfo={setShowErrorDeliveryInfo}
+                  deliveryInfoButtonRef = {deliveryInfoButtonRef}
                 />
               </div>
             </div>

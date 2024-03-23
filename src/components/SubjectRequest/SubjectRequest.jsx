@@ -16,17 +16,6 @@ function SubjectRequest(MailBM) {
     text: "",
   });
 
-  //focus the add delivery info button when the user try to send the order and the delivery info is empty
-  useEffect(() => {
-    if (deliveryInfoButtonRef !== null) {
-      deliveryInfoButtonRef.current.scrollIntoView({
-        top: 0,
-        left: 0,
-        behavior: "smooth",
-      });
-    }
-  }, []);
-
   return (
     <>
       <button

@@ -1,23 +1,11 @@
 import { Dialog } from "primereact/dialog";
 import {InputText} from "primereact/inputtext"
 import {InputTextarea} from "primereact/inputtextarea"
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import "./index.css";
 
-function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, setShowErrorDeliveryInfo}) {
+function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, setShowErrorDeliveryInfo, deliveryInfoButtonRef}) {
   const [show, setShow] = useState(false);
-  const deliveryInfoButtonRef = useRef(null);
-
-  //focus the add delivery info button when the user try to send the order and the delivery info is empty
-  useEffect(() => {
-    if(showErrorDeliveryInfo == true && deliveryInfoButtonRef !== null){
-      deliveryInfoButtonRef.current.scrollIntoView({
-        top:0,
-        left:0,
-        behavior:'smooth'
-      })
-    }
-  },[showErrorDeliveryInfo])
 
   return (
     <>
