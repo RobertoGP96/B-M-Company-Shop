@@ -317,7 +317,6 @@ function InfoUser({
               </div>
             </div>
           )}
-
           {!editable && (
             <div
               className={
@@ -333,6 +332,15 @@ function InfoUser({
                   </div>
                   <div className="input-dialog-container">
                     <input value={infoData.name} type="text" readOnly />
+                  </div>
+                </div>
+
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Apellidos:</p>
+                  </div>
+                  <div className="input-dialog-container">
+                    <input value={infoData.last_name} type="text" readOnly />
                   </div>
                 </div>
 
@@ -364,9 +372,15 @@ function InfoUser({
                 </div>
                 <div className="input-info-dialog">
                   <div className="p-dialog-container">
-                    <p>Admin:</p>
+                    <p>Activo:</p>
                   </div>
                   <Checkbox checked={infoData.is_active} readOnly />
+                </div>
+                <div className="input-info-dialog">
+                  <div className="p-dialog-container">
+                    <p>Admin:</p>
+                  </div>
+                  <Checkbox checked={infoData.is_staff} readOnly />
                 </div>
               </div>
             </div>
