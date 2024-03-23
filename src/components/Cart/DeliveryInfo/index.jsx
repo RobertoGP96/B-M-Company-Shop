@@ -1,23 +1,11 @@
 import { Dialog } from "primereact/dialog";
 import {InputText} from "primereact/inputtext"
 import {InputTextarea} from "primereact/inputtextarea"
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import "./index.css";
 
-function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, setShowErrorDeliveryInfo}) {
+function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, setShowErrorDeliveryInfo, deliveryInfoButtonRef}) {
   const [show, setShow] = useState(false);
-  const deliveryInfoButtonRef = useRef(null)
-
-  //focus the add delivery info button when the user try to send the order and the delivery info is empty
-  useEffect(() => {
-    if(showErrorDeliveryInfo == true && deliveryInfoButtonRef !== null){
-      deliveryInfoButtonRef.current.scrollIntoView({
-        top:0,
-        left:0,
-        behavior:'smooth'
-      })
-    }
-  },[showErrorDeliveryInfo])
 
   return (
     <>
@@ -46,10 +34,18 @@ function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, set
           className="cart-delivery-info-form"
           onSubmit={(e) => {
             e.preventDefault();
-            setDeliveryInfo((prev) => ({...prev, phone:e.target["phone"].value, address:e.target["address"].value}))
+            setDeliveryInfo((prev) => ({...prev,name:e.target["name"].value ,phone:e.target["phone"].value, address:e.target["address"].value}))
             setShow(false)
           }}
         >
+          <span className="p-float-label">
+            <InputText
+              id="name"
+              defaultValue={deliveryInfo.name}
+              required={true}
+            />
+            <label htmlFor="phone">Nombre</label>
+          </span>
           <span className="p-float-label">
             <InputText
               id="phone"
@@ -66,7 +62,7 @@ function DeliveryInfo({deliveryInfo, setDeliveryInfo, showErrorDeliveryInfo, set
             />
             <label htmlFor="address">Dirección</label>
           </span>
-          <button className = "btn-general-styles" type="submit">Guardar</button>
+          <button className = "btn-general-styles save-btn" type="submit">Guardar</button>
         </form>
       </Dialog>
     </>

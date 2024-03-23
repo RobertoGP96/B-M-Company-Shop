@@ -3,7 +3,8 @@ import "primeicons/primeicons.css";
 import Logo from "../assets/BYM logo/B&M-E-COMMERSE.svg";
 import { useState, useEffect } from "react";
 import { getContactInfo } from "../services/ManageContact/contact_info_management";
-import {Skeleton} from "primereact/skeleton"
+import { Skeleton } from "primereact/skeleton";
+import  SubjectRequest from "../components/SubjectRequest/SubjectRequest.jsx";
 
 function Contact() {
   const [loading, setLoading] = useState(true);
@@ -20,13 +21,13 @@ function Contact() {
     <div className="contact-container">
       <section className="container">
         <div className="logo-contact-into">
-          <img src={Logo}  className="Logo" alt="Logo of B&M Company" />
+          <img src={Logo} className="Logo" alt="Logo of B&M Company" />
         </div>
         <article className="intro-contact-into">
           <p>
-          Esperemos que haya sido de su agrado alguno de nuestros productos.  
-          Si desea puede contactarnos por alguno de estos medios.
-          Estaremos encantados de responder cualquiera de sus dudas.
+            Esperemos que haya sido de su agrado alguno de nuestros productos.
+            Si desea puede contactarnos por alguno de estos medios. Estaremos
+            encantados de responder cualquiera de sus dudas.
           </p>
         </article>
         <article className="social-contact-into">
@@ -45,11 +46,19 @@ function Contact() {
             <h4>Puede contactarnos:</h4>
             <span>
               <i className="pi pi-phone"></i>
-              <ContactLabel label={data.phone1} loading={loading} action={`tel:${data.phone1}`} />
+              <ContactLabel
+                label={data.phone1}
+                loading={loading}
+                action={`tel:${data.phone1}`}
+              />
             </span>
             <span>
               <i className="pi pi-envelope"></i>
-              <ContactLabel label={data.email1} loading={loading} action={`mailto:${data.email1}`}/>
+              <ContactLabel
+                label={data.email1}
+                loading={loading}
+                action={`mailto:${data.email1}`}
+              />
             </span>
             <span>
               <i className="pi pi-map-marker"></i>
@@ -60,17 +69,36 @@ function Contact() {
             <h4>Redes Sociales:</h4>
             <span>
               <i className="pi pi-facebook"></i>
-              <ContactLabel label="Facebook" loading={loading} action={data.facebook} />
+              <ContactLabel
+                label="Facebook"
+                loading={loading}
+                action={data.facebook}
+              />
             </span>
             <span>
               <i className="pi pi-whatsapp"></i>
-              <ContactLabel label="Whatsap" loading={loading} action={`https://wa.me/message/${data.whatsapp}`}/>
+              <ContactLabel
+                label="Whatsap"
+                loading={loading}
+                action={`whatsapp://send?phone=${data.whatsapp}`}
+              />
             </span>
             <span>
               <i className="pi pi-telegram"></i>
-              <ContactLabel label="Telegram" loading={loading} action={`https://te.me/message/${data.telegram}`}/>
+              <ContactLabel
+                label="Telegram"
+                loading={loading}
+                action={`https://t.me/${data.telegram}`}
+              />
             </span>
           </div>
+        </article>
+        <article className="contact-subject">
+          <p>
+            Si ha presenta alguna inconformidad con nuestro servico puede
+            registrar su queja a traves del correo.
+          </p>
+          <SubjectRequest MailBM={data.email1}/>
         </article>
       </section>
     </div>
@@ -83,6 +111,8 @@ function ContactLabel({ label, loading, action }) {
   return loading ? (
     <Skeleton width="6rem"></Skeleton>
   ) : (
-    <a className="label-social" href={action} >{label}</a>
+    <a className="label-social" href={action}>
+      {label}
+    </a>
   );
 }

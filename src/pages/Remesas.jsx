@@ -42,14 +42,14 @@ function Remesas() {
               <p>Zelle</p>
             </li>
               </a>
-              <a href="https://cash.app/" target="_blank">
+              <a rel="noreferer" href="https://cash.app/" target="_blank">
 
             <li>
               <img src={Cash} alt="Zelle icon" />
               <p>Cash</p>
             </li>
               </a>
-              <a href="https://www.paypal.com/" target="_blank">           
+              <a href="https://www.paypal.com/"  target="_blank">           
             <li>
               <img src={PayPal} alt="Zelle icon" />
               <p>PayPal</p>
@@ -60,7 +60,9 @@ function Remesas() {
             <ContactLabel label={data.remesas} loading={loading}/>
             <button className="remesas-contact-button">
               <i className="pi pi-phone"></i>
-              <a href="http://">Contactar</a>
+              <a href={`whatsapp://send?phone=${data.remesas}`}>
+                Contactar
+              </a>
             </button>
           </span>
         </div>

@@ -93,3 +93,10 @@
     align-items: center;
     justify-content: right;
 }
+
+@media (max-width:500px) {
+    .management-menu-container{
+        flex-direction: column;
+    }
+    
+}
